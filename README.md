@@ -1,0 +1,1 @@
+This is a future README file for my bachelor thesis.
