@@ -1,13 +1,13 @@
-\contentsline {chapter}{List of Tables}{vii}{section*.10}%
-\contentsline {chapter}{List of Figures}{viii}{section*.12}%
-\contentsline {chapter}{Acronyms}{ix}{section*.14}%
-\contentsline {chapter}{Thesis Proposal}{x}{section*.16}%
-\contentsline {paragraph}{Motivation}{x}{section*.18}%
-\contentsline {paragraph}{Hypotheses}{x}{section*.19}%
-\contentsline {paragraph}{Methodology}{xi}{section*.20}%
-\contentsline {paragraph}{Expected Contribution}{xii}{section*.21}%
-\contentsline {paragraph}{Outline}{xii}{section*.22}%
-\contentsline {paragraph}{Core bibliography}{xii}{section*.23}%
+\contentsline {chapter}{List of Tables}{viii}{section*.10}%
+\contentsline {chapter}{List of Figures}{ix}{section*.12}%
+\contentsline {chapter}{Acronyms}{x}{section*.14}%
+\contentsline {chapter}{Thesis Proposal}{xi}{section*.16}%
+\contentsline {paragraph}{Motivation}{xi}{section*.18}%
+\contentsline {paragraph}{Hypotheses}{xii}{section*.19}%
+\contentsline {paragraph}{Methodology}{xii}{section*.20}%
+\contentsline {paragraph}{Expected Contribution}{xiii}{section*.21}%
+\contentsline {paragraph}{Outline}{xiii}{section*.22}%
+\contentsline {paragraph}{Core bibliography}{xiii}{section*.23}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Title of Chapter Two}{2}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Formal requirements of master's thesis at the Faculty of Social Sciences}{2}{section.2.1}%
