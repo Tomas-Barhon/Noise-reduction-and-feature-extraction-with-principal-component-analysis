@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex Thesis"] 1696365212 "Thesis.aux" "Thesis.bbl" "Thesis" 1696365301
+["bibtex Thesis"] 1696494897 "Thesis.aux" "Thesis.bbl" "Thesis" 1696495162
   "./Styles/Stylebib.bst" 1696235919 32851 88808a60bae93d15132397dd0bbfbbd3 ""
   "Styles/Bibliography.bib" 1696235919 2575 f678c0d12cb3892143acdc01d5aed382 ""
-  "Thesis.aux" 1696365301 9078 f1ec90551934afe216e14dd9d6ac33e2 "pdflatex"
+  "Thesis.aux" 1696495162 9077 57fe736f253b0baf0194e21015a0ba5b "pdflatex"
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
-["pdflatex"] 1696365301 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1696365301
+["pdflatex"] 1696495162 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1696495162
   "/etc/texmf/web2c/texmf.cnf" 1696271624 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" 1696365300 6724 3368ad19595187d0a0fe73258bf485f0 ""
+  "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" 1696494596 6727 b7ca37c776a409fd280fbd56d2befa35 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm" 1246382020 924 9904cf1d39e9767e7a3622f2a125a565 ""
@@ -222,7 +222,7 @@
   "01_Frontmatter/ackn.tex" 1696235917 735 9e2e5bb7f1ef507e7af0b07185e89ba8 ""
   "01_Frontmatter/acro.tex" 1696235917 292 c06ddee5d3c6d4ff6f2c007efe518c4e ""
   "01_Frontmatter/decl.tex" 1696235917 753 1e4b0d3893cfae3267b6217cd62d2431 ""
-  "01_Frontmatter/prop.tex" 1696235917 9597 3a25ed929cd25e39887bc6417b8c7b23 ""
+  "01_Frontmatter/prop.tex" 1696495162 8724 70ec7b417d5f7c35c602eb8e6889ef79 ""
   "02_Mainmatter/01_Intro.tex" 1696235918 1359 5d1c63fea47c02aac3ad22b2ee006eae ""
   "02_Mainmatter/02.tex" 1696235918 1556 f8bc5944ad3bd846f03c5c5de8addeb6 ""
   "02_Mainmatter/03.tex" 1696235918 9431 a667e100d75d55d5dfa426fa7e9528d8 ""
@@ -238,15 +238,15 @@
   "Figures/supplydemand.pdf" 1696235918 29014 ba04b54ec1d2a8915c8b5d2df920b5da ""
   "Styles/Head.sty" 1696235919 1085 322b42d3b6e77ffe1b5614c7edb884f6 ""
   "Styles/Mystyle.sty" 1696272827 6811 0257c71a323572878bae4d931541fbfb ""
-  "Thesis.aux" 1696365301 9078 f1ec90551934afe216e14dd9d6ac33e2 "pdflatex"
-  "Thesis.bbl" 1696365212 1434 44653f940a5b34e4180971b7cda19524 "bibtex Thesis"
-  "Thesis.lof" 1696365301 388 242a9c1414cee4825324136cced947df "pdflatex"
-  "Thesis.lot" 1696365301 276 4729e48c81161c7f3962a8327724cf53 "pdflatex"
-  "Thesis.out" 1696365301 4823 cf337fcbc744cf0b4f31988a83f95432 "pdflatex"
-  "Thesis.tex" 1696365300 6724 3368ad19595187d0a0fe73258bf485f0 ""
-  "Thesis.toc" 1696365301 2689 b5d427d8a590d04704b95ae904b2fa0e "pdflatex"
+  "Thesis.aux" 1696495162 9077 57fe736f253b0baf0194e21015a0ba5b "pdflatex"
+  "Thesis.bbl" 1696494897 1434 44653f940a5b34e4180971b7cda19524 "bibtex Thesis"
+  "Thesis.lof" 1696495162 388 242a9c1414cee4825324136cced947df "pdflatex"
+  "Thesis.lot" 1696495162 276 4729e48c81161c7f3962a8327724cf53 "pdflatex"
+  "Thesis.out" 1696495162 4823 cf337fcbc744cf0b4f31988a83f95432 "pdflatex"
+  "Thesis.tex" 1696494596 6727 b7ca37c776a409fd280fbd56d2befa35 ""
+  "Thesis.toc" 1696495162 2688 884ac5f4608b51893c2735b75a8eaeb2 "pdflatex"
   "Thesis.xmpdata" 1696235919 172 c69256dd50c5c3ccc3e45675b925ec56 ""
-  "pdfa.xmpi" 1696365301 5529 0d5c16a131cde6cc631de3fb2fe39041 "pdflatex"
+  "pdfa.xmpi" 1696495162 5529 80748d3494833c81f60376d4255265ea "pdflatex"
   (generated)
   "Thesis.aux"
   "Thesis.lof"
