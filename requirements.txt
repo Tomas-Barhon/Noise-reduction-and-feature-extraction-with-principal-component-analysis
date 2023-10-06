@@ -5,3 +5,5 @@ matplotlib
 seaborn
 scikit-learn
 jupyter
+scikit-learn-intelex
+dpcpp_cpp_rt
