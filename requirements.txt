@@ -1,5 +1,6 @@
 tensorflow
 pandas
+pandas_ta
 numpy
 matplotlib
 seaborn
@@ -7,3 +8,6 @@ scikit-learn
 jupyter
 scikit-learn-intelex
 dpcpp_cpp_rt
+yfinance
+gtab
+fredapi
