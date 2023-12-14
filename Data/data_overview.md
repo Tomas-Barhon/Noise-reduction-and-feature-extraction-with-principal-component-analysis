@@ -173,5 +173,7 @@ For instance having monthly cpi data we need to shift it by 1 and then interpola
 
 * It is crucial to figure out correct methodology/framework how to compare the models as the models with higher dimensionality data need more capacity than
 the ones with lower dimensionality (hard to conclude a ceteris paribus effect of the reduciton)
+* Scalers have to part of the pipeline, or one has to ensure that the scalers use only the training data distribution (we cannot leak the distributions of dev, test even to scalers!!!)
+
 
 
