@@ -3,10 +3,9 @@
 ## Studied cryptocurrencies
 * Bitcoin 
 * Ethereum
-*
+* Litecoin
 
 ## Types of variables
-
 * macroeconomical
 * technical (MA, returns, etc...)
 * search realted
@@ -29,18 +28,16 @@
 
 ### Market state indexes
 * "^DJI" - Dow Jones industrial average 
-* "^GSPC" - S&P 500 
+* "^GSPC" - S&P 500
 * "GC=F" - Gold futures
 ### Market sentiment about volatility
 * "^VIX" - CBOE Volatility Index 
 
 ### ETFs and Indexes orinted towards technological companies
 **INDEXES**
-
 * "^IXIC" - NASDAQ composite
 
 **ETFS**
-
 * "SMH" - VanEck Semiconductor ETF
 * "VGT" - Vanguard Information Technology Index Fund
 * "XSD" - SPDR S&P Semiconductor ETF
@@ -58,9 +55,11 @@
 * Litecoin
 * Overall crypto search, to be included in all datasets
 
-* TBD - measure of market sentiment (good vs bad types of search)
-## Wiki searches
-
+* TBD - measure of market sentiment (good vs bad types of search) (maybe just VIX + moving averages)
+## Wiki searches individual
+* page views - Bitcoin 
+* page views - Ethereum
+* page views - Litecoin
 ## Crypto fundamental
 
 ### **BTC** (30)

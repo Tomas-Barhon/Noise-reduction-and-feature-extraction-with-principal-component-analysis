@@ -1,7 +1,3 @@
-"""
-pylint
-"""
-
 from datetime import datetime
 from fredapi import Fred
 import pandas as pd
@@ -9,91 +5,118 @@ import yfinance as yf
 import gtab
 
 class Dataset():
-    """_summary_
+    """
     Parent class for other datasets responsible for getting data
     for variables common in all datasets.
-    Returns:
-        _type_: _description_
     """
     #definning constants with Tick names
+    #targets
     BTC = "BTC-USD"
     ETH = "ETH-USD"
-    BNB = "BNB-USD"
+    LTC = "LTC-USD"
 
+    # Market state indicators
+    # Dow Jones industrial average
     DJI = "^DJI"
+    # S&P 500
     SP500 = "^GSPC"
-    CBOE_VOLATILITY = "^VIX"
-    NASDAQ = "^IXIC"
-    SMH = "SMH"
-    VGT = "VGT"
-    SPDR_SEMICONDUCTOR = "XSD"
-    ISHARES = "IYW"
-    FIDELITYMSCI = "FTEC"
-    ISHARES_EXPANDED = "IGV"
-    INVESCO_QQQ = "QQQ"
+    # Gold futures
     GOLD_FUTURES = "GC=F"
+
+    # Market sentiment about volatility
+    # CBOE Volatility Index
+    CBOE_VOLATILITY = "^VIX"
+
+    # ETFs and Indexes orinted towards technological companies
+    # NASDAQ composite
+    NASDAQ = "^IXIC"
+    # VanEck Semiconductor ETF
+    SMH = "SMH"
+    # Vanguard Information Technology Index Fund
+    VGT = "VGT"
+    # SPDR S&P Semiconductor ETF
+    SPDR_SEMICONDUCTOR = "XSD"
+    # iShares U.S. Technology ETF
+    ISHARES = "IYW"
+    # Fidelity MSCI Information Technology Index ETF
+    FIDELITYMSCI = "FTEC"
+    # iShares Expanded Tech-Software Sector ETF
+    ISHARES_EXPANDED = "IGV"
+    # Invesco QQQ Trust
+    INVESCO_QQQ = "QQQ"
+    
 
     def __init__(self):
         self.data = pd.DataFrame(columns=["no_data"])
         self.date_min = datetime(2011,12,31)
-        self.data_max = datetime(2022,5,6)
+        self.data_max = datetime(2023,12,3)
+        #normalized google trends
         self.google_trends = gtab.GTAB()
+        self.queries_crypto = [self.google_trends.new_query("Cryptocurrency"),
+                                self.google_trends.new_query("cryptocurrency"),
+                                self.google_trends.new_query("Cryptocurrencies"),
+                                self.google_trends.new_query("cryptocurrencies"),
+                                self.google_trends.new_query("crypto"),
+                                self.google_trends.new_query("Crypto")]
+
     def get_yf_variable_history(self,tick_name):
         """Retrieves data from Yahoo finance and returns pd.Dataframe.
-
-        Args:
-            tick_name (_type_): _description_
-
-        Returns:
-            _type_: _description_
         """
         ticker = yf.Ticker(tick_name)
         return ticker.history(period="max")
+
     def create_coinmetrics_datasets(self):
         """Method that takes coinmetrics dataset and creates new csv file for each cryptocurrency
         """
         #the seperator is tab and encoding UTF-16-LE just so I do not forget
-        data = pd.read_csv("./../Data/coinmetrics_data_4_12_2023.csv", encoding="utf-16-le", sep = "	")
+        data = pd.read_csv("./../Data/coinmetrics_data_4_12_2023.csv",
+                        encoding="utf-16-le", sep = "	")
         data["Time"] = pd.to_datetime(data["Time"])
         data.set_index("Time", inplace=True)
         data.index.name = None
-        #spliting data into 3 datasets
-        BTC_dataframe, ETH_dataframe, LTC_dataframe = data.iloc[:,:30], data.iloc[:,30:57], data.iloc[:,57:]
-        BTC_dataframe.to_csv("./../Data/BTC_dataframe.csv")
-        ETH_dataframe.to_csv("./../Data/ETH_dataframe.csv")
-        LTC_dataframe.to_csv("./../Data/LTC_dataframe.csv")
-        
+        #spliting data into 3 seperate datasets
+        self.BTC_dataframe, self.ETH_dataframe, self.LTC_dataframe = (data.iloc[:,:30],
+                                            data.iloc[:,30:57], data.iloc[:,57:])
+        return self
+
     def get_common_data(self):
         """
         returns dataframe with variables that are common for all cryptocurrencies
         """
         #Yahoo finance tickers
         merged_df = self.get_yf_variable_history(Dataset.DJI)
-        common_variables = [Dataset.SP500,Dataset.CBOE_VOLATILITY,
+        common_variables = [Dataset.SP500,Dataset.GOLD_FUTURES,Dataset.CBOE_VOLATILITY,
                             Dataset.NASDAQ,Dataset.SMH,Dataset.VGT,Dataset.SPDR_SEMICONDUCTOR,
                             Dataset.ISHARES,Dataset.FIDELITYMSCI,Dataset.ISHARES_EXPANDED,
-                            Dataset.INVESCO_QQQ,Dataset.GOLD_FUTURES]
+                            Dataset.INVESCO_QQQ]
         for tick in common_variables:
             merged_df = pd.merge(merged_df, self.get_yf_variable_history(tick),
-                                left_index=True, right_index=True, how='outer')
-        #Google market
+                                left_index=True, right_index=True, how="outer")
+        #Google crypto
         
-        #Fred macro data, need to be interpolated to daily 
+        #Wiki crypto
+        wiki_crypto = pd.read_csv("./../Data/pageviews-Cryptocurrency.csv")
+        #Fred macro data, need to be interpolated to daily
         fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
         macro_data = fred.get_series("CPIAUCSL")
-        return merged_df
+        
+        #assign common data to self.data
+        self.data = merged_df
+        return self
     
     def data_to_csv(self, name):
         """Saves data into csv file.
-
-        Args:
-            name (_type_): _description_
         """
         self.data.to_csv(name)
         
     def get_data(self):
         return self.data
 
+    def combine_queries(self, queries):
+        """
+        Function that will sum the different query formulation and return the summed dataframe
+        """
+        ...
 class BitcoinDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -101,11 +124,7 @@ class BitcoinDataset(Dataset):
                                 self.google_trends.new_query("bitcoin"),
                                 self.google_trends.new_query("BTC"),
                                 self.google_trends.new_query("BTC-USD")]
-    def get_google_trends(self):
-        """
-        Function that will sum the different query formulation and return the summed dataframe
-        """
-        ...
+
         
 class EthereumDataset(Dataset):
     def __init__(self):
@@ -116,10 +135,10 @@ class EthereumDataset(Dataset):
                                 self.google_trends.new_query("ETH"),
                                 self.google_trends.new_query("ETH-USD")]
         
-class BNBDataset(Dataset):
+class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
-        self.queries_litecoin = [self.google_trends.new_query("Liteccoin"),
+        self.queries_litecoin = [self.google_trends.new_query("Litecoin"),
                         self.google_trends.new_query("litecoin"),
                         self.google_trends.new_query("LTC"),
                         self.google_trends.new_query("LTC-USD")]
