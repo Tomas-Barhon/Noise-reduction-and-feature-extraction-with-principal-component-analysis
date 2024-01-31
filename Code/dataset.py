@@ -3,6 +3,7 @@ from fredapi import Fred
 import pandas as pd
 import yfinance as yf
 import gtab
+import time
 
 class Dataset():
     """
@@ -48,8 +49,8 @@ class Dataset():
 
     def __init__(self):
         self.data = pd.DataFrame(columns=["no_data"])
-        self.date_min = datetime(2011,12,31)
-        self.data_max = datetime(2023,12,3)
+        self.date_min = datetime(2011,1,1)
+        self.data_max = datetime(2023,1,1)
         #normalized google trends
         self.google_trends = gtab.GTAB()
         self.google_trends.set_options(pytrends_config={"timeframe": "2011-01-01 2023-01-01"})
@@ -65,7 +66,9 @@ class Dataset():
         """Retrieves data from Yahoo finance and returns pd.Dataframe.
         """
         ticker = yf.Ticker(tick_name)
-        return ticker.history(period="max")
+        history = ticker.history(period="max")
+        history.index = pd.to_datetime(pd.to_datetime(history.index).date)
+        return history["Close"]
 
     def create_coinmetrics_datasets(self):
         """Method that takes coinmetrics dataset and creates new csv file for each cryptocurrency
@@ -92,15 +95,18 @@ class Dataset():
                             Dataset.ISHARES,Dataset.FIDELITYMSCI,Dataset.ISHARES_EXPANDED,
                             Dataset.INVESCO_QQQ]
         for tick in common_variables:
+            second = tick
             merged_df = pd.merge(merged_df, self.get_yf_variable_history(tick),
-                                left_index=True, right_index=True, how="outer")
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, "_" + second))
+        merged_df.rename(columns={"Close": "Close_^DJI"}, inplace=True)
         #Google crypto
         
         #Wiki crypto
         wiki_crypto = pd.read_csv("./../Data/pageviews-Cryptocurrency.csv")
         #Fred macro data, need to be interpolated to daily
         fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
-        macro_data = fred.get_series("CPIAUCSL")
+        #macro_data = fred.get_series("CPIAUCSL")
         
         #assign common data to self.data
         self.data = merged_df
@@ -125,6 +131,7 @@ class Dataset():
 class BitcoinDataset(Dataset):
     def __init__(self):
         super().__init__()
+        time.sleep(20)
         self.queries_bitcoin = [self.google_trends.new_query("Bitcoin"),
                                 self.google_trends.new_query("bitcoin"),
                                 self.google_trends.new_query("BTC")]
@@ -133,6 +140,7 @@ class BitcoinDataset(Dataset):
 class EthereumDataset(Dataset):
     def __init__(self):
         super().__init__()
+        time.sleep(20)
         self.queries_ethereum = [self.google_trends.new_query("Ethereum"),
                                 self.google_trends.new_query("ethereum"),
                                 self.google_trends.new_query("ether"),
@@ -141,6 +149,7 @@ class EthereumDataset(Dataset):
 class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
+        time.sleep(20)
         self.queries_litecoin = [self.google_trends.new_query("Litecoin"),
                         self.google_trends.new_query("litecoin"),
                         self.google_trends.new_query("LTC")]

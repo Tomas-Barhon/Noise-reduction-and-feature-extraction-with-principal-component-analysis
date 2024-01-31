@@ -26,7 +26,8 @@
 
 ### Technical analysis variables (volatilities, moving averages, returns ...)
 
-### Market state indexes
+### Market state indexes (mention that we use close price and interpolate the price forward on missing days)
+all changed to daily
 * "^DJI" - Dow Jones industrial average 
 * "^GSPC" - S&P 500
 * "GC=F" - Gold futures
