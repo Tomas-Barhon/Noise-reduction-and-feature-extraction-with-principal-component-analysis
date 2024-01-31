@@ -52,6 +52,8 @@ class Dataset():
         self.data_max = datetime(2023,12,3)
         #normalized google trends
         self.google_trends = gtab.GTAB()
+        self.google_trends.set_options(pytrends_config={"timeframe": "2011-01-01 2023-01-01"})
+        self.google_trends.set_active_gtab("google_anchorbank_geo=_timeframe=2011-01-01 2023-01-01.tsv")
         self.queries_crypto = [self.google_trends.new_query("Cryptocurrency"),
                                 self.google_trends.new_query("cryptocurrency"),
                                 self.google_trends.new_query("Cryptocurrencies"),
@@ -116,14 +118,16 @@ class Dataset():
         """
         Function that will sum the different query formulation and return the summed dataframe
         """
-        ...
+        result = queries[0]
+        for query in queries[1:]:
+            result["max_ratio"] = result["max_ratio"] + query["max_ratio"]
+        return result
 class BitcoinDataset(Dataset):
     def __init__(self):
         super().__init__()
         self.queries_bitcoin = [self.google_trends.new_query("Bitcoin"),
                                 self.google_trends.new_query("bitcoin"),
-                                self.google_trends.new_query("BTC"),
-                                self.google_trends.new_query("BTC-USD")]
+                                self.google_trends.new_query("BTC")]
 
         
 class EthereumDataset(Dataset):
@@ -132,13 +136,11 @@ class EthereumDataset(Dataset):
         self.queries_ethereum = [self.google_trends.new_query("Ethereum"),
                                 self.google_trends.new_query("ethereum"),
                                 self.google_trends.new_query("ether"),
-                                self.google_trends.new_query("ETH"),
-                                self.google_trends.new_query("ETH-USD")]
+                                self.google_trends.new_query("ETH")]
         
 class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
         self.queries_litecoin = [self.google_trends.new_query("Litecoin"),
                         self.google_trends.new_query("litecoin"),
-                        self.google_trends.new_query("LTC"),
-                        self.google_trends.new_query("LTC-USD")]
+                        self.google_trends.new_query("LTC")]

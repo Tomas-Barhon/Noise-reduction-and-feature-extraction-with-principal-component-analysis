@@ -55,6 +55,7 @@
 * Litecoin
 * Overall crypto search, to be included in all datasets
 
+* Note: I had to remove terms BTC/LTC/ETH-USD as there is not enough data and these searches are not recognized by google trends
 * TBD - measure of market sentiment (good vs bad types of search) (maybe just VIX + moving averages)
 ## Wiki searches individual
 * page views - Bitcoin 
