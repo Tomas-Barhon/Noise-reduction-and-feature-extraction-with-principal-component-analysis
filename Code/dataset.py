@@ -1,10 +1,10 @@
+import time
+from abc import abstractmethod
 from datetime import datetime
 from fredapi import Fred
 import pandas as pd
 import yfinance as yf
 import gtab
-import time
-from abc import abstractmethod
 class Dataset():
     """
     Parent class for other datasets responsible for getting data
@@ -62,7 +62,7 @@ class Dataset():
     def __init__(self):
         self.data = pd.DataFrame(columns=["no_data"])
         self.date_min = datetime(2011,1,3)
-        self.data_max = datetime(2022,12,30)
+        self.date_max = datetime(2022,12,30)
         #normalized google trends
         self.google_trends = gtab.GTAB()
         self.google_trends.set_options(pytrends_config={"timeframe": "2011-01-01 2023-01-01"})
@@ -140,11 +140,6 @@ class Dataset():
         #assign common data to self.data
         self.data = merged_df
         return self
-    
-    def data_to_csv(self, name):
-        """Saves data into csv file.
-        """
-        self.data.to_csv(name)
         
     def get_data(self):
         return self.data
@@ -177,8 +172,30 @@ class Dataset():
         self.get_common_data()
         return self
 
+    @staticmethod
+    def get_btc_data():
+        dataset = pd.read_csv("./../Data/btc.csv", index_col=0)
+        dataset.index = pd.to_datetime(dataset.index)
+        return dataset
+
+    @staticmethod
+    def get_eth_data():
+        dataset = pd.read_csv("./../Data/eth.csv", index_col=0)
+        dataset.index = pd.to_datetime(dataset.index)
+        return dataset
+
+    @staticmethod
+    def get_ltc_data():
+        dataset = pd.read_csv("./../Data/ltc.csv", index_col=0)
+        dataset.index = pd.to_datetime(dataset.index)
+        return dataset
+
     @abstractmethod
     def merge_all_data(self):
+        pass
+
+    @abstractmethod
+    def save_data_to_csv(self):
         pass
 class BitcoinDataset(Dataset):
     def __init__(self):
@@ -191,7 +208,7 @@ class BitcoinDataset(Dataset):
     def merge_all_data(self):
         self.execute_full_pipeline()
         #Currency specific google searches
-        google_btc = self.combine_queries(self.queries_crypto)
+        google_btc = self.combine_queries(self.queries_bitcoin)
         google_btc.rename(columns={"max_ratio": "Google_btc_search"}, inplace=True)
         google_btc = google_btc[["Google_btc_search"]]
         #Wiki btc
@@ -210,6 +227,11 @@ class BitcoinDataset(Dataset):
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
         return merged_df
+    def save_data_to_csv(self):
+        data = self.merge_all_data()
+        data = data.loc[self.date_min:self.date_max]
+        data.to_csv("./../Data/btc.csv")
+        return self
 class EthereumDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -220,7 +242,32 @@ class EthereumDataset(Dataset):
                                 self.google_trends.new_query("ETH")]
 
     def merge_all_data(self):
-        ...
+        self.execute_full_pipeline()
+        #Currency specific google searches
+        google_eth = self.combine_queries(self.queries_ethereum)
+        google_eth.rename(columns={"max_ratio": "Google_eth_search"}, inplace=True)
+        google_eth = google_eth[["Google_eth_search"]]
+        #Wiki btc
+        wiki_crypto = pd.read_csv("./../Data/pageviews-Ethereum.csv")
+        wiki_crypto["Date"] = pd.to_datetime(wiki_crypto["Date"])
+        wiki_crypto.set_index("Date", inplace=True)
+        wiki_crypto.index.name = None
+        wiki_crypto.rename(columns={"Ethereum": "Wiki_eth_search"}, inplace=True)
+        google_wiki = pd.merge(google_eth, wiki_crypto,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(self.ETH_dataframe, google_wiki,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.data,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        return merged_df
+    def save_data_to_csv(self):
+        data = self.merge_all_data()
+        data = data.loc[self.date_min:self.date_max]
+        data.to_csv("./../Data/eth.csv")
+        return self
 class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -230,4 +277,29 @@ class LitecoinDataset(Dataset):
                         self.google_trends.new_query("LTC")]
 
     def merge_all_data(self):
-        ...
+        self.execute_full_pipeline()
+        #Currency specific google searches
+        google_ltc = self.combine_queries(self.queries_litecoin)
+        google_ltc.rename(columns={"max_ratio": "Google_ltc_search"}, inplace=True)
+        google_ltc = google_ltc[["Google_ltc_search"]]
+        #Wiki btc
+        wiki_crypto = pd.read_csv("./../Data/pageviews-Litecoin.csv")
+        wiki_crypto["Date"] = pd.to_datetime(wiki_crypto["Date"])
+        wiki_crypto.set_index("Date", inplace=True)
+        wiki_crypto.index.name = None
+        wiki_crypto.rename(columns={"Litecoin": "Wiki_ltc_search"}, inplace=True)
+        google_wiki = pd.merge(google_ltc, wiki_crypto,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(self.LTC_dataframe, google_wiki,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.data,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        return merged_df
+    def save_data_to_csv(self):
+        data = self.merge_all_data()
+        data = data.loc[self.date_min:self.date_max]
+        data.to_csv("./../Data/ltc.csv")
+        return self

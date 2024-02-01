@@ -49,7 +49,12 @@ all changed to daily
 
 
 ## Macroeconomical data
-
+collected from Fred St. Louis
+* "RGDP_US" - Real Gross Domestic product in the US
+* "RGDP_PC_US" - Real gross domestic product per capita in the US
+* "CPI_US" - Consumer Price Index: All Items: Total for United States
+* "M2_US" - M2 base US
+* "USD_EUR_rate" - U.S. Dollars to Euro Spot Exchange Rate
 
 
 
