@@ -226,6 +226,10 @@ class BitcoinDataset(Dataset):
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.get_yf_variable_history("BTC-USD"),
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df.rename(columns={"Close": "BTC-USD"}, inplace=True)
         return merged_df
     def save_data_to_csv(self):
         data = self.merge_all_data()
@@ -262,6 +266,10 @@ class EthereumDataset(Dataset):
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.get_yf_variable_history("ETH-USD"),
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df.rename(columns={"Close": "ETH-USD"}, inplace=True)
         return merged_df
     def save_data_to_csv(self):
         data = self.merge_all_data()
@@ -297,6 +305,10 @@ class LitecoinDataset(Dataset):
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.get_yf_variable_history("LTC-USD"),
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df.rename(columns={"Close": "LTC-USD"}, inplace=True)
         return merged_df
     def save_data_to_csv(self):
         data = self.merge_all_data()
