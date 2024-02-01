@@ -4,7 +4,7 @@ import pandas as pd
 import yfinance as yf
 import gtab
 import time
-
+from abc import abstractmethod
 class Dataset():
     """
     Parent class for other datasets responsible for getting data
@@ -45,12 +45,24 @@ class Dataset():
     ISHARES_EXPANDED = "IGV"
     # Invesco QQQ Trust
     INVESCO_QQQ = "QQQ"
+
+    # Fred St. Louis data
+    # Real Gross Domestic product in the US
+    RGDP_US = "GDPC1"
+    # Real gross domestic product per capita in the US
+    RGDP_PC_US = "A939RX0Q048SBEA"
+    # Consumer Price Index: All Items: Total for United States
+    CPI_US = "USACPALTT01CTGYM"
+    # M2 base US
+    M2_US = "WM2NS"
+    # U.S. Dollars to Euro Spot Exchange Rate
+    USD_EUR_rate = "DEXUSEU"
     
 
     def __init__(self):
         self.data = pd.DataFrame(columns=["no_data"])
-        self.date_min = datetime(2011,1,1)
-        self.data_max = datetime(2023,1,1)
+        self.date_min = datetime(2011,1,3)
+        self.data_max = datetime(2022,12,30)
         #normalized google trends
         self.google_trends = gtab.GTAB()
         self.google_trends.set_options(pytrends_config={"timeframe": "2011-01-01 2023-01-01"})
@@ -61,6 +73,7 @@ class Dataset():
                                 self.google_trends.new_query("cryptocurrencies"),
                                 self.google_trends.new_query("crypto"),
                                 self.google_trends.new_query("Crypto")]
+        self.fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
 
     def get_yf_variable_history(self,tick_name):
         """Retrieves data from Yahoo finance and returns pd.Dataframe.
@@ -101,13 +114,29 @@ class Dataset():
                         how="outer", suffixes = (None, "_" + second))
         merged_df.rename(columns={"Close": "Close_^DJI"}, inplace=True)
         #Google crypto
-        
+        google_crypto = self.combine_queries(self.queries_crypto)
+        google_crypto.rename(columns={"max_ratio": "Google_crypto_search"}, inplace=True)
+        google_crypto = google_crypto[["Google_crypto_search"]]
+        merged_df = pd.merge(merged_df, google_crypto,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
         #Wiki crypto
         wiki_crypto = pd.read_csv("./../Data/pageviews-Cryptocurrency.csv")
-        #Fred macro data, need to be interpolated to daily
-        fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
-        #macro_data = fred.get_series("CPIAUCSL")
+        wiki_crypto["Date"] = pd.to_datetime(wiki_crypto["Date"])
+        wiki_crypto.set_index("Date", inplace=True)
+        wiki_crypto.index.name = None
+        wiki_crypto.rename(columns={"Cryptocurrency": "Wiki_crypto_search"}, inplace=True)
+        merged_df = pd.merge(merged_df, wiki_crypto,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
         
+        #Fred macro data, need to be interpolated to daily
+        #macro_data = fred.get_series("CPIAUCSL")
+        fred_data = self.get_fred_data()
+        for column in fred_data:
+            merged_df = pd.merge(merged_df, column,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
         #assign common data to self.data
         self.data = merged_df
         return self
@@ -127,7 +156,30 @@ class Dataset():
         result = queries[0]
         for query in queries[1:]:
             result["max_ratio"] = result["max_ratio"] + query["max_ratio"]
+        result.index = pd.to_datetime(result.index)
+        result = result.resample("D").ffill()
         return result
+    
+    def get_fred_data(self):
+        data_buffer = []
+        ticks = [self.RGDP_US, self.RGDP_PC_US, self.CPI_US, self.M2_US, self.USD_EUR_rate]
+        column_names = ["RGDP_US", "RGDP_PC_US", "CPI_US", "M2_US", "USD_EUR_rate"]
+        for tick,name in zip(ticks, column_names):
+            fred_series = self.fred.get_series(tick)
+            fred_series.name = name
+            fred_series.index = pd.to_datetime(fred_series.index)
+            fred_series = fred_series.resample("D").ffill()
+            data_buffer.append(fred_series.to_frame())
+        return data_buffer
+    
+    def execute_full_pipeline(self):
+        self.create_coinmetrics_datasets()
+        self.get_common_data()
+        return self
+
+    @abstractmethod
+    def merge_all_data(self):
+        pass
 class BitcoinDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -136,7 +188,28 @@ class BitcoinDataset(Dataset):
                                 self.google_trends.new_query("bitcoin"),
                                 self.google_trends.new_query("BTC")]
 
-        
+    def merge_all_data(self):
+        self.execute_full_pipeline()
+        #Currency specific google searches
+        google_btc = self.combine_queries(self.queries_crypto)
+        google_btc.rename(columns={"max_ratio": "Google_btc_search"}, inplace=True)
+        google_btc = google_btc[["Google_btc_search"]]
+        #Wiki btc
+        wiki_crypto = pd.read_csv("./../Data/pageviews-Bitcoin.csv")
+        wiki_crypto["Date"] = pd.to_datetime(wiki_crypto["Date"])
+        wiki_crypto.set_index("Date", inplace=True)
+        wiki_crypto.index.name = None
+        wiki_crypto.rename(columns={"Bitcoin": "Wiki_btc_search"}, inplace=True)
+        google_wiki = pd.merge(google_btc, wiki_crypto,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(self.BTC_dataframe, google_wiki,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        merged_df = pd.merge(merged_df, self.data,
+                                left_index=True, right_index=True,
+                        how="outer", suffixes = (None, None))
+        return merged_df
 class EthereumDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -145,7 +218,9 @@ class EthereumDataset(Dataset):
                                 self.google_trends.new_query("ethereum"),
                                 self.google_trends.new_query("ether"),
                                 self.google_trends.new_query("ETH")]
-        
+
+    def merge_all_data(self):
+        ...
 class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -153,3 +228,6 @@ class LitecoinDataset(Dataset):
         self.queries_litecoin = [self.google_trends.new_query("Litecoin"),
                         self.google_trends.new_query("litecoin"),
                         self.google_trends.new_query("LTC")]
+
+    def merge_all_data(self):
+        ...

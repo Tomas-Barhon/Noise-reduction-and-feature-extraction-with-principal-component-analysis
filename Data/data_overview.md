@@ -26,7 +26,7 @@
 
 ### Technical analysis variables (volatilities, moving averages, returns ...)
 
-### Market state indexes (mention that we use close price and interpolate the price forward on missing days)
+### Market state indexes (mention that we use close price and interpolate the price forward on missing days) - also forward filling has quite reasonable random walk justification
 all changed to daily
 * "^DJI" - Dow Jones industrial average 
 * "^GSPC" - S&P 500
@@ -49,6 +49,10 @@ all changed to daily
 
 
 ## Macroeconomical data
+
+
+
+
 
 ## Google trends
 * Bitcoin
