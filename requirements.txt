@@ -11,3 +11,4 @@ dpcpp_cpp_rt
 yfinance
 gtab
 fredapi
+SciencePlots

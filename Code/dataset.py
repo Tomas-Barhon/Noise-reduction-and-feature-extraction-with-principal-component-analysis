@@ -305,6 +305,7 @@ class LitecoinDataset(Dataset):
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        
         merged_df = pd.merge(merged_df, self.get_yf_variable_history("LTC-USD"),
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
