@@ -1,5 +1,5 @@
-from dataset import BitcoinDataset, EthereumDataset, LitecoinDataset
 import time
+from dataset import BitcoinDataset, EthereumDataset, LitecoinDataset
 
 #Adding sleeps to surpass google trends request limit
 btc_dataset = BitcoinDataset()
