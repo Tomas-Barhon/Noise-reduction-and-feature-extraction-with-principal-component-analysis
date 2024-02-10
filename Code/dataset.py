@@ -266,10 +266,14 @@ class EthereumDataset(Dataset):
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
-        merged_df = pd.merge(merged_df, self.get_yf_variable_history("ETH-USD"),
+        eth = pd.read_csv("./../Data/ETH_USD_price_coinmetrics_2024_2_10.csv",
+                        encoding="utf-16-le", sep = "	")
+        eth["Time"] = pd.to_datetime(eth["Time"])
+        eth.set_index("Time", inplace=True)
+        merged_df = pd.merge(merged_df, eth,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
-        merged_df.rename(columns={"Close": "ETH-USD"}, inplace=True)
+        merged_df.rename(columns={"ETH / Price, USD": "ETH-USD"}, inplace=True)
         return merged_df
     def save_data_to_csv(self):
         data = self.merge_all_data()

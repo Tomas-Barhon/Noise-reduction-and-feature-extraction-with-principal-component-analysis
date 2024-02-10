@@ -50,4 +50,18 @@ class Visualizer():
         fig, ax = plt.subplots(1, 1, figsize=(18,8))
         sns.heatmap(data.isnull(), ax=ax,
                     cmap=sns.color_palette(['#34495E', 'tab:blue']))
+        ax.set_yticklabels([t.get_text().split("T")[0] for t in ax.get_yticklabels()])
+        return fig
+
+    @staticmethod
+    def draw_corr_cov_heatmap(data: pd.DataFrame, correlation = True):
+        if correlation is True:
+            corr = data.corr()
+        else:
+            corr = data.cov()
+        mask = np.triu(np.ones_like(corr, dtype=bool))
+        fig, ax = plt.subplots(figsize=(11, 9))
+        cmap = sns.diverging_palette(230, 20, as_cmap=True)
+        sns.heatmap(corr, mask=mask, cmap=cmap, center=0,
+                    square=True, linewidths=.5, cbar_kws={"shrink": .5})
         return fig
