@@ -67,6 +67,7 @@ collected from Fred St. Louis
 
 * Note: I had to remove terms BTC/LTC/ETH-USD as there is not enough data and these searches are not recognized by google trends
 * TBD - measure of market sentiment (good vs bad types of search) (maybe just VIX + moving averages)
+* The ethereum series is subseted to the period with PoW
 ## Wiki searches individual
 * page views - Bitcoin 
 * page views - Ethereum
