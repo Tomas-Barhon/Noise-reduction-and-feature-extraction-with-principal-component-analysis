@@ -98,3 +98,6 @@ class Pipeline:
             cv=ts_split, scoring=scoring, refit = "RMSE",
             verbose=4, n_jobs=-1).fit(train_data, train_target)
         return model
+    @staticmethod
+    def assembly_lstm():
+        ...

@@ -12,3 +12,4 @@ yfinance
 gtab
 fredapi
 SciencePlots
+scikeras[tensorflow]
