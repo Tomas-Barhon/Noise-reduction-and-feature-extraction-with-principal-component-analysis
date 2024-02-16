@@ -3,7 +3,7 @@ from dataset import Dataset
 import sklearn.model_selection
 import sklearn.preprocessing
 import sklearn.pipeline
-
+import tensorflow as tf
 
 class Pipeline:
     def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
@@ -81,7 +81,7 @@ class Pipeline:
         return train_data, test_data, train_target, test_target
 
     @staticmethod
-    def assembly_pipeline(estimator, dim_reducer=None):
+    def assembly_pipeline(estimator, dim_reducer):
         scaler = sklearn.preprocessing.RobustScaler()
         pipeline = sklearn.pipeline.Pipeline([("scaler", scaler),
                                               ("dim_reducer", dim_reducer), ("estimator", estimator)])
@@ -100,4 +100,7 @@ class Pipeline:
         return model
     @staticmethod
     def assembly_lstm():
-        ...
+        model = tf.keras.Sequential()
+        model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(n_steps, n_features)))
+        model.add(tf.keras.layers.Dense(1))
+        model.compile(optimizer='adam', loss='mse')

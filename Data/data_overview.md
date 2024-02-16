@@ -186,5 +186,6 @@ For instance having monthly cpi data we need to shift it by 1 and then interpola
 the ones with lower dimensionality (hard to conclude a ceteris paribus effect of the reduciton)
 * Scalers have to part of the pipeline, or one has to ensure that the scalers use only the training data distribution (we cannot leak the distributions of dev, test even to scalers!!!)
 
+# Notes
 
-
+Reporting retained variance on the whole dataset not only the train set, make sure to mention that

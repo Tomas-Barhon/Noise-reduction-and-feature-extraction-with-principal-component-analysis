@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import sklearn.model_selection
+
+
 class Visualizer():
     TARGET_COLOR = "black"
     PREDICTION_COLOR = "tab:blue"
@@ -20,7 +22,7 @@ class Visualizer():
         ax.plot(test_prediction, label="Prediction",
                 color=Visualizer.PREDICTION_COLOR, linewidth=1)
         ax.tick_params(axis='x', labelrotation=90)
-        ax.set_title(f"Price prediction {shift} days in advance", fontsize = 14)
+        ax.set_title(f"Price prediction {shift} days in advance", fontsize=14)
         ax.set(xlabel='Date', ylabel='Price in USD$')
         ax.yaxis.set_major_formatter('{x:1.0f}$')
         ax.legend(loc="best")
@@ -36,7 +38,7 @@ class Visualizer():
                 color=Visualizer.PREDICTION_COLOR, linewidth=1)
         ax.tick_params(axis='x', labelrotation=90)
         ax.set(xlabel='Date', ylabel='Price in USD$')
-        ax.set_title(f"Price prediction {shift} days in advance", fontsize = 14)
+        ax.set_title(f"Price prediction {shift} days in advance", fontsize=14)
         ax.yaxis.set_major_formatter('{x:1.0f}$')
         ax.axvline(pd.to_datetime(split_date), color='r',
                    linestyle='--', label="Train-test split")
@@ -75,3 +77,16 @@ class Visualizer():
     def show_ts_split_shapes(data):
         split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
         return [(el[0].shape, el[1].shape) for el in split.split(data)]
+
+    @staticmethod
+    def draw_cumulative_varience_ratios(data):
+        fig, ax = plt.subplots(1, 1)
+        ax.plot(np.arange(1, len(data) + 1).astype(np.int16), data*100,
+                color=Visualizer.PREDICTION_COLOR, linewidth=1)
+        ax.set_title(
+            "Cumulative retained variance by principal components in %", fontsize=14)
+        ax.set(xlabel="Number of principal components",
+               ylabel="Retained variance ratio %")
+        print(np.min(data))
+        ax.set_ylim(50, 100)
+        return fig
