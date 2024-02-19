@@ -96,11 +96,11 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid = parameter_grid,
             cv=ts_split, scoring=scoring, refit = "RMSE",
-            verbose=4, n_jobs=-1).fit(train_data, train_target)
+            verbose=1, n_jobs=-1).fit(train_data, train_target)
         return model
     @staticmethod
-    def assembly_lstm():
+    def assembly_lstm(n_features):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(n_steps, n_features)))
+        model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(30, n_features)))
         model.add(tf.keras.layers.Dense(1))
         model.compile(optimizer='adam', loss='mse')
