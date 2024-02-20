@@ -4,7 +4,22 @@ import sklearn.model_selection
 import sklearn.preprocessing
 import sklearn.pipeline
 import tensorflow as tf
+from sklearn.base import BaseEstimator, TransformerMixin
 
+class PCATransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, pca):
+        self.pca = pca
+
+    def fit(self, X, y=None):
+        self.pca.fit(X)
+        return self
+
+    def transform(self, X):
+        # Downsample to n_components
+        X_pca = self.pca.transform(X)
+        # Upsample back to original dimensions
+        X_restored = self.pca.inverse_transform(X_pca)
+        return X_restored
 class Pipeline:
     def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
         self.tick = crypto_tick
@@ -82,9 +97,16 @@ class Pipeline:
 
     @staticmethod
     def assembly_pipeline(estimator, dim_reducer):
+
         scaler = sklearn.preprocessing.RobustScaler()
+        if dim_reducer is not None:
+            denoiser = PCATransformer(dim_reducer)
+        else:
+            denoiser = dim_reducer
         pipeline = sklearn.pipeline.Pipeline([("scaler", scaler),
-                                              ("dim_reducer", dim_reducer), ("estimator", estimator)])
+                                              ("denoiser", denoiser),
+                                              ("estimator", estimator)])
+
         return pipeline
 
     @staticmethod

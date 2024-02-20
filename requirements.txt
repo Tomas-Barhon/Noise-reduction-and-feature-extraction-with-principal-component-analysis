@@ -13,3 +13,4 @@ gtab
 fredapi
 SciencePlots
 scikeras[tensorflow]
+sktime
