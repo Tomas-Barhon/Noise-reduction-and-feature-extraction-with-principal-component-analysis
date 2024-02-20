@@ -98,7 +98,7 @@ class Pipeline:
     @staticmethod
     def assembly_pipeline(estimator, dim_reducer):
 
-        scaler = sklearn.preprocessing.RobustScaler()
+        scaler = sklearn.preprocessing.RobustScaler(unit_variance = True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
         else:
@@ -118,7 +118,7 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid = parameter_grid,
             cv=ts_split, scoring=scoring, refit = "RMSE",
-            verbose=1, n_jobs=-1).fit(train_data, train_target)
+            verbose=0, n_jobs=-1, error_score='raise').fit(train_data, train_target)
         return model
     @staticmethod
     def assembly_lstm(n_features):
