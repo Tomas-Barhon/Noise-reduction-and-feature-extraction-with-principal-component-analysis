@@ -101,10 +101,13 @@ class Pipeline:
         scaler = sklearn.preprocessing.RobustScaler(unit_variance = True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
+            scaler_2 = sklearn.preprocessing.StandardScaler()
         else:
             denoiser = dim_reducer
+            scaler_2 = dim_reducer
         pipeline = sklearn.pipeline.Pipeline([("scaler", scaler),
                                               ("denoiser", denoiser),
+                                              ("scaler 2", scaler_2),
                                               ("estimator", estimator)])
 
         return pipeline
@@ -125,4 +128,4 @@ class Pipeline:
         model = tf.keras.Sequential()
         model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(30, n_features)))
         model.add(tf.keras.layers.Dense(1))
-        model.compile(optimizer='adam', loss='mse')
+        model.compile(optimizer="adam", loss="rmse")
