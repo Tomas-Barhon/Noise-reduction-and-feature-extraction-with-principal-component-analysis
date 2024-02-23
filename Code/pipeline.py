@@ -5,7 +5,7 @@ import sklearn.preprocessing
 import sklearn.pipeline
 import tensorflow as tf
 from sklearn.base import BaseEstimator, TransformerMixin
-
+import numpy as np
 class PCATransformer(BaseEstimator, TransformerMixin):
     def __init__(self, pca):
         self.pca = pca
@@ -97,7 +97,6 @@ class Pipeline:
 
     @staticmethod
     def assembly_pipeline(estimator, dim_reducer):
-
         scaler = sklearn.preprocessing.RobustScaler(unit_variance = True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
@@ -128,4 +127,4 @@ class Pipeline:
         model = tf.keras.Sequential()
         model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(30, n_features)))
         model.add(tf.keras.layers.Dense(1))
-        model.compile(optimizer="adam", loss="rmse")
+        model.compile(optimizer="adam", loss="mse")

@@ -34,7 +34,7 @@ all changed to daily
 ### Market sentiment about volatility
 * "^VIX" - CBOE Volatility Index 
 
-### ETFs and Indexes orinted towards technological companies
+### ETFs and Indexes oriented towards technological companies
 **INDEXES**
 * "^IXIC" - NASDAQ composite
 

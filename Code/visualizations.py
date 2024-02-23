@@ -17,9 +17,9 @@ class Visualizer():
     @staticmethod
     def draw_prediction_test(test_target, test_prediction, shift):
         fig, ax = plt.subplots(1, 1)
-        ax.plot(test_target, label="Target",
+        ax.plot(test_target.shift(shift), label="Target",
                 color=Visualizer.TARGET_COLOR, linewidth=1)
-        ax.plot(test_prediction, label="Prediction",
+        ax.plot(test_prediction.shift(shift), label="Prediction",
                 color=Visualizer.PREDICTION_COLOR, linewidth=1)
         ax.tick_params(axis='x', labelrotation=90)
         ax.set_title(f"Price prediction {shift} days in advance", fontsize=14)
@@ -32,9 +32,9 @@ class Visualizer():
     def draw_prediction_full(train_target, train_prediction, test_target,
                              test_prediction, shift, split_date='2022-02-22'):
         fig, ax = plt.subplots(1, 1)
-        ax.plot(pd.concat([train_target, test_target]), label="Target",
+        ax.plot(pd.concat([train_target, test_target]).shift(shift), label="Target",
                 color=Visualizer.TARGET_COLOR, linewidth=1)
-        ax.plot(pd.concat([train_prediction, test_prediction]), label="Prediction",
+        ax.plot(pd.concat([train_prediction, test_prediction]).shift(shift), label="Prediction",
                 color=Visualizer.PREDICTION_COLOR, linewidth=1)
         ax.tick_params(axis='x', labelrotation=90)
         ax.set(xlabel='Date', ylabel='Price in USD$')
