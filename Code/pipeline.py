@@ -20,6 +20,16 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
         return X_restored
+    
+class ReshapeTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, new_shape):
+        self.new_shape = new_shape
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        return X.reshape(self.new_shape)
 class Pipeline:
     def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
         self.tick = crypto_tick
@@ -90,13 +100,18 @@ class Pipeline:
         return self
 
     @staticmethod
-    def split_train_test(data):
-        train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
-            data.iloc[:, :-1], data.iloc[:, -1], test_size=0.1, random_state=42, shuffle=False)
+    def split_train_test(data, pandas = True):
+        if pandas:
+            train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
+                data.iloc[:, :-1], data.iloc[:, -1], test_size=0.1, random_state=42, shuffle=False)
+        else:
+            train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
+                data[0], data[1], test_size=0.1, random_state=42, shuffle=False)
         return train_data, test_data, train_target, test_target
 
     @staticmethod
-    def assembly_pipeline(estimator, dim_reducer):
+    def assembly_pipeline(estimator, dim_reducer, shape_change = False):
+        
         scaler = sklearn.preprocessing.RobustScaler(unit_variance = True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
@@ -104,15 +119,22 @@ class Pipeline:
         else:
             denoiser = dim_reducer
             scaler_2 = dim_reducer
-        pipeline = sklearn.pipeline.Pipeline([("scaler", scaler),
+        unpacker = None
+        packer = None 
+        if shape_change is not False:
+            unpacker = ReshapeTransformer(shape_change[0])
+            packer = ReshapeTransformer(shape_change[1])
+        pipeline = sklearn.pipeline.Pipeline([("pack_down", unpacker),
+                                              ("scaler", scaler),
                                               ("denoiser", denoiser),
                                               ("scaler 2", scaler_2),
+                                              ("pack_up,", packer),
                                               ("estimator", estimator)])
 
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid):
+    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs = -1):
         scoring = {"RMSE" : "neg_root_mean_squared_error",
                    "MAE" : "neg_mean_absolute_error",
                    "MAPE" : "neg_mean_absolute_percentage_error"}
@@ -120,11 +142,22 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid = parameter_grid,
             cv=ts_split, scoring=scoring, refit = "RMSE",
-            verbose=0, n_jobs=-1, error_score='raise').fit(train_data, train_target)
+            verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
         return model
     @staticmethod
-    def assembly_lstm(n_features):
+    def assembly_lstm(input_shape, units):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.LSTM(50, activation="relu", input_shape=(30, n_features)))
+        model.add(tf.keras.layers.LSTM(units, activation="relu", input_shape=input_shape,
+                                    return_sequences=True))
+        model.add(tf.keras.layers.LSTM(units, activation="relu"))
         model.add(tf.keras.layers.Dense(1))
-        model.compile(optimizer="adam", loss="mse")
+        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate = 0.01), loss="mse")
+        return model
+    
+    @staticmethod
+    def create_lstm_input(data, target, lag_order):
+        X, Y = [],[]
+        for i in range(lag_order, len(data)):
+            X.append(data.iloc[i - lag_order:i])
+            Y.append(target.iloc[i])
+        return np.array(X), np.array(Y)
