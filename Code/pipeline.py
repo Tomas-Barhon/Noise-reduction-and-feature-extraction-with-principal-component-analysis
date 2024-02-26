@@ -6,6 +6,8 @@ import sklearn.pipeline
 import tensorflow as tf
 from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
+
+
 class PCATransformer(BaseEstimator, TransformerMixin):
     def __init__(self, pca):
         self.pca = pca
@@ -20,7 +22,8 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
         return X_restored
-    
+
+
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, new_shape):
         self.new_shape = new_shape
@@ -30,6 +33,8 @@ class ReshapeTransformer(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         return X.reshape(self.new_shape)
+
+
 class Pipeline:
     def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
         self.tick = crypto_tick
@@ -100,7 +105,7 @@ class Pipeline:
         return self
 
     @staticmethod
-    def split_train_test(data, pandas = True):
+    def split_train_test(data, pandas=True):
         if pandas:
             train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
                 data.iloc[:, :-1], data.iloc[:, -1], test_size=0.1, random_state=42, shuffle=False)
@@ -110,9 +115,8 @@ class Pipeline:
         return train_data, test_data, train_target, test_target
 
     @staticmethod
-    def assembly_pipeline(estimator, dim_reducer, shape_change = False):
-        
-        scaler = sklearn.preprocessing.RobustScaler(unit_variance = True)
+    def assembly_pipeline(estimator, dim_reducer, shape_change=False):
+        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
             scaler_2 = sklearn.preprocessing.StandardScaler()
@@ -120,7 +124,7 @@ class Pipeline:
             denoiser = dim_reducer
             scaler_2 = dim_reducer
         unpacker = None
-        packer = None 
+        packer = None
         if shape_change is not False:
             unpacker = ReshapeTransformer(shape_change[0])
             packer = ReshapeTransformer(shape_change[1])
@@ -134,30 +138,46 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs = -1):
-        scoring = {"RMSE" : "neg_root_mean_squared_error",
-                   "MAE" : "neg_mean_absolute_error",
-                   "MAPE" : "neg_mean_absolute_percentage_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
+    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1):
+        scoring = {"RMSE": "neg_root_mean_squared_error",
+                   "MAE": "neg_mean_absolute_error",
+                   "MAPE": "neg_mean_absolute_percentage_error"}
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
         model = sklearn.model_selection.GridSearchCV(
-            pipeline, param_grid = parameter_grid,
-            cv=ts_split, scoring=scoring, refit = "RMSE",
+            pipeline, param_grid=parameter_grid,
+            cv=ts_split, scoring=scoring, refit="RMSE",
             verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
         return model
+
     @staticmethod
     def assembly_lstm(input_shape, units):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.LSTM(units, activation="relu", input_shape=input_shape,
-                                    return_sequences=True))
-        model.add(tf.keras.layers.LSTM(units, activation="relu"))
+        model.add(tf.keras.layers.LSTM(units, activation=None, input_shape=input_shape,
+                                       return_sequences=True))
+        model.add(tf.keras.layers.BatchNormalization())
+        model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.ReLU())
+        model.add(tf.keras.layers.LSTM(units, activation=None))
+        model.add(tf.keras.layers.BatchNormalization())
+        model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.ReLU())
         model.add(tf.keras.layers.Dense(1))
-        model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate = 0.01), loss="mse")
+        inital_lr = 0.01
+        lr_schedule = tf.keras.optimizers.schedules.CosineDecay(inital_lr, 2000)
+        model.compile(optimizer=tf.keras.optimizers.Adam(
+            learning_rate = lr_schedule, clipnorm = 1, clipvalue = 1), loss="mae", metrics=[Pipeline.mean_squared_percentage_error])
         return model
-    
+
     @staticmethod
-    def create_lstm_input(data, target, lag_order):
-        X, Y = [],[]
+    def mean_squared_percentage_error(y_true, y_pred):
+        return tf.reduce_mean(tf.square((y_true - y_pred) / tf.maximum(tf.abs(y_true), 1)))
+
+    @staticmethod
+    def create_lstm_input(data, target, lag_order, forecast_time = 1):
+        X, Y = [], []
+        data["BTC-USD"] = data["BTC-USD"].shift(forecast_time)
+        data = data.dropna()
         for i in range(lag_order, len(data)):
-            X.append(data.iloc[i - lag_order:i])
-            Y.append(target.iloc[i])
+            X.append(data.iloc[i - lag_order:i, :])
+            Y.append(target.iloc[i - 1 + forecast_time])
         return np.array(X), np.array(Y)
