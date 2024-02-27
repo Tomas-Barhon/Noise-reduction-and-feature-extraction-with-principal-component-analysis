@@ -138,7 +138,7 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1):
+    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=5):
         scoring = {"RMSE": "neg_root_mean_squared_error",
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
@@ -146,32 +146,32 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid=parameter_grid,
             cv=ts_split, scoring=scoring, refit="RMSE",
-            verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
+            verbose=4, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
         return model
-
+    @staticmethod
+    def fit_full_train_grid_search(train_data, train_target, pipeline, parameter_grid):
+        ...
     @staticmethod
     def assembly_lstm(input_shape, units):
         model = tf.keras.Sequential()
         model.add(tf.keras.layers.LSTM(units, activation=None, input_shape=input_shape,
                                        return_sequences=True))
-        model.add(tf.keras.layers.BatchNormalization())
-        model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.Dropout(0.2))
         model.add(tf.keras.layers.ReLU())
-        model.add(tf.keras.layers.LSTM(units, activation=None))
-        model.add(tf.keras.layers.BatchNormalization())
-        model.add(tf.keras.layers.Dropout(0.5))
+        model.add(tf.keras.layers.LSTM(units, activation=None,
+                                       return_sequences=False))
+        model.add(tf.keras.layers.Dropout(0.2))
         model.add(tf.keras.layers.ReLU())
         model.add(tf.keras.layers.Dense(1))
-        inital_lr = 0.01
-        lr_schedule = tf.keras.optimizers.schedules.CosineDecay(inital_lr, 2000)
+        inital_lr = 0.001
+        lr_schedule = tf.keras.optimizers.schedules.CosineDecay(inital_lr, 91*200)
         model.compile(optimizer=tf.keras.optimizers.Adam(
-            learning_rate = lr_schedule, clipnorm = 1, clipvalue = 1), loss="mae", metrics=[Pipeline.mean_squared_percentage_error])
+            learning_rate = lr_schedule), loss=[Pipeline.root_mean_squared_error])
         return model
 
     @staticmethod
-    def mean_squared_percentage_error(y_true, y_pred):
-        return tf.reduce_mean(tf.square((y_true - y_pred) / tf.maximum(tf.abs(y_true), 1)))
-
+    def root_mean_squared_error(y_true, y_pred):
+        return tf.sqrt(tf.reduce_mean(tf.square(y_pred - y_true)))
     @staticmethod
     def create_lstm_input(data, target, lag_order, forecast_time = 1):
         X, Y = [], []
