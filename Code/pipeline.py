@@ -146,7 +146,7 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid=parameter_grid,
             cv=ts_split, scoring=scoring, refit="RMSE",
-            verbose=4, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
+            verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
         return model
     @staticmethod
     def fit_full_train_grid_search(train_data, train_target, pipeline, parameter_grid):
