@@ -175,7 +175,7 @@ class Pipeline:
     @staticmethod
     def create_lstm_input(data, target, lag_order, forecast_time = 1):
         X, Y = [], []
-        data["BTC-USD"] = data["BTC-USD"].shift(forecast_time)
+        data.iloc[:,-1] = data.iloc[:,-1].shift(forecast_time)
         data = data.dropna()
         for i in range(lag_order, len(data)):
             X.append(data.iloc[i - lag_order:i, :])

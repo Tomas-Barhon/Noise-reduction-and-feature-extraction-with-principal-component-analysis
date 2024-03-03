@@ -62,8 +62,7 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> 
    <dc:format>application/pdf</dc:format> 
-   <dc:title><rdf:Alt><rdf:li xml:lang="x-default">This is my title</rdf:li></rdf:Alt></dc:title>
-   <dc:creator><rdf:Seq><rdf:li>Firstname Lastname</rdf:li></rdf:Seq></dc:creator>
+   <dc:creator><rdf:Seq><rdf:li>Tomáš Barhoň</rdf:li></rdf:Seq></dc:creator>
    <dc:publisher><rdf:Bag><rdf:li>Charles University</rdf:li></rdf:Bag></dc:publisher>
    <dc:description><rdf:Alt><rdf:li xml:lang="x-default">This is thesis subject</rdf:li></rdf:Alt></dc:description>
    <dc:subject><rdf:Bag><rdf:li>Keyword1, Keyword2, Keyword3, Keyword4</rdf:li></rdf:Bag></dc:subject>
@@ -78,15 +77,15 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> 
    <xmp:CreatorTool>LaTeX with hyperref</xmp:CreatorTool> 
-   <xmp:ModifyDate>2024-02-28T01:11:43+01:00</xmp:ModifyDate> 
-   <xmp:CreateDate>2024-02-28T01:11:43+01:00</xmp:CreateDate> 
-   <xmp:MetadataDate>2024-02-28T01:11:43+01:00</xmp:MetadataDate> 
+   <xmp:ModifyDate>2024-03-03T15:28:42+01:00</xmp:ModifyDate> 
+   <xmp:CreateDate>2024-03-03T15:28:42+01:00</xmp:CreateDate> 
+   <xmp:MetadataDate>2024-03-03T15:28:42+01:00</xmp:MetadataDate> 
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpRights = "http://ns.adobe.com/xap/1.0/rights/"> 
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"> 
    <xmpMM:DocumentID>uuid:B3127226-E9DF-0BA7-D508-53757BC0CACB</xmpMM:DocumentID> 
-   <xmpMM:InstanceID>uuid:8A16230D-34AE-9480-114A-A211FD0ADCCE</xmpMM:InstanceID> 
+   <xmpMM:InstanceID>uuid:C7139EB4-2BFB-191B-B4B4-741B6A81E906</xmpMM:InstanceID> 
   </rdf:Description> 
  </rdf:RDF> 
 </x:xmpmeta> 

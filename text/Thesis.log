@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.2)  28 FEB 2024 01:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.2)  3 MAR 2024 15:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -192,8 +192,6 @@ File: 8bit.def 2008/03/30 v1.1d Input encoding file
 File: 8bit.def 2008/03/30 v1.1d Input encoding file
 ) (/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) (/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
-File: 8bit.def 2008/03/30 v1.1d Input encoding file
 )
 Package hyperref Info: Option `unicode' set `true' on input line 2411.
 Package hyperref Info: Option `unicode' set `true' on input line 2412.
@@ -587,6 +585,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 62.
 LaTeX Info: Redefining \pageref on input line 62.
 LaTeX Info: Redefining \nameref on input line 62.
+ (./Thesis.out) (./Thesis.out)
 \@outlinefile=\write5
 \openout5 = `Thesis.out'.
 
@@ -650,7 +649,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 69
 (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Figures/logouk.pdf, id=8, 541.39165pt x 541.38963pt>
+<Figures/logouk.pdf, id=136, 541.39165pt x 541.38963pt>
 File: Figures/logouk.pdf Graphic file (type pdf)
 <use Figures/logouk.pdf>
 Package pdftex.def Info: Figures/logouk.pdf  used on input line 69.
@@ -710,88 +709,54 @@ Underfull \hbox (badness 1028) in paragraph at lines 37--38
 
 ) [3.3
 
-] [4.4] (./01_Frontmatter/ackn.tex
+] [4.4] (./01_Frontmatter/ackn.tex) [5.5
 
-LaTeX Warning: Reference `chap:two' on page v undefined on input line 4.
+] (./Thesis.toc [6.6
 
 
-LaTeX Warning: Reference `TotPages' on page v undefined on input line 15.
-
-) [5.5
-
-]
+])
 \tf@toc=\write6
 \openout6 = `Thesis.toc'.
 
- [6.6
-
-
-]
+ [7.7] (./Thesis.lot)
 \tf@lot=\write7
 \openout7 = `Thesis.lot'.
-
- [7.7
-
-
-]
-\tf@lof=\write8
-\openout8 = `Thesis.lof'.
 
  [8.8
 
 
+] (./Thesis.lof)
+\tf@lof=\write8
+\openout8 = `Thesis.lof'.
+
+ [9.9
+
+
 ] (./01_Frontmatter/acro.tex
 
-LaTeX Warning: Hyper reference `acro:FDI' on page ix undefined on input line 7.
+LaTeX Warning: Hyper reference `acro:OFDI' on page x undefined on input line 9.
 
 
-LaTeX Warning: Hyper reference `acro:FDI' on page ix undefined on input line 7.
+LaTeX Warning: Hyper reference `acro:OFDI' on page x undefined on input line 9.
 
 
-LaTeX Warning: Hyper reference `acro:MNC' on page ix undefined on input line 8.
+LaTeX Warning: Hyper reference `acro:OLI' on page x undefined on input line 10.
 
 
-LaTeX Warning: Hyper reference `acro:MNC' on page ix undefined on input line 8.
+LaTeX Warning: Hyper reference `acro:OLI' on page x undefined on input line 10.
+
+) [10.10
 
 
-LaTeX Warning: Hyper reference `acro:OFDI' on page ix undefined on input line 9.
+] (./01_Frontmatter/prop.tex [11.11
 
 
-LaTeX Warning: Hyper reference `acro:OFDI' on page ix undefined on input line 9.
-
-
-LaTeX Warning: Hyper reference `acro:OLI' on page ix undefined on input line 10.
-
-
-LaTeX Warning: Hyper reference `acro:OLI' on page ix undefined on input line 10.
-
-) [9.9
-
-
-] (./01_Frontmatter/prop.tex [10.10
-
-
-] [11.11] [12.12]) [13.13] (./02_Mainmatter/01_Intro.tex
+] [12.12] [13.13]) [14.14] (./02_Mainmatter/01_Intro.tex
 Chapter 1.
-
-LaTeX Warning: Reference `chap:two' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Reference `chap:three' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Reference `chap:four' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Reference `chap:five' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Reference `chap:six' on page 1 undefined on input line 6.
-
 
 LaTeX Warning: Reference `conclusion' on page 1 undefined on input line 6.
 
-) (./02_Mainmatter/02.tex [1.14
+) (./02_Mainmatter/02.tex [1.15
 
 
 ]
@@ -799,52 +764,28 @@ Chapter 2.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 10.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) (./02_Mainmatter/03.tex [2.15
+)) (./02_Mainmatter/03.tex [2.16
 
 ]
 Chapter 3.
-
-Package natbib Warning: Citation `Haufler2006' on page 3 undefined on input line 7.
-
-
-Package natbib Warning: Citation `Haaparanta1996' on page 3 undefined on input line 9.
-
 Package acronym Info: Label `acro:FDI' newly defined as it shall be overridden
 although it is yet undefined on input line 13.
-
-Package acronym Warning: Acronym `FDI' is not defined on input line 13.
-
-
-Package acronym Warning: Acronym `FDI' is not defined on input line 13.
-
 Package acronym Info: Label `acro:MNC' newly defined as it shall be overridden
 although it is yet undefined on input line 13.
 
-Package acronym Warning: Acronym `MNC' is not defined on input line 13.
-
-
-Package acronym Warning: Acronym `MNC' is not defined on input line 13.
-
-
-Package acronym Warning: Acronym `FDI' is not defined on input line 13.
-
-
-Package acronym Warning: Acronym `MNC' is not defined on input line 13.
-
-
 
 pdfTeX warning: pdflatex (file ./Figures/conversion1.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion1.pdf, id=147, 1028.34187pt x 578.16pt>
+<Figures/conversion1.pdf, id=328, 1028.34187pt x 578.16pt>
 File: Figures/conversion1.pdf Graphic file (type pdf)
 <use Figures/conversion1.pdf>
 Package pdftex.def Info: Figures/conversion1.pdf  used on input line 25.
 (pdftex.def)             Requested size: 240.71288pt x 135.32947pt.
-[3.16
+[3.17
 
 ]
 
 pdfTeX warning: pdflatex (file ./Figures/conversion2.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion2.pdf, id=158, 613.54219pt x 548.80031pt>
+<Figures/conversion2.pdf, id=335, 613.54219pt x 548.80031pt>
 File: Figures/conversion2.pdf Graphic file (type pdf)
 <use Figures/conversion2.pdf>
 Package pdftex.def Info: Figures/conversion2.pdf  used on input line 31.
@@ -858,362 +799,38 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 pdfTeX warning: pdflatex (file ./Figures/supplydemand.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/supplydemand.pdf, id=161, 413.92842pt x 403.51976pt>
+<Figures/supplydemand.pdf, id=338, 413.92842pt x 403.51976pt>
 File: Figures/supplydemand.pdf Graphic file (type pdf)
 <use Figures/supplydemand.pdf>
 Package pdftex.def Info: Figures/supplydemand.pdf  used on input line 49.
 (pdftex.def)             Requested size: 170.71652pt x 166.42316pt.
+[4.18 <./Figures/conversion1.pdf> <./Figures/conversion2.pdf>]
+Overfull \hbox (718.05043pt too wide) in paragraph at lines 63--73
+[] 
+ []
 
-Package natbib Warning: Citation `Haufler2006' on page 4 undefined on input line 51.
-
-
-LaTeX Warning: Reference `fig:supply' on page 4 undefined on input line 54.
-
-[4.17 <./Figures/conversion1.pdf> <./Figures/conversion2.pdf>] [5.18 <./Figures/supplydemand.pdf>]
-
-Package natbib Warning: Citation `Haaparanta1996' on page 6 undefined on input line 103.
-
-[6.19]
+[5.19 <./Figures/supplydemand.pdf>] [6.20]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 155.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 167.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 155.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 167.
 
 
-Package natbib Warning: Citation `Bjorvatn2006' on page 7 undefined on input line 161.
+Package natbib Warning: Citation `Bjorvatn2006' on page 7 undefined on input line 173.
 
-
-Package natbib Warning: Citation `Haufler2006' on page 7 undefined on input line 162.
-
-
-LaTeX Warning: Reference `fig:supply' on page 7 undefined on input line 163.
-
-
-LaTeX Warning: Reference `tab:values' on page 7 undefined on input line 164.
-
-
-LaTeX Warning: Reference `rovnice' on page 7 undefined on input line 165.
-
-
-LaTeX Warning: Hyper reference `de:definice1' on page 7 undefined on input line 166.
-
-
-LaTeX Warning: Reference `de:definice1' on page 7 undefined on input line 166.
-
-
-LaTeX Warning: Hyper reference `pr:veta1' on page 7 undefined on input line 166.
-
-
-LaTeX Warning: Reference `pr:veta1' on page 7 undefined on input line 166.
-
-
-LaTeX Warning: Hyper reference `ex:priklad1' on page 7 undefined on input line 167.
-
-
-LaTeX Warning: Reference `ex:priklad1' on page 7 undefined on input line 167.
-
-
-LaTeX Warning: Reference `eq:rovnice1' on page 7 undefined on input line 168.
-
-[7.20]
-
-Package natbib Warning: Citation `Haufler2006' on page 8 undefined on input line 193.
-
-
-./02_Mainmatter/03.tex:199: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.199 \\b
-         egin{tabular}{llllllllll}\n\\toprule\n & BTC-LR - 1 day & BTC-LR - ...
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-./02_Mainmatter/03.tex:199: Undefined control sequence.
-l.199 \\begin{tabular}{llllllllll}\n
-                                    \\toprule\n & BTC-LR - 1 day & BTC-LR - ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./02_Mainmatter/03.tex:199: Undefined control sequence.
-l.199 \\begin{tabular}{llllllllll}\n\\toprule\n
-                                                & BTC-LR - 1 day & BTC-LR - ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 \\begin{tabular}{llllllllll}\n\\toprule\n &
-                                                  BTC-LR - 1 day & BTC-LR - ...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...llllllll}\n\\toprule\n & BTC-LR - 1 day &
-                                                   BTC-LR - 5 days & BTC-LR ...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...le\n & BTC-LR - 1 day & BTC-LR - 5 days &
-                                                   BTC-LR - 10 days & BTC-SV...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...ay & BTC-LR - 5 days & BTC-LR - 10 days &
-                                                   BTC-SVR - 1 day & BTC-SVR...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...ys & BTC-LR - 10 days & BTC-SVR - 1 day &
-                                                   BTC-SVR - 5 days & BTC-SV...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...ys & BTC-SVR - 1 day & BTC-SVR - 5 days &
-                                                   BTC-SVR - 10 days & BTC-L...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... & BTC-SVR - 5 days & BTC-SVR - 10 days &
-                                                   BTC-LSTM - 1 day & BTC-LS...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... & BTC-SVR - 10 days & BTC-LSTM - 1 day &
-                                                   BTC-LSTM - 5 days & BTC-L...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... & BTC-LSTM - 1 day & BTC-LSTM - 5 days &
-                                                   BTC-LSTM - 10 days \\\\\n...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Undefined control sequence.
-<recently read> \n 
-                   
-l.199 ...LSTM - 5 days & BTC-LSTM - 10 days \\\\\n
-                                                  \\midrule\nFull dimensiona...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./02_Mainmatter/03.tex:199: Undefined control sequence.
-l.199 ... BTC-LSTM - 10 days \\\\\n\\midrule\nFull
-                                                   dimensionality & 960.3712...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...ys \\\\\n\\midrule\nFull dimensionality &
-                                                   960.371278 & 2392.049220 ...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...drule\nFull dimensionality & 960.371278 &
-                                                   2392.049220 & 3765.643891...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...mensionality & 960.371278 & 2392.049220 &
-                                                   3765.643891 & 973.251758 ...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... 960.371278 & 2392.049220 & 3765.643891 &
-                                                   973.251758 & 2375.766866 ...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... 2392.049220 & 3765.643891 & 973.251758 &
-                                                   2375.766866 & 3187.232878...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... 3765.643891 & 973.251758 & 2375.766866 &
-                                                   3187.232878 & 3332.288921...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ... 973.251758 & 2375.766866 & 3187.232878 &
-                                                   3332.288921 & 9794.555404...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...2375.766866 & 3187.232878 & 3332.288921 &
-                                                   9794.555404 & 7699.674445...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Misplaced alignment tab character &.
-l.199 ...3187.232878 & 3332.288921 & 9794.555404 &
-                                                   7699.674445 \\\\\n95% ret...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-./02_Mainmatter/03.tex:199: Undefined control sequence.
-<recently read> \n 
-                   
-l.199 ...288921 & 9794.555404 & 7699.674445 \\\\\n
-                                                  95% retained variance & 63...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-) (./02_Mainmatter/04.tex
-Underfull \hbox (badness 10000) in paragraph at lines 199--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--1
-
- []
-
-
-Overfull \hbox (36.89615pt too wide) in paragraph at lines 199--1
-\T1/lmr/m/n/12 midruledimensionality  960.371278  2392.049220  3765.643891  973.251758  2375.766866
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--1
-
- []
-
-[8.21] [9.22]
+[7.21] [8.22]) (./02_Mainmatter/04.tex [9.23]
 Chapter 4.
+[10.24
 
-Package natbib Warning: Citation `Haufler2006' on page 10 undefined on input line 6.
-
-
-Package natbib Warning: Citation `Wells2001' on page 10 undefined on input line 8.
-
-[10.23
-
-]
-
-Package natbib Warning: Citation `Blomstrom2003' on page 11 undefined on input line 33.
-
-) (./02_Mainmatter/05.tex [11.24]
+]) (./02_Mainmatter/05.tex [11.25]
 Chapter 5.
+[12.26
 
-LaTeX Warning: Reference `chap:one' on page 12 undefined on input line 10.
-
-[12.25
-
-]) (./02_Mainmatter/06.tex [13.26]
+]) (./02_Mainmatter/06.tex [13.27]
 Chapter 6.
+[14.28
 
-Package acronym Warning: Acronym `MNC' is not defined on input line 7.
-
-[14.27
-
-] [15.28]) (./02_Mainmatter/99_Concl.tex [16.29]
-Chapter 7.
-) [17.30
-
-] (./Thesis.bbl) [18.31
+] [15.29]) [16.30] (./Thesis.bbl) [17.31
 
 
 ] (./03_Backmatter/01_App.tex
@@ -1223,51 +840,42 @@ Appendix A.
 
 ]
 Appendix B.
+
+Overfull \hbox (5.41078pt too wide) in paragraph at lines 3--7
+[]\T1/lmr/m/n/12 https://github.com/Tomas-Barhon/Noise-reduction-and-feature-extraction[]. In-
+ []
+
 ) [2.33
 
 ]
 
 Package natbib Warning: There were undefined citations.
 
-(./Thesis.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+(./Thesis.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `Thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Thesis.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  CF337FCBC744CF0B4F31988A83F95432;4823.
+Package rerunfilecheck Info: File `Thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 69117DE97104995FBCA3F10E2B014CFD;4616.
  ) 
 Here is how much of TeX's memory you used:
- 18476 strings out of 478287
- 287722 string characters out of 5849289
- 551754 words of memory out of 5000000
- 36110 multiletter control sequences out of 15000+600000
+ 18512 strings out of 478287
+ 288014 string characters out of 5849289
+ 556345 words of memory out of 5000000
+ 36141 multiletter control sequences out of 15000+600000
  596536 words of font info for 109 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  77i,16n,79p,1259b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Thesis.pdf (33 pages, 797897 bytes).
+Output written on Thesis.pdf (33 pages, 804482 bytes).
 PDF statistics:
- 433 PDF objects out of 1000 (max. 8388607)
- 334 compressed objects within 4 object streams
+ 615 PDF objects out of 1000 (max. 8388607)
+ 514 compressed objects within 6 object streams
  121 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 words of extra memory for PDF output out of 10000 (max. 10000000)
 

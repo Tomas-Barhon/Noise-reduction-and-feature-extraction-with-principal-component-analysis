@@ -1,4 +1,4 @@
-\chapter{Title of Chapter Three}
+\chapter{Data}
 \label{chap:three}
 
 \section{Citations}
@@ -58,6 +58,18 @@ Look at the \autoref{fig:supply}. Text text text text text text text text text t
 \section{Tables}
 
 If you use Stata, you might want to check the \texttt{sutex}, \texttt{outtable}, \texttt{outtex}, and \texttt{estout} tools, which help you with exporting Stata tables to \LaTeX{}.
+
+\section{Table}
+\begin{tabular}{llllllllll}
+\toprule
+& BTC-LR - 1 day & BTC-LR - 5 days & BTC-LR - 10 days & BTC-SVR - 1 day & BTC-SVR - 5 days & BTC-SVR - 10 days & BTC-LSTM - 1 day & BTC-LSTM - 5 days & BTC-LSTM - 10 days \\
+\midrule
+Full dimensionality & 960.371278 & 2392.049220 & 3765.643891 & 973.251758 & 2375.766866 & 3187.232878 & 3332.288921 & 9794.555404 & 7699.674445 \\
+95\% retained variance & 6389.795421 & 7910.647028 & 7980.389921 & 7532.513430 & 8166.138931 & 9012.446084 & 3973.081433 & 6470.901623 & 5104.512285 \\
+98\% retained variance & 1330.381121 & 2103.339885 & 2951.848360 & 1042.126694 & 2271.570061 & 3015.309334 & 8064.320295 & 6337.241829 & 7822.954520 \\
+99\% retained variance & 978.447494 & 2153.450254 & 3124.302129 & 1078.080624 & 2167.767591 & 2823.602125 & 8064.320295 & 6503.330921 & 8751.874663 \\
+\bottomrule
+\end{tabular}
 
 \begin{table}[!htbp]
 \begin{center}
@@ -184,8 +196,6 @@ You can input a source code like this:
 \end{matlab}
 Should you prefer a different font size, redefine file \texttt{Styles/Mystyle.sty}.
 
-
-
 \section{Paragraphs}
 
 Usually you should not use the first person singular (I) in your text, write we instead. As a general recommendation, use the first person sparsely, sometimes it can be replaced by a phrase like ``This work presents \ldots.''
@@ -196,4 +206,3 @@ Text text text text text text text text text text text text text text text. Text
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. And a subparagraph:
 \subparagraph{Velit} Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 
-\\begin{tabular}{llllllllll}\n\\toprule\n & BTC-LR - 1 day & BTC-LR - 5 days & BTC-LR - 10 days & BTC-SVR - 1 day & BTC-SVR - 5 days & BTC-SVR - 10 days & BTC-LSTM - 1 day & BTC-LSTM - 5 days & BTC-LSTM - 10 days \\\\\n\\midrule\nFull dimensionality & 960.371278 & 2392.049220 & 3765.643891 & 973.251758 & 2375.766866 & 3187.232878 & 3332.288921 & 9794.555404 & 7699.674445 \\\\\n95% retained variance & 6389.795421 & 7910.647028 & 7980.389921 & 7532.513430 & 8166.138931 & 9012.446084 & 3973.081433 & 6470.901623 & 5104.512285 \\\\\n98% retained variance & 1330.381121 & 2103.339885 & 2951.848360 & 1042.126694 & 2271.570061 & 3015.309334 & 8064.320295 & 6337.241829 & 7822.954520 \\\\\n99% retained variance & 978.447494 & 2153.450254 & 3124.302129 & 1078.080624 & 2167.767591 & 2823.602125 & 8064.320295 & 6503.330921 & 8751.874663 \\\\\n\\bottomrule\n\\end{tabular}\n

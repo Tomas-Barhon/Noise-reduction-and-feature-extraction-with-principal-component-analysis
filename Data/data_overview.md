@@ -42,8 +42,8 @@ all changed to daily
 * "SMH" - VanEck Semiconductor ETF
 * "VGT" - Vanguard Information Technology Index Fund
 * "XSD" - SPDR S&P Semiconductor ETF
-* "IYW" - iShares U.S. Technology ETF
-* "FTEC" - Fidelity MSCI Information Technology Index ETF
+* "IYW" - iShares U.S. Technology ETF *
+* "FTEC" - Fidelity MSCI Information Technology Index ETF *
 * "IGV" - iShares Expanded Tech-Software Sector ETF
 * "QQQ" - Invesco QQQ Trust
 
