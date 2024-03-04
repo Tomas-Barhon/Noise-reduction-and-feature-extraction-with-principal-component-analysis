@@ -1,6 +1,35 @@
 \chapter{Introduction}
 \label{chap:one}
 
-This document serves two purposes. First, it is a template and example for a master's thesis. Second, the text in all sections contains some useful information on structuring and writing your thesis.
+Since the introduction of the first cryptocurrency \ac{BTC}
+associated with the unknown author \cite{Nakamoto2008} cryptocurrencies
+have become part of our everyday life. Their high volatility, futuristic name 
+and alternative nature are of interest to the media and the general public.
+According to on \textbf{\href{https://coinmarketcap.com/charts/}{coinmarketcap.com}}
+the overall cryptocurrency market capitalization peaked at around 2.8 trillion \$USD in the year 2022
+which makes them a substantial part of the financial sphere.
+The initial idea of \ac{BTC} was to establish an alternative to traditional fiat currencies. 
+The \ac{BTC} whitepaper
+pointed out the weakness of the current trust-based model that relies on a third-party instance responsible
+for verifying transactions.
+A different approach was suggested to validate transactions known as the proof-of-work which
+utilizes the computational power of miners in the network. The fact that the power is 
+distributed across the network ensures that it becomes exponentially harder with an increasing number of blocks
+to generate blocks faster than the rest of the miners \cite[pg.~6]{Nakamoto2008}. 
+However, the mining process is interconnected with the creation of new \ac{BTC}s which is a crucial parameter
+in all monetary systems. This fact gives researchers such as \cite{Kukacka2023} 
+the possibility to use various attributes of the network to study the pricing dynamics of cryptocurrencies. 
+On the other hand, there are a couple of substantial drawbacks that make price modeling relatively challenging.
+Those are non-stationarity of the target prices, relatively short historical window, the limited power of
+proxies for speculative components and as pointed out by many researchers 
+such as \cite{Bouri2022}, \cite{Dimpfl2021}, \cite{Watorek2023} an idiosyncratic noise in volatility.
+Addressing these issues might potentially lead to better-performing models, especially
+with longer forecasting periods. Likewise in other fields, the recent rise of machine learning 
+has also affected the cryptocurrency field where various \ac{ML} or \ac{DL} models are often being used 
+to model the price \cite{Khedr2021} or volatility \cite{Kristjanpoller2018}. 
 
-The introduction should consist of three parts (as paragraphs, not to be structured into multiple headings): The first part deals with the background of the work and describes the field of research. It should also elaborate on the general problem statement and the relevance. The second part should describe the focus of the thesis, typically the paragraph starts with a phrase like ``The objective of this thesis is \ldots.'' The last part should describe the structure of the thesis, for instance in the following manner. The thesis is structured as follows: \autoref{chap:two} cites some formal requirements of the faculty, \autoref{chap:three} gives some hints on basic formatting features and covers also acronyms, figures, boxes and tables. \autoref{chap:four} gives a recommendation on the usage of hyphens in English language in \LaTeX{} and explains how to use the itemize and quote environments and shows a few enumerate-based environments. \autoref{chap:five} presents a checklist of common mistakes to avoid. \autoref{chap:six} contains numerous hints. \autoref{conclusion} summarizes our findings.
+
+The main objective of this thesis is to try to tackle the problem of idiosyncratic noise in
+the high dimensional data used for price and returns modeling.
+
+

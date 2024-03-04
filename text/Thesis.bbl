@@ -1,5 +1,50 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{7}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bouri \emph{et~al.}(2022)Bouri, Kristoufek, Ahmad, \&
+  Shahzad}]{Bouri2022}
+\textsc{Bouri}, E., L.~\textsc{Kristoufek}, T.~\textsc{Ahmad}, \& S.~J.~H.
+  \textsc{Shahzad} (2022): \enquote{Microstructure noise and idiosyncratic
+  volatility anomalies in cryptocurrencies.}
+\newblock \emph{Annals of Operations Research} .
+
+\bibitem[{Dimpfl \& Peter(2021)}]{Dimpfl2021}
+\textsc{Dimpfl}, T. \& F.~J. \textsc{Peter} (2021): \enquote{Nothing but noise?
+  price discovery across cryptocurrency exchanges.}
+\newblock \emph{Journal of Financial Markets} \textbf{54}: p. 100584.
+
+\bibitem[{Khedr \emph{et~al.}(2021)Khedr, Arif, P~V, El-Bannany, Alhashmi, \&
+  Sreedharan}]{Khedr2021}
+\textsc{Khedr}, A.~M., I.~\textsc{Arif}, P.~R. \textsc{P~V},
+  M.~\textsc{El-Bannany}, S.~M. \textsc{Alhashmi}, \& M.~\textsc{Sreedharan}
+  (2021): \enquote{Cryptocurrency price prediction using traditional
+  statistical and machine-learning techniques: A survey.}
+\newblock \emph{Intelligent Systems in Accounting, Finance and Management}
+  \textbf{28(1)}: pp. 3--34.
+
+\bibitem[{Kristjanpoller \& Minutolo(2018)}]{Kristjanpoller2018}
+\textsc{Kristjanpoller}, W. \& M.~C. \textsc{Minutolo} (2018): \enquote{A
+  hybrid volatility forecasting framework integrating garch, artificial neural
+  network, technical analysis and principal components analysis.}
+\newblock \emph{Expert Systems with Applications} \textbf{109}: pp. 1--11.
+
+\bibitem[{Kukacka \& Kristoufek(2023)}]{Kukacka2023}
+\textsc{Kukacka}, J. \& L.~\textsc{Kristoufek} (2023): \enquote{Fundamental and
+  speculative components of the cryptocurrency pricing dynamics.}
+\newblock \emph{Financial Innovation} \textbf{9(1)}.
+
+\bibitem[{Nakamoto(2008)}]{Nakamoto2008}
+\textsc{Nakamoto}, S. (2008): \enquote{Bitcoin: A peer-to-peer electronic cash
+  system.}
+\newblock \emph{Decentralized business review} .
+
+\bibitem[{Wątorek \emph{et~al.}(2023)Wątorek, Skupień, Kwapień, \&
+  Drożdż}]{Watorek2023}
+\textsc{Wątorek}, M., M.~\textsc{Skupień}, J.~\textsc{Kwapień}, \&
+  S.~\textsc{Drożdż} (2023): \enquote{Decomposing cryptocurrency
+  high-frequency price dynamics into recurring and noisy components.}
+\newblock \emph{Chaos: An Interdisciplinary Journal of Nonlinear Science}
+  \textbf{33(8)}.
 
 \end{thebibliography}
