@@ -1242,6 +1242,8 @@ INPUT ./02_Mainmatter/02.tex
 INPUT 02_Mainmatter/02.tex
 INPUT ./02_Mainmatter/02.tex
 INPUT 02_Mainmatter/02.tex
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT ./02_Mainmatter/03.tex
 INPUT 02_Mainmatter/03.tex
 INPUT ./02_Mainmatter/03.tex
@@ -1282,8 +1284,6 @@ INPUT ./Figures/supplydemand.pdf
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmro12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmsso12.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmbx8.tfm

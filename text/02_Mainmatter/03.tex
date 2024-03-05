@@ -1,18 +1,29 @@
 \chapter{Data}
 \label{chap:three}
 
-\section{Citations}
-\label{sec:citace}
+
+\section{Cryptocurrency Specific Technical Data}
+
+\section{Macroeconomical Data}
+
+\section{Web Search Data}
+
+\section{Preprocessing}
+
+
+
+
+
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text text text text text text. Text text  \citet{Haufler2006}.
 
 Text text text text text text text text text text text text text text text. Text text text text text text text \cite[see, \latinfont{inter alia},][pg.~10]{Haaparanta1996}. 
 
-\section{Acronyms}
+
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Politicians usualy like inward \ac{BTC} and an \ac{MNC} appreciates \ac{FDI} subsidies. Are \acp{MNC} greedy?
 
-\section{Figures}
+
 
 To achieve compatibility with PDF/A 2u, your file must not include links to external fonts, audio, video, or scripts. On the other hand, your file must declare each color environment you use, it must include all the pictures/figures either in jpeg or PDF/A 2u format, used fonts compliant under Unicode (your file cannot use any external fonts), and it must include meta-data in XMP format.
 
@@ -55,21 +66,10 @@ Look at the \autoref{fig:supply}. Text text text text text text text text text t
 
 
 
-\section{Tables}
+
 
 If you use Stata, you might want to check the \texttt{sutex}, \texttt{outtable}, \texttt{outtex}, and \texttt{estout} tools, which help you with exporting Stata tables to \LaTeX{}.
 
-\section{Table}
-\begin{tabular}{llllllllll}
-\toprule
-& BTC-LR - 1 day & BTC-LR - 5 days & BTC-LR - 10 days & BTC-SVR - 1 day & BTC-SVR - 5 days & BTC-SVR - 10 days & BTC-LSTM - 1 day & BTC-LSTM - 5 days & BTC-LSTM - 10 days \\
-\midrule
-Full dimensionality & 960.371278 & 2392.049220 & 3765.643891 & 973.251758 & 2375.766866 & 3187.232878 & 3332.288921 & 9794.555404 & 7699.674445 \\
-95\% retained variance & 6389.795421 & 7910.647028 & 7980.389921 & 7532.513430 & 8166.138931 & 9012.446084 & 3973.081433 & 6470.901623 & 5104.512285 \\
-98\% retained variance & 1330.381121 & 2103.339885 & 2951.848360 & 1042.126694 & 2271.570061 & 3015.309334 & 8064.320295 & 6337.241829 & 7822.954520 \\
-99\% retained variance & 978.447494 & 2153.450254 & 3124.302129 & 1078.080624 & 2167.767591 & 2823.602125 & 8064.320295 & 6503.330921 & 8751.874663 \\
-\bottomrule
-\end{tabular}
 
 \begin{table}[!htbp]
 \begin{center}
@@ -91,7 +91,7 @@ CR---Hungary &       10.4 &          8 &       0.24 &       0.16 &          1,00
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 
-\section{Boxes}
+
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text. Let us make a box:
 
@@ -117,7 +117,6 @@ all enjoy the show.
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 
-\section{Theorems, Definitions, \ldots}
 
 \begin{defin}[My original definition]\label{de:definice1}
 This is a definition.
@@ -143,23 +142,18 @@ This is an example.
 This is a proof.
 \end{proof}
 
-\section{Equations}
-\label{rovnice}
 
-\subsection{Nonumbered Equations}
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 
     \[ U = \underbrace{\int_0^{\infty} \frac{1}{1-\sigma}\left(C^{1-\sigma} -1 \right) e^{-\rho t} \ud t}_\text{meaning of life} \]
 
-\subsection{Numbered Equations}
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 \begin{equation}\label{eq:rovnice1}
     U = \int_0^{\infty} \overbrace{ \frac{1}{1-\sigma}\left(C^{1-\sigma} -1 \right)}^\text{instantaneous utility} e^{-\rho t} \ud t
 \end{equation}
 
-\subsection{Matrix Equations}
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
 
@@ -167,7 +161,6 @@ Text text text text text text text text text text text text text text text. Text
     \mat{A} = \mat{B} + \mat{C}
 \end{equation}
 
-\section{Cross-references}
 
 \begin{itemize}
     \item to literature~\citep[pg.~10]{Bjorvatn2006} 	
@@ -180,7 +173,6 @@ Text text text text text text text text text text text text text text text. Text
     \item to equations like this: see~\eqref{eq:rovnice1}.
 \end{itemize}
 
-\section{Source codes}
 
 You can input a source code like this:
 \begin{matlab}{.9\linewidth}{dgreen}
@@ -196,7 +188,6 @@ You can input a source code like this:
 \end{matlab}
 Should you prefer a different font size, redefine file \texttt{Styles/Mystyle.sty}.
 
-\section{Paragraphs}
 
 Usually you should not use the first person singular (I) in your text, write we instead. As a general recommendation, use the first person sparsely, sometimes it can be replaced by a phrase like ``This work presents \ldots.''
 
