@@ -38,19 +38,29 @@ We will examine the effect of a method known as \ac{PCA} which was according to
 to the fact 
 that the idea was already introduced before by Karl Pearson in the article 
 \textit{On lines and planes of closest fit to systems of points in space} \cite{Pearson1901}.
+This technique aims to compress data from a higher dimensionality space into a lower space while 
+retaining a maximum amount of variance. It utilizes linear transformation of the covariance matrix
+to do that.
 Nevertheless, despite the initial focus on dimensionality reduction different types of 
 \ac{PCA} are often being used as noise reduction techniques in signal or image processing.
 Interestingly many studies in recent years have incorporated \ac{PCA} for time series data 
 as a part of their preprocessing pipeline \cite{Chowdhury2018}, \cite{Kristjanpoller2018}.
 The idea stems from the fact that removing the most idiosyncratic components
 might help with capturing clear dynamics that enter the price-making process.
-We perceive that there is currently a lack of literature that would examine the effect of 
+We perceive that there is currently a lack of literature that would examine the effects of 
 noise reduction techniques on the performance of other \ac{ML} based regression techniques
 for cryptocurrencies. We want to mitigate most of the mentioned challenges using 
 the currently available academic knowledge and focus exclusively on the effect of noise in the data. 
 Admittedly it is always intricate to establish a ceteris paribus relationship in such a scenario
-where a lot of variables change in the process. 
+where many variables change, the randomness of the training process using \ac{SGD} plays a crucial role 
+and the size of the dataset is relatively limited. We want to contribute with an alternative approach, especially 
+in the preprocessing pipeline that can be used in future studies to decrease the volatility of predictions.
+We do not aim to provide a generally applicable approach, as different techniques 
+can produce varying outcomes on different datasets.
+This phenomenon partially corresponds to the \textit{No Free Lunch Theorem} \cite{Wolpert1995} which
+has turned into a buzzword in the \ac{ML} community over the years.
 
 
+The rest of the thesis is structured as follows:
 
 
