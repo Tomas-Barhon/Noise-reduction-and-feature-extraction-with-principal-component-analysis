@@ -26,6 +26,33 @@ regarding the double spending problem in the original whitepaper have turned out
 in a medium time horizon.
 
 
+Despite the fact, that Bitcoin is generally regarded as the first cryptocurrency it relies on 
+many older ideas and technologies that are mostly mentioned in the original whitepaper. First and foremost
+stands the conference paper \textit{How to Time-Stamp a Digital Document} \cite{Haber1991} which focuses
+on the problem of third parties responsible for verification of digital documents. It makes use of 
+an already established family of functions known as hashes that surpass privacy concerns and generally
+surpass the need for a third party to be involved in the verification process when combined
+with the correct consensus algorithm. They define a hash function as follows:
+
+\begin{defin}[Hash]\label{de:hash}
+    This is a family of functions $h: \{0,1\} \rightarrow  {\{0, 1\}}^l $ compressing
+bit-strings of arbitrary length to bit-strings of a fixed length l, with the following
+properties:
+\begin{enumerate}
+    \item The functions $h$ are easy to compute, and it is easy to pick a member of the family at random.
+    \item It is computationally infeasible, given one of these functions $h$, to find a pair
+of distinct strings $x,x'$ satisfying $h(x)=h(x')$. (Such a pair is called a collision for $h$)\cite[see Chapter 4.1]{Haber1991}
+\end{enumerate}
+\end{defin}
+
+Hashes are the most crucial building blocks of cryptocurrencies. However, the time-stamping might 
+fail if the users can tweak the time-stamp of their machines. Interestingly, the authors have already 
+mentioned that and introduced the idea of chaining the data together with their metadata sequentially in a long chain 
+so that the user can trust that something was not overwritten \cite[see Chapter 5]{Haber1991}. 
+This possibility is enabled by the properties of the hash functions.
+Meaning that we can concatenate arbitrarily any inputs and always produce a fixed-size output.
+
+
 
 Algo
 
