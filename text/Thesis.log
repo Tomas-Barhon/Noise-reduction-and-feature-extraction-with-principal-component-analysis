@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.2)  5 MAR 2024 22:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.2)  6 MAR 2024 14:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -587,7 +587,6 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 62.
 LaTeX Info: Redefining \pageref on input line 62.
 LaTeX Info: Redefining \nameref on input line 62.
- (./Thesis.out) (./Thesis.out)
 \@outlinefile=\write5
 \openout5 = `Thesis.out'.
 
@@ -651,7 +650,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 69
 (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Figures/logouk.pdf, id=172, 541.39165pt x 541.38963pt>
+<Figures/logouk.pdf, id=8, 541.39165pt x 541.38963pt>
 File: Figures/logouk.pdf Graphic file (type pdf)
 <use Figures/logouk.pdf>
 Package pdftex.def Info: Figures/logouk.pdf  used on input line 69.
@@ -712,107 +711,304 @@ Underfull \hbox (badness 1028) in paragraph at lines 37--38
 
 ) [3.3
 
-] [4.4] (./01_Frontmatter/ackn.tex) [5.5
+] [4.4] (./01_Frontmatter/ackn.tex
 
-] (./Thesis.toc [6.6
+LaTeX Warning: Reference `TotPages' on page v undefined on input line 15.
 
+) [5.5
 
-])
+]
 \tf@toc=\write6
 \openout6 = `Thesis.toc'.
 
- [7.7] (./Thesis.lot)
+ [6.6
+
+
+]
 \tf@lot=\write7
 \openout7 = `Thesis.lot'.
+
+ [7.7
+
+
+]
+\tf@lof=\write8
+\openout8 = `Thesis.lof'.
 
  [8.8
 
 
-] (./Thesis.lof)
-\tf@lof=\write8
-\openout8 = `Thesis.lof'.
-
- [9.9
-
-
 ] (./01_Frontmatter/acro.tex
 
-LaTeX Warning: Hyper reference `acro:ETH' on page x undefined on input line 8.
+LaTeX Warning: Hyper reference `acro:BTC' on page ix undefined on input line 7.
 
 
-LaTeX Warning: Hyper reference `acro:ETH' on page x undefined on input line 8.
+LaTeX Warning: Hyper reference `acro:BTC' on page ix undefined on input line 7.
 
 
-LaTeX Warning: Hyper reference `acro:LTC' on page x undefined on input line 9.
+LaTeX Warning: Hyper reference `acro:ETH' on page ix undefined on input line 8.
 
 
-LaTeX Warning: Hyper reference `acro:LTC' on page x undefined on input line 9.
+LaTeX Warning: Hyper reference `acro:ETH' on page ix undefined on input line 8.
 
 
-LaTeX Warning: Hyper reference `acro:ANN' on page x undefined on input line 12.
+LaTeX Warning: Hyper reference `acro:LTC' on page ix undefined on input line 9.
 
 
-LaTeX Warning: Hyper reference `acro:ANN' on page x undefined on input line 12.
+LaTeX Warning: Hyper reference `acro:LTC' on page ix undefined on input line 9.
 
 
-LaTeX Warning: Hyper reference `acro:SVR' on page x undefined on input line 16.
+LaTeX Warning: Hyper reference `acro:ML' on page ix undefined on input line 10.
 
 
-LaTeX Warning: Hyper reference `acro:SVR' on page x undefined on input line 16.
+LaTeX Warning: Hyper reference `acro:ML' on page ix undefined on input line 10.
 
 
-LaTeX Warning: Hyper reference `acro:SVD' on page x undefined on input line 20.
+LaTeX Warning: Hyper reference `acro:DL' on page ix undefined on input line 11.
 
 
-LaTeX Warning: Hyper reference `acro:SVD' on page x undefined on input line 20.
+LaTeX Warning: Hyper reference `acro:DL' on page ix undefined on input line 11.
 
 
-LaTeX Warning: Hyper reference `acro:ARIMA' on page x undefined on input line 21.
+LaTeX Warning: Hyper reference `acro:ANN' on page ix undefined on input line 12.
 
 
-LaTeX Warning: Hyper reference `acro:ARIMA' on page x undefined on input line 21.
-
-) [10.10
+LaTeX Warning: Hyper reference `acro:ANN' on page ix undefined on input line 12.
 
 
-] (./01_Frontmatter/prop.tex [11.11
+LaTeX Warning: Hyper reference `acro:SGD' on page ix undefined on input line 13.
 
 
-] [12.12]) [13.13] (./02_Mainmatter/01_Intro.tex
+LaTeX Warning: Hyper reference `acro:SGD' on page ix undefined on input line 13.
+
+
+LaTeX Warning: Hyper reference `acro:LR' on page ix undefined on input line 14.
+
+
+LaTeX Warning: Hyper reference `acro:LR' on page ix undefined on input line 14.
+
+
+LaTeX Warning: Hyper reference `acro:SVM' on page ix undefined on input line 15.
+
+
+LaTeX Warning: Hyper reference `acro:SVM' on page ix undefined on input line 15.
+
+
+LaTeX Warning: Hyper reference `acro:SVR' on page ix undefined on input line 16.
+
+
+LaTeX Warning: Hyper reference `acro:SVR' on page ix undefined on input line 16.
+
+
+LaTeX Warning: Hyper reference `acro:RNN' on page ix undefined on input line 17.
+
+
+LaTeX Warning: Hyper reference `acro:RNN' on page ix undefined on input line 17.
+
+
+LaTeX Warning: Hyper reference `acro:LSTM' on page ix undefined on input line 18.
+
+
+LaTeX Warning: Hyper reference `acro:LSTM' on page ix undefined on input line 18.
+
+
+LaTeX Warning: Hyper reference `acro:PCA' on page ix undefined on input line 19.
+
+
+LaTeX Warning: Hyper reference `acro:PCA' on page ix undefined on input line 19.
+
+
+LaTeX Warning: Hyper reference `acro:SVD' on page ix undefined on input line 20.
+
+
+LaTeX Warning: Hyper reference `acro:SVD' on page ix undefined on input line 20.
+
+
+LaTeX Warning: Hyper reference `acro:ARIMA' on page ix undefined on input line 21.
+
+
+LaTeX Warning: Hyper reference `acro:ARIMA' on page ix undefined on input line 21.
+
+) [9.9
+
+
+] (./01_Frontmatter/prop.tex [10.10
+
+
+] [11.11]) [12.12] (./02_Mainmatter/01_Intro.tex
 Chapter 1.
 Package acronym Info: Label `acro:BTC' newly defined as it shall be overridden
 although it is yet undefined on input line 4.
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 4.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 4.
+
+
+Package natbib Warning: Citation `Nakamoto2008' on page 1 undefined on input line 5.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 11.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 12.
+
+
+Package natbib Warning: Citation `Nakamoto2008' on page 1 undefined on input line 18.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 19.
+
+
+Package natbib Warning: Citation `Kukacka2023' on page 1 undefined on input line 20.
+
+
+Package natbib Warning: Citation `Bouri2022' on page 1 undefined on input line 25.
+
+
+Package natbib Warning: Citation `Dimpfl2021' on page 1 undefined on input line 25.
+
+
+Package natbib Warning: Citation `Watorek2023' on page 1 undefined on input line 25.
+
 Package acronym Info: Label `acro:ML' newly defined as it shall be overridden
 although it is yet undefined on input line 28.
+
+Package acronym Warning: Acronym `ML' is not defined on input line 28.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 28.
+
 Package acronym Info: Label `acro:DL' newly defined as it shall be overridden
 although it is yet undefined on input line 28.
-[1.14
+
+Package acronym Warning: Acronym `DL' is not defined on input line 28.
+
+
+Package acronym Warning: Acronym `DL' is not defined on input line 28.
+
+
+Package natbib Warning: Citation `Khedr2021' on page 1 undefined on input line 30.
+
+
+Package natbib Warning: Citation `Kristjanpoller2018' on page 1 undefined on input line 30.
+
+[1.13
 
 
 ]
 Package acronym Info: Label `acro:LR' newly defined as it shall be overridden
 although it is yet undefined on input line 34.
+
+
+Package acronym Warning: Acronym `LR' is not defined on input line 34.
+
+
+Package acronym Warning: Acronym `LR' is not defined on input line 34.
+
 Package acronym Info: Label `acro:SVM' newly defined as it shall be overridden
 although it is yet undefined on input line 34.
+
+Package acronym Warning: Acronym `SVM' is not defined on input line 34.
+
+
+Package acronym Warning: Acronym `SVM' is not defined on input line 34.
+
 Package acronym Info: Label `acro:LSTM' newly defined as it shall be overridden
 although it is yet undefined on input line 35.
+
+Package acronym Warning: Acronym `LSTM' is not defined on input line 35.
+
+
+Package acronym Warning: Acronym `LSTM' is not defined on input line 35.
+
 Package acronym Info: Label `acro:RNN' newly defined as it shall be overridden
 although it is yet undefined on input line 35.
+
+Package acronym Warning: Acronym `RNN' is not defined on input line 35.
+
+
+Package acronym Warning: Acronym `RNN' is not defined on input line 35.
+
 Package acronym Info: Label `acro:PCA' newly defined as it shall be overridden
 although it is yet undefined on input line 36.
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 36.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 36.
+
+
+Package natbib Warning: Citation `Farebrother2022' on page 2 undefined on input line 37.
+
+
+Package natbib Warning: Citation `Pearson1901' on page 2 undefined on input line 40.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 45.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 46.
+
+
+Package natbib Warning: Citation `Chowdhury2018' on page 2 undefined on input line 47.
+
+
+Package natbib Warning: Citation `Kristjanpoller2018' on page 2 undefined on input line 47.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 51.
+
 Package acronym Info: Label `acro:SGD' newly defined as it shall be overridden
 although it is yet undefined on input line 55.
-) (./02_Mainmatter/02.tex [2.15] [3.16]
-Chapter 2.
-) (./02_Mainmatter/03.tex [4.17
 
-]
+Package acronym Warning: Acronym `SGD' is not defined on input line 55.
+
+
+Package acronym Warning: Acronym `SGD' is not defined on input line 55.
+
+
+Package natbib Warning: Citation `Wolpert1995' on page 2 undefined on input line 60.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 61.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 66.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 67.
+
+
+Package acronym Warning: Acronym `ML' is not defined on input line 69.
+
+) (./02_Mainmatter/02.tex [2.14] [3.15]
+Chapter 2.
+
+Package natbib Warning: Citation `Nakamoto2008' on page 4 undefined on input line 12.
+
+
+Package natbib Warning: Citation `Conti2018' on page 4 undefined on input line 16.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 18.
+
+
+Package natbib Warning: Citation `Moeser2015' on page 4 undefined on input line 21.
+
+) (./02_Mainmatter/03.tex [4.16
+
+] [5.17]
 Chapter 3.
 
-Package natbib Warning: Citation `Haufler2006' on page 5 undefined on input line 18.
+Package natbib Warning: Citation `Haufler2006' on page 6 undefined on input line 18.
 
 
-Package natbib Warning: Citation `Haaparanta1996' on page 5 undefined on input line 20.
+Package natbib Warning: Citation `Haaparanta1996' on page 6 undefined on input line 20.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 24.
 
 Package acronym Info: Label `acro:MNC' newly defined as it shall be overridden
 although it is yet undefined on input line 24.
@@ -836,17 +1032,17 @@ Package acronym Warning: Acronym `MNC' is not defined on input line 24.
 
 
 pdfTeX warning: pdflatex (file ./Figures/conversion1.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion1.pdf, id=448, 1028.34187pt x 578.16pt>
+<Figures/conversion1.pdf, id=180, 1028.34187pt x 578.16pt>
 File: Figures/conversion1.pdf Graphic file (type pdf)
 <use Figures/conversion1.pdf>
 Package pdftex.def Info: Figures/conversion1.pdf  used on input line 36.
 (pdftex.def)             Requested size: 240.71288pt x 135.32947pt.
-[5.18
+[6.18
 
 ]
 
 pdfTeX warning: pdflatex (file ./Figures/conversion2.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion2.pdf, id=455, 613.54219pt x 548.80031pt>
+<Figures/conversion2.pdf, id=192, 613.54219pt x 548.80031pt>
 File: Figures/conversion2.pdf Graphic file (type pdf)
 <use Figures/conversion2.pdf>
 Package pdftex.def Info: Figures/conversion2.pdf  used on input line 42.
@@ -860,62 +1056,132 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 pdfTeX warning: pdflatex (file ./Figures/supplydemand.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/supplydemand.pdf, id=458, 413.92842pt x 403.51976pt>
+<Figures/supplydemand.pdf, id=195, 413.92842pt x 403.51976pt>
 File: Figures/supplydemand.pdf Graphic file (type pdf)
 <use Figures/supplydemand.pdf>
 Package pdftex.def Info: Figures/supplydemand.pdf  used on input line 60.
 (pdftex.def)             Requested size: 170.71652pt x 166.42316pt.
 
-Package natbib Warning: Citation `Haufler2006' on page 6 undefined on input line 62.
+Package natbib Warning: Citation `Haufler2006' on page 7 undefined on input line 62.
 
-[6.19 <./Figures/conversion1.pdf> <./Figures/conversion2.pdf>]
 
-Package natbib Warning: Citation `Haaparanta1996' on page 7 undefined on input line 115.
+LaTeX Warning: Reference `fig:supply' on page 7 undefined on input line 65.
 
-[7.20 <./Figures/supplydemand.pdf>] [8.21]
+[7.19 <./Figures/conversion1.pdf> <./Figures/conversion2.pdf>]
+
+Package natbib Warning: Citation `Haaparanta1996' on page 8 undefined on input line 115.
+
+[8.20 <./Figures/supplydemand.pdf>] [9.21]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 161.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
 (Font)              Font shape `U/lasy/m/n' tried instead on input line 161.
 
 
-Package natbib Warning: Citation `Bjorvatn2006' on page 9 undefined on input line 166.
+Package natbib Warning: Citation `Bjorvatn2006' on page 10 undefined on input line 166.
 
 
-Package natbib Warning: Citation `Haufler2006' on page 9 undefined on input line 167.
+Package natbib Warning: Citation `Haufler2006' on page 10 undefined on input line 167.
 
 
-LaTeX Warning: Reference `rovnice' on page 9 undefined on input line 170.
+LaTeX Warning: Reference `fig:supply' on page 10 undefined on input line 168.
 
 
-Package natbib Warning: Citation `Haufler2006' on page 9 undefined on input line 194.
+LaTeX Warning: Reference `tab:values' on page 10 undefined on input line 169.
 
-[9.22]) (./02_Mainmatter/04.tex [10.23]
+
+LaTeX Warning: Reference `rovnice' on page 10 undefined on input line 170.
+
+
+LaTeX Warning: Hyper reference `de:definice1' on page 10 undefined on input line 171.
+
+
+LaTeX Warning: Reference `de:definice1' on page 10 undefined on input line 171.
+
+
+LaTeX Warning: Hyper reference `pr:veta1' on page 10 undefined on input line 171.
+
+
+LaTeX Warning: Reference `pr:veta1' on page 10 undefined on input line 171.
+
+
+LaTeX Warning: Hyper reference `ex:priklad1' on page 10 undefined on input line 172.
+
+
+LaTeX Warning: Reference `ex:priklad1' on page 10 undefined on input line 172.
+
+
+LaTeX Warning: Reference `eq:rovnice1' on page 10 undefined on input line 173.
+
+
+Package natbib Warning: Citation `Haufler2006' on page 10 undefined on input line 194.
+
+[10.22]) (./02_Mainmatter/04.tex [11.23]
 Chapter 4.
 
-Package natbib Warning: Citation `Haufler2006' on page 11 undefined on input line 18.
+Package acronym Warning: Acronym `ML' is not defined on input line 4.
 
 
-Package natbib Warning: Citation `Wells2001' on page 11 undefined on input line 20.
+Package acronym Warning: Acronym `LSTM' is not defined on input line 10.
 
-[11.24
 
-] [12.25]
+Package acronym Warning: Acronym `RNN' is not defined on input line 10.
 
-Package natbib Warning: Citation `Blomstrom2003' on page 13 undefined on input line 45.
 
-) (./02_Mainmatter/05.tex [13.26]
+Package acronym Warning: Acronym `PCA' is not defined on input line 12.
+
+
+Package natbib Warning: Citation `Haufler2006' on page 12 undefined on input line 18.
+
+
+Package natbib Warning: Citation `Wells2001' on page 12 undefined on input line 20.
+
+[12.24
+
+] [13.25]
+
+Package natbib Warning: Citation `Blomstrom2003' on page 14 undefined on input line 45.
+
+) (./02_Mainmatter/05.tex [14.26]
 Chapter 5.
-[14.27
 
-]) (./02_Mainmatter/06.tex [15.28]
+Package acronym Warning: Acronym `ARIMA' is not defined on input line 7.
+
+
+Package acronym Warning: Acronym `LR' is not defined on input line 8.
+
+
+Package acronym Warning: Acronym `SVM' is not defined on input line 9.
+
+
+Package acronym Warning: Acronym `LSTM' is not defined on input line 10.
+
+
+LaTeX Warning: Reference `chap:one' on page 15 undefined on input line 17.
+
+[15.27
+
+]) (./02_Mainmatter/06.tex [16.28]
 Chapter 6.
-[16.29
+[17.29
 
-] [17.30]) [18.31] (./Thesis.bbl [19.32
+] [18.30]) [19.31] (./Thesis.bbl
+./Thesis.bbl:26: Misplaced alignment tab character &.
+<argument> IEEE Communications Surveys &
+                                        amp; Tutorials
+l.26 ...EE Communications Surveys &amp; Tutorials}
+                                                   \textbf{20(4)}:
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+[20.32
 
 
-]) [20.33] (./03_Backmatter/01_App.tex
+]) [21.33] (./03_Backmatter/01_App.tex
 Appendix A.
 ) (./03_Backmatter/02_App.tex [1.34
 
@@ -933,31 +1199,45 @@ Overfull \hbox (5.41078pt too wide) in paragraph at lines 3--7
 
 Package natbib Warning: There were undefined citations.
 
-(./Thesis.aux)
+(./Thesis.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 2139BB9D4BA360EC35BF18FE261E2785;7128.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `Thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Thesis.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  15F384B6E34FDB92DDE9EB7223D4E296;6298.
  ) 
 Here is how much of TeX's memory you used:
- 18642 strings out of 478287
- 289801 string characters out of 5849289
- 558635 words of memory out of 5000000
- 36239 multiletter control sequences out of 15000+600000
- 596536 words of font info for 109 fonts, out of 8000000 for 9000
+ 18598 strings out of 478287
+ 289257 string characters out of 5849289
+ 554651 words of memory out of 5000000
+ 36202 multiletter control sequences out of 15000+600000
+ 596907 words of font info for 110 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  77i,16n,79p,1033b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Thesis.pdf (35 pages, 817883 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on Thesis.pdf (35 pages, 812311 bytes).
 PDF statistics:
- 724 PDF objects out of 1000 (max. 8388607)
- 620 compressed objects within 7 object streams
- 151 named destinations out of 1000 (max. 500000)
- 361 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
+ 153 named destinations out of 1000 (max. 500000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

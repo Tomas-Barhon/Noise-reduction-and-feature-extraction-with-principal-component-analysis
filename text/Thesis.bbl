@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -17,6 +17,14 @@
   component analysis with support vector regression.}
 \newblock \emph{Journal of Computer and Communications} \textbf{06(03)}: pp.
   51--67.
+
+\bibitem[{Conti \emph{et~al.}(2018)Conti, Sandeep~Kumar, Lal, \&
+  Ruj}]{Conti2018}
+\textsc{Conti}, M., E.~\textsc{Sandeep~Kumar}, C.~\textsc{Lal}, \&
+  S.~\textsc{Ruj} (2018): \enquote{A {S}urvey on {S}ecurity and {P}rivacy
+  {I}ssues of {B}itcoin.}
+\newblock \emph{IEEE Communications Surveys &amp; Tutorials} \textbf{20(4)}:
+  pp. 3416--3452.
 
 \bibitem[{Dimpfl \& Peter(2021)}]{Dimpfl2021}
 \textsc{Dimpfl}, T. \& F.~J. \textsc{Peter} (2021): \enquote{Nothing but noise?
@@ -47,6 +55,12 @@
 \textsc{Kukacka}, J. \& L.~\textsc{Kristoufek} (2023): \enquote{Fundamental and
   speculative components of the cryptocurrency pricing dynamics.}
 \newblock \emph{Financial Innovation} \textbf{9(1)}.
+
+\bibitem[{Möser \& Böhme(2015)}]{Moeser2015}
+\textsc{Möser}, M. \& R.~\textsc{Böhme} (2015): \emph{{T}rends, {T}ips,
+  {T}olls: {A} {L}ongitudinal {S}tudy of {B}itcoin {T}ransaction {F}ees}, pp.
+  19--33.
+\newblock Springer Berlin Heidelberg.
 
 \bibitem[{Nakamoto(2008)}]{Nakamoto2008}
 \textsc{Nakamoto}, S. (2008): \enquote{Bitcoin: A peer-to-peer electronic cash
