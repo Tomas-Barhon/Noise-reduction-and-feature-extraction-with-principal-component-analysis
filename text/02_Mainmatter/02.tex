@@ -45,28 +45,30 @@ of distinct strings $x,x'$ satisfying $h(x)=h(x')$. (Such a pair is called a col
 \end{enumerate}
 \end{defin}
 
-Hashes are the most crucial building blocks of cryptocurrencies. However, the time-stamping might 
+And suggest hashing documents together with the time of their creation.
+However, the time-stamping might 
 fail if the users can tweak the time of their machines. Interestingly, the authors have already 
 mentioned that and introduced the idea of chaining the data together with their metadata sequentially in a long chain 
 so that the user can trust that something was not overwritten \cite[see Chapter 5]{Haber1991}. 
 This is possible due to the properties of the hash functions.
 Meaning that we can concatenate arbitrarily long inputs and always produce a fixed-size output. 
-Another significant influence came from the idea of b-money which was an idea for an anonymous digital
-cash system presented in \cite{Dai1998}. B-money proposed the concept of proof-of-work 
+Another significant influence came from b-money which was an idea for an anonymous digital
+cash system presented in \cite{Dai1998}. B-money proposed the concept of \ac{PoW}
 which is a validation protocol that many cryptocurrencies still use. The idea was to solve
-computationally challenging puzzles where it can be determined how much effort was used \cite[see][pg.~1]{Dai1998}.
+computationally challenging puzzles where it can be determined how much effort was used to do so
+\cite[see][pg.~1]{Dai1998}.
 However, certain worries were being raised about how to regulate a system if the computational power
 of computers is increasing every year \cite[see][pg.~3]{Dai1998}. This has been addressed by Bitcoin
-with the regulation of difficulty based on the average time it takes to solve rather than the difficulty 
-itself \cite[see][pg.~3]{Nakamoto2008}.
+with the regulation of difficulty based on the average time it takes to solve the puzzle 
+rather than the difficulty itself \cite[see][pg.~3]{Nakamoto2008}.
 
 
 Since many characteristics of the network are often being used by researchers such as: 
 (\cite{Kukacka2023}, \cite{Kristoufek2023}, \cite{Kubal2022} or \cite{Jay2020}) 
-in their cryptocurrency research, it is critical to understand the underlying mechanics that form them.
-Bitcoin takes a completely adverse approach than the general financial system. Whereas in the traditional
-sphere banks and other institutions try to keep every transaction encrypted Bitcoin makes all the 
-transaction publicly visible and available but hashing the addresses of the sender and receiver.
+in their research, it is critical to understand the underlying mechanics that form them.
+Bitcoin takes a completely adverse approach to the general financial system. Whereas traditionally
+banks and other institutions try to keep every transaction encrypted Bitcoin makes all the 
+transactions publicly visible and available but hashing the addresses of the sender and receiver.
 The process of sending Bitcoins to someone else essentially means adding a digital signature to the
 previous transaction from which you received that money. 
 However, as \cite[see Chapter 2][pg.~2]{Nakamoto2008} suggests this only mitigates the privacy concerns
@@ -82,16 +84,27 @@ If we assume that most of the nodes/miners are honest their profit-maximizing be
 working on the longest chain and thus transactions that have already been spent do not get included
 in the chain. After the puzzle is solved by a node it can be validated by all other nodes
 in a linear time and they move on to the next block. Despite that, there remains the risk of 
-an attacker forking a malicious block and sending his money back or elsewhere.
+an attacker forking a malicious block and sending his money back or elsewhere. \cite{Nakamoto2008}
+claims that the probability of an attacker catching up (or reaching breakeven from
+the memoryless property of poi) drops exponentially
+with each block if the mining power (probability of solving the puzzle) of the
+attacker is lower than the power of honest nodes. This mechanism is the root of the Bitcoin
+security. However, it also implies that there is an implicit tradeoff between security and the
+desired liquidity of cash. 
 
 
-Algo
+As cryptocurrencies are a relatively new phenomenon they are currently a frontier topic of academic 
+research in many different aspects. They are being studied on multiple levels such as
+law, technology, cryptography, security, economics or machine learning. Generally, our area
+of interest lies in economics and machine learning as we want to find out
+whether there exist some determinants of the bitcoin price or at least features that can be used 
+to estimate the dynamics. We assume that there are theoretically three possibilities of the model 
+of price of \ac{BTC} and other cryptocurrencies. Firstly, it might be a purely efficient market 
+and the price technically follows a random walk process. The second model is that the price is entirely
+driven by speculative components and lastly, it might be a combination of speculative and fundamental
+components.
 
-Security
-
-
-Research
-
+random walk/only speculative/also fundamental
 
 \subsection{Ethereum}
 

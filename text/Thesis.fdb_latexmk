@@ -6,7 +6,7 @@
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
-["pdflatex"] 1709814634 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1709814634
+["pdflatex"] 1709822224 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1709822224
   "/etc/texmf/web2c/texmf.cnf" 1696271624 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" 1709727828 6918 819d2f9b248f8e98b2c1a732d3161ec4 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -225,7 +225,7 @@
   "01_Frontmatter/decl.tex" 1709553603 746 027882edd9f0fd51bf8b390f22d934a1 ""
   "01_Frontmatter/prop.tex" 1709557328 6360 e1993afeefe08c2d3be97828719833c4 ""
   "02_Mainmatter/01_Intro.tex" 1709673282 5856 58c0ef38ed8e3a8c8816b408d80fd742 ""
-  "02_Mainmatter/02.tex" 1709814632 6506 c8dfac898925650a24f703ef0e287e94 ""
+  "02_Mainmatter/02.tex" 1709822223 7821 0547c12ab1a430fde3701acb03b475d7 ""
   "02_Mainmatter/03.tex" 1709669829 9202 cb63b35cd8024a8c2c3af71533e92cbe ""
   "02_Mainmatter/04.tex" 1709670928 4282 e7dc3f045d6073634dea3053042c2d2d ""
   "02_Mainmatter/05.tex" 1709670791 1481 e0e4bbc471b1c98b016f844dbcbf9ccc ""
@@ -238,8 +238,8 @@
   "Figures/supplydemand.pdf" 1696235918 29014 ba04b54ec1d2a8915c8b5d2df920b5da ""
   "Styles/Head.sty" 1696235919 1085 322b42d3b6e77ffe1b5614c7edb884f6 ""
   "Styles/Mystyle.sty" 1696272827 6811 0257c71a323572878bae4d931541fbfb ""
-  "Thesis.aux" 1709814634 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "Thesis.bbl" 1709814529 5311 d765319e18a80ea3b73bbbca7f1b38d1 "bibtex Thesis"
+  "Thesis.aux" 1709822224 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Thesis.bbl" 1709822223 5311 d765319e18a80ea3b73bbbca7f1b38d1 "bibtex Thesis"
   "Thesis.out" 0 -1 0 "pdflatex"
   "Thesis.tex" 1709727828 6918 819d2f9b248f8e98b2c1a732d3161ec4 ""
   "Thesis.xmpdata" 1709555108 288 050cec67a602186f3fb2489c8bd261b7 ""
