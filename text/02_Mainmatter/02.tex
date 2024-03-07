@@ -16,14 +16,14 @@ it becomes statistically unlikely that double-spending has been committed by the
 \cite{Conti2018}. This phenomenon
 can be demonstrated on the data from \textbf{\href{https://coinmetrics.io/}{coinmetrics.io}} which show
 that the mean size of a \ac{BTC} transaction ranges in thousands of USD\$. 
-Another important aspect is the fact that 
+Another important aspect is that 
 the miners prioritize transactions with higher fees in the block which introduces considerable costs
 to each payment. \cite{Moeser2015} have shown the relationship between the transaction fee 
 and the transaction latency meaning the time it takes for the transaction to be almost surely valid.
 Even though 
 there has been some divergence from the original idea of small transactions all of the security measures
-regarding the double spending problem in the original whitepaper have turned out to be well-defined 
-in a medium time horizon.
+regarding the double spending problem in the original whitepaper have turned out to be relatively 
+well-defined in a medium time horizon.
 
 
 Despite the fact, that Bitcoin is generally regarded as the first cryptocurrency it relies on 
@@ -49,8 +49,31 @@ Hashes are the most crucial building blocks of cryptocurrencies. However, the ti
 fail if the users can tweak the time of their machines. Interestingly, the authors have already 
 mentioned that and introduced the idea of chaining the data together with their metadata sequentially in a long chain 
 so that the user can trust that something was not overwritten \cite[see Chapter 5]{Haber1991}. 
-This possibility is enabled by the properties of the hash functions.
-Meaning that we can concatenate arbitrarily long inputs and always produce a fixed-size output.
+This is possible due to the properties of the hash functions.
+Meaning that we can concatenate arbitrarily long inputs and always produce a fixed-size output. 
+Another significant influence came from the idea of b-money which was an idea for an anonymous digital
+cash system presented in \cite{Dai1998}. B-money proposed the concept of proof-of-work 
+which is a validation protocol that many cryptocurrencies still use. The idea was to solve
+computationally challenging puzzles where it can be determined how much effort was used \cite[see][pg.~1]{Dai1998}.
+However, certain worries were being raised about how to regulate a system if the computational power
+of computers is increasing every year \cite[see][pg.~3]{Dai1998}. This has been addressed by Bitcoin
+with the regulation of difficulty based on the average time it takes to solve rather than the difficulty 
+itself \cite[see][pg.~3]{Nakamoto2008}.
+
+
+Since many characteristics of the network are often being used by researchers such as: 
+(\cite{Kukacka2023}, \cite{Kristoufek2023}, \cite{Kubal2022} or \cite{Jay2020}) 
+in their cryptocurrency research, it is critical to understand the underlying mechanics that form them.
+Bitcoin takes a completely adverse approach than the general financial system. Whereas in the traditional
+sphere banks and other institutions try to keep every transaction encrypted Bitcoin makes all the 
+transaction publicly visible and available but hashing the addresses of the sender and receiver.
+The process of sending Bitcoins to someone else essentially means adding a digital signature to the
+previous transaction from which you received that money. 
+However, as \cite[see Chapter 2][pg.~2]{Nakamoto2008} suggests this only mitigates the privacy concerns
+but the double spending risk needs to be dealt with a smarter design.
+This is solved by the introduction of the \acl{PoW} algorithm. The idea is that
+transactions are collected into blocks by the miners who try to solve a computationally difficult 
+task that can only be solved by a brute-force search. 
 
 
 
