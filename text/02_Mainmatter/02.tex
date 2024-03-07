@@ -71,10 +71,18 @@ The process of sending Bitcoins to someone else essentially means adding a digit
 previous transaction from which you received that money. 
 However, as \cite[see Chapter 2][pg.~2]{Nakamoto2008} suggests this only mitigates the privacy concerns
 but the double spending risk needs to be dealt with a smarter design.
-This is solved by the introduction of the \acl{PoW} algorithm. The idea is that
+This is solved by the introduction of the \ac{PoW} algorithm. The idea is that
 transactions are collected into blocks by the miners who try to solve a computationally difficult 
-task that can only be solved by a brute-force search. 
-
+task that can only be solved by a brute-force search. It is simply a race to find a hash with a 
+certain amount of leading zeros which is adjusted based on the mining power of the network.  
+The miners are incentivized by \acs{BTC} price for winning the race and also by the transaction
+fees that can be added to each transaction as a reward for being prioritized. 
+The main concept is that the blocks are connected sequentially in a chain through the hash.
+If we assume that most of the nodes/miners are honest their profit-maximizing behavior should always be
+working on the longest chain and thus transactions that have already been spent do not get included
+in the chain. After the puzzle is solved by a node it can be validated by all other nodes
+in a linear time and they move on to the next block. Despite that, there remains the risk of 
+an attacker forking a malicious block and sending his money back or elsewhere.
 
 
 Algo
