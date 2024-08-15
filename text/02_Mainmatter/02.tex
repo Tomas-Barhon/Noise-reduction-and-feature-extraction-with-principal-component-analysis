@@ -79,36 +79,194 @@ task that can only be solved by a brute-force search. It is simply a race to fin
 certain amount of leading zeros which is adjusted based on the mining power of the network.  
 The miners are incentivized by \acs{BTC} price for winning the race and also by the transaction
 fees that can be added to each transaction as a reward for being prioritized. 
-The main concept is that the blocks are connected sequentially in a chain through the hash.
+The leading concept is that the blocks are connected sequentially in a chain through the hash.
 If we assume that most of the nodes/miners are honest their profit-maximizing behavior should always be
 working on the longest chain and thus transactions that have already been spent do not get included
 in the chain. After the puzzle is solved by a node it can be validated by all other nodes
 in a linear time and they move on to the next block. Despite that, there remains the risk of 
 an attacker forking a malicious block and sending his money back or elsewhere. \cite{Nakamoto2008}
 claims that the probability of an attacker catching up (or reaching breakeven from
-the memoryless property of poi) drops exponentially
+the memoryless property of Poisson distribution) drops exponentially
 with each block if the mining power (probability of solving the puzzle) of the
 attacker is lower than the power of honest nodes. This mechanism is the root of the Bitcoin
 security. However, it also implies that there is an implicit tradeoff between security and the
-desired liquidity of cash. 
+desired liquidity of cash. Another important property is that there will ever exist only a limited amount
+of 21 million of \ac{BTC}s  which makes it inherently a deflationary currency at least
+after all of the \ac{BTC}s are mined. Technically there will be less
+as some wallets do get lost together with their contents. Limiting supply 
+might be an intentional design choice
+to contrast the traditional model where banks issue money and cause inflation.
 
 
 As cryptocurrencies are a relatively new phenomenon they are currently a frontier topic of academic 
 research in many different aspects. They are being studied on multiple levels such as
-law, technology, cryptography, security, economics or machine learning. Generally, our area
-of interest lies in economics and machine learning as we want to find out
+law, technology, cryptography, security, economics or machine learning. Generally, the area
+of economics and machine learning will be of interest as we want to uncover
 whether there exist some determinants of the bitcoin price or at least features that can be used 
-to estimate the dynamics. We assume that there are theoretically three possibilities of the model 
-of price of \ac{BTC} and other cryptocurrencies. Firstly, it might be a purely efficient market 
-and the price technically follows a random walk process. The second model is that the price is entirely
+to estimate the pricing dynamics. We assume that there are theoretically three simplified 
+possibilities of the pricing model 
+of \ac{BTC} and other cryptocurrencies. Firstly, it might be a purely efficient market 
+and the price technically follows a random walk process with a potential drift. 
+The second model is that the price is entirely
 driven by speculative components and lastly, it might be a combination of speculative and fundamental
 components.
 
-random walk/only speculative/also fundamental
 
 \subsection{Ethereum}
+At the time of writing according to the data from 
+\textbf{\href{https://coinmarketcap.com/}{coinmarketcap.com}}, 
+\newline
+\ac{ETH} 
+is the second cryptocurrency 
+based on the market capitalization standing at 318 billion USD. Although, there are a lot of 
+similarities with \ac{BTC} the idea behind \ac{ETH} is much more profound and builds an entire
+technological infrastructure on top of blockchain which provides easily
+scriptable smart contracts. \cite{Tikhomirov2018} defines smart contracts as follows:
+
+\begin{quote}
+    \textit{Turing-complete programs that are executed in a 
+    decentralized network and usually manipulate digital units of value.}
+\end{quote}
+
+We might want to reformulate this definition for the purposes
+of this thesis to cover a broader meaning.
+
+\begin{defin}[Smart contract]\label{de:contract}
+    A program that is running on the blockchain infrastructure as an endpoint
+    with a specific address that other entities on the platform can interact
+    with in order to execute a transaction for a cost proportional to the
+    number of computational steps. The contract 
+    usually has a predefined set of rules which is applied to the input data
+    and automatically executes on hold whenever called. This allows developers
+    to build applications on top of blockchain infrastructure that is run 
+    by the distributed network and grants them the unique benefits
+    of the blockchain model.
+\end{defin}
+
+
+According to the original whitepaper, the main purpose of \ac{ETH} was not to
+create another cryptocurrency but build a simple-to-use scripting language
+that would allow developers to create custom applications running on the blockchain 
+that share the benefits of the distributed nature of the system but reduce the 
+need for hardware as the transactions are handled by the network and also software
+as the transactions can be defined in a few lines of code. Notably it 
+describes cryptocurrencies as a state transition system:
+
+\begin{defin}[Digital currency ledger]\label{de:ledger}
+    From a technical standpoint, the ledger of a cryptocurrency such as \ac{BTC}
+    can be thought of as a state transition system, where there is a 
+    \textit{state}
+    consisting of the ownership status of all existing coins and a 
+    \textit{state transition function} that takes a \textit{state} and a 
+    \textit{transaction}
+    and outputs a new state \textit{state-new} which is the result.
+\end{defin}
+
+In this view, we can understand building smart contracts, see Definition~\ref{de:contract}, 
+as creating use case specific \textit{state transition functions} 
+(\cite[see Chapter Bitcoin As A State Transition System]{buterin2013ethereum},\cite[see Chapter 2]{Tikhomirov2018}). 
+
+We can observe the fundamental difference in 
+philosophy between the \ac{BTC} and \ac{ETH} philosophy from their respective 
+whitepapers. \ac{ETH} is much 
+more focused on its role as an application platform whereas \ac{BTC} was mainly 
+intended to work as a currency. The \ac{ETH} whitepaper especially
+presents many ideas for future applications that might benefit from this framework.
+This fact is crucial in understanding the 
+underlying price-making mechanics as investments into \ac{ETH} might be 
+affected by its perceived potential as a technological product rather than 
+a typical currency that might be valued mostly as a medium of exchange. 
+
+
+Even though there are a lot of similarities in the blockchain architecture, 
+there have been many functional and implementation differences. The most notable
+is the \ac{ETH} scripting language which is a Turing-complete counterpart
+to the \ac{BTC} scripting language that did not support infinite looping 
+\cite[see Chapter Scripting]{buterin2013ethereum}. The second fundamental 
+implementation variation is that each Ethereum block saves the entire 
+\textit{state} of the whole network and thus does not need to store
+the whole history of the blockchain. On the contrary, \ac{BTC} 
+is doing exactly that, as the blocks are state-unaware and only validate blocks
+based on the transactions and the wallet software usually
+calculates the balances \cite[see Chapter 2]{Tikhomirov2018}. 
+As \cite{buterin2013ethereum} pointed out there
+is a workaround that makes this implementation roughly equally efficient 
+which utilizes the propagation properties of the Merkle tree with the fact
+that only a small part of the state changes with each block allowing for
+efficient state change using pointers to the specific branches and leaves of 
+this data structure, see Figure~\ref{fig:merkel}. The data are stored
+at the bottom of this infrastructure and there is an efficient algorithm
+that allows the \ac{ETH} software to reference the affected addresses and paths
+leading to them.
+
+
+\begin{center}
+    \begin{figure}[H]
+        \centering
+            \includegraphics[width=1\textwidth]{Figures/merkle-tree.pdf}
+        \caption{Merkel tree with pointers allows efficient state change}
+        \label{fig:merkel}
+    \end{figure}
+\end{center}
+
+
+Lastly, there is a difference in the supply of new coins.
+Contrasting the model of \ac{BTC} where the supply is limited \ac{ETH} introduces 
+a model of an infinite linear supply of coins to provide incentives 
+for future users to join the network as they might still obtain 
+new coins and thus limit the wealth concentration common in \ac{BTC} (\cite{buterin2013ethereum}, \cite{Tikhomirov2018}).
+Note that \ac{ETH} already switched to the proof-of-stake model in September 2022
+but our dataset does not include this period and thus this fact 
+is not especially relevant to this thesis.
+
+
+On the outside \ac{ETH} acts similarly to \ac{BTC}. It is a ledger
+that stores the coin balances of accounts where each has a designated unique address.
+There are two types of accounts: externally owned accounts which are essentially
+the typical users and contract accounts which are the abstraction on top of which
+smart contracts can be built with contract code that executes when the account receives
+a message from another account (externally owned or a different contract account).
+Because of the presence of infinite loops in the scripting language \ac{ETH} employs
+a strategy that prevents users from essentially exploiting the Denial-of-service attack.
+Nonetheless stands the Halting problem. That can be simplified to the fact
+that for a Turing-complete model, there is no way of saying ex-ante whether the program will
+halt or run indefinitely. As \cite{Lucas2021} suggests the Halting problem
+is usually attributed to Alan Turing's paper 
+\cite[On computable numbers, with an application to the Entscheidungsproblem]{turing1936computable},
+however, the problem was reformulated in various forms by others. This implies
+that this undecidability also holds for any \ac{ETH} contract code.
+This is fixed by introducing a gas currency that acts as a cost of computation 
+and the maximum has to be predefined in each 
+message so that the recipient knows what is at stake \cite{buterin2013ethereum}. 
+We can think of this as a type of timeout based on a currency. If gas runs
+out all of the state changes are reverted. This also explains the origin 
+of the term 
+transactions which typically refers to a set of instructions in SQL or 
+other databases that
+are bundled together and executed in an all-or-nothing fashion \cite{Kleppmann2017}.
+The last important fact, as the whitepaper describes, is that the contract code is run by
+all of the miners verifying the block which essentially means applying all of the
+transactions and reverting in case of an error.
+
 
 \subsection{Litecoin}
+In comparison to \ac{ETH}, the goal of \ac{LTC} was pronounced from the 
+beginning as building a better version of \ac{BTC} that shines where
+\ac{BTC} has failed. We might say that \ac{LTC} is a tweaked version of \ac{BTC} with 
+different parameters or a hard fork of the \ac{BTC} protocol. 
+To our best understanding, the only document that 
+is wildly considered the original whitepaper is a transcript of a forum
+post by the founder of \ac{LTC} Charlie Lee where he suggests reading 
+also the \ac{BTC} whitepaper.
+Essentially, two main differences address the problems
+\ac{BTC} embodies. The first one is faster confirmation time that allows 
+\ac{LTC} to be used truly in a fashion that was intended for \ac{BTC} as 
+digital cash with high liquidity sacrificing a bit of security. Achieving
+that mostly through four times faster block generation. And second one 
+is a different proof-of-work algorithm. As \cite{Padmavathi2018} suggests
+the intention was most likely since \ac{BTC} mining
+was dominated by GPU and ASIC miners which led to a concentration of mining power
+in pools and thus more centralized distribution of \ac{BTC}.
 
 
 \section{Machine Learning Methods for Cryptocurrencies}

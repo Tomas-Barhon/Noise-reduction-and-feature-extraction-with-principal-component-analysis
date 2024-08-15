@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{23}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -8,6 +8,10 @@
   \textsc{Shahzad} (2022): \enquote{Microstructure noise and idiosyncratic
   volatility anomalies in cryptocurrencies.}
 \newblock \emph{Annals of Operations Research} .
+
+\bibitem[{Buterin \emph{et~al.}(2013)}]{buterin2013ethereum}
+\textsc{Buterin}, V. \emph{et~al.} (2013): \enquote{Ethereum white paper.}
+\newblock \emph{GitHub repository} \textbf{1}: pp. 22--23.
 
 \bibitem[{Chowdhury \emph{et~al.}(2018)Chowdhury, Chakravarty, \&
   Hossain}]{Chowdhury2018}
@@ -60,6 +64,11 @@
 \newblock \emph{Intelligent Systems in Accounting, Finance and Management}
   \textbf{28(1)}: pp. 3--34.
 
+\bibitem[{Kleppmann(2017)}]{Kleppmann2017}
+\textsc{Kleppmann}, M. (2017): \emph{Designing data-intensive applications}.
+\newblock Beijing: O'Reilley, first edition edition.
+\newblock Hier auch später erschienene, unveränderte Nachdrucke.
+
 \bibitem[{Kristjanpoller \& Minutolo(2018)}]{Kristjanpoller2018}
 \textsc{Kristjanpoller}, W. \& M.~C. \textsc{Minutolo} (2018): \enquote{A
   hybrid volatility forecasting framework integrating garch, artificial neural
@@ -83,6 +92,11 @@
   speculative components of the cryptocurrency pricing dynamics.}
 \newblock \emph{Financial Innovation} \textbf{9(1)}.
 
+\bibitem[{Lucas(2021)}]{Lucas2021}
+\textsc{Lucas}, S. (2021): \enquote{The origins of the halting problem.}
+\newblock \emph{Journal of Logical and Algebraic Methods in Programming}
+  \textbf{121}: p. 100687.
+
 \bibitem[{Möser \& Böhme(2015)}]{Moeser2015}
 \textsc{Möser}, M. \& R.~\textsc{Böhme} (2015): \emph{{T}rends, {T}ips,
   {T}olls: {A} {L}ongitudinal {S}tudy of {B}itcoin {T}ransaction {F}ees}, pp.
@@ -99,6 +113,16 @@
   to systems of points in space.}
 \newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and
   Journal of Science} \textbf{2(11)}: pp. 559--572.
+
+\bibitem[{Tikhomirov(2018)}]{Tikhomirov2018}
+\textsc{Tikhomirov}, S. (2018): \emph{Ethereum: State of Knowledge and Research
+  Perspectives}, pp. 206--221.
+\newblock Springer International Publishing.
+
+\bibitem[{Turing \emph{et~al.}(1936)}]{turing1936computable}
+\textsc{Turing}, A.~M. \emph{et~al.} (1936): \enquote{On computable numbers,
+  with an application to the {E}ntscheidungsproblem.}
+\newblock \emph{J. of Math} \textbf{58(345-363)}: p.~5.
 
 \bibitem[{Wolpert \emph{et~al.}(1995)Wolpert, Macready
   \emph{et~al.}}]{Wolpert1995}
