@@ -1,4 +1,4 @@
-\begin{thebibliography}{23}
+\begin{thebibliography}{27}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -97,6 +97,13 @@
 \newblock \emph{Journal of Logical and Algebraic Methods in Programming}
   \textbf{121}: p. 100687.
 
+\bibitem[{Miller \emph{et~al.}(1970)Miller, Roll, Taylor
+  \emph{et~al.}}]{miller1970efficient}
+\textsc{Miller}, C.~N., R.~\textsc{Roll}, W.~\textsc{Taylor} \emph{et~al.}
+  (1970): \enquote{Efficient capital markets: A review of theory and empirical
+  work.}
+\newblock \emph{The journal of Finance} \textbf{25(2)}: pp. 383--417.
+
 \bibitem[{Möser \& Böhme(2015)}]{Moeser2015}
 \textsc{Möser}, M. \& R.~\textsc{Böhme} (2015): \emph{{T}rends, {T}ips,
   {T}olls: {A} {L}ongitudinal {S}tudy of {B}itcoin {T}ransaction {F}ees}, pp.
@@ -108,11 +115,24 @@
   system.}
 \newblock \emph{Decentralized business review} .
 
+\bibitem[{Padmavathi \& Suresh(2018)}]{Padmavathi2018}
+\textsc{Padmavathi}, M. \& R.~M. \textsc{Suresh} (2018): \enquote{Secure
+  {P}2{P} {I}ntelligent {N}etwork {T}ransaction using {L}itecoin.}
+\newblock \emph{Mobile Networks and Applications} \textbf{24(2)}: pp. 318--326.
+
 \bibitem[{Pearson(1901)}]{Pearson1901}
 \textsc{Pearson}, K. (1901): \enquote{Liii. on lines and planes of closest fit
   to systems of points in space.}
 \newblock \emph{The London, Edinburgh, and Dublin Philosophical Magazine and
   Journal of Science} \textbf{2(11)}: pp. 559--572.
+
+\bibitem[{Ren \emph{et~al.}(2022)Ren, Ma, Kong, Baltas, \& Zureigat}]{Ren2022}
+\textsc{Ren}, Y.-S., C.-Q. \textsc{Ma}, X.-L. \textsc{Kong},
+  K.~\textsc{Baltas}, \& Q.~\textsc{Zureigat} (2022): \enquote{Past, present,
+  and future of the application of machine learning in cryptocurrency
+  research.}
+\newblock \emph{Research in International Business and Finance} \textbf{63}: p.
+  101799.
 
 \bibitem[{Tikhomirov(2018)}]{Tikhomirov2018}
 \textsc{Tikhomirov}, S. (2018): \emph{Ethereum: State of Knowledge and Research
@@ -123,6 +143,10 @@
 \textsc{Turing}, A.~M. \emph{et~al.} (1936): \enquote{On computable numbers,
   with an application to the {E}ntscheidungsproblem.}
 \newblock \emph{J. of Math} \textbf{58(345-363)}: p.~5.
+
+\bibitem[{Urquhart(2017)}]{Urquhart2017}
+\textsc{Urquhart}, A. (2017): \enquote{Price clustering in bitcoin.}
+\newblock \emph{Economics Letters} \textbf{159}: pp. 145--148.
 
 \bibitem[{Wolpert \emph{et~al.}(1995)Wolpert, Macready
   \emph{et~al.}}]{Wolpert1995}
