@@ -1,6 +1,24 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{31}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Akyildirim \emph{et~al.}(2020)Akyildirim, Goncu, \&
+  Sensoy}]{Akyildirim2020}
+\textsc{Akyildirim}, E., A.~\textsc{Goncu}, \& A.~\textsc{Sensoy} (2020):
+  \enquote{Prediction of cryptocurrency returns using machine learning.}
+\newblock \emph{Annals of Operations Research} \textbf{297(1–2)}: pp. 3--36.
+
+\bibitem[{Alessandretti \emph{et~al.}(2018)Alessandretti, ElBahrawy, Aiello, \&
+  Baronchelli}]{Alessandretti2018}
+\textsc{Alessandretti}, L., A.~\textsc{ElBahrawy}, L.~M. \textsc{Aiello}, \&
+  A.~\textsc{Baronchelli} (2018): \enquote{Anticipating {C}ryptocurrency
+  {P}rices {U}sing {M}achine {L}earning.}
+\newblock \emph{Complexity} \textbf{2018(1)}.
+
+\bibitem[{Bishop \& Nasrabadi(2006)}]{bishop2006pattern}
+\textsc{Bishop}, C.~M. \& N.~M. \textsc{Nasrabadi} (2006): \emph{Pattern
+  recognition and machine learning}, volume~4.
+\newblock Springer.
 
 \bibitem[{Bouri \emph{et~al.}(2022)Bouri, Kristoufek, Ahmad, \&
   Shahzad}]{Bouri2022}
@@ -12,6 +30,14 @@
 \bibitem[{Buterin \emph{et~al.}(2013)}]{buterin2013ethereum}
 \textsc{Buterin}, V. \emph{et~al.} (2013): \enquote{Ethereum white paper.}
 \newblock \emph{GitHub repository} \textbf{1}: pp. 22--23.
+
+\bibitem[{Chowdhury \emph{et~al.}(2020)Chowdhury, Rahman, Rahman, \&
+  Mahdy}]{Chowdhury2020}
+\textsc{Chowdhury}, R., M.~A. \textsc{Rahman}, M.~S. \textsc{Rahman}, \&
+  M.~\textsc{Mahdy} (2020): \enquote{An approach to predict and forecast the
+  price of constituents and index of cryptocurrency using machine learning.}
+\newblock \emph{Physica A: Statistical Mechanics and its Applications}
+  \textbf{551}: p. 124569.
 
 \bibitem[{Chowdhury \emph{et~al.}(2018)Chowdhury, Chakravarty, \&
   Hossain}]{Chowdhury2018}
@@ -37,6 +63,11 @@
 \textsc{Dimpfl}, T. \& F.~J. \textsc{Peter} (2021): \enquote{Nothing but noise?
   price discovery across cryptocurrency exchanges.}
 \newblock \emph{Journal of Financial Markets} \textbf{54}: p. 100584.
+
+\bibitem[{Fama(2017)}]{Fama2017}
+\textsc{Fama}, E.~F. (2017): \emph{Efficient Capital Markets A Review of Theory
+  and Empirical Work}, pp. 76--121.
+\newblock Chicago: University of Chicago Press.
 
 \bibitem[{Farebrother(2022)}]{Farebrother2022}
 \textsc{Farebrother}, R.~W. (2022): \enquote{Notes on the prehistory of
@@ -97,13 +128,6 @@
 \newblock \emph{Journal of Logical and Algebraic Methods in Programming}
   \textbf{121}: p. 100687.
 
-\bibitem[{Miller \emph{et~al.}(1970)Miller, Roll, Taylor
-  \emph{et~al.}}]{miller1970efficient}
-\textsc{Miller}, C.~N., R.~\textsc{Roll}, W.~\textsc{Taylor} \emph{et~al.}
-  (1970): \enquote{Efficient capital markets: A review of theory and empirical
-  work.}
-\newblock \emph{The journal of Finance} \textbf{25(2)}: pp. 383--417.
-
 \bibitem[{Möser \& Böhme(2015)}]{Moeser2015}
 \textsc{Möser}, M. \& R.~\textsc{Böhme} (2015): \emph{{T}rends, {T}ips,
   {T}olls: {A} {L}ongitudinal {S}tudy of {B}itcoin {T}ransaction {F}ees}, pp.
@@ -144,9 +168,9 @@
   with an application to the {E}ntscheidungsproblem.}
 \newblock \emph{J. of Math} \textbf{58(345-363)}: p.~5.
 
-\bibitem[{Urquhart(2017)}]{Urquhart2017}
-\textsc{Urquhart}, A. (2017): \enquote{Price clustering in bitcoin.}
-\newblock \emph{Economics Letters} \textbf{159}: pp. 145--148.
+\bibitem[{Urquhart(2016)}]{Urquhart2016}
+\textsc{Urquhart}, A. (2016): \enquote{The inefficiency of bitcoin.}
+\newblock \emph{Economics Letters} \textbf{148}: pp. 80--82.
 
 \bibitem[{Wolpert \emph{et~al.}(1995)Wolpert, Macready
   \emph{et~al.}}]{Wolpert1995}

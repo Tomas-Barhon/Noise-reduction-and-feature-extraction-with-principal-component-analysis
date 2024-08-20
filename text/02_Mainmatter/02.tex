@@ -66,7 +66,7 @@ rather than the difficulty itself \cite[see][pg.~3]{Nakamoto2008}.
 Since many characteristics of the network are often being used by researchers such as: 
 (\cite{Kukacka2023}, \cite{Kristoufek2023}, \cite{Kubal2022} or \cite{Jay2020}) 
 in their research, it is critical to understand the underlying mechanics that form them.
-Bitcoin takes a completely adverse approach to the general financial system. Whereas traditionally
+Bitcoin takes a completely adverse approach to the general financial system. Whereas traditionally,
 banks and other institutions try to keep every transaction encrypted Bitcoin makes all the 
 transactions publicly visible and available but hashing the addresses of the sender and receiver.
 The process of sending Bitcoins to someone else essentially means adding a digital signature to the
@@ -257,7 +257,7 @@ different parameters or a hard fork of the \ac{BTC} protocol.
 To our best understanding, the only document that 
 is wildly considered the original whitepaper is a transcript of a forum
 post by the founder Charlie Lee where he suggests reading 
-also the \ac{BTC} whitepaper.
+the \ac{BTC} whitepaper.
 Essentially, two main differences address the problems
 \ac{BTC} embodies. The first one is faster confirmation time that allows 
 \ac{LTC} to be used truly in a fashion that was intended for \ac{BTC} as 
@@ -298,12 +298,12 @@ to untangle and study these relationships. Disturbingly, even though
 there are many other papers focusing directly on the practical implementation of 
 forecasting frameworks for cryptocurrency prices a significant amount of them
 do not compare their model to a random walk or other simple statistical model.
-We believe that their approaches should not be condemned but we 
+We suggest that their approaches should not be condemned but we 
 strongly emphasize 
 that their results should be interpreted cautiously.
 
 We believe that there is currently an upsetting trend in the studies
-focusing on modeling the price or returns of cryptocurrencies using \ac{ML} methods.
+focusing on modelling the price or returns of cryptocurrencies using \ac{ML} methods.
 There seem to be a lot of inconsistencies in terms of splitting the data
 into training and testing sets, making the results robust using some forms 
 of cross-validation, comparably presenting the results and 
@@ -311,7 +311,8 @@ contrasting the models to a meaningful baseline model.
 This fact arguably contributes to the fact that the results of most of the studies 
 are relatively underwhelming and have stagnated in the last few years.
 The other side of the coin, arguably worse, are studies that 
-present overly optimistic results.
+present overly optimistic results. A similar critique 
+of the generalizability of results was presented by \cite{Akyildirim2020}.
 We propose an idea for future research that would imaginably help the field
 advance further and stimulate innovation. The suggestion lies in the creation
 of a standardized dataset with set splits between train, validation and test data
@@ -332,32 +333,60 @@ makes it extremely difficult for further development to blossom.
 
 
 Despite that, we would like to provide a brief overview
-of the methods that are often incorporated in price or returns modeling pipelines.
+of the methods that are often incorporated in price or returns modelling pipelines.
 As we already mentioned in order for \ac{ML} to work as a forecasting
 algorithm there has to
 exist a possibility of drawing information about the future from the past.
 That is a non-trivial assumption because it contradicts The Efficient market 
 hypothesis
-that was formulated for capital markets by \cite{miller1970efficient}.
+that was formulated for capital markets by \cite{Fama2017}.
 It is thus no oddity that \cite{Ren2022} have found out that across 395 scientific
 articles about the use of \ac{ML} in cryptocurrencies the most cited 
-article was \cite{Urquhart2017} that studied the efficiency of \ac{BTC} and 
+article was \cite{Urquhart2016} that studied the efficiency of \ac{BTC} and 
 concluded that the \ac{BTC} market is inefficient but may become efficient in the future.
-Furthermore \cite{Ren2022} found out that the keyword
-inefficiency was the one with the highest burst of emergence.
+And that the keyword
+inefficiency was the one with the highest burst of emergence among the articles.
 
 
+There are generally two types of the problem formulation. Either the price is 
+being modelled as a regression problem or the movement of the market is predicted
+as a binary classification. Although modelling market movement
+is easier it is also much more comparable across studies. If we can assume 
+that there are approximately the same amounts of ups and downs we can work
+against the 50\% baseline \cite{Akyildirim2020}.
 \cite{Khedr2021} pointed out that cryptocurrencies lack seasonal trends
 which makes them challenging to predict for traditional statistical models. 
 They also distinguish four types of factors influencing cryptocurrency price.
 Namely: demand and supply, crypto market, macro-economic and political. 
 Our work will cover the first three types of factors as the political factors
-are hard to quantify. Later \cite{Ren2022} suggests that future researchers should
+are hard to quantify. Later \cite{Ren2022} suggested that future researchers should
 study measurement tools for political factors. 
 If you want to find out more about research in this
 field from 2010-2020 please view \cite{Khedr2021} which provides a comprehensive
 review. However, as we suggested 
 earlier the aspect of comparison between studies is rather limited.
+
+
+\cite{Alessandretti2018} compared multiple models from the perspective
+of portfolio management comparing them using return on investment and
+suggested that all of the \ac{ML} models outperformed the moving average baseline.
+They also introduce the idea of predicting cryptocurrencies prices in \ac{BTC} 
+rather than USD
+to filter out the effect of overall cryptocurrency market growth and ease 
+the effects of spurious correlation. In their study \ac{LSTM} outperformed 
+the gradient-boosting decision trees with longer time horizons and vice versa.
+Lastly, they pinpointed the fact that expressing prices in terms of \ac{BTC}
+helped the predictions and concluded that forecasting only the trend of individual 
+currencies might be easier than also predicting the overall market trend.
+\cite{Chowdhury2020} used ensemble methods to predict the prices of multiple 
+cryptocurrencies. Utilizing the fact that combining multiple weaker models
+with uncorrelated errors with voting can increase the overall 
+performance \cite[see Chapter 14.2]{bishop2006pattern}. 
+Unfortunately however impressive their results might seem
+they have been evaluated only on a month of predictions which is in our view insufficient.
+
+
+
 
 
 \section{Principal Component Analysis}

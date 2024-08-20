@@ -16,10 +16,10 @@ A different approach was suggested to validate transactions known as the proof-o
 utilizes the computational power of miners in the network. The fact that the power is 
 distributed across the network ensures that it becomes exponentially harder with an increasing number of blocks
 to generate blocks faster than the rest of the miners \cite[pg.~6]{Nakamoto2008}. 
-The mining process is interconnected with the creation of new \ac{BTC}s which is a crucial parameter
+The mining process is interconnected with the creation of new coins which is a crucial parameter
 in all monetary systems. This fact gives researchers such as \cite{Kukacka2023} 
 the possibility to use various attributes of the network to study the pricing dynamics of cryptocurrencies. 
-On the other hand, there are a couple of substantial drawbacks that make price modeling relatively challenging.
+However, there are a couple of substantial drawbacks that make price modeling relatively challenging.
 Those are non-stationarity of the target prices, relatively short historical window, the limited power of
 proxies for speculative components and as pointed out by many researchers 
 such as \cite{Bouri2022}, \cite{Dimpfl2021}, \cite{Watorek2023} an idiosyncratic noise in volatility.
@@ -48,14 +48,14 @@ as a part of their preprocessing pipeline \cite{Chowdhury2018}, \cite{Kristjanpo
 The idea stems from the fact that removing the most idiosyncratic components
 might help with capturing clear dynamics that enter the price-making process.
 We perceive that there is currently a lack of literature that would examine the effects of 
-noise reduction techniques on the performance of other \ac{ML} based regression techniques
-for cryptocurrencies. We want to mitigate most of the identified challenges using 
+noise reduction techniques on the performance \ac{ML} based models
+for cryptocurrency modelling. We want to mitigate most of the identified challenges using 
 the currently available academic knowledge and focus exclusively on the effect of noise in the data. 
 Admittedly it is always intricate to establish a ceteris paribus relationship in such a scenario
 where many variables change, the randomness of the training process using \ac{SGD} plays a crucial role 
 and the size of the dataset is relatively limited. We want to contribute with an alternative approach, especially 
 in the preprocessing pipeline that can be used in future studies to decrease the volatility of predictions.
-We do not aim to provide a generally applicable approach, as different techniques 
+We do not aim to provide a universally applicable approach, as different techniques 
 can produce varying outcomes on different datasets.
 This phenomenon partially corresponds to the \textit{No Free Lunch Theorem} \cite{Wolpert1995} which
 has turned into a buzzword in the \ac{ML} community over the years.
