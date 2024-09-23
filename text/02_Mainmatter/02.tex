@@ -393,12 +393,97 @@ they have been evaluated only on a month of predictions which is in our view ins
 \label{sec:pca}
 
 
-\subsection{PCA in Other Areas}
-
 \subsection{PCA in Time Series}
+\ac{PCA} is a widely adopted signal processing technique that is typically
+used to lower dimensionality of input features and to mitigate noise in the
+signal by transforming the data into a different feature space while ensuring
+that the new principal components remain uncorrelated. 
+Traditional usecases include dimensionality reduction for visualization purpouses 
+(word embedding vectors), noise reduction in ECG, dimensionality reduction for performance reasons
+of different \ac{ML} methods and many other signal processing pipelines.
+
+
+Thanks to its valuable properties it has been recognized also as a tool 
+to simplify and bring insights into multivariate time-series data 
+concretely in the financial sector. However, using \ac{PCA} in time-series
+usually comes with many identified challenges. 
+Especially the need for the data to be normalized before being processed by 
+the \ac{PCA} layer might turn to be almost impossible to fulfill with
+non-stationary time-series. Despite these shortcoming many researchers have 
+used \ac{PCA} in their predictive work with a substantial success.
+
+
+Most notably \cite{Nadkarni2018} designed a technical analysis based trading 
+strategy for stocks and indexes that used \ac{PCA} to reduce the dimensionality
+of input features from 6 to 31 that enabled the genetic NeuroEvolution algorithm
+to design much simpler \ac{ANN}, reduce noise in the data and decrease 
+the risk of overfitting the training datasetset. Their approach significantly 
+outperformed the Buy and Hold strategy and they conclude that
+\ac{PCA} was vital to achieve such results. Their work is especially important 
+because of generalizability for future work as their approach used
+the broad population of \ac{ANN}s even making each neuron dynamically
+choose different activation function and thus introduces no constrains
+on the generality of the results. Lastly they concluded that \ac{PCA} 
+led to lower
+risk, less days spent with capital in the market and higher daily profits.
+
+
+Similarly, \cite{Chowdhury2018} used \ac{PCA} and Independent Component 
+Analysis as a preprocessing layer for stock prediction and 
+found out that the proposed framework outperformed the approach 
+where only the final \ac{SVR} was used for prediction. Many
+other works use \ac{PCA} only as a dimensionality reduction technique
+such as \cite{Toledo2022}.
+
+
+An alternative novel approach used by some researchers  
+(\cite{Shah2021}, \cite{mohsin2021}, \cite{Smales2020})
+focuses on creating a cryptomarket wide index using \ac{PCA} to 
+capture the overall market trends. \cite{Smales2020} found that 
+the first principal component explains a large portion of the variation and 
+is highly correlated with the \ac{BTC} returns and thus support the notion
+of \ac{BTC} returns being an important driver for other cryptocurrencies.
+\cite{Shah2021} critique the use of rule based indexes that do not rely
+on any fundamental mathematical reasoning and thus create a dynamic index
+using \ac{PCA} that captures the overall market trends. However, they 
+discourage the use of the index as an ETF highlighting the fact that the 
+maximal variance optimization may be associated with higher volatility.
 
 
 \section{Web Search Data in Financial Applications}
+
+
+The phenomenon of Google Trends has drawn attention of many researchers.
+First and foremost stands the idea of Google Flu Trends. A project
+launched by Google which aimed at predicting flu epidemics using the symptom
+related searches by the users \cite{Ginsberg2009}. However, as \cite{Lazer2014}
+pointed out there have been many underlying issues both in the data construction
+and the dynamic nature of the search engine changin with years of development.
+We should highligh the importance of the correlation-causation fallacy in
+the use of Google Trends or other search based services. It is even worsened
+by the Google Trends weekly data granularity which makes it especially challenging 
+to assess any kind of causality and its direction. We have to take into
+account the possibility that there is a bidirectional influence 
+between Google Trends and \ac{BTC} prices. Despite these challenges, research 
+suggest that there is an underlying value in using web search data for modelling
+financial time series.
+
+
+
+\cite{Hu2018} used \ac{ANN} to predict the direction of the stock market
+indexes and compare two setups with and without Google Trends and conclude that 
+inclusion of Google Trends improves the performance of their models. Similarly,
+\cite{Huang2019} studied the effect of investor attention measured by Google Trends
+as a potential market signal. Interestingly, they do not find evidence that
+market movements cause changes in search volumes. However, they conclude that
+search terms are useful in predicting for predicting stock market movement
+and as a proxy variable for investor attention. Most notably they emphasize 
+that the changes are conditional on the sentiment of the search. Suggesting
+that we need to distinguish between positive and negative searches. This idea
+was adressed before in \cite{Kristoufek2013} that found an asymmetric effect of 
+positive and negative searches which were discriminated based on whether 
+the the price over or underperformed compared to a moving average of 4 days
+for  Google Trends and 7 days for Wikipedia visits. 
 
 
 

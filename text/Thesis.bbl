@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{41}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -74,10 +74,29 @@
   principal components analysis.}
 \newblock \emph{Journal of Multivariate Analysis} \textbf{188}: p. 104814.
 
+\bibitem[{Ginsberg \emph{et~al.}(2009)Ginsberg, Mohebbi, Patel, Brammer,
+  Smolinski, \& Brilliant}]{Ginsberg2009}
+\textsc{Ginsberg}, J., M.~H. \textsc{Mohebbi}, R.~S. \textsc{Patel},
+  L.~\textsc{Brammer}, M.~S. \textsc{Smolinski}, \& L.~\textsc{Brilliant}
+  (2009): \enquote{Detecting influenza epidemics using search engine query
+  data.}
+\newblock \emph{Nature} \textbf{457(7232)}: pp. 1012--1014.
+
 \bibitem[{Haber \& Stornetta(1991)}]{Haber1991}
 \textsc{Haber}, S. \& W.~S. \textsc{Stornetta} (1991): \emph{How to
   {T}ime-{S}tamp a {D}igital {D}ocument}, pp. 437--455.
 \newblock Springer Berlin Heidelberg.
+
+\bibitem[{Hu \emph{et~al.}(2018)Hu, Tang, Zhang, \& Wang}]{Hu2018}
+\textsc{Hu}, H., L.~\textsc{Tang}, S.~\textsc{Zhang}, \& H.~\textsc{Wang}
+  (2018): \enquote{Predicting the direction of stock markets using optimized
+  neural networks with google trends.}
+\newblock \emph{Neurocomputing} \textbf{285}: pp. 188--195.
+
+\bibitem[{Huang \emph{et~al.}(2019)Huang, Rojas, \& Convery}]{Huang2019}
+\textsc{Huang}, M.~Y., R.~R. \textsc{Rojas}, \& P.~D. \textsc{Convery} (2019):
+  \enquote{Forecasting stock market movements using google trend searches.}
+\newblock \emph{Empirical Economics} \textbf{59(6)}: pp. 2821--2839.
 
 \bibitem[{Jay \emph{et~al.}(2020)Jay, Kalariya, Parmar, Tanwar, Kumar, \&
   Alazab}]{Jay2020}
@@ -106,6 +125,12 @@
   network, technical analysis and principal components analysis.}
 \newblock \emph{Expert Systems with Applications} \textbf{109}: pp. 1--11.
 
+\bibitem[{Kristoufek(2013)}]{Kristoufek2013}
+\textsc{Kristoufek}, L. (2013): \enquote{Bitcoin meets google trends and
+  wikipedia: Quantifying the relationship between phenomena of the internet
+  era.}
+\newblock \emph{Scientific Reports} \textbf{3(1)}.
+
 \bibitem[{Kristoufek(2023)}]{Kristoufek2023}
 \textsc{Kristoufek}, L. (2023): \enquote{Will {B}itcoin ever become less
   volatile?}
@@ -123,16 +148,38 @@
   speculative components of the cryptocurrency pricing dynamics.}
 \newblock \emph{Financial Innovation} \textbf{9(1)}.
 
+\bibitem[{Lazer \emph{et~al.}(2014)Lazer, Kennedy, King, \&
+  Vespignani}]{Lazer2014}
+\textsc{Lazer}, D., R.~\textsc{Kennedy}, G.~\textsc{King}, \&
+  A.~\textsc{Vespignani} (2014): \enquote{The parable of google flu: Traps in
+  big data analysis.}
+\newblock \emph{Science} \textbf{343(6176)}: pp. 1203--1205.
+
 \bibitem[{Lucas(2021)}]{Lucas2021}
 \textsc{Lucas}, S. (2021): \enquote{The origins of the halting problem.}
 \newblock \emph{Journal of Logical and Algebraic Methods in Programming}
   \textbf{121}: p. 100687.
+
+\bibitem[{Mohsin \emph{et~al.}(2021)Mohsin, Naseem, Ivașcu, Cioca, Sarfraz, \&
+  St{\u{a}}nic{\u{a}}}]{mohsin2021}
+\textsc{Mohsin}, M., S.~\textsc{Naseem}, L.~\textsc{Ivașcu}, L.-I.
+  \textsc{Cioca}, M.~\textsc{Sarfraz}, \& N.~C. \textsc{St{\u{a}}nic{\u{a}}}
+  (2021): \enquote{Gauging the effect of investor sentiment on cryptocurrency
+  market: an analysis of bitcoin currency.}
+\newblock \emph{Romanian Journal of Economic Forecasting} \textbf{24(4)}:
+  p.~87.
 
 \bibitem[{Möser \& Böhme(2015)}]{Moeser2015}
 \textsc{Möser}, M. \& R.~\textsc{Böhme} (2015): \emph{{T}rends, {T}ips,
   {T}olls: {A} {L}ongitudinal {S}tudy of {B}itcoin {T}ransaction {F}ees}, pp.
   19--33.
 \newblock Springer Berlin Heidelberg.
+
+\bibitem[{Nadkarni \& Ferreira~Neves(2018)}]{Nadkarni2018}
+\textsc{Nadkarni}, J. \& R.~\textsc{Ferreira~Neves} (2018): \enquote{Combining
+  neuroevolution and principal component analysis to trade in the financial
+  markets.}
+\newblock \emph{Expert Systems with Applications} \textbf{103}: pp. 184--195.
 
 \bibitem[{Nakamoto(2008)}]{Nakamoto2008}
 \textsc{Nakamoto}, S. (2008): \enquote{Bitcoin: A peer-to-peer electronic cash
@@ -158,10 +205,28 @@
 \newblock \emph{Research in International Business and Finance} \textbf{63}: p.
   101799.
 
+\bibitem[{Shah \emph{et~al.}(2021)Shah, Chauhan, \& Chaudhury}]{Shah2021}
+\textsc{Shah}, A., Y.~\textsc{Chauhan}, \& B.~\textsc{Chaudhury} (2021):
+  \enquote{Principal component analysis based construction and evaluation of
+  cryptocurrency index.}
+\newblock \emph{Expert Systems with Applications} \textbf{163}: p. 113796.
+
+\bibitem[{Smales(2020)}]{Smales2020}
+\textsc{Smales}, L.~A. (2020): \enquote{One cryptocurrency to explain them all?
+  understanding the importance of bitcoin in cryptocurrency returns.}
+\newblock \emph{Economic Papers: A journal of applied economics and policy}
+  \textbf{39(2)}: pp. 118--132.
+
 \bibitem[{Tikhomirov(2018)}]{Tikhomirov2018}
 \textsc{Tikhomirov}, S. (2018): \emph{Ethereum: State of Knowledge and Research
   Perspectives}, pp. 206--221.
 \newblock Springer International Publishing.
+
+\bibitem[{Toledo \& Souza(2022)}]{Toledo2022}
+\textsc{Toledo}, J.~d.~M. \& D.~Y. \textsc{Souza} (2022): \enquote{Signal
+  prediction in cryptocurrency tradeoperations: A machine learning-based
+  approach.}
+\newblock \emph{SSRN Electronic Journal} .
 
 \bibitem[{Turing \emph{et~al.}(1936)}]{turing1936computable}
 \textsc{Turing}, A.~M. \emph{et~al.} (1936): \enquote{On computable numbers,
