@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Thesis"] 1727090587 "Thesis.aux" "Thesis.bbl" "Thesis" 1727090587
+["bibtex Thesis"] 0 "Thesis.aux" "Thesis.bbl" "Thesis" 1727103302
   "./Styles/Stylebib.bst" 1696235919 32851 88808a60bae93d15132397dd0bbfbbd3 ""
-  "Styles/Bibliography.bib" 1727090586 21935 13b0a2d0612fd936a40d8e9c80af044a ""
-  "Thesis.aux" 1727090587 18602 af8ca01ed451c51f0df1802959296d95 "pdflatex"
+  "Styles/Bibliography.bib" 1727103234 21935 13b0a2d0612fd936a40d8e9c80af044a ""
+  "Thesis.aux" 0 -1 0 "pdflatex"
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
-["pdflatex"] 1727090587 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1727090587
+["pdflatex"] 1727103302 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1727103302
   "/etc/texmf/web2c/texmf.cnf" 1696271624 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" 1709727828 6918 819d2f9b248f8e98b2c1a732d3161ec4 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -226,7 +226,7 @@
   "01_Frontmatter/decl.tex" 1709553603 746 027882edd9f0fd51bf8b390f22d934a1 ""
   "01_Frontmatter/prop.tex" 1709557328 6360 e1993afeefe08c2d3be97828719833c4 ""
   "02_Mainmatter/01_Intro.tex" 1724139615 5822 7ae72f5529d03a219c4673b7401e3442 ""
-  "02_Mainmatter/02.tex" 1727090355 29304 68e2ae7b59196f5d5ce429e0dff3e97c ""
+  "02_Mainmatter/02.tex" 1727103301 29502 f348584e6ffc1af8195f722434c75f73 ""
   "02_Mainmatter/03.tex" 1709669829 9202 cb63b35cd8024a8c2c3af71533e92cbe ""
   "02_Mainmatter/04.tex" 1709670928 4282 e7dc3f045d6073634dea3053042c2d2d ""
   "02_Mainmatter/05.tex" 1709670791 1481 e0e4bbc471b1c98b016f844dbcbf9ccc ""
@@ -241,11 +241,11 @@
   "Styles/Head.sty" 1696235919 1085 322b42d3b6e77ffe1b5614c7edb884f6 ""
   "Styles/Mystyle.sty" 1696272827 6811 0257c71a323572878bae4d931541fbfb ""
   "Thesis.aux" 0 -1 0 "pdflatex"
-  "Thesis.bbl" 1727090243 11960 c7e56ed209984958da00244cd9b07440 "bibtex Thesis"
+  "Thesis.bbl" 1727103235 12236 031bc445cdcec2b5bf0a68befd1fb66a "bibtex Thesis"
   "Thesis.out" 0 -1 0 "pdflatex"
   "Thesis.tex" 1709727828 6918 819d2f9b248f8e98b2c1a732d3161ec4 ""
   "Thesis.xmpdata" 1709555108 288 050cec67a602186f3fb2489c8bd261b7 ""
-  "pdfa.xmpi" 1727090587 5643 a3316673d0d8782186cfb60074b53c7d "pdflatex"
+  "pdfa.xmpi" 1727103302 5643 2144c62d5552c83070bb6438b99cd0ea "pdflatex"
   (generated)
   "Thesis.aux"
   "Thesis.lof"

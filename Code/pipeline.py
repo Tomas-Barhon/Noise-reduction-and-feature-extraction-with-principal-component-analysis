@@ -157,6 +157,8 @@ class Pipeline:
         model.add(tf.keras.layers.LSTM(units, activation=None, input_shape=input_shape,
                                        return_sequences=True))
         model.add(tf.keras.layers.Dropout(0.2))
+        
+        #consider tanh actiavation ReLu is too strict
         model.add(tf.keras.layers.ReLU())
         model.add(tf.keras.layers.LSTM(units, activation=None,
                                        return_sequences=False))

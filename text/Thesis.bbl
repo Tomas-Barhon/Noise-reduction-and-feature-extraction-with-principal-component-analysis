@@ -1,4 +1,4 @@
-\begin{thebibliography}{41}
+\begin{thebibliography}{42}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -14,6 +14,11 @@
   A.~\textsc{Baronchelli} (2018): \enquote{Anticipating {C}ryptocurrency
   {P}rices {U}sing {M}achine {L}earning.}
 \newblock \emph{Complexity} \textbf{2018(1)}.
+
+\bibitem[{Arratia \& López-Barrantes(2021)}]{Arratia2021}
+\textsc{Arratia}, A. \& A.~X. \textsc{López-Barrantes} (2021): \enquote{Do
+  google trends forecast bitcoins? stylized facts and statistical evidence.}
+\newblock \emph{Journal of Banking and Financial Technology} .
 
 \bibitem[{Bishop \& Nasrabadi(2006)}]{bishop2006pattern}
 \textsc{Bishop}, C.~M. \& N.~M. \textsc{Nasrabadi} (2006): \emph{Pattern

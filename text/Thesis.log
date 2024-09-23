@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  23 SEP 2024 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  23 SEP 2024 16:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1431,6 +1431,15 @@ Package natbib Warning: Citation `Huang2019' on page 14 undefined on input line 
 
 Package natbib Warning: Citation `Kristoufek2013' on page 14 undefined on input line 483.
 
+
+Package natbib Warning: Citation `Arratia2021' on page 14 undefined on input line 486.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 487.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 489.
+
 [14.26]) (./02_Mainmatter/03.tex [15.27]
 Chapter 3.
 
@@ -1598,10 +1607,10 @@ Chapter 6.
 [27.39
 
 ] [28.40]) [29.41] (./Thesis.bbl
-./Thesis.bbl:56: Misplaced alignment tab character &.
+./Thesis.bbl:61: Misplaced alignment tab character &.
 <argument> IEEE Communications Surveys &
                                         amp; Tutorials
-l.56 ...EE Communications Surveys &amp; Tutorials}
+l.61 ...EE Communications Surveys &amp; Tutorials}
                                                    \textbf{20(4)}:
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1614,7 +1623,7 @@ might try typing `S' now just to see what is salvageable.
 
 
 ]
-Underfull \hbox (badness 1102) in paragraph at lines 118--121
+Underfull \hbox (badness 1102) in paragraph at lines 123--126
 \T1/lmr/m/n/12 O'Reilley, first edi-tion edi-tion.  Hier auch sp€\TS1/lmr/m/n/12 ¤\T1/lmr/m/n/12 ter er-schienene, un-
  []
 
@@ -1661,20 +1670,20 @@ Package rerunfilecheck Info: Checksums for `Thesis.out':
 (rerunfilecheck)             After:  C45C7A6852FF5307F3D7E42BE8ECA9D5;6104.
  ) 
 Here is how much of TeX's memory you used:
- 18768 strings out of 478287
- 292121 string characters out of 5849289
+ 18772 strings out of 478287
+ 292194 string characters out of 5849289
  554659 words of memory out of 5000000
- 36321 multiletter control sequences out of 15000+600000
+ 36324 multiletter control sequences out of 15000+600000
  597283 words of font info for 111 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  77i,16n,79p,1033b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Thesis.pdf (47 pages, 899899 bytes).
+Output written on Thesis.pdf (47 pages, 900482 bytes).
 PDF statistics:
- 601 PDF objects out of 1000 (max. 8388607)
- 482 compressed objects within 5 object streams
- 204 named destinations out of 1000 (max. 500000)
+ 603 PDF objects out of 1000 (max. 8388607)
+ 484 compressed objects within 5 object streams
+ 205 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 
