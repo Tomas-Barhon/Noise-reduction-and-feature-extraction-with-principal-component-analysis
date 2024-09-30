@@ -1,11 +1,72 @@
 \chapter{Data}
 \label{chap:three}
 
+Compared to traditional financial data cryptocurrency data tend to be easier
+to obtain. However, many data providers have already identified the bussiness 
+potential of selling advanced data and have started to monetize them. However,
+since some
+websites monetize only their APIs we could improvize and obtain data from 
+multiple sources and merge them to get to our desired dataset size. We have
+desired to use as many relevant variables as possible and we build on
+an existing research in the field.
+Our dataset can be split into 2 main categories and 4 subcategories.
+We utilize the data that describe the overall market trends in the traditional
+sense. These data were mostly obtained from \textbf{\href{https://fred.stlouisfed.org/}{https://fred.stlouisfed.org/}}
+and from the 
+\textbf{\href{https://finance.yahoo.com/markets/}{https://finance.yahoo.com/markets/}} API.
+To balance fundamental indicators with speculative side we used \textbf{\href{https://trends.google.com/trends/}{Google Trends}}
+and \textbf{\href{https://pageviews.wmcloud.org/}{Wikipedia Page Views}} 
+that act as a proxy for market attention about cryptocurrencies in general 
+and should help us to model the market hype periods. These explanatory
+variables are then used to forecast the price or returns of the specific cryptocurrency
+of interest lagged back in time.
 
+\begin{figure}[!h]
+    \centering
+    \caption{Dataset Variables Overview}
+        \includegraphics[width=1\textwidth]{Figures/dataset_description.drawio.pdf}
+    \label{fig:dataset_description}
+\end{figure}
+
+
+The data were collected between December 2023 to February 2024 varying 
+based on
+the different sources but they are further shortened to utilize the most
+overlapping region between data sources for each unique cryptocurrency.
+This results in a time series from 17.9.2014 to 1.11.2022 for Bitcoin, 4.2.2016
+to 27.7.2022 for Ethereum ensuring that the end of the series is 
+before the change to proof-of-stake algorithm and series from 17.9.2014 to 1.11.2022
+for Litecoin. The shifted versions of the datasets are of variable length based
+on the forecasting horizon. 
 \section{Cryptocurrency Specific Technical Data}
+
+
+
 
 \section{Macroeconomical Data}
 
+As the macroeconomical condition is a cruical factor for investor behaviour 
+we decided to include relevant variables that might deliver valuable
+insights. We utilize five macroeconomical indicators that affect invesment choices.
+Real Gross Domestic product of the United States represents the overall
+growth trend of the largest economy in the world with closely related real
+gross domestic product per capita telling more about individual resouces which
+gives a more complex picture of the state of the US economy despite the 
+fact that americans are not the main cryptocurrency investors by nation.
+Furthermore we incorporate Consumer Price Index in the United States that
+acts as an inflationary measure to capture the spurious correlation between 
+prices of USD and BTC-USD exchange rate. M2 base acts as a measure
+of dollar liquidity in the circulation. Lastly, the USD-EUR exchange rate
+can be thought of as a market state information or its returns as an 
+opportunity costs for potential investors. To further adress the problem of spurious
+correlation and add the information about growth of other markets we include
+various closing prices and other measures of the stock market and other 
+investment opportunities. Following is the full description of the macroeconomical
+variables used in our work.
+
+\begin{itemize} 
+    \item 
+\end{itemize}
 \section{Web Search Data}
 
 \section{Preprocessing}
@@ -29,20 +90,7 @@ To achieve compatibility with PDF/A 2u, your file must not include links to exte
 
 
 Most troubleshooting comes from the conversion of figures to compliant formats. You can convert from simple PDF using Adobe Acrobat:
-\begin{itemize}
-	\item Select File >> Save as Other >> Archivable PDF (PDF/A)
-				\begin{figure}[!h]
-					\centering
-						\includegraphics[width=0.6\textwidth]{Figures/conversion1.pdf}
-					\label{fig:conversion1}
-				\end{figure}
-	\item Save as PDF/A-2u:
-			\begin{figure}[!h]
-				\centering
-					\includegraphics[width=0.6\textwidth]{Figures/conversion2.pdf}
-				\label{fig:conversion2}
-			\end{figure}
-\end{itemize}	
+
 
 
 But most of the vector graphics gets distorted to lower quality in Adobe (like pictures in pdfs generated from Stata, unless jpeg is sufficient for you). You can also use GhostScript, the conversion tool is provided by courtesy of the Faculty of Mathematics and Physics at

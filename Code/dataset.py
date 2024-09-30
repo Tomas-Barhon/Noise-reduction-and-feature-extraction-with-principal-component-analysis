@@ -8,7 +8,7 @@ import gtab
 class Dataset():
     """
     Parent class for other datasets responsible for getting data
-    for variables common in all datasets.
+    about variables common in all datasets.
     """
     #definning constants with Tick names
     #targets
@@ -76,7 +76,8 @@ class Dataset():
         self.fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
 
     def get_yf_variable_history(self,tick_name):
-        """Retrieves data from Yahoo finance and returns pd.Dataframe.
+        """Retrieves data from Yahoo finance for specific tick
+        and returns pd.Dataframe.
         """
         ticker = yf.Ticker(tick_name)
         history = ticker.history(period="max")
@@ -92,14 +93,15 @@ class Dataset():
         data["Time"] = pd.to_datetime(data["Time"])
         data.set_index("Time", inplace=True)
         data.index.name = None
-        #spliting data into 3 seperate datasets
+        #spliting data into 3 seperate datasets (manually chosen splits)
         self.BTC_dataframe, self.ETH_dataframe, self.LTC_dataframe = (data.iloc[:,:30],
                                             data.iloc[:,30:57], data.iloc[:,57:])
         return self
 
     def get_common_data(self):
         """
-        returns dataframe with variables that are common for all cryptocurrencies
+        returns dataframe with variables that are common for all cryptocurrencies.
+        Yahoo finance indexes, google crypto searches, wiki crypto searches and macroeconomical data from St.Louis.
         """
         #Yahoo finance tickers
         merged_df = self.get_yf_variable_history(Dataset.DJI)
@@ -146,7 +148,9 @@ class Dataset():
 
     def combine_queries(self, queries):
         """
-        Function that will sum the different query formulation and return the summed dataframe
+        Function that will sum the different query formulation and return the summed dataframe.
+        Resamples weekly data to daily using forward filling.
+        For example combines ("BTC" and "Bitcoin" and sums their popularity in google searches) 
         """
         result = queries[0]
         for query in queries[1:]:
@@ -156,6 +160,9 @@ class Dataset():
         return result
     
     def get_fred_data(self):
+        """
+        Downloads and resamples macroeconomical data from St.Louis.
+        """
         data_buffer = []
         ticks = [self.RGDP_US, self.RGDP_PC_US, self.CPI_US, self.M2_US, self.USD_EUR_rate]
         column_names = ["RGDP_US", "RGDP_PC_US", "CPI_US", "M2_US", "USD_EUR_rate"]
@@ -174,29 +181,48 @@ class Dataset():
 
     @staticmethod
     def get_btc_data():
+        """
+        Loads already created dataset for bitcoin.
+        """
         dataset = pd.read_csv("./../Data/btc.csv", index_col=0)
         dataset.index = pd.to_datetime(dataset.index)
         return dataset
 
     @staticmethod
     def get_eth_data():
+        """
+        Loads already created dataset for ethereum.
+        """
         dataset = pd.read_csv("./../Data/eth.csv", index_col=0)
         dataset.index = pd.to_datetime(dataset.index)
         return dataset
 
     @staticmethod
     def get_ltc_data():
+        """
+        Loads already created dataset for litecoin.
+        """
         dataset = pd.read_csv("./../Data/ltc.csv", index_col=0)
         dataset.index = pd.to_datetime(dataset.index)
         return dataset
 
     @abstractmethod
     def merge_all_data(self):
+        """
+        Abstract method that needs to be implemented by the specific coin dataset that
+        merges all of the different types of data together.
+        """
         pass
 
     @abstractmethod
     def save_data_to_csv(self):
+        """
+        Abstract method that needs to be implemented by the specific coin dataset that
+        saves the merged data to csv.
+        """
         pass
+    
+
 class BitcoinDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -236,6 +262,7 @@ class BitcoinDataset(Dataset):
         data = data.loc[self.date_min:self.date_max]
         data.to_csv("./../Data/btc.csv")
         return self
+
 class EthereumDataset(Dataset):
     def __init__(self):
         super().__init__()
@@ -315,6 +342,7 @@ class LitecoinDataset(Dataset):
                         how="outer", suffixes = (None, None))
         merged_df.rename(columns={"Close": "LTC-USD"}, inplace=True)
         return merged_df
+
     def save_data_to_csv(self):
         data = self.merge_all_data()
         data = data.loc[self.date_min:self.date_max]

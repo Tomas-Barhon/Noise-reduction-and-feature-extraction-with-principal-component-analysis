@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  23 SEP 2024 16:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  30 SEP 2024 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1443,121 +1443,120 @@ Package acronym Warning: Acronym `BTC' is not defined on input line 489.
 [14.26]) (./02_Mainmatter/03.tex [15.27]
 Chapter 3.
 
-Package natbib Warning: Citation `Haufler2006' on page 16 undefined on input line 18.
-
-
-Package natbib Warning: Citation `Haaparanta1996' on page 16 undefined on input line 20.
-
-
-Package acronym Warning: Acronym `BTC' is not defined on input line 24.
-
-Package acronym Info: Label `acro:MNC' newly defined as it shall be overridden
-although it is yet undefined on input line 24.
-
-Package acronym Warning: Acronym `MNC' is not defined on input line 24.
-
-
-Package acronym Warning: Acronym `MNC' is not defined on input line 24.
-
-Package acronym Info: Label `acro:FDI' newly defined as it shall be overridden
-although it is yet undefined on input line 24.
-
-Package acronym Warning: Acronym `FDI' is not defined on input line 24.
-
-
-Package acronym Warning: Acronym `FDI' is not defined on input line 24.
-
-
-Package acronym Warning: Acronym `MNC' is not defined on input line 24.
+Overfull \hbox (43.45639pt too wide) in paragraph at lines 4--23
+[]\T1/lmr/bx/n/12 https://fred.stlouisfed.org/[] \T1/lmr/m/n/12 and from the []\T1/lmr/bx/n/12 https://finance.yahoo.com/markets/[]
+ []
 
 
 
-pdfTeX warning: pdflatex (file ./Figures/conversion1.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion1.pdf, id=249, 1028.34187pt x 578.16pt>
-File: Figures/conversion1.pdf Graphic file (type pdf)
-<use Figures/conversion1.pdf>
-Package pdftex.def Info: Figures/conversion1.pdf  used on input line 36.
-(pdftex.def)             Requested size: 240.71288pt x 135.32947pt.
+pdfTeX warning: pdflatex (file ./Figures/dataset_description.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Figures/dataset_description.drawio.pdf, id=253, 515.04419pt x 176.5797pt>
+File: Figures/dataset_description.drawio.pdf Graphic file (type pdf)
+<use Figures/dataset_description.drawio.pdf>
+Package pdftex.def Info: Figures/dataset_description.drawio.pdf  used on input line 27.
+(pdftex.def)             Requested size: 401.18405pt x 137.54567pt.
 [16.28
 
-]
+ <./Figures/dataset_description.drawio.pdf>]
 
-pdfTeX warning: pdflatex (file ./Figures/conversion2.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/conversion2.pdf, id=262, 613.54219pt x 548.80031pt>
-File: Figures/conversion2.pdf Graphic file (type pdf)
-<use Figures/conversion2.pdf>
-Package pdftex.def Info: Figures/conversion2.pdf  used on input line 42.
-(pdftex.def)             Requested size: 240.71288pt x 215.31247pt.
+Package natbib Warning: Citation `Haufler2006' on page 17 undefined on input line 79.
+
+[17.29]
+
+Package natbib Warning: Citation `Haaparanta1996' on page 18 undefined on input line 81.
+
+
+Package acronym Warning: Acronym `BTC' is not defined on input line 85.
+
+Package acronym Info: Label `acro:MNC' newly defined as it shall be overridden
+although it is yet undefined on input line 85.
+
+Package acronym Warning: Acronym `MNC' is not defined on input line 85.
+
+
+Package acronym Warning: Acronym `MNC' is not defined on input line 85.
+
+Package acronym Info: Label `acro:FDI' newly defined as it shall be overridden
+although it is yet undefined on input line 85.
+
+Package acronym Warning: Acronym `FDI' is not defined on input line 85.
+
+
+Package acronym Warning: Acronym `FDI' is not defined on input line 85.
+
+
+Package acronym Warning: Acronym `MNC' is not defined on input line 85.
+
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 54.
+(Font)              <10> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 54.
+(Font)              <7> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 54.
+(Font)              <5> on input line 102.
 
 
 pdfTeX warning: pdflatex (file ./Figures/supplydemand.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<Figures/supplydemand.pdf, id=265, 413.92842pt x 403.51976pt>
+<Figures/supplydemand.pdf, id=278, 413.92842pt x 403.51976pt>
 File: Figures/supplydemand.pdf Graphic file (type pdf)
 <use Figures/supplydemand.pdf>
-Package pdftex.def Info: Figures/supplydemand.pdf  used on input line 60.
+Package pdftex.def Info: Figures/supplydemand.pdf  used on input line 108.
 (pdftex.def)             Requested size: 170.71652pt x 166.42316pt.
 
-Package natbib Warning: Citation `Haufler2006' on page 17 undefined on input line 62.
+Package natbib Warning: Citation `Haufler2006' on page 18 undefined on input line 110.
 
 
-LaTeX Warning: Reference `fig:supply' on page 17 undefined on input line 65.
+LaTeX Warning: Reference `fig:supply' on page 18 undefined on input line 113.
 
-[17.29 <./Figures/conversion1.pdf> <./Figures/conversion2.pdf>]
+[18.30]
 
-Package natbib Warning: Citation `Haaparanta1996' on page 18 undefined on input line 115.
+Package natbib Warning: Citation `Haaparanta1996' on page 19 undefined on input line 163.
 
-[18.30 <./Figures/supplydemand.pdf>] [19.31]
+[19.31 <./Figures/supplydemand.pdf>]
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 161.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 209.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 161.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 209.
+ [20.32]
+
+Package natbib Warning: Citation `Bjorvatn2006' on page 21 undefined on input line 214.
 
 
-Package natbib Warning: Citation `Bjorvatn2006' on page 20 undefined on input line 166.
+Package natbib Warning: Citation `Haufler2006' on page 21 undefined on input line 215.
 
 
-Package natbib Warning: Citation `Haufler2006' on page 20 undefined on input line 167.
+LaTeX Warning: Reference `fig:supply' on page 21 undefined on input line 216.
 
 
-LaTeX Warning: Reference `fig:supply' on page 20 undefined on input line 168.
+LaTeX Warning: Reference `tab:values' on page 21 undefined on input line 217.
 
 
-LaTeX Warning: Reference `tab:values' on page 20 undefined on input line 169.
+LaTeX Warning: Reference `rovnice' on page 21 undefined on input line 218.
 
 
-LaTeX Warning: Reference `rovnice' on page 20 undefined on input line 170.
+LaTeX Warning: Hyper reference `de:definice1' on page 21 undefined on input line 219.
 
 
-LaTeX Warning: Hyper reference `de:definice1' on page 20 undefined on input line 171.
+LaTeX Warning: Reference `de:definice1' on page 21 undefined on input line 219.
 
 
-LaTeX Warning: Reference `de:definice1' on page 20 undefined on input line 171.
+LaTeX Warning: Hyper reference `pr:veta1' on page 21 undefined on input line 219.
 
 
-LaTeX Warning: Hyper reference `pr:veta1' on page 20 undefined on input line 171.
+LaTeX Warning: Reference `pr:veta1' on page 21 undefined on input line 219.
 
 
-LaTeX Warning: Reference `pr:veta1' on page 20 undefined on input line 171.
+LaTeX Warning: Hyper reference `ex:priklad1' on page 21 undefined on input line 220.
 
 
-LaTeX Warning: Hyper reference `ex:priklad1' on page 20 undefined on input line 172.
+LaTeX Warning: Reference `ex:priklad1' on page 21 undefined on input line 220.
 
 
-LaTeX Warning: Reference `ex:priklad1' on page 20 undefined on input line 172.
+LaTeX Warning: Reference `eq:rovnice1' on page 21 undefined on input line 221.
 
 
-LaTeX Warning: Reference `eq:rovnice1' on page 20 undefined on input line 173.
+Package natbib Warning: Citation `Haufler2006' on page 21 undefined on input line 242.
 
-
-Package natbib Warning: Citation `Haufler2006' on page 20 undefined on input line 194.
-
-[20.32]) (./02_Mainmatter/04.tex [21.33]
+) (./02_Mainmatter/04.tex [21.33] [22.34]
 Chapter 4.
 
 Package acronym Warning: Acronym `ML' is not defined on input line 4.
@@ -1572,18 +1571,18 @@ Package acronym Warning: Acronym `RNN' is not defined on input line 10.
 Package acronym Warning: Acronym `PCA' is not defined on input line 12.
 
 
-Package natbib Warning: Citation `Haufler2006' on page 22 undefined on input line 18.
+Package natbib Warning: Citation `Haufler2006' on page 23 undefined on input line 18.
 
 
-Package natbib Warning: Citation `Wells2001' on page 22 undefined on input line 20.
+Package natbib Warning: Citation `Wells2001' on page 23 undefined on input line 20.
 
-[22.34
+[23.35
 
-] [23.35]
+] [24.36]
 
-Package natbib Warning: Citation `Blomstrom2003' on page 24 undefined on input line 45.
+Package natbib Warning: Citation `Blomstrom2003' on page 25 undefined on input line 45.
 
-) (./02_Mainmatter/05.tex [24.36]
+) (./02_Mainmatter/05.tex [25.37]
 Chapter 5.
 
 Package acronym Warning: Acronym `ARIMA' is not defined on input line 7.
@@ -1598,15 +1597,15 @@ Package acronym Warning: Acronym `SVM' is not defined on input line 9.
 Package acronym Warning: Acronym `LSTM' is not defined on input line 10.
 
 
-LaTeX Warning: Reference `chap:one' on page 25 undefined on input line 17.
+LaTeX Warning: Reference `chap:one' on page 26 undefined on input line 17.
 
-[25.37
+[26.38
 
-]) (./02_Mainmatter/06.tex [26.38]
+]) (./02_Mainmatter/06.tex [27.39]
 Chapter 6.
-[27.39
+[28.40
 
-] [28.40]) [29.41] (./Thesis.bbl
+] [29.41]) [30.42] (./Thesis.bbl
 ./Thesis.bbl:61: Misplaced alignment tab character &.
 <argument> IEEE Communications Surveys &
                                         amp; Tutorials
@@ -1619,7 +1618,7 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[30.42
+[31.43
 
 
 ]
@@ -1627,9 +1626,9 @@ Underfull \hbox (badness 1102) in paragraph at lines 123--126
 \T1/lmr/m/n/12 O'Reilley, first edi-tion edi-tion.  Hier auch sp€\TS1/lmr/m/n/12 ¤\T1/lmr/m/n/12 ter er-schienene, un-
  []
 
-[31.43] [32.44]) [33.45] (./03_Backmatter/01_App.tex
+[32.44] [33.45]) [34.46] (./03_Backmatter/01_App.tex
 Appendix A.
-) (./03_Backmatter/02_App.tex [1.46
+) (./03_Backmatter/02_App.tex [1.47
 
 
 ]
@@ -1639,7 +1638,7 @@ Overfull \hbox (5.41078pt too wide) in paragraph at lines 3--7
 []\T1/lmr/m/n/12 https://github.com/Tomas-Barhon/Noise-reduction-and-feature-extraction[]. In-
  []
 
-) [2.47
+) [2.48
 
 ]
 
@@ -1667,23 +1666,23 @@ Package rerunfilecheck Warning: File `Thesis.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `Thesis.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  C45C7A6852FF5307F3D7E42BE8ECA9D5;6104.
+(rerunfilecheck)             After:  B14FF706503FEFC2EC75A638BBFDD29B;6104.
  ) 
 Here is how much of TeX's memory you used:
- 18772 strings out of 478287
- 292194 string characters out of 5849289
+ 18764 strings out of 478287
+ 292072 string characters out of 5849289
  554659 words of memory out of 5000000
- 36324 multiletter control sequences out of 15000+600000
+ 36317 multiletter control sequences out of 15000+600000
  597283 words of font info for 111 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  77i,16n,79p,1033b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on Thesis.pdf (47 pages, 900482 bytes).
+Output written on Thesis.pdf (48 pages, 684811 bytes).
 PDF statistics:
- 603 PDF objects out of 1000 (max. 8388607)
- 484 compressed objects within 5 object streams
+ 612 PDF objects out of 1000 (max. 8388607)
+ 495 compressed objects within 5 object streams
  205 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -9,6 +9,16 @@ import numpy as np
 
 
 class PCATransformer(BaseEstimator, TransformerMixin):
+    """_summary_
+
+    Pushes original data into n dimensions based on retained percantage 
+    of variance specified in pca. And upsamples them back into the original 
+    number of dimensions.
+
+    Args:
+        BaseEstimator (_type_): _description_
+        TransformerMixin (_type_): _description_
+    """
     def __init__(self, pca):
         self.pca = pca
 
@@ -25,6 +35,14 @@ class PCATransformer(BaseEstimator, TransformerMixin):
 
 
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
+    """_summary_
+
+    Reshaping layer for sklearn.pipeline.
+
+    Args:
+        BaseEstimator (_type_): _description_
+        TransformerMixin (_type_): _description_
+    """
     def __init__(self, new_shape):
         self.new_shape = new_shape
 
@@ -36,6 +54,12 @@ class ReshapeTransformer(BaseEstimator, TransformerMixin):
 
 
 class Pipeline:
+    """
+    
+    Pipeline class takes which takes the ticker of either ("btc", "ltc", "eth")
+    and creates all shifted versions of the dataset we use in our thesis.
+    It represents the whole processing workflow that we performed on the data.
+    """
     def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
         self.tick = crypto_tick
         match self.tick:
@@ -54,6 +78,13 @@ class Pipeline:
         return self
 
     def preprocess_dataset(self):
+        """
+        Fills missing data with zeros where the data was not yet collected and 
+        forward fills all the exchange data that are not traded on the weekends 
+        (pushing values from friday to saturday and sunday mostly).
+        Cuts ethereum time series before at the point of switching to P-o-s consensus.
+        
+        """
         # Filling crypto wiki searches with zeros as the data started to be collected later
         self.data['Wiki_crypto_search'] = self.data['Wiki_crypto_search'].fillna(
             0)
@@ -87,6 +118,13 @@ class Pipeline:
         return self
 
     def shift_target(self):
+        """Shifts the target variable by 1,5 and 10 days back ensuring that 
+        we use historical explanatory variables to predict future target variable
+        and dropping the nonoverlapping entries.
+
+        Returns:
+            _type_: _description_
+        """
         # 1 day forecasting
         self.data_1d_shift = self.data.copy()
         self.data_1d_shift.iloc[:, -
@@ -106,6 +144,17 @@ class Pipeline:
 
     @staticmethod
     def split_train_test(data, pandas=True):
+        """_summary_
+
+        Splits the data into first 90% training and last 10% testing without shuffling them to 
+        ensure keeping the time series characteristic of the problem.
+        Args:
+            data (_type_): _description_
+            pandas (bool, optional): _description_. Defaults to True.
+
+        Returns:
+            _type_: _description_
+        """
         if pandas:
             train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
                 data.iloc[:, :-1], data.iloc[:, -1], test_size=0.1, random_state=42, shuffle=False)
@@ -116,6 +165,10 @@ class Pipeline:
 
     @staticmethod
     def assembly_pipeline(estimator, dim_reducer, shape_change=False):
+        """
+        Creates sklearn.pipeline with specified steps. 
+        Takes care of shape transformations for LSTM.
+        """
         scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
@@ -139,6 +192,19 @@ class Pipeline:
 
     @staticmethod
     def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=5):
+        """Fits grid search using the time series split with all metrics using
+        the best RMSE as the best model.
+
+        Args:
+            train_data (_type_): _description_
+            train_target (_type_): _description_
+            pipeline (_type_): _description_
+            parameter_grid (_type_): _description_
+            n_jobs (int, optional): _description_. Defaults to 5.
+
+        Returns:
+            _type_: _description_
+        """
         scoring = {"RMSE": "neg_root_mean_squared_error",
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
@@ -148,11 +214,17 @@ class Pipeline:
             cv=ts_split, scoring=scoring, refit="RMSE",
             verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
         return model
+
     @staticmethod
     def fit_full_train_grid_search(train_data, train_target, pipeline, parameter_grid):
         ...
+        
+
     @staticmethod
     def assembly_lstm(input_shape, units):
+        """
+        Creates the LSTM network with Adam optimizer and Cosine Decay.
+        """
         model = tf.keras.Sequential()
         model.add(tf.keras.layers.LSTM(units, activation=None, input_shape=input_shape,
                                        return_sequences=True))
@@ -173,9 +245,23 @@ class Pipeline:
 
     @staticmethod
     def root_mean_squared_error(y_true, y_pred):
+        """Custom loss function for tensorflow RMSE.
+
+        Args:
+            y_true (_type_): _description_
+            y_pred (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         return tf.sqrt(tf.reduce_mean(tf.square(y_pred - y_true)))
+
     @staticmethod
     def create_lstm_input(data, target, lag_order, forecast_time = 1):
+        """
+        Creates the input for the LSTM network. Predicting target at time t 
+        with variables from t-lag_order - t-1.
+        """
         X, Y = [], []
         data.iloc[:,-1] = data.iloc[:,-1].shift(forecast_time)
         data = data.dropna()
