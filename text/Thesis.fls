@@ -1293,6 +1293,7 @@ INPUT Thesis.bbl
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmcsc10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmbx12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmcsc10.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmri12.tfm
 INPUT ./03_Backmatter/01_App.tex
 INPUT 03_Backmatter/01_App.tex
 INPUT ./03_Backmatter/01_App.tex

@@ -40,6 +40,19 @@ for Litecoin. The shifted versions of the datasets are of variable length based
 on the forecasting horizon. 
 \section{Cryptocurrency Specific Technical Data}
 
+Despite the fact, that we have framed this data as fundamental/technical 
+we should acknowledge that fundamental in our case stands far from its 
+traditional meaning. They are fundamental in a way that they 
+are the typical data researchers and practitioners employ to model cryptocurrencies
+and that they objectively describe the system.
+However, as the fundamental factor is very limited in this case it only makes sense
+for the typical variables such as capitalization, volatility, hashrate and others.
+But we also used a lot of technical variables that are derived from these fundamental
+variables or the price itself. These help to identify trends in certain 
+variables from pure mathematical transformation of the original series. 
+All of these data were collected from \textbf{\href{https://coinmetrics.io/}{coinmetrics.io}}
+and further processed by our pipeline.
+
 
 
 
@@ -61,13 +74,81 @@ can be thought of as a market state information or its returns as an
 opportunity costs for potential investors. To further adress the problem of spurious
 correlation and add the information about growth of other markets we include
 various closing prices and other measures of the stock market and other 
-investment opportunities. Following is the full description of the macroeconomical
-variables used in our work.
+investment opportunities. 
 
-\begin{itemize} 
-    \item 
+
+Following is the full description of the macroeconomical
+variables used:
+
+\begin{itemize}
+    \item \textit{Close\_DJI} - Dow Jones Industrial Average
+    \item \textit{Close\_GSPC} - S\&P 500
+    \item \textit{Close\_GC=F} - Gold Futures
+    \item \textit{Close\_VIX} - CBOE Volatility Index
+    \item \textit{Close\_IXIC} - NASDAQ Composite
+    \item \textit{Close\_SMH} - VanEck Semiconductor ETF
+    \item \textit{Close\_VGT} - Vanguard Information Technology Index Fund
+    \item \textit{Close\_XSD} - SPDR S\&P Semiconductor ETF
+    \item \textit{Close\_IYW} - iShares U.S. Technology ETF
+    \item \textit{Close\_FTEC} - Fidelity MSCI Information Technology Index ETF
+    \item \textit{Close\_IGV} - iShares Expanded Tech-Software Sector ETF
+    \item \textit{Close\_QQQ} - Invesco QQQ Trust
+    \item \textit{RGDP\_US} - Real Gross Domestic Product of the United States
+    \item \textit{RGDP\_PC\_US} - Real Gross Domestic Product per capita 
+    of the United States
+    \item \textit{CPI\_US} - Consumer Price Index: All Items: Total for United States
+    \item \textit{M2\_US} - M2 Base US
+    \item \textit{USD\_EUR\_rate} - U.S. Dollars to Euro Spot Exchange Rate
 \end{itemize}
+
+
 \section{Web Search Data}
+
+As mentioned earlier following many other researchers we aimed to 
+obtain a proxy for the market
+attention. We specifically used \textbf{\href{https://pageviews.wmcloud.org/}{Wikipedia Page Views}}
+to get the page views for Wikipedia pages: Bitcoin, Ethereum, Litecoin and 
+Cryptocurrency and use them respectively for each coin dataset combining 
+the overall Cryptocurrency views with the specific currency. Similarly we 
+hoped to obtain similar data from 
+\textbf{\href{https://trends.google.com/trends/}{Google Trends}} but they
+turned out to be quite cumbersome to use. As \cite{West2020a} mentioned 
+there are three main obstacles when using Google Trends. Firstly, the scale
+is always normalized into the range 0-100 based on the selected region and time.
+Secondly, this implicitly means that the results are rounded to integers and thus 
+loosing a lot of precision. Lastly, there is a limit of 5 queries that you can 
+use at a time. This not only means that you cannot compare more search terms 
+but it also means that when there are over five variations how the term might
+be searched for one cannot do that effectively. Another problem, 
+that we faced is that the data can be obtained only in weekly granularity
+for longer periods and thus needs to be interpolated to daily which 
+most likely sacrifices a lot of interesting dynamics on the daily level which
+is significant regarding the volatility of cryptocurrencies. 
+These reasons, except the weekly sampling frequency, were solved in 
+the \textbf{\href{https://github.com/epfl-dlab/GoogleTrendsAnchorBank}{g-tab}}
+Python library, created by \cite{West2020a}, which uses a 
+two step query sampling process that 
+estimates the searches on a universally common scale with floating precision and allows 
+us to use as many word formulation as needed. We would then sum the popularity
+for each word formulation that is related to the same thing. We acknowledge
+that there is a risk that we ommited some word formulations but hopefully
+we covered all the significant ones.
+
+
+Following is the list of the variables from this section and their word forms
+for Google Trends:
+https://cs.wikipedia.org/wiki/Bitcoin
+\begin{itemize}
+    \item \textit{Wiki\_btc\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Bitcoin}{Bitcoin}}
+    \item \textit{Wiki\_eth\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Ethereum}{Ethereum}}
+    \item \textit{Wiki\_ltc\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Litecoin}{Litecoin}}
+    \item \textit{Wiki\_crypto\_search} - Wiki pageviews for \textbf{\href{https://en.wikipedia.org/wiki/Cryptocurrency}{Cryptocurrency}}
+    \item \textit{Google\_btc\_search} - Google Trends summed from terms: \textit{Bitcoin, bitcoin, BTC}
+    \item \textit{Google\_eth\_search} - Google Trends summed from terms: \textit{Ethereum, ethereum, ether, ETH}
+    \item \textit{Google\_ltc\_search} - Google Trends summed from terms: \textit{Litecoin, litecoin, LTC}
+    \item \textit{Google\_crypto\_search} - Google Trends summed from terms: \textit{Cryptocurrency, cryptocurrency, Cryptocurrencies, cryptocurrencies, crypto, Crypto}
+\end{itemize}
+
 
 \section{Preprocessing}
 
