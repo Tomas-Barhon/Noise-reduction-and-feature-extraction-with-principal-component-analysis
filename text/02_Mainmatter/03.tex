@@ -232,26 +232,56 @@ https://cs.wikipedia.org/wiki/Bitcoin
 
 \section{Preprocessing}
 
-resampling weakly and monthly to daily !!
-- mention something like that we use always last data as the data for the current month
 
-forward filling ensures that we do not cheat and use data from the future !!
+Forecasting from historical data comes with many identified challenges. These
+were especially pronounced in our case as we incorporate data from many
+different sources with different sampling frequencies. Despite the fact
+that our focus is on forecasting daily price and returns we use data
+that come in weekly and monthly frequencies. We suggest two general concerns 
+with such data. As we are using historical explanatory variables
+to predict a response variable in the future we need to ensure that our
+explanatory variables are already published at the time of forecasting and not
+use data from the future. We implement forward filling after the data is resampled
+to daily frequencies as a remedy. Especially for the macroeconomical data
+we implicitly match those indicators to future dates that they do not trully
+corespond to. Concretely, the Consumer Price Index for January is published at the 
+beginning of February but as we forward fill this variable the Consumer Price Index
+from January will actually be in October. This ensures that when we are 
+forecasting with a 10 day horizon at the beginning of February we only use
+data that was present at that time. The second concern is the fact 
+that there is a lot of lost signal during those interpolated periods 
+and the daily dynamics are not incorporated in the model. Unfortunately,
+this is the nature of economic research as especially the 
+macroeconomical indicators come typically in such sampling frequencies.
+As already suggested these preprocessing steps were applied to the macroeconomical
+indicators, Google Trends that come in weekly frequency and for 
+ETFs and indexes that are not traded on the weekends.
+
+As some of the variables are missing at the beginning of the time frame there
+is no clear solution how to impute them without leaking the future distribution.
+Even though we could say that this rule might be violated on the training set
+but we opted for a different approach.
+We start by visually inspecting the structure of the missing values and 
+set the start of the series as such that "almost all" variables are already 
+being collected. The aim is to keep as much data as possible but avoid
+having a lot of data points at the beginning with different distribution changed 
+by imputation. After that we fill the data that is missing only at the start with
+zeros in order to avoid imputing future data. There is also a second reason
+as generaly these variables are increasing and thus imputing zeros makes 
+even mathematical sense. Especially for data like Googe Trends or Wikipedia
+Pageviews this is a reasonable imputation. Finally we cut the 
+\ac{ETH} series at the switch to proof-of-stake as this completely
+changes the modeling perspective and we merge all the data
+from different sources on the date column.
 
 
-"""
-Fills missing data with zeros where the data was not yet collected and 
-forward fills all the exchange data that are not traded on the weekends 
-(pushing values from friday to saturday and sunday mostly).
-Cuts ethereum time series before at the point of switching to P-o-s consensus.
-
-"""
-
-inspecting missing values
+The most cruical step is the transformation of this dataset into a supervised
+learning problem. 
 
 
 
+(explain special preprocessing for LSTM different shape of input)
 
-merging on date
 
 
 
