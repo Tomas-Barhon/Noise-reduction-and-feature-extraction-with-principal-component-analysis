@@ -67,11 +67,12 @@ class Visualizer():
     def draw_missing_data(data: pd.DataFrame):
         """
         Creates a heatmap of missing values in the whole dataframe."""
-        fig, ax = plt.subplots(1, 1, figsize=(18, 8))
+        fig, ax = plt.subplots(1, 1, figsize=(18, 11))
         sns.heatmap(data.isnull(), ax=ax,
                     cmap=sns.color_palette(['#34495E', 'tab:blue']))
         ax.set_yticklabels([t.get_text().split("T")[0]
                            for t in ax.get_yticklabels()])
+        plt.xticks(rotation=45, ha="right")
         return fig
 
     @staticmethod

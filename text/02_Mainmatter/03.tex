@@ -276,14 +276,64 @@ from different sources on the date column.
 
 
 The most cruical step is the transformation of this dataset into a supervised
-learning problem. 
+learning problem. We will proceed with the example of BTC price, however
+the same will hold for other coins and returns forecasting. We employ
+forecasting with 1, 5 and 10 day horizon $h$. We denote the number 
+of observations $\mathbf{x_{i}}$
+as $n$ and the number of features $j$ as $k$.
+
+\begin{equation}\label{eq:horizon}
+    h \in \{1,5,10\}
+\end{equation}
+\begin{equation}\label{eq:features}
+    j \in \{1,...,k\}
+\end{equation}
+\begin{equation}\label{eq:observations}
+    i \in \{1,...,n\}
+\end{equation}
+We start by denoting
+the original dataset $\mathbf{X} \in \mathbb{R}^{n \times k}$.
+Now assuming $\mathbf{X_{:,k}} = [\mathbf{x}_{1k},...,\mathbf{x}_{nk}]$ 
+is the \ac{BTC} price feature vector we shift it
+back in time by $h$ and drop the data without corresponding counterpart. 
+Concretely, we drop all 
+$\mathbf{X_{n-h:n,:k-1}}$ and $\mathbf{X_{1:h,k}}$.
+With this technique we always sacrifice $2h$ observations from the original dataset.
+If we further split the dataset into the explanatory and target features
+and reset the indexation such that we denote $m = n-2h$
+we end up with the following matrices where the target matrix Y is essentially
+only a vector where $y^\top = \mathbf{X_{:,k}}$
+
+
+\begin{equation}\label{eq:explanatory}
+    \mathbf{X} \in \mathbb{R}^{m \times {k-1}} = 
+    \begin{pmatrix}
+        x_{11} & x_{12} & \dots  & x_{1k-1} \\
+        x_{21} & x_{22} & \dots  & x_{2k-1} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        x_{m1} & x_{m2} & \dots  & x_{mk-1}
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}\label{eq:target}
+    \mathbf{Y} \in \mathbb{R}^{m \times 1} = \mathbf{y^\top} = 
+\begin{pmatrix}
+    y_{1}\\
+    y_{2}\\
+    \vdots  \\
+    y_{m} 
+\end{pmatrix}
+\end{equation}
+We can now observe that modeling $y_i$ as a function of
+explanatory variables $x_{i}$ is a forecasting with horizon $h$ into the future.
+This can be seen on the fact that $y_i = x_{i+h,k}$.
+\begin{equation}\label{eq:model_simple}
+    y_i = f(\mathbf{x_{i}})
+\end{equation}
 
 
 
-(explain special preprocessing for LSTM different shape of input)
-
-
-
+\newpage
 
 
 Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text text text text text text. Text text  \citet{Haufler2006}.
