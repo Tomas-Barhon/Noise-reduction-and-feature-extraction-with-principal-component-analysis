@@ -3,17 +3,16 @@
 
 Compared to traditional financial data cryptocurrency data tend to be easier
 to obtain. However, many data providers have already identified the bussiness 
-potential of selling advanced data and have started to monetize them. However,
-since some
-websites monetize only their APIs we could improvize and obtain data from 
-multiple sources and merge them to get to our desired dataset size. We have
+potential of selling advanced data and have started to monetize them. Since some
+websites monetize only their APIs we could obtain data from 
+multiple sources and merge them to get to our desired number of features. We have
 desired to use as many relevant variables as possible and we build on
 an existing research in the field.
 Our dataset can be split into 2 main categories and 4 subcategories.
 We utilize the data that describe the overall market trends in the traditional
-sense. These data were mostly obtained from \textbf{\href{https://fred.stlouisfed.org/}{https://fred.stlouisfed.org/}}
+sense. These data were mostly obtained from \textbf{\href{https://fred.stlouisfed.org/}{Federal Reserve Bank of St. Louis}}
 and from the 
-\textbf{\href{https://finance.yahoo.com/markets/}{https://finance.yahoo.com/markets/}} API.
+\textbf{\href{https://finance.yahoo.com/markets/}{Yahoo Finance}} API.
 To balance fundamental indicators with speculative side we used \textbf{\href{https://trends.google.com/trends/}{Google Trends}}
 and \textbf{\href{https://pageviews.wmcloud.org/}{Wikipedia Page Views}} 
 that act as a proxy for market attention about cryptocurrencies in general 
@@ -246,7 +245,7 @@ to daily frequencies as a remedy. Especially for the macroeconomical data
 we implicitly match those indicators to future dates that they do not trully
 corespond to. Concretely, the Consumer Price Index for January is published at the 
 beginning of February but as we forward fill this variable the Consumer Price Index
-from January will actually be in October. This ensures that when we are 
+from January will actually be in February. This ensures that when we are 
 forecasting with a 10 day horizon at the beginning of February we only use
 data that was present at that time. The second concern is the fact 
 that there is a lot of lost signal during those interpolated periods 
@@ -256,6 +255,13 @@ macroeconomical indicators come typically in such sampling frequencies.
 As already suggested these preprocessing steps were applied to the macroeconomical
 indicators, Google Trends that come in weekly frequency and for 
 ETFs and indexes that are not traded on the weekends.
+
+\begin{figure}[!h]
+    \centering
+    \caption{Dataset Variables Overview}
+        \includegraphics[width=1\textwidth]{Figures/data_interpolation.drawio.pdf}
+    \label{fig:dataset_interpolation}
+\end{figure}
 
 As some of the variables are missing at the beginning of the time frame there
 is no clear solution how to impute them without leaking the future distribution.
@@ -297,7 +303,7 @@ Now assuming $\mathbf{X_{:,k}} = [\mathbf{x}_{1k},...,\mathbf{x}_{nk}]$
 is the \ac{BTC} price feature vector we shift it
 back in time by $h$ and drop the data without corresponding counterpart. 
 Concretely, we drop all 
-$\mathbf{X_{n-h:n,:k-1}}$ and $\mathbf{X_{1:h,k}}$.
+$\mathbf{X_{n-h:n,1:k-1}}$ and $\mathbf{X_{1:h,k}}$.
 With this technique we always sacrifice $2h$ observations from the original dataset.
 If we further split the dataset into the explanatory and target features
 and reset the indexation such that we denote $m = n-2h$
@@ -326,182 +332,22 @@ only a vector where $y^\top = \mathbf{X_{:,k}}$
 \end{equation}
 We can now observe that modeling $y_i$ as a function of
 explanatory variables $x_{i}$ is a forecasting with horizon $h$ into the future.
-This can be seen on the fact that $y_i = x_{i+h,k}$.
+Where we essentially try to estimate the function $f_{foreacast}$.
 \begin{equation}\label{eq:model_simple}
-    y_i = f(\mathbf{x_{i}})
+    y_i = f_{forecast}(\mathbf{x_{i}})
 \end{equation}
 
+The final preprocessing step is specific to the \ac{LSTM} network which is
+a type of architecture that requires the input to be of 
+the shape (num timesteps, num features).
+This means that it can use for example 10 day history for each variable
+and forecast the target variable. This is a really strong feature and 
+makes it a viable option for our usecase. In order to use it, the input dataset
+has to be reshaped in such a way that for observation $\mathbf{x_{i}}$ concatenates values from $\mathbf{x_{i}}$ up to $\mathbf{x_{i-lag}}$
 
 
-\newpage
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text text text text text text. Text text  \citet{Haufler2006}.
-
-Text text text text text text text text text text text text text text text. Text text text text text text text \cite[see, \latinfont{inter alia},][pg.~10]{Haaparanta1996}. 
-
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Politicians usualy like inward \ac{BTC} and an \ac{MNC} appreciates \ac{FDI} subsidies. Are \acp{MNC} greedy?
-
-
-
-To achieve compatibility with PDF/A 2u, your file must not include links to external fonts, audio, video, or scripts. On the other hand, your file must declare each color environment you use, it must include all the pictures/figures either in jpeg or PDF/A 2u format, used fonts compliant under Unicode (your file cannot use any external fonts), and it must include meta-data in XMP format.
-
-
-Most troubleshooting comes from the conversion of figures to compliant formats. You can convert from simple PDF using Adobe Acrobat:
-
-
-
-But most of the vector graphics gets distorted to lower quality in Adobe (like pictures in pdfs generated from Stata, unless jpeg is sufficient for you). You can also use GhostScript, the conversion tool is provided by courtesy of the Faculty of Mathematics and Physics at
-
-\vspace{0.5cm}
-\textbf{\href{https://kam.mff.cuni.cz/pdfix/}{https://kam.mff.cuni.cz/pdfix/}}
-\vspace{0.5cm}
-
-Text text text text text text.\footnote{Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text.} Font of Latin phrases should be consistent: Furthermore, there is no \latinfont{ex post} price effect, all things being equal (\latinfont{ceteris paribus}). This is \latinfont{per se} truth.
-
-\begin{figure}[!htbp]
-\begin{center}
-\caption{Market equilibrium}
-\label{fig:supply}
-\includegraphics[width=60mm]{Figures/supplydemand}
-\end{center}\vspace{-0.5cm}
-\begin{source}\cite{Haufler2006}.\end{source}
-\end{figure}
-
-Look at the \autoref{fig:supply}. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
-
-
-
-
-If you use Stata, you might want to check the \texttt{sutex}, \texttt{outtable}, \texttt{outtex}, and \texttt{estout} tools, which help you with exporting Stata tables to \LaTeX{}.
-
-
-\begin{table}[!htbp]
-\begin{center}
-	\caption[Calibration table]{Model's predictions}\label{tab:values}
-\begin{tabular}{lrrrrrrrrrr}
-\toprule
-\textit{Case} &        $Y_1$ &        $Y_2$ &  $\tau_1$ &  $\tau_2$ &          $a$ &          $n$\\
-\midrule
-CR---Slovakia &       10.9 &         10 &       0.24 &       0.19 &          1,000 &       2.16\\
-
-CR---Poland &       13.3 &         12 &       0.24 &       0.19 &          1,000 &       0.38\\
-
-CR---Hungary &       10.4 &          8 &       0.24 &       0.16 &          1,000 &        1.10\\
-\bottomrule
-\end{tabular}  
-\end{center}
-\begin{source} If the source is author himself (like a calculation output), this line is redundant.\end{source}
-\end{table}
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text. Let us make a box:
-
-\begin{figure}[!htbp]
-\begin{center}
-\caption{Boxy's example}\label{box:values}
-\begin{boxeditemize}
-	\item Welcome to Boxy paragraph. 
-We sincerely hope you will
-all enjoy the show.
-	\item
-Welcome to Boxy paragraph.
-We sincerely hope you will
-all enjoy the show.
-	\item 
-Welcome to Boxy paragraph.
-We sincerely hope you will
-all enjoy the show.
-\end{boxeditemize}
-\end{center}
-\begin{source}\cite{Haaparanta1996}\end{source}
-\end{figure}
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
-
-\begin{defin}[My original definition]\label{de:definice1}
-This is a definition.
-\end{defin}
-
-\begin{ass}[My realistic assumption]\label{as:predpoklad1}
-This is an assumption.
-\end{ass}
-
-\begin{prop}[My clever proposition]\label{pr:veta1}
-This is a proposition.
-\end{prop}
-
-\begin{lemma}[My useful lemma]\label{le:lemma1}
-This is a lemma.
-\end{lemma}
-
-\begin{exam}\label{ex:priklad1}
-This is an example.
-\end{exam}
-
-\begin{proof}
-This is a proof.
-\end{proof}
-
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
-    \[ U = \underbrace{\int_0^{\infty} \frac{1}{1-\sigma}\left(C^{1-\sigma} -1 \right) e^{-\rho t} \ud t}_\text{meaning of life} \]
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-\begin{equation}\label{eq:rovnice1}
-    U = \int_0^{\infty} \overbrace{ \frac{1}{1-\sigma}\left(C^{1-\sigma} -1 \right)}^\text{instantaneous utility} e^{-\rho t} \ud t
+\begin{equation}\label{eq:lstm_reshape}
+    \mathbf{X_{i,:}} = [[{x}_{i1},...,{x}_{ik}],
+    [{x}_{i-11},...,{x}_{i-1k}],
+    [{x}_{i-lag1},...,{x}_{i-lagk}],...]
 \end{equation}
-
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
-\begin{equation}\label{eq:rovnice2}
-    \mat{A} = \mat{B} + \mat{C}
-\end{equation}
-
-
-\begin{itemize}
-    \item to literature~\citep[pg.~10]{Bjorvatn2006} 	
-            or~\citet[pg.~10]{Haufler2006},
-    \item to~\autoref{fig:supply},														%or use \autoref
-    \item see~\autoref{tab:values},
-    \item to~\autoref{rovnice},
-    \item to~\defref{de:definice1}, to~\proref{pr:veta1},
-            \exaref{ex:priklad1}, 
-    \item to equations like this: see~\eqref{eq:rovnice1}.
-\end{itemize}
-
-
-You can input a source code like this:
-\begin{matlab}{.9\linewidth}{dgreen}
-    omega = 1;
-    syms zeta;
-    jmn = [1 2\itemz*eta\itemo*mega omega^2];
-    figure(1);
-        for zeta = 1E-5 : 0.2 : 1+1E-12
-            G = tf(omega^2,subs([1 2\itemz*eta\itemo*mega omega^2]));
-            bode(G); hold on;
-        end
-    legend('\zeta = 0','\zeta = 0,2','\zeta = 0,4','\zeta = 0,6',');
-\end{matlab}
-Should you prefer a different font size, redefine file \texttt{Styles/Mystyle.sty}.
-
-
-Usually you should not use the first person singular (I) in your text, write we instead. As a general recommendation, use the first person sparsely, sometimes it can be replaced by a phrase like ``This work presents \ldots.''
-
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text \citep{Haufler2006}. Let us make two paragraphs:
-
-\paragraph{Proin} Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. And a subparagraph:
-\subparagraph{Velit} Text text text text text text text text text text text text text text text. Text text text text text text text text text text. Text text text text text text. Text text text text text text text text text text. Text text text text text text text text text text.
-
