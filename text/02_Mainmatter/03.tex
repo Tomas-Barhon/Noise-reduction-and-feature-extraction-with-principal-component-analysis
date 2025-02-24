@@ -254,7 +254,7 @@ this is the nature of economic research as especially the
 macroeconomical indicators come typically in such sampling frequencies.
 As already suggested these preprocessing steps were applied to the macroeconomical
 indicators, Google Trends that come in weekly frequency and for 
-ETFs and indexes that are not traded on the weekends.
+ETFs and indexes that are not traded on the weekends, see Figure~\ref{fig:dataset_interpolation}.
 
 \begin{figure}[!h]
     \centering
@@ -297,6 +297,7 @@ as $n$ and the number of features $j$ as $k$.
 \begin{equation}\label{eq:observations}
     i \in \{1,...,n\}
 \end{equation}
+
 We start by denoting
 the original dataset $\mathbf{X} \in \mathbb{R}^{n \times k}$.
 Now assuming $\mathbf{X_{:,k}} = [\mathbf{x}_{1k},...,\mathbf{x}_{nk}]$ 
@@ -308,8 +309,14 @@ With this technique we always sacrifice $2h$ observations from the original data
 If we further split the dataset into the explanatory and target features
 and reset the indexation such that we denote $m = n-2h$
 we end up with the following matrices where the target matrix Y is essentially
-only a vector where $y^\top = \mathbf{X_{:,k}}$
+only a vector where $y^\top = \mathbf{X_{:,k}}$, see Figure~\ref{fig:dataset_shift}.
 
+\begin{figure}[!h]
+    \centering
+    \caption{Dataset Variables Overview}
+        \includegraphics[width=1\textwidth]{Figures/data_shift.drawio.pdf}
+    \label{fig:dataset_shift}
+\end{figure}
 
 \begin{equation}\label{eq:explanatory}
     \mathbf{X} \in \mathbb{R}^{m \times {k-1}} = 
@@ -343,7 +350,9 @@ the shape (num timesteps, num features).
 This means that it can use for example 10 day history for each variable
 and forecast the target variable. This is a really strong feature and 
 makes it a viable option for our usecase. In order to use it, the input dataset
-has to be reshaped in such a way that for observation $\mathbf{x_{i}}$ concatenates values from $\mathbf{x_{i}}$ up to $\mathbf{x_{i-lag}}$
+has to be reshaped in such a way that for observation $\mathbf{x_{i}}$ 
+concatenates values from $\mathbf{x_{i}}$ 
+up to $\mathbf{x_{i-lag}}$, see Figure~\ref{fig:dataset_lstm_reshape}
 
 
 \begin{equation}\label{eq:lstm_reshape}
@@ -351,3 +360,10 @@ has to be reshaped in such a way that for observation $\mathbf{x_{i}}$ concatena
     [{x}_{i-11},...,{x}_{i-1k}],
     [{x}_{i-lag1},...,{x}_{i-lagk}],...]
 \end{equation}
+
+\begin{figure}[!h]
+    \centering
+    \caption{Dataset Variables Overview}
+        \includegraphics[width=1\textwidth]{Figures/LSTM_reshaping.drawio.pdf}
+    \label{fig:dataset_lstm_reshape}
+\end{figure}
