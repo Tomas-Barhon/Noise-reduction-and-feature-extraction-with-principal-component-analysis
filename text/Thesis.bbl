@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{45}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -165,6 +165,11 @@
 \newblock \emph{Journal of Logical and Algebraic Methods in Programming}
   \textbf{121}: p. 100687.
 
+\bibitem[{Mitchell(1997)}]{Mitchell1997}
+\textsc{Mitchell}, T.~M. (1997): \emph{Machine learning}.
+\newblock McGraw-Hill international editions. New York [u.a.]: McGraw-Hill,
+  [nachdr.] edition.
+
 \bibitem[{Mohsin \emph{et~al.}(2021)Mohsin, Naseem, Ivașcu, Cioca, Sarfraz, \&
   St{\u{a}}nic{\u{a}}}]{mohsin2021}
 \textsc{Mohsin}, M., S.~\textsc{Naseem}, L.~\textsc{Ivașcu}, L.-I.
@@ -209,6 +214,12 @@
   research.}
 \newblock \emph{Research in International Business and Finance} \textbf{63}: p.
   101799.
+
+\bibitem[{Samuel(1959)}]{Samuel1959}
+\textsc{Samuel}, A.~L. (1959): \enquote{Some studies in machine learning using
+  the game of checkers.}
+\newblock \emph{IBM Journal of Research and Development} \textbf{3(3)}: pp.
+  210--229.
 
 \bibitem[{Shah \emph{et~al.}(2021)Shah, Chauhan, \& Chaudhury}]{Shah2021}
 \textsc{Shah}, A., Y.~\textsc{Chauhan}, \& B.~\textsc{Chaudhury} (2021):
