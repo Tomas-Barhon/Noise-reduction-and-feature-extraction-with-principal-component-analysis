@@ -72,8 +72,35 @@ where the interpretability of the model is crucial for customers or regulators i
 
 \section{\acl{PCA}}
 
-\section{Time-Series Specifics}
-Comment on stationarity in econoemtrics and ML.
+\section{Stationarity in Time-Series}
+
+We would like to explicitly adress the concept of stationarity as there 
+seems to be a lot of confusion around the topic especially because the boundary between 
+traditional econometric models and machine learning models is not always clear.
+
+Stationarity is a crucial concept in time-series analysis. Despite the fact, that there exist
+many tests and rigid definitions for it, it is often reduced to the 
+concept of constant mean and variance or generally to the fact that the parameters
+of the distribution do not change in time. Without this property the errors
+of the model become function of time which is not desirable for proper inference.
+
+Econometrics usually prefers stationary data for aforementioned reasons because it 
+is cruicial for inference and interpretation of the results. That is 
+why econometricians like to model returns instead of prices, as returns
+should generally be stationary. Imporantly, there is always the possibility
+to transform the predictions back to the original prices by adding the forecasted
+returns to the last observed price and potentially reversing some normalization steps.
+
+This is different for \ac{ML} as the focus is on prediction and the models are fundamentally 
+different. As the models are trained using gradient descent and not using the
+analytical solutions, the stationarity is not as crucial. Clearly, 
+the models will perform better on stationary data because it requiers much 
+less capacity for the model as some of the information removed by differencing.
+However, models with enough capacity can easily learn non-stationary data and
+capture information about trends, seasonalities, and other patterns. 
+Thus we decided to test our models on both prices directly and on returns where
+the results are much less dependent on changes in the distribution of the data.
+
 \section{Proposed Forecasting Framework}
 
 We propose a forecasting framework which is designed to compare the performance between using \ac{PCA} as a 
@@ -100,6 +127,64 @@ It is important to note that this framework is executed across all specified for
 cryptocurrencies of interest, and forecasting horizons as we expect the effects
 to be quite different for different models and forecasting horizons. 
 
+
+As we have already noted the fact that that the target price is clearly non-stationary,
+has important implication for the choice of splitting strategy for the grid search 
+hyperparameter optimization. 
+There are two main strategies for splitting the data into training and testing sets.
+The first one is traditional train, development, and test split where the model is trained on the training set,
+hyperparameters are optimized on the development set, and the model is evaluated on the test set.
+This approach is generally sufficient when the dataset is large enough and we believe
+that the distributions of the three datasets are similar. 
+A more robust approach is to use grid search with cross-validation. 
+This approach makes sure that we have not overfitted the model to the development set.
+Firstly, we split the data into training and testing set. And then 
+we iteratively split the training set into training and validation set. 
+Train the model on the training part of the train set and evaluate on the validation set.
+Finally we average over the results across all validation sets and take the best hyperparameters
+from the provided grid. This approach avoids overfitting and is typically
+used when we have enough compute to train the models. 
+
+
+Note that the goal of grid search is to create a robust representation of a 
+reasonable test set distribution as it samples randomly the points into the training and validation set.
+This approach works if the data is stationary and the distribution of the data does not change drastically in time.
+But time series rarely have this property and cryptocurrencies suffer especially profound changes in the distribution
+as they have grown in popularity. The difference between the training and test set
+is extreme but that is something that we can do very little about as we want the test set
+to be as close to the future as possible. 
+
+
+Additionally, there is an extremely
+common mistake that researchers make when they use grid search for time series data.
+This problem is called data leakage and it occurs when future distribution of the data
+is used to optimize the hyperparameters. As \ac{ML} models typically 
+require data to be scaled and normalized, the parameters for the normalization 
+need to be learned only on the historical data not on the future data otherwise the 
+results will be biased and suggest higher quality of the model than it actually is.
+Theoretically, this could be relaxed on the training set as the normalization
+might be fitted on the whole training set but it is crucial that the test set distribution
+is never leaked to the fitting procedure. However, we believe that
+the correct methodology is to use a rolling window approach for the grid search
+where the normalization parameters are fitted on the training set and the validation set.
+This is why we use time series split for the grid search without randomly shuffling the data.
+This approach splits the training set into \textit{k} folds and iteratively
+trains the model on \textit{k-1} folds and evaluates on the \textit{k-th} fold.
+This approach has the advantage that the model is actually trained with
+different sized training sets which is useful for generalization properties
+but has the disadvantage that the difficulty of the splits is extremely volatile.
+This is definitely a limitation as the performances between splits
+can vary significantly and averaging over the results might be prone to noise.
+However, we believe that this is the methodologically correct approach.
+\begin{figure}[!h]
+    \centering
+    \caption{Time Series Split with \textit{k=2}} 
+        \includegraphics[width=1\textwidth]{Figures/time_series_split.drawio.pdf}
+    \label{fig:ts_split}
+\end{figure}
+We opted to use only two splits as the the data size
+is relatively small and the results were extremely noisy when using
+more splits.
 
 
 \begin{figure}[!h]
