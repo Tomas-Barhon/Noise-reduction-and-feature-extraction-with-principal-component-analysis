@@ -65,6 +65,30 @@ where the interpretability of the model is crucial for customers or regulators i
 
 
 \section{Ridge Linear Regression}
+The simplest model that we can use for forecasting is the \ac{LR} model.
+Generally, there exists a closed form solution for the \ac{LR} model.
+
+\begin{equation}
+    \hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n
+\end{equation}
+
+But in practice, we use gradient descent to find the optimal parameters.
+Gradient descent is an optimization algorithm used to minimize the cost
+function provided to the model. The idea is that we compute
+partial derivation of the error function with respect to each parameter
+of the model and update the parameters in the opposite direction of the gradient
+where the learning rate is the step size of the update. Usually, 
+minibatch gradient descent is used where the gradient is averaged over a small
+batch of randomly sampled data.
+
+The update rule for the parameters \(\theta\) using gradient descent is given by:
+
+\begin{equation}
+    \theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+\end{equation}
+
+where \(\alpha\) is the learning rate and \(J(\theta)\) is the cost function.
+
 
 \section{Support Vector Machines}
 
