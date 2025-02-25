@@ -70,45 +70,11 @@ as a standart deviation of log-returns. Furthermore, we employ many other variab
 provided by the users, revenues of the miners, distribution of wealth in the network and the number of transactions for that interval.
 
 
-Following is the list of technical variables on the example of \ac{BTC}. The definitions were taken
-directly from \textbf{\href{https://charts.coinmetrics.io/crypto-data/}{coinmetrics.io}} to avoid any misconceptions:
-
-\begin{itemize}
-    \item \textit{BTC / Addresses, active, count} - The sum count of unique addresses that were active in the network (either as a recipient or originator of a ledger change) that interval. All parties in a ledger change action (recipients and originators) are counted. Individual addresses are not double-counted if previously active.
-    \item \textit{BTC / NVT, adjusted, 90d MA} - The ratio of the network value (or market capitalization, current supply) to the 90-day moving average of the adjusted transfer value. Also referred to as NVT.
-    \item \textit{BTC / NVT, adjusted, free float,  90d MA} - The ratio of the free float network value (or market capitalization, free float) to the 90-day moving average of the adjusted transfer value.
-    \item \textit{BTC / NVT, adjusted} - The ratio of the network value (or market capitalization, current supply) divided by the adjusted transfer value. Also referred to as NVT.
-    \item \textit{BTC / NVT, adjusted, free float} - The ratio of the free float network value (or market capitalization, free float) divided by the adjusted transfer value. Also referred to as FFNVT.
-    \item \textit{BTC / Flow, in, to exchanges, USD} - The sum USD value sent to exchanges that interval, excluding exchange to exchange activity.
-    \item \textit{BTC / Flow, out, from exchanges, USD} - The sum USD value withdrawn from exchanges that interval, excluding exchange to exchange activity.
-    \item \textit{BTC / Fees, transaction, mean, USD} - The USD value of the mean fee per transaction that interval.
-    \item \textit{BTC / Fees, transaction, median, USD} - The USD value of the median fee per transaction that interval.
-    \item \textit{BTC / Fees, total, USD} - The sum USD value of all fees paid by transactors that interval. Fees do not include new issuance.
-    \item \textit{BTC / Miner revenue, USD} - The USD value of the mean miner reward per estimated hash unit performed during the period, also known as hashprice. The unit of hashpower measurement depends on the protocol.
-    \item \textit{BTC / Capitalization, market, free float, USD} - The ratio of the free float market capitalization to the sum realized USD value of the current supply.
-    \item \textit{BTC / Capitalization, realized, USD} - The sum USD value based on the USD closing price on the day that a native unit last moved (i.e., last transacted) for all native units.
-    \item \textit{BTC / Capitalization, market, current supply, USD} - The sum USD value of the current supply. Also referred to as network value or market capitalization.
-    \item \textit{BTC / Capitalization, market, estimated supply, USD} - The sum USD value of the estimated supply in circulation. Also referred to as network value or market capitalization.
-    \item \textit{BTC / Volatility, daily returns, 30d} - The 30D volatility, measured as the standard deviation of the natural log of daily returns over the past 30 days.
-    \item \textit{BTC / Volatility, daily returns, 180d} - The 180D volatility, measured as the standard deviation of the natural log of daily returns over the past 180 days.
-    \item \textit{BTC / Difficulty, last} - The difficulty of the last block in the interval. Difficulty represents how hard it is to find a hash that meets the protocol-designated requirement (i.e., the difficulty of finding a new block) that day. The requirement is unique to each applicable cryptocurrency protocol. Difficulty is adjusted periodically by the protocol as a function of how much hashing power is being deployed by miners.
-    \item \textit{BTC / Difficulty, mean} - The mean difficulty of finding a hash that meets the protocol-designated requirement (i.e., the difficulty of finding a new block) that interval. The requirement is unique to each applicable cryptocurrency protocol. Difficulty is adjusted periodically by the protocol as a function of how much hashing power is being deployed by miners.
-    \item \textit{BTC / Hash rate, mean} - The mean rate at which miners are solving hashes that interval. Hash rate is the speed at which computations are being completed across all miners in the network. The unit of measurement varies depending on the protocol.
-    \item \textit{BTC / Hash rate, mean, 30d} - The mean rate at which miners are solving hashes over the last 30 days. Hash rate is the speed at which computations are being completed across all miners in the network. The unit of measurement varies depending on the protocol
-    \item \textit{BTC / Revenue, per hash unit, USD} - The USD value of the mean miner reward per estimated hash unit performed during the period, also known as hashprice. The unit of hashpower measurement depends on the protocol.
-    \item \textit{BTC / Supply, Miner, held by all mining entities, USD} - The sum of the balances of all mining entities in USD. A mining entity is defined as an address that has been credited from a transaction debiting the 'FEES' or 'ISSUANCE' accounts.
-    \item \textit{BTC / Block, size, mean, bytes} - The mean size (in bytes) of all blocks created that day.
-    \item \textit{BTC / Block, weight, mean} - The mean weight of all blocks created that day. Weight is a dimensionless measure of a block’s “size”. It is only applicable for chains that use SegWit (segregated witness).
-    \item \textit{BTC / Issuance, continuous, percent, daily} - The percentage of new native units (continuous) issued over that interval divided by the current supply at the end of that interval. Also referred to as the daily inflation rate.
-    \item \textit{BTC / Network distribution factor} - The ratio of supply held by addresses with at least one ten-thousandth of the current supply of native units to the current supply.
-    \item \textit{BTC / Transactions, count} - The sum count of transactions that interval. Transactions represent a bundle of intended actions to alter the ledger initiated by a user (human or machine). Transactions are counted whether they execute or not and whether they result in the transfer of native units or not (a transaction can result in no, one, or many transfers). Changes to the ledger mandated by the protocol (and not by a user) or post-launch new issuance issued by a founder or controlling entity are not included here.
-    \item \textit{BTC / Transactions, transfers, count} - The sum count of transfers that interval. Transfers represent movements of native units from one ledger entity to another distinct ledger entity. Only transfers that are the result of a transaction and that have a positive (non-zero) value are counted.
-    \item \textit{BTC / Transactions, transfers, value, mean, USD} - The sum USD value of native units transferred divided by the count of transfers (i.e., the mean size in USD of a transfer) between distinct addresses that interval.
-\end{itemize}
+For the full description of the variables for \ac{BTC} please refer to the Appendix~\ref{app:var_desc}.
 
 
 The datasets for Ethereum and Litecoin look similar with the exception of a few variables missing,
-look at (\autoref{ethereum:missing}, \autoref{litecoin:missing}):
+look at (\ref{ethereum:missing}, \ref{litecoin:missing}):
 
 \begin{figure}[!htbp]
     \begin{center}

@@ -65,7 +65,7 @@ where the interpretability of the model is crucial for customers or regulators i
 
 
 \section{Ridge Linear Regression}
-The simplest model that we can use for forecasting is the \ac{LR} model.
+The simplest model that we can use for forecasting is the \acl{LR} model.
 Generally, there exists a closed form solution for the \ac{LR} model.
 
 \begin{equation}
@@ -88,13 +88,109 @@ The update rule for the parameters \(\theta\) using gradient descent is given by
 \end{equation}
 
 where \(\alpha\) is the learning rate and \(J(\theta)\) is the cost function.
+We have decided to use linear regression as a model representing 
+the class of simple linear models. However, even though the model is simple,
+it can still suffer from overfitting the training data. There exists
+a relatively straight forward solution to this problem called Ridge regression.
+Ridge regression is a linear regression model with a regularization term added to the cost function
+which penalizes the model for having large weights. 
+
+The cost function for Ridge regression is given by:
+
+\begin{equation}
+    J(\theta) = \text{MSE}(\theta) + \frac{\lambda}{2} \sum_{j=1}^{n} \theta_j^2
+\end{equation}
+
+where \( \lambda \) is the regularization parameter. Note that the bias term \(\theta_0\) is not regularized
+and that the regularization term is used only during training.
 
 
 \section{Support Vector Machines}
 
+Support Vector Machines are widely used \ac{ML} algorithm which was expected to 
+be the future of machine learning in the early 2000s. However, the rise of deep learning
+has overshadowed the success of \ac{SVM}s. Nevertheless, \ac{SVM}s are still widely used
+as they are really useful for small datasets and can capture complex nonlinear relationships.
+
+To ilustrate the idea of \ac{SVM}s, let us consider a binary classification problem.
+
+\begin{figure}[!h]
+    \centering
+    \caption{Support Vector Machines}
+        \includegraphics[width=1\textwidth]{Figures/SVM_idea.drawio.pdf}
+    \label{fig:svm}
+\end{figure}
+
+
+The idea is to find the hyperplane that maximizes the margin between the two classes.
+This implies that the hyperplane actually depends only on the support vectors which are the points
+closest to the hyperplane. This can be relatively easily reformulated
+into a regression problem by using the same idea but instead of classifying the points
+we are predicting the distance from the hyperplane. This is called the support vector regression.
+Note that the example in Figure \ref{fig:svm} represents a problem that is linearly separable
+which is often not the case in practice and there are two remedies how to fix that.
+The first one is the usage of the kernel trick which is a way to transform the data into a higher dimensional space
+where the data is linearly separable. The second one is to use the \ac{SVM} with a soft margin which is
+what most of the \ac{SVM} implementations do. That allows us to set a hyperparameter that allows
+some points to be missclasified and acts as a form of regularization where we do not perfectly,
+seperate all of the points in the training set. 
+
+
+The optimization details of the \ac{SVM}s are quite complex and are beyond the scope of this text.
+They include the usage of the Lagrange multipliers and the dual optimization problem. The description
+of the kernel trick is not included as we opted for the linear kernel in our experiments.
+We thus refer the readers to some traditional \ac{ML} textbooks such as \cite{bishop2006pattern}.
+The \ac{SVM}s represent a middle ground between the traditional \ac{LR} model and the deep learning models.
+
+
 \section{\acl{LSTM} \acl{RNN}s}
 
 \section{\acl{PCA}}
+
+\ac{PCA} is a widely used dimensionality reduction technique that is able
+to reduce number of dimensions for the purpouses of visualization, noise reduction, and
+reduction of the curse of dimensionality. The curse of 
+dimensionality referts to the fact that with increasing number of 
+dimensions the volume of the space increases exponentially and the data points become
+extremely sparse leading to enormous distances between training points.
+The fact that \ac{PCA} can be used as a noise reduction technique is 
+technically a byproduct of the way how this algorithm works. We will start with the
+general idea to ilustrate how this concept emerges.
+
+
+Conceptually, \ac{PCA} can be thought of in two ways: maximum variance formulation
+and minimum reconstruction error formulation. We will follow with the maximum variance formulation.
+The idea is to find the hyperplane that maximizes the variance of the data projected onto it.
+Refer to Figure \ref{fig:pca} for the illustration of the concept. We can see
+that the first principal component is the line that maximizes the variance of the projection
+of the data onto it. The second principal component captures
+less variance and is orthogonal to the first principal component. \ac{PCA} can
+generally create as many principal components as there are dimensions in the data.
+This means that for \textit{n} dimensions we can create \textit{n} principal components which
+are orthogonal to each other and are odered by the amount of variance they capture. 
+Finally we can reduce the number of dimensions by projecting the data onto the first \textit{k} principal components
+where \textit{k} is the number of dimensions we want to keep or the desired variance 
+we want to preserve.
+
+\begin{figure}[!h]
+    \centering
+    \caption{\ac{PCA} Hyperplanes}
+        \includegraphics[width=1\textwidth]{Figures/pca_plot.pdf}
+    \label{fig:pca}
+\end{figure}
+
+This is where the idea that \ac{PCA} can be used as a noise reduction technique comes from.
+As this algorithm keeps only data which captures most of the variance
+and theoretically should drop information that is less informative.
+It is interesting to note that as the principal components are orthogonal to each other 
+they are also uncorrleated which is a useful property for many \ac{ML} algorithms. 
+We acknowledge that \ac{PCA} is not in itself a noise reduction technique
+but it is a rather elegant and simple way that sometimes reduces noise in the data.
+The implementation details of \ac{PCA} are beyond the scope of this text but we refer the readers
+to the original paper by Pearson \cite{Pearson1901}.
+
+
+
 
 \section{Stationarity in Time-Series}
 
@@ -135,14 +231,17 @@ the problem to supervised learning as described
 in \ref{chap:three}. Following stage is responsible for reducing the number of features. 
 The first \ac{PCA} step transforms the data onto \textit{n} principal components and the filtering step
 chooses the most important features such that their cumulative variance adds up to 95\%, 98\% or 99\%.
+As decreasing the dimensionality would completely change the desired
+complexity of the algorithms and the differences might be attributed only to the change 
+of dimensionality we upsample the data back to the original dimensionality using 
+the inverse transformation of the \ac{PCA} algorithm.
+
 Following is the \ac{LSTM} reshaping layer that is responsible for transforming the data into a 3D tensor for 
 the \ac{LSTM} \ac{RNN} as described 
 in \ref{chap:three}. The most crucial layer is the forecasting layer that essentially consists of 3 parts.
 Firstly, it normalizes the variables using robust scaler to ensure that the input features come from 
 the same value range. Secondly, it uses grid search to search for the best
-hyperparameters for the model. This is a cruical step as the change of dimensionality changes 
-the optimal hyperparameters. Without this step it would be hard to establish any real
-effects as the change in performance might be attributed to the change in suitability of hyperparameters.
+hyperparameters for the model. 
 Lastly, it trains the model and evaluates the performance using the best found model. This is the reason
 why we abstract the metrics layer seperately to make it apparent that the metrics are calculated
 on the best model found by the grid search. The metrics layer is also the layer where
