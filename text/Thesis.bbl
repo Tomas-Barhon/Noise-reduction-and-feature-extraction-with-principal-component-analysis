@@ -1,4 +1,4 @@
-\begin{thebibliography}{45}
+\begin{thebibliography}{46}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -91,6 +91,11 @@
 \textsc{Haber}, S. \& W.~S. \textsc{Stornetta} (1991): \emph{How to
   {T}ime-{S}tamp a {D}igital {D}ocument}, pp. 437--455.
 \newblock Springer Berlin Heidelberg.
+
+\bibitem[{Hochreiter \& Schmidhuber(1997)}]{Hochreiter1997}
+\textsc{Hochreiter}, S. \& J.~\textsc{Schmidhuber} (1997): \enquote{Long
+  short-term memory.}
+\newblock \emph{Neural Computation} \textbf{9(8)}: pp. 1735--1780.
 
 \bibitem[{Hu \emph{et~al.}(2018)Hu, Tang, Zhang, \& Wang}]{Hu2018}
 \textsc{Hu}, H., L.~\textsc{Tang}, S.~\textsc{Zhang}, \& H.~\textsc{Wang}

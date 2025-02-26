@@ -226,13 +226,13 @@ class Pipeline:
         Creates the LSTM network with Adam optimizer and Cosine Decay.
         """
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.LSTM(units, activation=None, input_shape=input_shape,
+        model.add(tf.keras.layers.LSTM(units, input_shape=input_shape,
                                        return_sequences=True))
         model.add(tf.keras.layers.Dropout(0.2))
         
         #consider tanh actiavation ReLu is too strict
         model.add(tf.keras.layers.ReLU())
-        model.add(tf.keras.layers.LSTM(units, activation=None,
+        model.add(tf.keras.layers.LSTM(units,
                                        return_sequences=False))
         model.add(tf.keras.layers.Dropout(0.2))
         model.add(tf.keras.layers.ReLU())
