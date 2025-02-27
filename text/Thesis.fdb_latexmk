@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Thesis"] 0 "Thesis.aux" "Thesis.bbl" "Thesis" 0
+["bibtex Thesis"] 0 "Thesis.aux" "Thesis.bbl" "Thesis" 1740638367
   "./Styles/Stylebib.bst" 1696235919 32851 88808a60bae93d15132397dd0bbfbbd3 ""
-  "Styles/Bibliography.bib" 1740602857 23515 9f5e9679ab17ed9a3c966e0b70290fa4 ""
+  "Styles/Bibliography.bib" 1740638348 23937 21003455cd1ddf1a1282b41d49d983ca ""
   "Thesis.aux" 0 -1 0 "pdflatex"
   (generated)
   "Thesis.bbl"
   "Thesis.blg"
-["pdflatex"] 1740602998 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1740602998
+["pdflatex"] 1740638367 "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" "Thesis.pdf" "Thesis" 1740638367
   "/etc/texmf/web2c/texmf.cnf" 1696271624 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/tomas_barhon/Code/Bachelor thesis/text/Thesis.tex" 1740501925 6987 9bb86ece72d9601f899b90febed16212 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -204,7 +204,7 @@
   "02_Mainmatter/01_Intro.tex" 1724139615 5822 7ae72f5529d03a219c4673b7401e3442 ""
   "02_Mainmatter/02.tex" 1727103301 29502 f348584e6ffc1af8195f722434c75f73 ""
   "02_Mainmatter/03.tex" 1740502237 18202 088435be3ebe7d3c7f56e43fd1c4a7f6 ""
-  "02_Mainmatter/04.tex" 1740602998 21155 624500ccaeb7a91be655cbb0c6bcc411 ""
+  "02_Mainmatter/04.tex" 1740638366 21185 a2c521f34e981955fe045ea3fe9fc375 ""
   "02_Mainmatter/05.tex" 1740474007 273 b3c88b2406e6256147679adc84980173 ""
   "02_Mainmatter/06.tex" 1740474016 52 ceaac308529f6df8dfc9cffa7067c44d ""
   "03_Backmatter/01_App.tex" 1709670728 35 c5beb4e93abde644d5f063c3da930920 ""
@@ -216,6 +216,7 @@
   "Figures/Forecasting_framework.drawio.pdf" 1740501726 42574 0b20d7f0ba84985de6702a92bedad049 ""
   "Figures/LSTM_reshaping.drawio.pdf" 1739902054 64657 fff2cb7e95782015f1e70cae137303c9 ""
   "Figures/LTC_missing_1.pdf" 1739778486 2290313 c54a5c8dc3642bcd5bbcbd626cc5c581 ""
+  "Figures/RNN.drawio.pdf" 1740637487 32810 6130b5b671044f60fd3b1797c95e3f23 ""
   "Figures/SVM_idea.drawio.pdf" 1740495302 8405 452c23581d2e42fbfe91099c8c52a562 ""
   "Figures/data_interpolation.drawio.pdf" 1739782110 70098 5bf6ff5712091a06ddfa95f187d52a10 ""
   "Figures/data_shift.drawio.pdf" 1739900196 67870 b4dab8ef718a905d14c4902359632bf4 ""
@@ -226,12 +227,12 @@
   "Figures/time_series_split.drawio.pdf" 1740476466 18396 dd025d22a93effbff6da1112b9a1e43d ""
   "Styles/Head.sty" 1696235919 1085 322b42d3b6e77ffe1b5614c7edb884f6 ""
   "Styles/Mystyle.sty" 1696272827 6811 0257c71a323572878bae4d931541fbfb ""
-  "Thesis.aux" 1740602998 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "Thesis.bbl" 1740602978 13176 cf899be13ccb4959288efe1e508cac00 "bibtex Thesis"
+  "Thesis.aux" 0 -1 0 "pdflatex"
+  "Thesis.bbl" 1740638363 13464 75a3bb7a09d1105b5d71ef5dfb8d87c8 "bibtex Thesis"
   "Thesis.out" 0 -1 0 "pdflatex"
   "Thesis.tex" 1740501925 6987 9bb86ece72d9601f899b90febed16212 ""
   "Thesis.xmpdata" 1709555108 288 050cec67a602186f3fb2489c8bd261b7 ""
-  "pdfa.xmpi" 0 -1 0 "pdflatex"
+  "pdfa.xmpi" 1740638367 5643 57bc91cdc88bdbfa3ba98a14d58790b1 "pdflatex"
   (generated)
   "Thesis.aux"
   "Thesis.lof"

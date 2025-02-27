@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  26 FEB 2025 21:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.26)  27 FEB 2025 07:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -534,7 +534,8 @@ Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count309
 \l__pdf_internal_box=\box59
-) (./Thesis.aux)
+)
+No file Thesis.aux.
 \openout1 = `Thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
@@ -555,7 +556,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
 LaTeX Font Info:    ... okay on input line 62.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
 LaTeX Font Info:    ... okay on input line 62.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count310
 \scratchdimen=\dimen191
@@ -1674,113 +1675,150 @@ Package natbib Warning: Citation `Hochreiter1997' on page 30 undefined on input 
 
 Package acronym Warning: Acronym `RNN' is not defined on input line 160.
 
-[30.42 <./Figures/SVM_idea.drawio.pdf>] [31.43]
+[30.42 <./Figures/SVM_idea.drawio.pdf>]
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 211.
-
-
-Package acronym Warning: Acronym `PCA' is not defined on input line 213.
+Package acronym Warning: Acronym `RNN' is not defined on input line 163.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 219.
+Package acronym Warning: Acronym `RNN' is not defined on input line 168.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 224.
+Package acronym Warning: Acronym `RNN' is not defined on input line 171.
 
 
-LaTeX Warning: Reference `fig:pca' on page 32 undefined on input line 227.
+Package acronym Warning: Acronym `RNN' is not defined on input line 174.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 230.
+Package acronym Warning: Acronym `LSTM' is not defined on input line 175.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 240.
+Package acronym Warning: Acronym `LSTM' is not defined on input line 179.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 240.
+Package natbib Warning: Citation `Gers2000' on page 31 undefined on input line 180.
 
-<Figures/pca_plot.pdf, id=425, 722.7pt x 433.62pt>
-File: Figures/pca_plot.pdf Graphic file (type pdf)
-<use Figures/pca_plot.pdf>
-Package pdftex.def Info: Figures/pca_plot.pdf  used on input line 241.
-(pdftex.def)             Requested size: 401.18405pt x 240.70827pt.
+
+Package acronym Warning: Acronym `RNN' is not defined on input line 186.
+
+
+Package acronym Warning: Acronym `RNN' is not defined on input line 186.
+
+
+
+pdfTeX warning: pdflatex (file ./Figures/RNN.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Figures/RNN.drawio.pdf, id=419, 303.05219pt x 301.125pt>
+File: Figures/RNN.drawio.pdf Graphic file (type pdf)
+<use Figures/RNN.drawio.pdf>
+Package pdftex.def Info: Figures/RNN.drawio.pdf  used on input line 187.
+(pdftex.def)             Requested size: 401.18405pt x 398.65788pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 245.
+Package acronym Warning: Acronym `PCA' is not defined on input line 192.
 
 
-Package acronym Warning: Acronym `ML' is not defined on input line 249.
+Package acronym Warning: Acronym `PCA' is not defined on input line 194.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 250.
+Package acronym Warning: Acronym `PCA' is not defined on input line 200.
+
+[31.43]
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 205.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 252.
+LaTeX Warning: Reference `fig:pca' on page 32 undefined on input line 208.
 
 
-Package natbib Warning: Citation `Pearson1901' on page 32 undefined on input line 253.
+Package acronym Warning: Acronym `PCA' is not defined on input line 211.
 
-[32.44] [33.45 <./Figures/pca_plot.pdf>]
+[32.44 <./Figures/RNN.drawio.pdf>]
 
-Package acronym Warning: Acronym `ML' is not defined on input line 277.
-
-
-Package acronym Warning: Acronym `PCA' is not defined on input line 289.
+Package acronym Warning: Acronym `PCA' is not defined on input line 221.
 
 
-LaTeX Warning: Reference `fig:forecasting_framework' on page 34 undefined on input line 291.
+Package acronym Warning: Acronym `PCA' is not defined on input line 221.
+
+<Figures/pca_plot.pdf, id=441, 722.7pt x 433.62pt>
+File: Figures/pca_plot.pdf Graphic file (type pdf)
+<use Figures/pca_plot.pdf>
+Package pdftex.def Info: Figures/pca_plot.pdf  used on input line 222.
+(pdftex.def)             Requested size: 401.18405pt x 240.70827pt.
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 226.
 
 
-LaTeX Warning: Reference `chap:three' on page 34 undefined on input line 294.
+Package acronym Warning: Acronym `ML' is not defined on input line 230.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 295.
+Package acronym Warning: Acronym `PCA' is not defined on input line 231.
 
 
-Package acronym Warning: Acronym `PCA' is not defined on input line 300.
+Package acronym Warning: Acronym `PCA' is not defined on input line 233.
 
 
-Package acronym Warning: Acronym `LSTM' is not defined on input line 302.
+Package natbib Warning: Citation `Pearson1901' on page 33 undefined on input line 234.
+
+[33.45 <./Figures/pca_plot.pdf>]
+
+Package acronym Warning: Acronym `ML' is not defined on input line 258.
 
 
-Package acronym Warning: Acronym `LSTM' is not defined on input line 303.
+Package acronym Warning: Acronym `PCA' is not defined on input line 270.
 
 
-Package acronym Warning: Acronym `RNN' is not defined on input line 303.
+LaTeX Warning: Reference `fig:forecasting_framework' on page 34 undefined on input line 272.
 
 
-LaTeX Warning: Reference `chap:three' on page 34 undefined on input line 304.
+LaTeX Warning: Reference `chap:three' on page 34 undefined on input line 275.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 276.
+
+
+Package acronym Warning: Acronym `PCA' is not defined on input line 281.
 
 [34.46]
 
-Package acronym Warning: Acronym `ML' is not defined on input line 347.
+Package acronym Warning: Acronym `LSTM' is not defined on input line 283.
+
+
+Package acronym Warning: Acronym `LSTM' is not defined on input line 284.
+
+
+Package acronym Warning: Acronym `RNN' is not defined on input line 284.
+
+
+LaTeX Warning: Reference `chap:three' on page 35 undefined on input line 285.
+
+[35.47]
+
+Package acronym Warning: Acronym `ML' is not defined on input line 328.
 
 
 
 pdfTeX warning: pdflatex (file ./Figures/time_series_split.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Figures/time_series_split.drawio.pdf, id=478, 117.3183pt x 53.23889pt>
+<Figures/time_series_split.drawio.pdf, id=493, 117.3183pt x 53.23889pt>
 File: Figures/time_series_split.drawio.pdf Graphic file (type pdf)
 <use Figures/time_series_split.drawio.pdf>
-Package pdftex.def Info: Figures/time_series_split.drawio.pdf  used on input line 368.
+Package pdftex.def Info: Figures/time_series_split.drawio.pdf  used on input line 349.
 (pdftex.def)             Requested size: 401.18405pt x 182.06506pt.
-[35.47]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 
 pdfTeX warning: pdflatex (file ./Figures/Forecasting_framework.drawio.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<Figures/Forecasting_framework.drawio.pdf, id=483, 228.855pt x 334.3692pt>
+<Figures/Forecasting_framework.drawio.pdf, id=494, 228.855pt x 334.3692pt>
 File: Figures/Forecasting_framework.drawio.pdf Graphic file (type pdf)
 <use Figures/Forecasting_framework.drawio.pdf>
-Package pdftex.def Info: Figures/Forecasting_framework.drawio.pdf  used on input line 379.
+Package pdftex.def Info: Figures/Forecasting_framework.drawio.pdf  used on input line 360.
 (pdftex.def)             Requested size: 401.18405pt x 586.17526pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) (./02_Mainmatter/05.tex [36.48 <./Figures/time_series_split.drawio.pdf>]
-
-LaTeX Warning: Text page 37 contains only floats.
-
-[37.49 <./Figures/Forecasting_framework.drawio.pdf>]
+) (./02_Mainmatter/05.tex [36.48] [37.49 <./Figures/time_series_split.drawio.pdf>] [38.50 <./Figures/Forecasting_framework.drawio.pdf>]
 Chapter 5.
 
 Package acronym Warning: Acronym `ARIMA' is not defined on input line 7.
@@ -1794,11 +1832,11 @@ Package acronym Warning: Acronym `SVM' is not defined on input line 9.
 
 Package acronym Warning: Acronym `LSTM' is not defined on input line 10.
 
-) (./02_Mainmatter/06.tex [38.50
+) (./02_Mainmatter/06.tex [39.51
 
 ]
 Chapter 6.
-) [39.51
+) [40.52
 
 ] (./Thesis.bbl
 ./Thesis.bbl:61: Misplaced alignment tab character &.
@@ -1813,19 +1851,19 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[40.52
+[41.53
 
 
-]
-Underfull \hbox (badness 1102) in paragraph at lines 128--131
+] [42.54]
+Underfull \hbox (badness 1102) in paragraph at lines 133--136
 \T1/lmr/m/n/12 O'Reilley, first edi-tion edi-tion.  Hier auch sp€\TS1/lmr/m/n/12 ¤\T1/lmr/m/n/12 ter er-schienene, un-
  []
 
-[41.53] [42.54]
-./Thesis.bbl:264: Misplaced alignment tab character &.
+[43.55] [44.56]
+./Thesis.bbl:269: Misplaced alignment tab character &.
 <argument> ...national Conference on Information &
                                                   amp; Knowledge Management,
-l.264   Information &amp; Knowledge Management,}
+l.269   Information &amp; Knowledge Management,}
                                                  volume 457 of \emph{CIKM â€...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1834,14 +1872,14 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[43.55]) [44.56] (./03_Backmatter/01_App.tex
+) [45.57] (./03_Backmatter/01_App.tex
 Appendix A.
-) (./03_Backmatter/02_App.tex [1.57
+) (./03_Backmatter/02_App.tex [1.58
 
 
 ]
 Appendix B.
-<Figures/BTC_missing_1.pdf, id=607, 1300.86pt x 794.97pt>
+<Figures/BTC_missing_1.pdf, id=623, 1300.86pt x 794.97pt>
 File: Figures/BTC_missing_1.pdf Graphic file (type pdf)
 <use Figures/BTC_missing_1.pdf>
 Package pdftex.def Info: Figures/BTC_missing_1.pdf  used on input line 5.
@@ -1851,7 +1889,7 @@ Overfull \hbox (40.11003pt too wide) in paragraph at lines 5--6
  [][] 
  []
 
-<Figures/ETH_missing_1.pdf, id=608, 1300.86pt x 794.97pt>
+<Figures/ETH_missing_1.pdf, id=624, 1300.86pt x 794.97pt>
 File: Figures/ETH_missing_1.pdf Graphic file (type pdf)
 <use Figures/ETH_missing_1.pdf>
 Package pdftex.def Info: Figures/ETH_missing_1.pdf  used on input line 13.
@@ -1861,7 +1899,7 @@ Overfull \hbox (40.11003pt too wide) in paragraph at lines 13--14
  [][] 
  []
 
-<Figures/LTC_missing_1.pdf, id=609, 1300.86pt x 794.97pt>
+<Figures/LTC_missing_1.pdf, id=625, 1300.86pt x 794.97pt>
 File: Figures/LTC_missing_1.pdf Graphic file (type pdf)
 <use Figures/LTC_missing_1.pdf>
 Package pdftex.def Info: Figures/LTC_missing_1.pdf  used on input line 21.
@@ -1871,23 +1909,23 @@ Overfull \hbox (40.11003pt too wide) in paragraph at lines 21--22
  [][] 
  []
 
-) (./03_Backmatter/03_App.tex [2.58
+) (./03_Backmatter/03_App.tex [2.59
 
- <./Figures/BTC_missing_1.pdf>] [3.59 <./Figures/ETH_missing_1.pdf> <./Figures/LTC_missing_1.pdf>]
+ <./Figures/BTC_missing_1.pdf>] [3.60 <./Figures/ETH_missing_1.pdf> <./Figures/LTC_missing_1.pdf>]
 Appendix C.
 
 Package acronym Warning: Acronym `BTC' is not defined on input line 3.
 
-[4.60
+[4.61
 
-] [5.61] [6.62]) (./03_Backmatter/04_App.tex [7.63]
+] [5.62] [6.63]) (./03_Backmatter/04_App.tex [7.64]
 Appendix D.
 
 Overfull \hbox (5.41078pt too wide) in paragraph at lines 3--7
 []\T1/lmr/m/n/12 https://github.com/Tomas-Barhon/Noise-reduction-and-feature-extraction[]. In-
  []
 
-) [8.64
+) [8.65
 
 ]
 
@@ -1915,21 +1953,21 @@ Package rerunfilecheck Warning: File `Thesis.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `Thesis.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  E9600222A9263BA8B6F2E78FB348996A;6454.
+(rerunfilecheck)             After:  1DBC306B6FA3CBEEE5B44E8F89E6EABD;6454.
  ) 
 Here is how much of TeX's memory you used:
- 18825 strings out of 478287
- 294741 string characters out of 5849289
- 555650 words of memory out of 5000000
- 36354 multiletter control sequences out of 15000+600000
+ 18837 strings out of 478287
+ 295027 string characters out of 5849289
+ 555659 words of memory out of 5000000
+ 36364 multiletter control sequences out of 15000+600000
  569849 words of font info for 82 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  77i,16n,79p,681b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Thesis.pdf (64 pages, 8102777 bytes).
+Output written on Thesis.pdf (65 pages, 8128483 bytes).
 PDF statistics:
- 1006 PDF objects out of 1200 (max. 8388607)
- 629 compressed objects within 7 object streams
- 233 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1023 PDF objects out of 1200 (max. 8388607)
+ 642 compressed objects within 7 object streams
+ 236 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

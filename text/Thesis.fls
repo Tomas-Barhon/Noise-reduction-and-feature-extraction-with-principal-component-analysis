@@ -1032,9 +1032,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./Thesis.aux
-INPUT Thesis.aux
-INPUT Thesis.aux
 OUTPUT Thesis.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1267,6 +1264,11 @@ INPUT ./Figures/SVM_idea.drawio.pdf
 INPUT Figures/SVM_idea.drawio.pdf
 INPUT ./Figures/SVM_idea.drawio.pdf
 INPUT ./Figures/SVM_idea.drawio.pdf
+INPUT ./Figures/RNN.drawio.pdf
+INPUT ./Figures/RNN.drawio.pdf
+INPUT Figures/RNN.drawio.pdf
+INPUT ./Figures/RNN.drawio.pdf
+INPUT ./Figures/RNN.drawio.pdf
 INPUT ./Figures/pca_plot.pdf
 INPUT ./Figures/pca_plot.pdf
 INPUT Figures/pca_plot.pdf

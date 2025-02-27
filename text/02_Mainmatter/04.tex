@@ -160,52 +160,33 @@ The idea is to make the errors constant through time by introducing few improvem
 to the original \ac{RNN} cell.
 
 
+The name \acl{RNN} comes from the fact that the cell is able
+to feed backward into iself its internal state. Conceptually, this is a kind
+of memory or an internal representation of the data. Output in the next
+time step is the combination of the current input and the internal state
+of the cell usually weighted using the tanh activation function. 
+It is a common practice to to represent \ac{RNN}s as a chain of cells 
+unwined in time even though it is actually a single cell that is fed back into itself.
+It is a common pratice to combine multiple such layers of these cells to create
+a deep \ac{RNN} which is able to capture more complex patterns in the data.
 
 
+Despite the promising idea of \ac{RNN}s, they suffer many training problems.
+Multiple remedies have been proposed to fix these problems such as the \ac{LSTM} cell
+or the gated recurrent unit cell which are giving the model the ability to learn
+long term dependencies.
 
-1. **Forget Gate**: Decides what information to throw away from the cell state.
-\[
-f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
-\]
+Since the introduction of the \ac{LSTM} cell, many improvements have been made to the original
+architecture we will describe the improved architecture from \cite{Gers2000} which
+adds the forget gate to the original architecture. 
 
-2. **Input Gate**: Decides which values to update.
-\[
-i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i)
-\]
 
-3. **Candidate Cell State**: Creates a vector of new candidate values that could be added to the state.
-\[
-\tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)
-\]
-
-4. **Cell State Update**: Updates the old cell state \(C_{t-1}\) into the new cell state \(C_t\).
-\[
-C_t = f_t * C_{t-1} + i_t * \tilde{C}_t
-\]
-
-5. **Output Gate**: Decides what the next hidden state \(h_t\) should be.
-\[
-o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o)
-\]
-
-6. **Hidden State Update**: Computes the new hidden state.
-\[
-h_t = o_t * \tanh(C_t)
-\]
-
-Where:
-- \(x_t\) is the input at time step \(t\),
-- \(h_{t-1}\) is the hidden state from the previous time step,
-- \(C_{t-1}\) is the cell state from the previous time step,
-- \(W_f, W_i, W_C, W_o\) are the weight matrices,
-- \(b_f, b_i, b_C, b_o\) are the bias vectors,
-- \(\sigma\) is the sigmoid function,
-- \(\tanh\) is the hyperbolic tangent function,
-- \(f_t, i_t, o_t\) are the forget, input, and output gates respectively,
-- \(\tilde{C}_t\) is the candidate cell state,
-- \(C_t\) is the cell state,
-- \(h_t\) is the hidden state.
-
+\begin{figure}[!h]
+    \centering
+    \caption{\acl{RNN} Architecture}
+        \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
+    \label{fig:rnn_architecture}
+\end{figure}
 
 
 \section{\acl{PCA}}

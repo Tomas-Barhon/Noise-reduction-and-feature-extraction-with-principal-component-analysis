@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{47}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -78,6 +78,11 @@
 \textsc{Farebrother}, R.~W. (2022): \enquote{Notes on the prehistory of
   principal components analysis.}
 \newblock \emph{Journal of Multivariate Analysis} \textbf{188}: p. 104814.
+
+\bibitem[{Gers \emph{et~al.}(2000)Gers, Schmidhuber, \& Cummins}]{Gers2000}
+\textsc{Gers}, F.~A., J.~\textsc{Schmidhuber}, \& F.~\textsc{Cummins} (2000):
+  \enquote{Learning to forget: Continual prediction with lstm.}
+\newblock \emph{Neural Computation} \textbf{12(10)}: pp. 2451--2471.
 
 \bibitem[{Ginsberg \emph{et~al.}(2009)Ginsberg, Mohebbi, Patel, Brammer,
   Smolinski, \& Brilliant}]{Ginsberg2009}
