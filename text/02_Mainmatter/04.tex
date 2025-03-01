@@ -159,6 +159,12 @@ introduced by Hochreiter and Schmidhuber in 1997 \cite{Hochreiter1997}.
 The idea is to make the errors constant through time by introducing few improvements
 to the original \ac{RNN} cell.
 
+\begin{figure}[!h]
+    \centering
+    \caption{\acl{RNN} Architecture}
+        \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
+    \label{fig:rnn_architecture}
+\end{figure}
 
 The name \acl{RNN} comes from the fact that the cell is able
 to feed backward into iself its internal state. Conceptually, this is a kind
@@ -167,11 +173,12 @@ time step is the combination of the current input and the internal state
 of the cell usually weighted using the tanh activation function. 
 It is a common practice to to represent \ac{RNN}s as a chain of cells 
 unwined in time even though it is actually a single cell that is fed back into itself.
-It is a common pratice to combine multiple such layers of these cells to create
+It is possible to combine multiple such layers of these cells to create
 a deep \ac{RNN} which is able to capture more complex patterns in the data.
 
 
-Despite the promising idea of \ac{RNN}s, they suffer many training problems.
+
+Despite the promising idea of \ac{RNN}s, they suffer from many training problems.
 Multiple remedies have been proposed to fix these problems such as the \ac{LSTM} cell
 or the gated recurrent unit cell which are giving the model the ability to learn
 long term dependencies.
@@ -180,13 +187,50 @@ Since the introduction of the \ac{LSTM} cell, many improvements have been made t
 architecture we will describe the improved architecture from \cite{Gers2000} which
 adds the forget gate to the original architecture. 
 
-
+\newpage
 \begin{figure}[!h]
     \centering
-    \caption{\acl{RNN} Architecture}
-        \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
-    \label{fig:rnn_architecture}
+    \caption{\ac{LSTM} Cell}
+        \includegraphics[width=1\textwidth]{Figures/LSTM.drawio.pdf}
+    \label{fig:lstm_cell}
 \end{figure}
+
+
+\afterpage{
+\begin{equation}
+    i_t = \sigma \left( \mathbf{W}^i x_t + \mathbf{V}^i h_{t-1} + \mathbf{b}^i \right)
+\end{equation}
+
+\begin{equation}
+    f_t = \sigma \left( \mathbf{W}^f x_t + \mathbf{V}^f h_{t-1} + \mathbf{b}^f \right)
+\end{equation}
+
+\begin{equation}
+    o_t = \sigma \left( \mathbf{W}^o x_t + \mathbf{V}^o h_{t-1} + \mathbf{b}^o \right)
+\end{equation}
+
+\begin{equation}
+    c_t = f_t \odot c_{t-1} + i_t \odot \tanh \left( \mathbf{W}^y x_t + \mathbf{V}^y h_{t-1} + \mathbf{b}^y \right)
+\end{equation}
+
+\begin{equation}
+    h_t = o_t \odot \tanh(c_t)
+\end{equation}
+}
+
+The \ac{LSTM} cell consists of three gates: the input gate, the forget gate, and the output gate.
+The input gate decides which input information is useful for the cell state. 
+The forget gate decides which information to forget from the long term memory.
+And finally the output gate decides which information should be passed to the next state.
+The exact formulas are given in equations 4.4-4.8. 
+We can see that this architecture allow the cell to represent long term
+memory as the vector $\textbf{c}$ and short term memory
+as the vector $\textbf{h}$ as normal \ac{RNN}s do. 
+
+
+
+
+
 
 
 \section{\acl{PCA}}
