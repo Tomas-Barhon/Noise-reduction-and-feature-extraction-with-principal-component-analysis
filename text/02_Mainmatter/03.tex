@@ -5,7 +5,7 @@ Compared to traditional financial data cryptocurrency data tend to be easier
 to obtain. However, many data providers have already identified the bussiness 
 potential of selling advanced data and have started to monetize them. Since some
 websites monetize only their APIs we could obtain data from 
-multiple sources and merge them to get to our desired number of features. We have
+multiple sources and merge them to get to our expected number of features. We have
 desired to use as many relevant variables as possible and we build on
 an existing research in the field.
 Our dataset can be split into 2 main categories and 4 subcategories.
@@ -74,7 +74,7 @@ For the full description of the variables for \ac{BTC} please refer to the Appen
 
 
 The datasets for Ethereum and Litecoin look similar with the exception of a few variables missing,
-look at (\ref{ethereum:missing}, \ref{litecoin:missing}):
+please see (\ref{ethereum:missing}, \ref{litecoin:missing}):
 
 \begin{figure}[!htbp]
     \begin{center}
@@ -188,10 +188,10 @@ https://cs.wikipedia.org/wiki/Bitcoin
     \item \textit{Wiki\_eth\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Ethereum}{Ethereum}}
     \item \textit{Wiki\_ltc\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Litecoin}{Litecoin}}
     \item \textit{Wiki\_crypto\_search} - Wiki pageviews for \textbf{\href{https://en.wikipedia.org/wiki/Cryptocurrency}{Cryptocurrency}}
-    \item \textit{Google\_btc\_search} - Google Trends summed from terms: \textit{Bitcoin, bitcoin, BTC}
-    \item \textit{Google\_eth\_search} - Google Trends summed from terms: \textit{Ethereum, ethereum, ether, ETH}
-    \item \textit{Google\_ltc\_search} - Google Trends summed from terms: \textit{Litecoin, litecoin, LTC}
-    \item \textit{Google\_crypto\_search} - Google Trends summed from terms: \textit{Cryptocurrency, cryptocurrency, Cryptocurrencies, cryptocurrencies, crypto, Crypto}
+    \item \textit{Google\_btc\_search} - Google Trends summed across terms: \textit{Bitcoin, bitcoin, BTC}
+    \item \textit{Google\_eth\_search} - Google Trends summed across terms: \textit{Ethereum, ethereum, ether, ETH}
+    \item \textit{Google\_ltc\_search} - Google Trends summed across terms: \textit{Litecoin, litecoin, LTC}
+    \item \textit{Google\_crypto\_search} - Google Trends summed across terms: \textit{Cryptocurrency, cryptocurrency, Cryptocurrencies, cryptocurrencies, crypto, Crypto}
 \end{itemize}
 
 
@@ -266,16 +266,16 @@ as $n$ and the number of features $j$ as $k$.
 
 We start by denoting
 the original dataset $\mathbf{X} \in \mathbb{R}^{n \times k}$.
-Now assuming $\mathbf{X_{:,k}} = [\mathbf{x}_{1k},...,\mathbf{x}_{nk}]$ 
+Now assuming $\mathbf{X}_{:,k} = [\mathbf{x}_{1k},...,\mathbf{x}_{nk}]$ 
 is the \ac{BTC} price feature vector we shift it
 back in time by $h$ and drop the data without corresponding counterpart. 
 Concretely, we drop all 
-$\mathbf{X_{n-h:n,1:k-1}}$ and $\mathbf{X_{1:h,k}}$.
+$\mathbf{X}_{n-h:n,1:k-1}$ and $\mathbf{X}_{1:h,k}$.
 With this technique we always sacrifice $2h$ observations from the original dataset.
 If we further split the dataset into the explanatory and target features
 and reset the indexation such that we denote $m = n-2h$
 we end up with the following matrices where the target matrix Y is essentially
-only a vector where $y^\top = \mathbf{X_{:,k}}$, see Figure~\ref{fig:dataset_shift}.
+only a vector where $y^\top = \mathbf{X}_{:,k}$, see Figure~\ref{fig:dataset_shift}.
 
 \begin{figure}[!h]
     \centering
@@ -307,7 +307,7 @@ We can now observe that modeling $y_i$ as a function of
 explanatory variables $x_{i}$ is a forecasting with horizon $h$ into the future.
 Where we essentially try to estimate the function $f_{foreacast}$.
 \begin{equation}\label{eq:model_simple}
-    y_i = f_{forecast}(\mathbf{x_{i}})
+    y_i = f_{forecast}(\mathbf{x}_{i})
 \end{equation}
 
 The final preprocessing step is specific to the \ac{LSTM} network which is
@@ -317,12 +317,12 @@ This means that it can use for example 10 day history for each variable
 and forecast the target variable. This is a really strong feature and 
 makes it a viable option for our usecase. In order to use it, the input dataset
 has to be reshaped in such a way that for observation $\mathbf{x_{i}}$ 
-concatenates values from $\mathbf{x_{i}}$ 
-up to $\mathbf{x_{i-lag}}$, see Figure~\ref{fig:dataset_lstm_reshape}
+concatenates values from $\mathbf{x}_{i}$ 
+up to $\mathbf{x}_{i-lag}$, see Figure~\ref{fig:dataset_lstm_reshape}
 
 
 \begin{equation}\label{eq:lstm_reshape}
-    \mathbf{X_{i,:}} = [[{x}_{i1},...,{x}_{ik}],
+    \mathbf{X}_{i,:} = [[{x}_{i1},...,{x}_{ik}],
     [{x}_{i-11},...,{x}_{i-1k}],
     [{x}_{i-lag1},...,{x}_{i-lagk}],...]
 \end{equation}

@@ -7,7 +7,7 @@ It is generally agreed upon that the term
 \ac{ML} refers to the field of study that gives computers the ability to learn 
 without being explicitly programmed. This fact was first 
 introduced by Arthur Samuel in 1959 \cite{Samuel1959}. However, note that the reference to this paper is used
-loosely, as the term \ac{ML} was not directly used in the paper and it is rather 
+loosely, as the definition of \ac{ML} was not directly used in the paper and it is rather 
 a retrospective interpretation of the paper. 
 
 The term \ac{ML} was more explicitly introduced by Tom M. Mitchell in 1997 \cite{Mitchell1997}:
@@ -79,7 +79,7 @@ partial derivation of the error function with respect to each parameter
 of the model and update the parameters in the opposite direction of the gradient
 where the learning rate is the step size of the update. Usually, 
 minibatch gradient descent is used where the gradient is averaged over a small
-batch of randomly sampled data.
+batch of randomly sampled data points.
 
 The update rule for the parameters \(\theta\) using gradient descent is given by:
 
@@ -111,7 +111,6 @@ Support Vector Machines are widely used \ac{ML} algorithm which was expected to
 be the future of machine learning in the early 2000s. However, the rise of deep learning
 has overshadowed the success of \ac{SVM}s. Nevertheless, \ac{SVM}s are still widely used
 as they are really useful for small datasets and can capture complex nonlinear relationships.
-
 To ilustrate the idea of \ac{SVM}s, let us consider a binary classification problem.
 
 \begin{figure}[!h]
@@ -222,7 +221,8 @@ The \ac{LSTM} cell consists of three gates: the input gate, the forget gate, and
 The input gate decides which input information is useful for the cell state. 
 The forget gate decides which information to forget from the long term memory.
 And finally the output gate decides which information should be passed to the next state.
-The exact formulas are given in equations 4.4-4.8. 
+The exact formulas are given in equations 4.4-4.8 where $\mathbf{W}, \mathbf{V}$ 
+represent respective weights of the layers and \mathbf{b} is the bias term. 
 We can see that this architecture allow the cell to represent long term
 memory as the vector $\textbf{c}$ and short term memory
 as the vector $\textbf{h}$ as normal \ac{RNN}s do. 
@@ -238,7 +238,7 @@ as the vector $\textbf{h}$ as normal \ac{RNN}s do.
 \ac{PCA} is a widely used dimensionality reduction technique that is able
 to reduce number of dimensions for the purpouses of visualization, noise reduction, and
 reduction of the curse of dimensionality. The curse of 
-dimensionality referts to the fact that with increasing number of 
+dimensionality refers to the observation that with increasing number of 
 dimensions the volume of the space increases exponentially and the data points become
 extremely sparse leading to enormous distances between training points.
 The fact that \ac{PCA} can be used as a noise reduction technique is 
@@ -275,7 +275,7 @@ they are also uncorrleated which is a useful property for many \ac{ML} algorithm
 We acknowledge that \ac{PCA} is not in itself a noise reduction technique
 but it is a rather elegant and simple way that sometimes reduces noise in the data.
 The implementation details of \ac{PCA} are beyond the scope of this text but we refer the readers
-to the original paper by Pearson \cite{Pearson1901}.
+to the original paper \cite{Pearson1901}.
 
 
 
@@ -377,7 +377,8 @@ Theoretically, this could be relaxed on the training set as the normalization
 might be fitted on the whole training set but it is crucial that the test set distribution
 is never leaked to the fitting procedure. However, we believe that
 the correct methodology is to use a rolling window approach for the grid search
-where the normalization parameters are fitted on the training set and the validation set.
+where the normalization parameters are fitted on the training part of the train set
+correctly distributed in time.
 This is why we use time series split for the grid search without randomly shuffling the data.
 This approach splits the training set into \textit{k} folds and iteratively
 trains the model on \textit{k-1} folds and evaluates on the \textit{k-th} fold.
