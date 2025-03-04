@@ -23,10 +23,30 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         self.pca = pca
 
     def fit(self, X, y=None):
+        """
+        Fit the PCA model on the provided data.
+        Parameters:
+        X : array-like, shape (n_samples, n_features)
+            Training data.
+        y : Ignored
+            Not used, present here for API consistency by convention.
+        Returns:
+        self : object
+            Returns the instance itself.
+        """
+    
         self.pca.fit(X)
         return self
 
     def transform(self, X):
+        """
+        Transforms the input data by applying PCA downsampling and then restoring it to the original dimensions.
+        Parameters:
+        X (array-like): The input data to be transformed.
+        Returns:
+        array-like: The transformed data, restored to the original dimensions.
+        """
+        
         # Downsample to n_components
         X_pca = self.pca.transform(X)
         # Upsample back to original dimensions
@@ -127,20 +147,25 @@ class Pipeline:
         """
         # 1 day forecasting
         self.data_1d_shift = self.data.copy()
-        self.data_1d_shift.iloc[:, -
-                                1] = self.data_1d_shift.iloc[:, -1].shift(-1)
+        self.data_1d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+        self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
         self.data_1d_shift = self.data_1d_shift.dropna()
+        
         # 5 day forecasting
         self.data_5d_shift = self.data.copy()
-        self.data_5d_shift.iloc[:, -
-                                1] = self.data_5d_shift.iloc[:, -1].shift(-5)
+        self.data_5d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+        self.data_5d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-5)).diff()
         self.data_5d_shift = self.data_5d_shift.dropna()
+        
         # 10 day forecasting
         self.data_10d_shift = self.data.copy()
-        self.data_10d_shift.iloc[:, -
-                                 1] = self.data_10d_shift.iloc[:, -1].shift(-10)
+        self.data_10d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+        self.data_10d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-10)).diff()
         self.data_10d_shift = self.data_10d_shift.dropna()
         return self
+        
+
+
 
     @staticmethod
     def split_train_test(data, pandas=True):
@@ -170,14 +195,14 @@ class Pipeline:
         Takes care of shape transformations for LSTM.
         """
         scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
+        denoiser = None
+        scaler_2 = None
+        unpacker = None
+        packer = None
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
             scaler_2 = sklearn.preprocessing.StandardScaler()
-        else:
-            denoiser = dim_reducer
-            scaler_2 = dim_reducer
-        unpacker = None
-        packer = None
+
         if shape_change is not False:
             unpacker = ReshapeTransformer(shape_change[0])
             packer = ReshapeTransformer(shape_change[1])
@@ -212,7 +237,8 @@ class Pipeline:
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid=parameter_grid,
             cv=ts_split, scoring=scoring, refit="RMSE",
-            verbose=0, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
+            verbose=0, n_jobs=n_jobs, error_score='raise', return_train_score=
+            True).fit(train_data, train_target)
         return model
 
     @staticmethod
@@ -223,24 +249,27 @@ class Pipeline:
     @staticmethod
     def assembly_lstm(input_shape, units):
         """
-        Creates the LSTM network with Adam optimizer and Cosine Decay.
+        Creates LSTM network with layer normalization for stable training
         """
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.LSTM(units, input_shape=input_shape,
-                                       return_sequences=True))
-        model.add(tf.keras.layers.Dropout(0.2))
         
-        #consider tanh actiavation ReLu is too strict
-        model.add(tf.keras.layers.ReLU())
-        model.add(tf.keras.layers.LSTM(units,
-                                       return_sequences=False))
-        model.add(tf.keras.layers.Dropout(0.2))
-        model.add(tf.keras.layers.ReLU())
+        # First LSTM block with layer normalization
+        model.add(tf.keras.layers.LayerNormalization(input_shape=input_shape))
+        model.add(tf.keras.layers.LSTM(units, return_sequences=True))
+        model.add(tf.keras.layers.Dropout(0.3))
+        
+        # Second LSTM block with layer normalization
+        model.add(tf.keras.layers.LayerNormalization())
+        model.add(tf.keras.layers.LSTM(units))
+        model.add(tf.keras.layers.Dropout(0.3))
+        
+        # Dense layers
         model.add(tf.keras.layers.Dense(1))
-        inital_lr = 0.001
-        lr_schedule = tf.keras.optimizers.schedules.CosineDecay(inital_lr, 91*200)
-        model.compile(optimizer=tf.keras.optimizers.Adam(
-            learning_rate = lr_schedule), loss=[Pipeline.root_mean_squared_error])
+        
+        model.compile(
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.001,global_clipnorm=1, clipvalue=0.5),
+            loss=Pipeline.root_mean_squared_error
+        )
         return model
 
     @staticmethod
@@ -248,11 +277,11 @@ class Pipeline:
         """Custom loss function for tensorflow RMSE.
 
         Args:
-            y_true (_type_): _description_
-            y_pred (_type_): _description_
+            y_true: True values
+            y_pred: Predicted values
 
         Returns:
-            _type_: _description_
+            RMSE loss value
         """
         return tf.sqrt(tf.reduce_mean(tf.square(y_pred - y_true)))
 
@@ -263,9 +292,7 @@ class Pipeline:
         with variables from t-lag_order - t-1.
         """
         X, Y = [], []
-        data.iloc[:,-1] = data.iloc[:,-1].shift(forecast_time)
-        data = data.dropna()
         for i in range(lag_order, len(data)):
             X.append(data.iloc[i - lag_order:i, :])
-            Y.append(target.iloc[i - 1 + forecast_time])
+            Y.append(target.iloc[i])
         return np.array(X), np.array(Y)

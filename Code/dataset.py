@@ -144,6 +144,12 @@ class Dataset():
         return self
         
     def get_data(self):
+        """
+        Retrieves the data stored in the instance.
+
+        Returns:
+            Any: The data stored in the instance.
+        """
         return self.data
 
     def combine_queries(self, queries):
@@ -175,6 +181,15 @@ class Dataset():
         return data_buffer
     
     def execute_full_pipeline(self):
+        """
+        Executes the full data processing pipeline.
+        This method performs the following steps:
+        1. Creates CoinMetrics datasets.
+        2. Retrieves common data.
+        Returns:
+            self: The instance of the class after executing the pipeline.
+        """
+        
         self.create_coinmetrics_datasets()
         self.get_common_data()
         return self
@@ -212,7 +227,6 @@ class Dataset():
         Abstract method that needs to be implemented by the specific coin dataset that
         merges all of the different types of data together.
         """
-        pass
 
     @abstractmethod
     def save_data_to_csv(self):
@@ -220,8 +234,6 @@ class Dataset():
         Abstract method that needs to be implemented by the specific coin dataset that
         saves the merged data to csv.
         """
-        pass
-    
 
 class BitcoinDataset(Dataset):
     def __init__(self):
