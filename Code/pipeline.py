@@ -256,18 +256,18 @@ class Pipeline:
         # First LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization(input_shape=input_shape))
         model.add(tf.keras.layers.LSTM(units, return_sequences=True))
-        model.add(tf.keras.layers.Dropout(0.3))
+        model.add(tf.keras.layers.Dropout(0.1))
         
         # Second LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.LSTM(units))
-        model.add(tf.keras.layers.Dropout(0.3))
+        model.add(tf.keras.layers.Dropout(0.1))
         
         # Dense layers
         model.add(tf.keras.layers.Dense(1))
         
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.001,global_clipnorm=1, clipvalue=0.5),
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.001),
             loss=Pipeline.root_mean_squared_error
         )
         return model
