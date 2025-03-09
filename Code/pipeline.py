@@ -80,7 +80,7 @@ class Pipeline:
     and creates all shifted versions of the dataset we use in our thesis.
     It represents the whole processing workflow that we performed on the data.
     """
-    def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"]) -> None:
+    def __init__(self, crypto_tick: Literal["btc", "ltc", "eth"], returns = False) -> None:
         self.tick = crypto_tick
         match self.tick:
             case "btc":
@@ -92,6 +92,7 @@ class Pipeline:
         self.data_1d_shift = None
         self.data_5d_shift = None
         self.data_10d_shift = None
+        self.returns = returns
 
     def set_beginning(self, start_date: str):
         self.data = self.data.loc[start_date:]
@@ -137,7 +138,7 @@ class Pipeline:
                 self.data = self.data.dropna()
         return self
 
-    def shift_target(self, returns = False):
+    def shift_target(self):
         """Shifts the target variable by 1,5 and 10 days back ensuring that 
         we use historical explanatory variables to predict future target variable
         and dropping the nonoverlapping entries.
@@ -146,7 +147,7 @@ class Pipeline:
             _type_: _description_
         """
         # 1 day forecasting
-        if returns:
+        if self.returns:
             self.data_1d_shift = self.data.copy()
             self.data_1d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
             self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
@@ -308,6 +309,6 @@ class Pipeline:
         """
         X, Y = [], []
         for i in range(lag_order, len(data)):
-            X.append(data.iloc[i - lag_order:i, :])
+            X.append(data.iloc[i - lag_order:i, :-1])
             Y.append(target.iloc[i])
         return np.array(X), np.array(Y)
