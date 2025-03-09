@@ -24,9 +24,9 @@ class Visualizer():
         Draws prediction on the test dataset against the target variables."""
         fig, ax = plt.subplots(1, 1)
         ax.plot(test_target.shift(shift), label="Target",
-                color=Visualizer.TARGET_COLOR, linewidth=1)
+                color=Visualizer.TARGET_COLOR, linewidth=0.5)
         ax.plot(test_prediction.shift(shift), label="Prediction",
-                color=Visualizer.PREDICTION_COLOR, linewidth=1)
+                color=Visualizer.PREDICTION_COLOR, linewidth=0.5)
         ax.tick_params(axis='x', labelrotation=90)
         ax.set_title(f"Price prediction {shift} days in advance", fontsize=14)
         ax.set(xlabel='Date', ylabel='Price in USD$')
@@ -41,9 +41,9 @@ class Visualizer():
         Draws prediction for the whole dataset and indicates the split between training and testing data."""
         fig, ax = plt.subplots(1, 1)
         ax.plot(pd.concat([train_target, test_target]).shift(shift), label="Target",
-                color=Visualizer.TARGET_COLOR, linewidth=1)
+                color=Visualizer.TARGET_COLOR, linewidth=0.5)
         ax.plot(pd.concat([train_prediction, test_prediction]).shift(shift), label="Prediction",
-                color=Visualizer.PREDICTION_COLOR, linewidth=1)
+                color=Visualizer.PREDICTION_COLOR, linewidth=0.5)
         ax.tick_params(axis='x', labelrotation=90)
         ax.set(xlabel='Date', ylabel='Price in USD$')
         ax.set_title(f"Price prediction {shift} days in advance", fontsize=14)

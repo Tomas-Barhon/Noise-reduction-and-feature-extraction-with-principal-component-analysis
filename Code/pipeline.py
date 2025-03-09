@@ -137,7 +137,7 @@ class Pipeline:
                 self.data = self.data.dropna()
         return self
 
-    def shift_target(self):
+    def shift_target(self, returns = False):
         """Shifts the target variable by 1,5 and 10 days back ensuring that 
         we use historical explanatory variables to predict future target variable
         and dropping the nonoverlapping entries.
@@ -146,22 +146,37 @@ class Pipeline:
             _type_: _description_
         """
         # 1 day forecasting
-        self.data_1d_shift = self.data.copy()
-        self.data_1d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
-        self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
-        self.data_1d_shift = self.data_1d_shift.dropna()
-        
-        # 5 day forecasting
-        self.data_5d_shift = self.data.copy()
-        self.data_5d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
-        self.data_5d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-5)).diff()
-        self.data_5d_shift = self.data_5d_shift.dropna()
-        
-        # 10 day forecasting
-        self.data_10d_shift = self.data.copy()
-        self.data_10d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
-        self.data_10d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-10)).diff()
-        self.data_10d_shift = self.data_10d_shift.dropna()
+        if returns:
+            self.data_1d_shift = self.data.copy()
+            self.data_1d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+            self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
+            self.data_1d_shift = self.data_1d_shift.dropna()
+            
+            # 5 day forecasting
+            self.data_5d_shift = self.data.copy()
+            self.data_5d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+            self.data_5d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-5)).diff()
+            self.data_5d_shift = self.data_5d_shift.dropna()
+            
+            # 10 day forecasting
+            self.data_10d_shift = self.data.copy()
+            self.data_10d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+            self.data_10d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-10)).diff()
+            self.data_10d_shift = self.data_10d_shift.dropna()
+        else:
+            self.data_1d_shift = self.data.copy()
+            self.data_1d_shift["target"] = self.data.iloc[:, -1].shift(-1)
+            self.data_1d_shift = self.data_1d_shift.dropna()
+            
+            # 5 day forecasting
+            self.data_5d_shift = self.data.copy()
+            self.data_5d_shift["target"] = self.data.iloc[:, -1].shift(-5)
+            self.data_5d_shift = self.data_5d_shift.dropna()
+            
+            # 10 day forecasting
+            self.data_10d_shift = self.data.copy()
+            self.data_10d_shift["target"] = self.data.iloc[:, -1].shift(-10)
+            self.data_10d_shift = self.data_10d_shift.dropna()
         return self
         
 
