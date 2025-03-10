@@ -210,7 +210,7 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
+        scaler = sklearn.preprocessing.StandardScaler()
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -252,8 +252,8 @@ class Pipeline:
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="RMSE",
-            verbose=0, n_jobs=n_jobs, error_score='raise', return_train_score=
+            cv=5, scoring=scoring, refit="RMSE",
+            verbose=5, n_jobs=n_jobs, error_score='raise', return_train_score=
             True).fit(train_data, train_target)
         return model
 
@@ -283,9 +283,19 @@ class Pipeline:
         model.add(tf.keras.layers.Dense(1))
         
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.001),
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.0001),
             loss=Pipeline.root_mean_squared_error
         )
+        
+        # Add TensorBoard callback
+        tensorboard_callback = tf.keras.callbacks.TensorBoard(
+            log_dir='./logs',
+            histogram_freq=1,
+            write_graph=True,
+            write_images=True
+        )
+        model.callbacks = [tensorboard_callback]
+        
         return model
 
     @staticmethod
