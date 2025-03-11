@@ -20,6 +20,7 @@ rmse = MeanSquaredError(square_root = True)
 from scipy.linalg import LinAlgWarning
 import sklearn.model_selection
 import warnings
+#os.chdir("./Bachelor thesis/Code")
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
 #controling whether tensorflow does recognize GPU
@@ -81,9 +82,9 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.ilo
 
 #1 day
 pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm,
-                    verbose=0, random_state = 42, shuffle = True, 
+                    verbose=1, random_state = 42, shuffle = True, 
                     batch_size = 200,epochs=300, input_shape=(3, 41),
-                    units = 500, dropout = 0.2), dim_reducer = None, shape_change = ((-1, 41), (-1,3,41)))
+                    units = 500, dropout = 0.2,lr_initial = 0.01), dim_reducer = None, shape_change = ((-1, 41), (-1,3,41)))
 x,y = Pipeline.create_lstm_input(pipeline.data_1d_shift.copy(), pipeline.data_1d_shift.copy().iloc[:,-1], 3)
 train_data, test_data, train_target, test_target = Pipeline.split_train_test([x,y], pandas = False)
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LSTM_PARAMETERS, n_jobs =None)
