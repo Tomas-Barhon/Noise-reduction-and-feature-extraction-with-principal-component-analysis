@@ -308,3 +308,6 @@ results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(t
 prediction = model.predict(test_data)
 results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
                                                                 prediction)
+
+results_train_averaged.to_csv("results_train_averaged.csv")
+results_test.to_csv("results_test.csv")
