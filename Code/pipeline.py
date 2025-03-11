@@ -252,8 +252,8 @@ class Pipeline:
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
         model = sklearn.model_selection.GridSearchCV(
             pipeline, param_grid=parameter_grid,
-            cv=5, scoring=scoring, refit="RMSE",
-            verbose=5, n_jobs=n_jobs, error_score='raise', return_train_score=
+            cv=3, scoring=scoring, refit="RMSE",
+            verbose=1, n_jobs=n_jobs, error_score='raise', return_train_score=
             True).fit(train_data, train_target)
         return model
 
@@ -263,7 +263,7 @@ class Pipeline:
         
 
     @staticmethod
-    def assembly_lstm(input_shape, units):
+    def assembly_lstm(input_shape, units, dropout, lr_initial):
         """
         Creates LSTM network with layer normalization for stable training
         """
@@ -272,29 +272,41 @@ class Pipeline:
         # First LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization(input_shape=input_shape))
         model.add(tf.keras.layers.LSTM(units, return_sequences=True))
-        model.add(tf.keras.layers.Dropout(0.1))
+        model.add(tf.keras.layers.Dropout(0.2))
         
         # Second LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.LSTM(units))
-        model.add(tf.keras.layers.Dropout(0.1))
+        model.add(tf.keras.layers.Dropout(0.2))
         
         # Dense layers
         model.add(tf.keras.layers.Dense(1))
         
+        # Define learning rate schedule with exponential decay
+        initial_learning_rate = lr_initial
+        decay_steps = 1500
+        decay_rate = 0.9
+        learning_rate_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+            initial_learning_rate,
+            decay_steps=decay_steps,
+            decay_rate=decay_rate,
+            staircase=True
+        )
+
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=0.0001),
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=learning_rate_schedule),
             loss=Pipeline.root_mean_squared_error
         )
         
-        # Add TensorBoard callback
+        # Create TensorBoard callback
         tensorboard_callback = tf.keras.callbacks.TensorBoard(
             log_dir='./logs',
             histogram_freq=1,
             write_graph=True,
             write_images=True
         )
-        model.callbacks = [tensorboard_callback]
+        # Store callbacks as a model property to be used during fit
+        model.callbacks_list = [tensorboard_callback]
         
         return model
 
