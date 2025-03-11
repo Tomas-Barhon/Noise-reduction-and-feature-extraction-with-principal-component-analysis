@@ -272,12 +272,12 @@ class Pipeline:
         # First LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization(input_shape=input_shape))
         model.add(tf.keras.layers.LSTM(units, return_sequences=True))
-        model.add(tf.keras.layers.Dropout(0.2))
+        model.add(tf.keras.layers.Dropout(dropout))
         
         # Second LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.LSTM(units))
-        model.add(tf.keras.layers.Dropout(0.2))
+        model.add(tf.keras.layers.Dropout(dropout))
         
         # Dense layers
         model.add(tf.keras.layers.Dense(1))
