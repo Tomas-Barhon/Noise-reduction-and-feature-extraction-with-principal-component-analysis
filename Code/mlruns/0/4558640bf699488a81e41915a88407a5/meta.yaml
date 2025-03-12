@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/4558640bf699488a81e41915a88407a5/artifacts
+end_time: 1741803970195
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4558640bf699488a81e41915a88407a5
+run_name: stately-rook-759
+run_uuid: 4558640bf699488a81e41915a88407a5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803968325
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f9c4bac7959c41cb8a4d93b8a2459f80/artifacts
+end_time: 1741803550416
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f9c4bac7959c41cb8a4d93b8a2459f80
+run_name: likeable-owl-836
+run_uuid: f9c4bac7959c41cb8a4d93b8a2459f80
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803548734
+status: 3
+tags: []
+user_id: tomas_barhon

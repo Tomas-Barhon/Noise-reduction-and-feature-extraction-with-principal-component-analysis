@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fd132808a0a04793b6b482c685575177/artifacts
+end_time: 1741803334273
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fd132808a0a04793b6b482c685575177
+run_name: upbeat-midge-203
+run_uuid: fd132808a0a04793b6b482c685575177
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803332546
+status: 3
+tags: []
+user_id: tomas_barhon

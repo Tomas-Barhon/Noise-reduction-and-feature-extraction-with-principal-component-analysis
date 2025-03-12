@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/8e3c9854903c4a48982929bceb90f8fe/artifacts
+end_time: 1741803293528
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8e3c9854903c4a48982929bceb90f8fe
+run_name: bustling-mink-327
+run_uuid: 8e3c9854903c4a48982929bceb90f8fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803291902
+status: 3
+tags: []
+user_id: tomas_barhon

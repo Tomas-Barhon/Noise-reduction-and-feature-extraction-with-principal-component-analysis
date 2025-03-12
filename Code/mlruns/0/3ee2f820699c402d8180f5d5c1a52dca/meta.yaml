@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/3ee2f820699c402d8180f5d5c1a52dca/artifacts
+end_time: 1741803873478
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3ee2f820699c402d8180f5d5c1a52dca
+run_name: shivering-sheep-971
+run_uuid: 3ee2f820699c402d8180f5d5c1a52dca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803871721
+status: 3
+tags: []
+user_id: tomas_barhon

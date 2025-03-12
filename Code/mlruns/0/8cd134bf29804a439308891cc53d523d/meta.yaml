@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/8cd134bf29804a439308891cc53d523d/artifacts
+end_time: 1741803232209
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8cd134bf29804a439308891cc53d523d
+run_name: magnificent-auk-499
+run_uuid: 8cd134bf29804a439308891cc53d523d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803230291
+status: 3
+tags: []
+user_id: tomas_barhon

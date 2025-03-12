@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fa23e4a9b08a48c3a2febecc0d0cee34/artifacts
+end_time: 1741804014113
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fa23e4a9b08a48c3a2febecc0d0cee34
+run_name: casual-bee-8
+run_uuid: fa23e4a9b08a48c3a2febecc0d0cee34
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804012328
+status: 3
+tags: []
+user_id: tomas_barhon

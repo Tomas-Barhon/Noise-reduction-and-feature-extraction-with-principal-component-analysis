@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/2ff5c537cf1045e4bc8e63c42baec689/artifacts
+end_time: 1741804165507
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2ff5c537cf1045e4bc8e63c42baec689
+run_name: puzzled-conch-811
+run_uuid: 2ff5c537cf1045e4bc8e63c42baec689
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804163439
+status: 3
+tags: []
+user_id: tomas_barhon

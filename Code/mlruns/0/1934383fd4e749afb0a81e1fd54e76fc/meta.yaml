@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1934383fd4e749afb0a81e1fd54e76fc/artifacts
+end_time: 1741804009417
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1934383fd4e749afb0a81e1fd54e76fc
+run_name: vaunted-koi-699
+run_uuid: 1934383fd4e749afb0a81e1fd54e76fc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804007515
+status: 3
+tags: []
+user_id: tomas_barhon

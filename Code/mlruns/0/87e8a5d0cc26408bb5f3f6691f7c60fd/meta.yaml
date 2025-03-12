@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/87e8a5d0cc26408bb5f3f6691f7c60fd/artifacts
+end_time: 1741803850495
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 87e8a5d0cc26408bb5f3f6691f7c60fd
+run_name: treasured-bug-146
+run_uuid: 87e8a5d0cc26408bb5f3f6691f7c60fd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803848774
+status: 3
+tags: []
+user_id: tomas_barhon

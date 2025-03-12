@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/36e8b12227284530b95ae894790b1d34/artifacts
+end_time: 1741803480952
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 36e8b12227284530b95ae894790b1d34
+run_name: debonair-snipe-76
+run_uuid: 36e8b12227284530b95ae894790b1d34
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803479071
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/508fde2d23094bb68c71273162e8eff9/artifacts
+end_time: 1741803932089
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 508fde2d23094bb68c71273162e8eff9
+run_name: melodic-grub-157
+run_uuid: 508fde2d23094bb68c71273162e8eff9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803930309
+status: 3
+tags: []
+user_id: tomas_barhon

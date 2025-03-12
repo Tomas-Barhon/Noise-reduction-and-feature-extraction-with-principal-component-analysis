@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/14a161c5f2f341aa9e0be681a3e8ea3c/artifacts
+end_time: 1741803464430
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 14a161c5f2f341aa9e0be681a3e8ea3c
+run_name: persistent-pig-923
+run_uuid: 14a161c5f2f341aa9e0be681a3e8ea3c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803462473
+status: 3
+tags: []
+user_id: tomas_barhon

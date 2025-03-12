@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/848885d2a78848db8b69918c3f9d4cc3/artifacts
+end_time: 1741803879022
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 848885d2a78848db8b69918c3f9d4cc3
+run_name: calm-stag-924
+run_uuid: 848885d2a78848db8b69918c3f9d4cc3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803877413
+status: 3
+tags: []
+user_id: tomas_barhon

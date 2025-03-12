@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/6832f21cce4543e2bf5a17b3a1fc7752/artifacts
+end_time: 1741803185969
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6832f21cce4543e2bf5a17b3a1fc7752
+run_name: nervous-fly-535
+run_uuid: 6832f21cce4543e2bf5a17b3a1fc7752
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803183644
+status: 3
+tags: []
+user_id: tomas_barhon

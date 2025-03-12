@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/60ab17fe13e54febaf3a6dd2770c0ae1/artifacts
+end_time: 1741804140233
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 60ab17fe13e54febaf3a6dd2770c0ae1
+run_name: unequaled-steed-732
+run_uuid: 60ab17fe13e54febaf3a6dd2770c0ae1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804138567
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/8b443f246e374cebbb82fece40ead42b/artifacts
+end_time: 1741803751879
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8b443f246e374cebbb82fece40ead42b
+run_name: rare-horse-416
+run_uuid: 8b443f246e374cebbb82fece40ead42b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803749872
+status: 3
+tags: []
+user_id: tomas_barhon

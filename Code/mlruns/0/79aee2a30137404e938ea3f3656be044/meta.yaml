@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/79aee2a30137404e938ea3f3656be044/artifacts
+end_time: 1741803308632
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 79aee2a30137404e938ea3f3656be044
+run_name: stylish-shrimp-965
+run_uuid: 79aee2a30137404e938ea3f3656be044
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803306985
+status: 3
+tags: []
+user_id: tomas_barhon

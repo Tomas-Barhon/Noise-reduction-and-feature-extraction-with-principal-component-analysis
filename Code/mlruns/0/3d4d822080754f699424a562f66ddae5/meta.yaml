@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/3d4d822080754f699424a562f66ddae5/artifacts
+end_time: 1741804081106
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3d4d822080754f699424a562f66ddae5
+run_name: amusing-mole-937
+run_uuid: 3d4d822080754f699424a562f66ddae5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804079075
+status: 3
+tags: []
+user_id: tomas_barhon

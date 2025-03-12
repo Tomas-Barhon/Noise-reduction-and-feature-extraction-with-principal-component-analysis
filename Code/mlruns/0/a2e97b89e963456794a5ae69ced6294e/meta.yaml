@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a2e97b89e963456794a5ae69ced6294e/artifacts
+end_time: 1741803773797
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a2e97b89e963456794a5ae69ced6294e
+run_name: funny-grouse-761
+run_uuid: a2e97b89e963456794a5ae69ced6294e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803771773
+status: 3
+tags: []
+user_id: tomas_barhon

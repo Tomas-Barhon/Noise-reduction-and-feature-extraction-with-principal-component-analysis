@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/47e71d2c0d674db9af3cce8f054a305c/artifacts
+end_time: 1741803741771
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 47e71d2c0d674db9af3cce8f054a305c
+run_name: delicate-rook-820
+run_uuid: 47e71d2c0d674db9af3cce8f054a305c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803739928
+status: 3
+tags: []
+user_id: tomas_barhon

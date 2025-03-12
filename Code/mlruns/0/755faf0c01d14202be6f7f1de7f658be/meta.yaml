@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/755faf0c01d14202be6f7f1de7f658be/artifacts
+end_time: 1741803250838
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 755faf0c01d14202be6f7f1de7f658be
+run_name: powerful-smelt-448
+run_uuid: 755faf0c01d14202be6f7f1de7f658be
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803249062
+status: 3
+tags: []
+user_id: tomas_barhon

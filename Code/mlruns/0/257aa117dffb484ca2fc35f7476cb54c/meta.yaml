@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/257aa117dffb484ca2fc35f7476cb54c/artifacts
+end_time: 1741803583384
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 257aa117dffb484ca2fc35f7476cb54c
+run_name: salty-koi-385
+run_uuid: 257aa117dffb484ca2fc35f7476cb54c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803581662
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a73933ce6075423e9bda2e4aae337936/artifacts
+end_time: 1741803946776
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a73933ce6075423e9bda2e4aae337936
+run_name: worried-flea-277
+run_uuid: a73933ce6075423e9bda2e4aae337936
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803945065
+status: 3
+tags: []
+user_id: tomas_barhon

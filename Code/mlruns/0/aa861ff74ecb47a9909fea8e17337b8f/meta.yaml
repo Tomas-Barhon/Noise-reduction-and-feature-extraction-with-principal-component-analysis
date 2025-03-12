@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/aa861ff74ecb47a9909fea8e17337b8f/artifacts
+end_time: 1741803689458
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aa861ff74ecb47a9909fea8e17337b8f
+run_name: sneaky-foal-764
+run_uuid: aa861ff74ecb47a9909fea8e17337b8f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803686379
+status: 3
+tags: []
+user_id: tomas_barhon

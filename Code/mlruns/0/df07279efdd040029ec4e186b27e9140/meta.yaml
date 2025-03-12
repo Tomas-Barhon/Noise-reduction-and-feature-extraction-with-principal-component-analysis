@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/df07279efdd040029ec4e186b27e9140/artifacts
+end_time: 1741803860313
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: df07279efdd040029ec4e186b27e9140
+run_name: charming-mole-316
+run_uuid: df07279efdd040029ec4e186b27e9140
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803858574
+status: 3
+tags: []
+user_id: tomas_barhon

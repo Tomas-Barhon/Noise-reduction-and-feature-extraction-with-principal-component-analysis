@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c4253487a9a14ca3a8d62d6c2aa44dfe/artifacts
+end_time: 1741803944742
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c4253487a9a14ca3a8d62d6c2aa44dfe
+run_name: dashing-dove-630
+run_uuid: c4253487a9a14ca3a8d62d6c2aa44dfe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803942985
+status: 3
+tags: []
+user_id: tomas_barhon

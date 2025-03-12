@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/57c5ee54f192404eb3ebfd735bc0424d/artifacts
+end_time: 1741803188510
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 57c5ee54f192404eb3ebfd735bc0424d
+run_name: bemused-wasp-855
+run_uuid: 57c5ee54f192404eb3ebfd735bc0424d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803186476
+status: 3
+tags: []
+user_id: tomas_barhon

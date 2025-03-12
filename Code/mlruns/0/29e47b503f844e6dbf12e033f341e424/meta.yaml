@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/29e47b503f844e6dbf12e033f341e424/artifacts
+end_time: 1741804149593
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 29e47b503f844e6dbf12e033f341e424
+run_name: whimsical-dog-646
+run_uuid: 29e47b503f844e6dbf12e033f341e424
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804147997
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,5 +1,5 @@
 artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/07e45d15c01046e1bf68c4f57411ca88/artifacts
-end_time: null
+end_time: 1741803171018
 entry_point_name: ''
 experiment_id: '0'
 lifecycle_stage: active
@@ -10,6 +10,6 @@ source_name: ''
 source_type: 4
 source_version: ''
 start_time: 1741803168979
-status: 1
+status: 3
 tags: []
 user_id: tomas_barhon

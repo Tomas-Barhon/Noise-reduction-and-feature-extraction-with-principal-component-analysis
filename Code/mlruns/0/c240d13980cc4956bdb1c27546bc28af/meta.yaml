@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c240d13980cc4956bdb1c27546bc28af/artifacts
+end_time: 1741803516592
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c240d13980cc4956bdb1c27546bc28af
+run_name: wise-ram-181
+run_uuid: c240d13980cc4956bdb1c27546bc28af
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803514732
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c080e3527625408389e3d7f097726461/artifacts
+end_time: 1741803950802
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c080e3527625408389e3d7f097726461
+run_name: indecisive-zebra-522
+run_uuid: c080e3527625408389e3d7f097726461
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803949101
+status: 3
+tags: []
+user_id: tomas_barhon

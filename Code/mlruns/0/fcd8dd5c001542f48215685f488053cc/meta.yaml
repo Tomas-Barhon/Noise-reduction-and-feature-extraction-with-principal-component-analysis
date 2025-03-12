@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fcd8dd5c001542f48215685f488053cc/artifacts
+end_time: 1741803649934
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fcd8dd5c001542f48215685f488053cc
+run_name: gifted-zebra-351
+run_uuid: fcd8dd5c001542f48215685f488053cc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803648265
+status: 3
+tags: []
+user_id: tomas_barhon

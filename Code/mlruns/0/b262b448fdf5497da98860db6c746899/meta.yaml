@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/b262b448fdf5497da98860db6c746899/artifacts
+end_time: 1741803564759
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b262b448fdf5497da98860db6c746899
+run_name: marvelous-stoat-465
+run_uuid: b262b448fdf5497da98860db6c746899
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803563130
+status: 3
+tags: []
+user_id: tomas_barhon

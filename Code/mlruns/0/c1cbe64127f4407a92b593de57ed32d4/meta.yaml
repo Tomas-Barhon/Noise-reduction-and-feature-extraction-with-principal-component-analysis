@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c1cbe64127f4407a92b593de57ed32d4/artifacts
+end_time: 1741803734087
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c1cbe64127f4407a92b593de57ed32d4
+run_name: rogue-pig-911
+run_uuid: c1cbe64127f4407a92b593de57ed32d4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803731912
+status: 3
+tags: []
+user_id: tomas_barhon

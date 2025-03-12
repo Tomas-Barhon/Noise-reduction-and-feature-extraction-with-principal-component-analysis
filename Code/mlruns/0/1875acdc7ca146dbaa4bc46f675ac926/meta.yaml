@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1875acdc7ca146dbaa4bc46f675ac926/artifacts
+end_time: 1741803852497
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1875acdc7ca146dbaa4bc46f675ac926
+run_name: debonair-toad-650
+run_uuid: 1875acdc7ca146dbaa4bc46f675ac926
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803850686
+status: 3
+tags: []
+user_id: tomas_barhon

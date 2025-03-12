@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/0c795188dac7479fa8c6ff6ade23fec7/artifacts
+end_time: 1741803455083
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0c795188dac7479fa8c6ff6ade23fec7
+run_name: resilient-midge-611
+run_uuid: 0c795188dac7479fa8c6ff6ade23fec7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803453268
+status: 3
+tags: []
+user_id: tomas_barhon

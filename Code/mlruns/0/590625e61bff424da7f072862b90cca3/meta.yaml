@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/590625e61bff424da7f072862b90cca3/artifacts
+end_time: 1741803236813
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 590625e61bff424da7f072862b90cca3
+run_name: welcoming-squid-374
+run_uuid: 590625e61bff424da7f072862b90cca3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803234984
+status: 3
+tags: []
+user_id: tomas_barhon

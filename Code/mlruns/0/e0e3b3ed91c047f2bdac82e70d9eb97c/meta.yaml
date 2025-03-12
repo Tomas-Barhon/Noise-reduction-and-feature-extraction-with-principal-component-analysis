@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/e0e3b3ed91c047f2bdac82e70d9eb97c/artifacts
+end_time: 1741803647931
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e0e3b3ed91c047f2bdac82e70d9eb97c
+run_name: stately-mouse-191
+run_uuid: e0e3b3ed91c047f2bdac82e70d9eb97c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803646274
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/3614ef809e5d43689ae3414304357070/artifacts
+end_time: 1741804052604
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3614ef809e5d43689ae3414304357070
+run_name: nervous-elk-252
+run_uuid: 3614ef809e5d43689ae3414304357070
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804050581
+status: 3
+tags: []
+user_id: tomas_barhon

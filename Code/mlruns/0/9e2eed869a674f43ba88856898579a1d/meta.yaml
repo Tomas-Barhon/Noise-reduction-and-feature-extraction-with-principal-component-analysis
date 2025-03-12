@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9e2eed869a674f43ba88856898579a1d/artifacts
+end_time: 1741803243887
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9e2eed869a674f43ba88856898579a1d
+run_name: upset-hound-505
+run_uuid: 9e2eed869a674f43ba88856898579a1d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803242006
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/aae096696a1a4f33b23b5853ce586ebd/artifacts
+end_time: 1741803248611
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aae096696a1a4f33b23b5853ce586ebd
+run_name: rare-vole-774
+run_uuid: aae096696a1a4f33b23b5853ce586ebd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803246783
+status: 3
+tags: []
+user_id: tomas_barhon

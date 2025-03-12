@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/d1bdec87787b458b9117cb42ede2d8dc/artifacts
+end_time: 1741804119671
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d1bdec87787b458b9117cb42ede2d8dc
+run_name: brawny-duck-342
+run_uuid: d1bdec87787b458b9117cb42ede2d8dc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804117925
+status: 3
+tags: []
+user_id: tomas_barhon

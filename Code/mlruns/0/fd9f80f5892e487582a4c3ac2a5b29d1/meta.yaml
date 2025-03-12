@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fd9f80f5892e487582a4c3ac2a5b29d1/artifacts
+end_time: 1741803241535
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fd9f80f5892e487582a4c3ac2a5b29d1
+run_name: luminous-doe-284
+run_uuid: fd9f80f5892e487582a4c3ac2a5b29d1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803239660
+status: 3
+tags: []
+user_id: tomas_barhon

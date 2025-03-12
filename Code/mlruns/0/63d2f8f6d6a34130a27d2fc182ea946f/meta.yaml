@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/63d2f8f6d6a34130a27d2fc182ea946f/artifacts
+end_time: 1741803802408
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 63d2f8f6d6a34130a27d2fc182ea946f
+run_name: gentle-turtle-679
+run_uuid: 63d2f8f6d6a34130a27d2fc182ea946f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803800188
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9291b68919484a28933e1d615983f80b/artifacts
+end_time: 1741803306758
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9291b68919484a28933e1d615983f80b
+run_name: fun-lark-966
+run_uuid: 9291b68919484a28933e1d615983f80b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803305049
+status: 3
+tags: []
+user_id: tomas_barhon

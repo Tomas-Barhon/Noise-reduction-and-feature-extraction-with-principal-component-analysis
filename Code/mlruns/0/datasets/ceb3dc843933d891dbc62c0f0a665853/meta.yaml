@@ -1,0 +1,42 @@
+digest: 605e5339
+name: dataset
+profile: '{"num_rows": 2723, "num_elements": 111643}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "BTC / Addresses, active,
+  count", "required": true}, {"type": "double", "name": "BTC / NVT, adjusted, 90d
+  MA", "required": true}, {"type": "double", "name": "BTC / NVT, adjusted", "required":
+  true}, {"type": "double", "name": "BTC / Flow, in, to exchanges, USD", "required":
+  true}, {"type": "double", "name": "BTC / Flow, out, from exchanges, USD", "required":
+  true}, {"type": "double", "name": "BTC / Fees, transaction, mean, USD", "required":
+  true}, {"type": "double", "name": "BTC / Miner revenue, USD", "required": true},
+  {"type": "double", "name": "BTC / Capitalization, realized, USD", "required": true},
+  {"type": "double", "name": "BTC / Volatility, daily returns, 30d", "required": true},
+  {"type": "double", "name": "BTC / Volatility, daily returns, 180d", "required":
+  true}, {"type": "double", "name": "BTC / Difficulty, last", "required": true}, {"type":
+  "double", "name": "BTC / Hash rate, mean", "required": true}, {"type": "double",
+  "name": "BTC / Revenue, per hash unit, USD", "required": true}, {"type": "double",
+  "name": "BTC / Supply, Miner, held by all mining entities, USD", "required": true},
+  {"type": "double", "name": "BTC / Block, size, mean, bytes", "required": true},
+  {"type": "double", "name": "BTC / Block, weight, mean", "required": true}, {"type":
+  "double", "name": "BTC / Issuance, continuous, percent, daily", "required": true},
+  {"type": "double", "name": "BTC / Network distribution factor", "required": true},
+  {"type": "double", "name": "BTC / Transactions, count", "required": true}, {"type":
+  "double", "name": "Google_btc_search", "required": true}, {"type": "double", "name":
+  "Wiki_btc_search", "required": true}, {"type": "double", "name": "Close_^DJI", "required":
+  true}, {"type": "double", "name": "Close_^GSPC", "required": true}, {"type": "double",
+  "name": "Close_GC=F", "required": true}, {"type": "double", "name": "Close_^VIX",
+  "required": true}, {"type": "double", "name": "Close_^IXIC", "required": true},
+  {"type": "double", "name": "Close_SMH", "required": true}, {"type": "double", "name":
+  "Close_VGT", "required": true}, {"type": "double", "name": "Close_XSD", "required":
+  true}, {"type": "double", "name": "Close_IYW", "required": true}, {"type": "double",
+  "name": "Close_FTEC", "required": true}, {"type": "double", "name": "Close_IGV",
+  "required": true}, {"type": "double", "name": "Close_QQQ", "required": true}, {"type":
+  "double", "name": "Google_crypto_search", "required": true}, {"type": "double",
+  "name": "Wiki_crypto_search", "required": true}, {"type": "double", "name": "RGDP_US",
+  "required": true}, {"type": "double", "name": "RGDP_PC_US", "required": true}, {"type":
+  "double", "name": "CPI_US", "required": true}, {"type": "double", "name": "M2_US",
+  "required": true}, {"type": "double", "name": "USD_EUR_rate", "required": true},
+  {"type": "double", "name": "BTC-USD", "required": true}]}'
+source: '{"tags": {"mlflow.user": "tomas_barhon", "mlflow.source.name": "/home/tomas_barhon/Code/Bachelor
+  thesis/Code/btc_scikit_price.py", "mlflow.source.type": "LOCAL", "mlflow.source.git.commit":
+  "d346b34087f5a4786b1ae5f340c77cf2cd73bf52"}}'
+source_type: code

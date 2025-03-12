@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/7353f99c8b07482a9e961cd615d1ca68/artifacts
+end_time: 1741803559411
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7353f99c8b07482a9e961cd615d1ca68
+run_name: bittersweet-gull-670
+run_uuid: 7353f99c8b07482a9e961cd615d1ca68
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803557722
+status: 3
+tags: []
+user_id: tomas_barhon

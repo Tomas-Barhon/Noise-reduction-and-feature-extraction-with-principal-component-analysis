@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1f8c6bec95d440c49240d7ddbc2184f0/artifacts
+end_time: 1741804110596
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1f8c6bec95d440c49240d7ddbc2184f0
+run_name: sneaky-fish-537
+run_uuid: 1f8c6bec95d440c49240d7ddbc2184f0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804108943
+status: 3
+tags: []
+user_id: tomas_barhon

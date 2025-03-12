@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/2ea9732a44ba4ce58a58133e484c96c9/artifacts
+end_time: 1741803685968
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2ea9732a44ba4ce58a58133e484c96c9
+run_name: sneaky-slug-621
+run_uuid: 2ea9732a44ba4ce58a58133e484c96c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803683066
+status: 3
+tags: []
+user_id: tomas_barhon

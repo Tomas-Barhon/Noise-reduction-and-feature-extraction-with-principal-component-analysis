@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/aec2776ccf484bbaa479f9d4a7d40794/artifacts
+end_time: 1741803995941
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aec2776ccf484bbaa479f9d4a7d40794
+run_name: mysterious-dog-669
+run_uuid: aec2776ccf484bbaa479f9d4a7d40794
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803993956
+status: 3
+tags: []
+user_id: tomas_barhon

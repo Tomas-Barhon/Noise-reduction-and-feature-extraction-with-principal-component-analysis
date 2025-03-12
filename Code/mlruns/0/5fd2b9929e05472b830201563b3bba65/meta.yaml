@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/5fd2b9929e05472b830201563b3bba65/artifacts
+end_time: 1741803541156
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5fd2b9929e05472b830201563b3bba65
+run_name: nosy-squirrel-170
+run_uuid: 5fd2b9929e05472b830201563b3bba65
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803539468
+status: 3
+tags: []
+user_id: tomas_barhon

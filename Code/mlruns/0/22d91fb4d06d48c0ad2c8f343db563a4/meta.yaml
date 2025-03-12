@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/22d91fb4d06d48c0ad2c8f343db563a4/artifacts
+end_time: 1741803880835
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 22d91fb4d06d48c0ad2c8f343db563a4
+run_name: angry-owl-322
+run_uuid: 22d91fb4d06d48c0ad2c8f343db563a4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803879223
+status: 3
+tags: []
+user_id: tomas_barhon

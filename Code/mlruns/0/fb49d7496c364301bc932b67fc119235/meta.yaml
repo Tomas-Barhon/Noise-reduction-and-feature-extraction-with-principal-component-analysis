@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fb49d7496c364301bc932b67fc119235/artifacts
+end_time: 1741803504093
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fb49d7496c364301bc932b67fc119235
+run_name: inquisitive-bee-214
+run_uuid: fb49d7496c364301bc932b67fc119235
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803501629
+status: 3
+tags: []
+user_id: tomas_barhon

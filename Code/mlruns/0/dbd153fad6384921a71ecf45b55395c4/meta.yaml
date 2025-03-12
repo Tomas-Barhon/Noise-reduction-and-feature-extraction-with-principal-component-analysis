@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/dbd153fad6384921a71ecf45b55395c4/artifacts
+end_time: 1741803379894
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dbd153fad6384921a71ecf45b55395c4
+run_name: adorable-worm-999
+run_uuid: dbd153fad6384921a71ecf45b55395c4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803378172
+status: 3
+tags: []
+user_id: tomas_barhon

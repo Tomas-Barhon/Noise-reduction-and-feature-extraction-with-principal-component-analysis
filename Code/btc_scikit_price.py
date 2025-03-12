@@ -28,7 +28,7 @@ tf.config.get_visible_devices("GPU")
 np.random.seed(42)
 tf.random.set_seed(42)
 
-mlflow.autolog()
+mlflow.sklearn.autolog(disable=True)
 pipeline = Pipeline(crypto_tick = "btc")
 pipeline.set_beginning(start_date = "2014-9-17")
 pipeline.preprocess_dataset()

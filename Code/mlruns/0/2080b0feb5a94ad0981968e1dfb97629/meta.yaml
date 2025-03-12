@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/2080b0feb5a94ad0981968e1dfb97629/artifacts
+end_time: 1741803427769
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2080b0feb5a94ad0981968e1dfb97629
+run_name: respected-zebra-47
+run_uuid: 2080b0feb5a94ad0981968e1dfb97629
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803425906
+status: 3
+tags: []
+user_id: tomas_barhon

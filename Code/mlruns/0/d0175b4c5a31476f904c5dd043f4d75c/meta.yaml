@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/d0175b4c5a31476f904c5dd043f4d75c/artifacts
+end_time: 1741804180857
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d0175b4c5a31476f904c5dd043f4d75c
+run_name: blushing-bass-766
+run_uuid: d0175b4c5a31476f904c5dd043f4d75c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804179141
+status: 3
+tags: []
+user_id: tomas_barhon

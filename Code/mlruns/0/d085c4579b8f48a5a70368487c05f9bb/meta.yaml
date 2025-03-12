@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/d085c4579b8f48a5a70368487c05f9bb/artifacts
+end_time: 1741803322285
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d085c4579b8f48a5a70368487c05f9bb
+run_name: adaptable-trout-519
+run_uuid: d085c4579b8f48a5a70368487c05f9bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803320619
+status: 3
+tags: []
+user_id: tomas_barhon

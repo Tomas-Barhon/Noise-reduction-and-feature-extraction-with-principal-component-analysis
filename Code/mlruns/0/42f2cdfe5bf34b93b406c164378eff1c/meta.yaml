@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/42f2cdfe5bf34b93b406c164378eff1c/artifacts
+end_time: 1741803539261
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 42f2cdfe5bf34b93b406c164378eff1c
+run_name: spiffy-mole-597
+run_uuid: 42f2cdfe5bf34b93b406c164378eff1c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803537440
+status: 3
+tags: []
+user_id: tomas_barhon

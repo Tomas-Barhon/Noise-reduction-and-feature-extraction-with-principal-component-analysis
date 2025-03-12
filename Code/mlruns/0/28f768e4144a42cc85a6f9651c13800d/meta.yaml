@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/28f768e4144a42cc85a6f9651c13800d/artifacts
+end_time: 1741803848537
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 28f768e4144a42cc85a6f9651c13800d
+run_name: thoughtful-elk-938
+run_uuid: 28f768e4144a42cc85a6f9651c13800d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803846857
+status: 3
+tags: []
+user_id: tomas_barhon

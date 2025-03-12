@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/0c612cafbb29492bb3edf1421c57b2ec/artifacts
+end_time: 1741803834850
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0c612cafbb29492bb3edf1421c57b2ec
+run_name: treasured-roo-156
+run_uuid: 0c612cafbb29492bb3edf1421c57b2ec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803833065
+status: 3
+tags: []
+user_id: tomas_barhon

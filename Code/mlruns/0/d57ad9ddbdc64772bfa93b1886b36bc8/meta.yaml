@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/d57ad9ddbdc64772bfa93b1886b36bc8/artifacts
+end_time: 1741803239138
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d57ad9ddbdc64772bfa93b1886b36bc8
+run_name: resilient-ram-809
+run_uuid: d57ad9ddbdc64772bfa93b1886b36bc8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803237315
+status: 3
+tags: []
+user_id: tomas_barhon

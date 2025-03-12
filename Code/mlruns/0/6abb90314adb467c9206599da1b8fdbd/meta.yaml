@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/6abb90314adb467c9206599da1b8fdbd/artifacts
+end_time: 1741803779274
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6abb90314adb467c9206599da1b8fdbd
+run_name: debonair-cod-157
+run_uuid: 6abb90314adb467c9206599da1b8fdbd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803777175
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1d85893acc2d4e8fa655b5650606b032/artifacts
+end_time: 1741803761955
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1d85893acc2d4e8fa655b5650606b032
+run_name: sincere-lamb-75
+run_uuid: 1d85893acc2d4e8fa655b5650606b032
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803759936
+status: 3
+tags: []
+user_id: tomas_barhon

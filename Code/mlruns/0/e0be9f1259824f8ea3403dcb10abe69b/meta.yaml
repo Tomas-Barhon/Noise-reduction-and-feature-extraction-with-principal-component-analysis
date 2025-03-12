@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/e0be9f1259824f8ea3403dcb10abe69b/artifacts
+end_time: 1741804217412
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e0be9f1259824f8ea3403dcb10abe69b
+run_name: big-grouse-56
+run_uuid: e0be9f1259824f8ea3403dcb10abe69b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804215639
+status: 3
+tags: []
+user_id: tomas_barhon

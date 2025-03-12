@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/4f54dfbc2e6743ef94811ab3692b730c/artifacts
+end_time: 1741803960562
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4f54dfbc2e6743ef94811ab3692b730c
+run_name: upbeat-cat-63
+run_uuid: 4f54dfbc2e6743ef94811ab3692b730c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803958708
+status: 3
+tags: []
+user_id: tomas_barhon

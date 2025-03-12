@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fa82534b86774f1a9dcb3e7e84f01806/artifacts
+end_time: 1741803658377
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fa82534b86774f1a9dcb3e7e84f01806
+run_name: melodic-sheep-627
+run_uuid: fa82534b86774f1a9dcb3e7e84f01806
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803656461
+status: 3
+tags: []
+user_id: tomas_barhon

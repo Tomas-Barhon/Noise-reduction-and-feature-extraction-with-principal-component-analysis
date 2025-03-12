@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/8c414e6f184947b5b299800bf0d54bac/artifacts
+end_time: 1741804198032
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8c414e6f184947b5b299800bf0d54bac
+run_name: grandiose-carp-286
+run_uuid: 8c414e6f184947b5b299800bf0d54bac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804196313
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/822ad2579db049218175cdf66f7b8b11/artifacts
+end_time: 1741803919969
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 822ad2579db049218175cdf66f7b8b11
+run_name: funny-dog-54
+run_uuid: 822ad2579db049218175cdf66f7b8b11
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803918350
+status: 3
+tags: []
+user_id: tomas_barhon

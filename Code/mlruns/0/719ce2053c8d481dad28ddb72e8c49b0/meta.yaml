@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/719ce2053c8d481dad28ddb72e8c49b0/artifacts
+end_time: 1741803974977
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 719ce2053c8d481dad28ddb72e8c49b0
+run_name: gaudy-crab-849
+run_uuid: 719ce2053c8d481dad28ddb72e8c49b0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803973084
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/bbaa7fd265ed465ba8b7d27a27b0cd4d/artifacts
+end_time: 1741803616204
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bbaa7fd265ed465ba8b7d27a27b0cd4d
+run_name: victorious-perch-570
+run_uuid: bbaa7fd265ed465ba8b7d27a27b0cd4d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803614579
+status: 3
+tags: []
+user_id: tomas_barhon

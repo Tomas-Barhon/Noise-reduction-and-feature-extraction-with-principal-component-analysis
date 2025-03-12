@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/33a578447ea642999ff6c1af623e51e9/artifacts
+end_time: 1741803297201
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 33a578447ea642999ff6c1af623e51e9
+run_name: wise-colt-535
+run_uuid: 33a578447ea642999ff6c1af623e51e9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803295474
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9d9930eda7d44c989c211fea796c238b/artifacts
+end_time: 1741804025499
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9d9930eda7d44c989c211fea796c238b
+run_name: gaudy-lamb-598
+run_uuid: 9d9930eda7d44c989c211fea796c238b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804022999
+status: 3
+tags: []
+user_id: tomas_barhon

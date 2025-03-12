@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/ca8581786c164aeb9911785bf495ee7d/artifacts
+end_time: 1741803384174
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ca8581786c164aeb9911785bf495ee7d
+run_name: rumbling-crane-59
+run_uuid: ca8581786c164aeb9911785bf495ee7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803382421
+status: 3
+tags: []
+user_id: tomas_barhon

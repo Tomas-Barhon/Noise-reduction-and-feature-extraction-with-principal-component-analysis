@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/27a90a10a686438a8239bb366518078d/artifacts
+end_time: 1741804196067
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27a90a10a686438a8239bb366518078d
+run_name: big-wolf-115
+run_uuid: 27a90a10a686438a8239bb366518078d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804194231
+status: 3
+tags: []
+user_id: tomas_barhon

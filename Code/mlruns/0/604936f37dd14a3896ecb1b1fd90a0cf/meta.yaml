@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/604936f37dd14a3896ecb1b1fd90a0cf/artifacts
+end_time: 1741803537214
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 604936f37dd14a3896ecb1b1fd90a0cf
+run_name: illustrious-lamb-385
+run_uuid: 604936f37dd14a3896ecb1b1fd90a0cf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803535478
+status: 3
+tags: []
+user_id: tomas_barhon

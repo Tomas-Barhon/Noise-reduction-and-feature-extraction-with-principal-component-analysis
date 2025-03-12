@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/b3bfb9aea1244c508b1f72777fb9d49f/artifacts
+end_time: 1741803581426
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b3bfb9aea1244c508b1f72777fb9d49f
+run_name: caring-worm-80
+run_uuid: b3bfb9aea1244c508b1f72777fb9d49f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803579775
+status: 3
+tags: []
+user_id: tomas_barhon

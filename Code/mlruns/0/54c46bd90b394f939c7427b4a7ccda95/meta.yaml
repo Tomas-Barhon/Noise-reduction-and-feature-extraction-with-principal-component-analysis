@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/54c46bd90b394f939c7427b4a7ccda95/artifacts
+end_time: 1741803222232
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 54c46bd90b394f939c7427b4a7ccda95
+run_name: nebulous-ape-403
+run_uuid: 54c46bd90b394f939c7427b4a7ccda95
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803220167
+status: 3
+tags: []
+user_id: tomas_barhon

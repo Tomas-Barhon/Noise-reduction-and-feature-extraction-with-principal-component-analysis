@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/e8f9ff7a28fb4ed4a510535f82880d9f/artifacts
+end_time: 1741804138306
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e8f9ff7a28fb4ed4a510535f82880d9f
+run_name: blushing-fish-422
+run_uuid: e8f9ff7a28fb4ed4a510535f82880d9f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804136651
+status: 3
+tags: []
+user_id: tomas_barhon

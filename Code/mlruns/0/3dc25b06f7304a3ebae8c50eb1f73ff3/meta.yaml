@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/3dc25b06f7304a3ebae8c50eb1f73ff3/artifacts
+end_time: 1741804027967
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3dc25b06f7304a3ebae8c50eb1f73ff3
+run_name: luxuriant-worm-960
+run_uuid: 3dc25b06f7304a3ebae8c50eb1f73ff3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804025906
+status: 3
+tags: []
+user_id: tomas_barhon

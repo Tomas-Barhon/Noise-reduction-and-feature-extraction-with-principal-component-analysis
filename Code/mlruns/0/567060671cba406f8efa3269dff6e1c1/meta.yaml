@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/567060671cba406f8efa3269dff6e1c1/artifacts
+end_time: 1741803877173
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 567060671cba406f8efa3269dff6e1c1
+run_name: mysterious-duck-740
+run_uuid: 567060671cba406f8efa3269dff6e1c1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803875536
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/dfcf17c036274a7aa3a1de2b4908ccaf/artifacts
+end_time: 1741803318224
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dfcf17c036274a7aa3a1de2b4908ccaf
+run_name: mysterious-bat-433
+run_uuid: dfcf17c036274a7aa3a1de2b4908ccaf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803316505
+status: 3
+tags: []
+user_id: tomas_barhon

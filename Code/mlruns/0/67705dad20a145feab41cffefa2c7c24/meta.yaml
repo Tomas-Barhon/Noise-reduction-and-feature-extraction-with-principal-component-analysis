@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/67705dad20a145feab41cffefa2c7c24/artifacts
+end_time: 1741803217221
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 67705dad20a145feab41cffefa2c7c24
+run_name: rumbling-horse-924
+run_uuid: 67705dad20a145feab41cffefa2c7c24
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803215185
+status: 3
+tags: []
+user_id: tomas_barhon

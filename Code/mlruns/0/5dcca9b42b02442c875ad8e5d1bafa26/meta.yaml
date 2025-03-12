@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/5dcca9b42b02442c875ad8e5d1bafa26/artifacts
+end_time: 1741803409693
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5dcca9b42b02442c875ad8e5d1bafa26
+run_name: adorable-moose-483
+run_uuid: 5dcca9b42b02442c875ad8e5d1bafa26
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803407908
+status: 3
+tags: []
+user_id: tomas_barhon

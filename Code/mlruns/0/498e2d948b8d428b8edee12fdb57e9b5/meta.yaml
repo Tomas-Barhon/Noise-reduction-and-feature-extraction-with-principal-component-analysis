@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/498e2d948b8d428b8edee12fdb57e9b5/artifacts
+end_time: 1741803696893
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 498e2d948b8d428b8edee12fdb57e9b5
+run_name: rare-ape-509
+run_uuid: 498e2d948b8d428b8edee12fdb57e9b5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803694983
+status: 3
+tags: []
+user_id: tomas_barhon

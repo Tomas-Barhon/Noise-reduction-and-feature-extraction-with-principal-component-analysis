@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a0f689664ee14b939eb98675722defac/artifacts
+end_time: 1741803836841
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a0f689664ee14b939eb98675722defac
+run_name: useful-lark-441
+run_uuid: a0f689664ee14b939eb98675722defac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803835008
+status: 3
+tags: []
+user_id: tomas_barhon

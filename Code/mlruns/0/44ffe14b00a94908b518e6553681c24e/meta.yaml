@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/44ffe14b00a94908b518e6553681c24e/artifacts
+end_time: 1741803936387
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 44ffe14b00a94908b518e6553681c24e
+run_name: welcoming-rat-699
+run_uuid: 44ffe14b00a94908b518e6553681c24e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803934543
+status: 3
+tags: []
+user_id: tomas_barhon

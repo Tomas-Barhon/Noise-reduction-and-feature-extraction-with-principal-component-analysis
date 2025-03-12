@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/2dc4ea38e9784c01b913c09d44e5b470/artifacts
+end_time: 1741804204643
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2dc4ea38e9784c01b913c09d44e5b470
+run_name: amusing-doe-462
+run_uuid: 2dc4ea38e9784c01b913c09d44e5b470
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804202772
+status: 3
+tags: []
+user_id: tomas_barhon

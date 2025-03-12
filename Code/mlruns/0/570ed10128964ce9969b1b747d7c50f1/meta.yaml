@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/570ed10128964ce9969b1b747d7c50f1/artifacts
+end_time: 1741804007127
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 570ed10128964ce9969b1b747d7c50f1
+run_name: monumental-bee-853
+run_uuid: 570ed10128964ce9969b1b747d7c50f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804005307
+status: 3
+tags: []
+user_id: tomas_barhon

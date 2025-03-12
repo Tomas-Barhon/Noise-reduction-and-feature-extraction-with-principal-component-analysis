@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/885bb0e543684179827e598b2cf25a0c/artifacts
+end_time: 1741803263522
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 885bb0e543684179827e598b2cf25a0c
+run_name: thundering-owl-839
+run_uuid: 885bb0e543684179827e598b2cf25a0c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803261390
+status: 3
+tags: []
+user_id: tomas_barhon

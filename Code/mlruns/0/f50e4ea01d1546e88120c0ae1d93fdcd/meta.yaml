@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f50e4ea01d1546e88120c0ae1d93fdcd/artifacts
+end_time: 1741803204187
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f50e4ea01d1546e88120c0ae1d93fdcd
+run_name: crawling-shrimp-420
+run_uuid: f50e4ea01d1546e88120c0ae1d93fdcd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803201800
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/47240077538d4c4d823cad53b2e602b2/artifacts
+end_time: 1741804054976
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 47240077538d4c4d823cad53b2e602b2
+run_name: persistent-mink-278
+run_uuid: 47240077538d4c4d823cad53b2e602b2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804053054
+status: 3
+tags: []
+user_id: tomas_barhon

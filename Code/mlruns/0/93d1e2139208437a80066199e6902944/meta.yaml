@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/93d1e2139208437a80066199e6902944/artifacts
+end_time: 1741803574228
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 93d1e2139208437a80066199e6902944
+run_name: polite-crow-606
+run_uuid: 93d1e2139208437a80066199e6902944
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803572442
+status: 3
+tags: []
+user_id: tomas_barhon

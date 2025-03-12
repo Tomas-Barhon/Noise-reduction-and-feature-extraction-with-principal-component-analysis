@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/97362ae6a795406da386ff2bf8edd18b/artifacts
+end_time: 1741803403099
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 97362ae6a795406da386ff2bf8edd18b
+run_name: valuable-stoat-288
+run_uuid: 97362ae6a795406da386ff2bf8edd18b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803401313
+status: 3
+tags: []
+user_id: tomas_barhon

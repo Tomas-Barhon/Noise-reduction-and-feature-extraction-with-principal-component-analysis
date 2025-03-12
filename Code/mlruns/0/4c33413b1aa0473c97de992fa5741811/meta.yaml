@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/4c33413b1aa0473c97de992fa5741811/artifacts
+end_time: 1741803610232
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4c33413b1aa0473c97de992fa5741811
+run_name: painted-moth-229
+run_uuid: 4c33413b1aa0473c97de992fa5741811
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803608680
+status: 3
+tags: []
+user_id: tomas_barhon

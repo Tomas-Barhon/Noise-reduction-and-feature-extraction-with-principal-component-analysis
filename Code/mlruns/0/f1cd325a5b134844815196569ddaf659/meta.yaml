@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f1cd325a5b134844815196569ddaf659/artifacts
+end_time: 1741804200245
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f1cd325a5b134844815196569ddaf659
+run_name: incongruous-gull-530
+run_uuid: f1cd325a5b134844815196569ddaf659
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804198508
+status: 3
+tags: []
+user_id: tomas_barhon

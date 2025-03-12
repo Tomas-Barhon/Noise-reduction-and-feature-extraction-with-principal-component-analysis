@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/03a300f622ae4c22952b7f1d3ce7704e/artifacts
+end_time: 1741803255678
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 03a300f622ae4c22952b7f1d3ce7704e
+run_name: popular-worm-838
+run_uuid: 03a300f622ae4c22952b7f1d3ce7704e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803253723
+status: 3
+tags: []
+user_id: tomas_barhon

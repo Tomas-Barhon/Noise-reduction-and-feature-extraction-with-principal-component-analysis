@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/6c8f4e29b374496f86c894e0a826b90f/artifacts
+end_time: 1741803367915
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6c8f4e29b374496f86c894e0a826b90f
+run_name: stylish-colt-425
+run_uuid: 6c8f4e29b374496f86c894e0a826b90f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803366278
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/128db06825c846a3a5693ee7ae054864/artifacts
+end_time: 1741804004831
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 128db06825c846a3a5693ee7ae054864
+run_name: funny-penguin-44
+run_uuid: 128db06825c846a3a5693ee7ae054864
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804002985
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/27110d2e16514f9fa0483c4d6aeae05b/artifacts
+end_time: 1741803340256
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27110d2e16514f9fa0483c4d6aeae05b
+run_name: fun-fox-922
+run_uuid: 27110d2e16514f9fa0483c4d6aeae05b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803338597
+status: 3
+tags: []
+user_id: tomas_barhon

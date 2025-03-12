@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/aa53fcd16b714110ad2462b8a2fb8b8d/artifacts
+end_time: 1741803351787
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aa53fcd16b714110ad2462b8a2fb8b8d
+run_name: melodic-kit-176
+run_uuid: aa53fcd16b714110ad2462b8a2fb8b8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803350150
+status: 3
+tags: []
+user_id: tomas_barhon

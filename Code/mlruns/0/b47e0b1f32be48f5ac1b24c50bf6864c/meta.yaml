@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/b47e0b1f32be48f5ac1b24c50bf6864c/artifacts
+end_time: 1741804019413
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b47e0b1f32be48f5ac1b24c50bf6864c
+run_name: unruly-skunk-917
+run_uuid: b47e0b1f32be48f5ac1b24c50bf6864c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804017078
+status: 3
+tags: []
+user_id: tomas_barhon

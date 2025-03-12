@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a5e47273fdba40dcb71fccdc970cda0e/artifacts
+end_time: 1741803829278
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a5e47273fdba40dcb71fccdc970cda0e
+run_name: vaunted-fawn-523
+run_uuid: a5e47273fdba40dcb71fccdc970cda0e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803827605
+status: 3
+tags: []
+user_id: tomas_barhon

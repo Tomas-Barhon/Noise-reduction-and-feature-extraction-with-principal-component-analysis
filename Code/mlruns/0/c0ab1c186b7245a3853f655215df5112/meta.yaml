@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c0ab1c186b7245a3853f655215df5112/artifacts
+end_time: 1741803246246
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c0ab1c186b7245a3853f655215df5112
+run_name: legendary-stork-516
+run_uuid: c0ab1c186b7245a3853f655215df5112
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803244366
+status: 3
+tags: []
+user_id: tomas_barhon

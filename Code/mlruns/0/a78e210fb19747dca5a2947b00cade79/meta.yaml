@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a78e210fb19747dca5a2947b00cade79/artifacts
+end_time: 1741803369837
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a78e210fb19747dca5a2947b00cade79
+run_name: abrasive-horse-650
+run_uuid: a78e210fb19747dca5a2947b00cade79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803368195
+status: 3
+tags: []
+user_id: tomas_barhon

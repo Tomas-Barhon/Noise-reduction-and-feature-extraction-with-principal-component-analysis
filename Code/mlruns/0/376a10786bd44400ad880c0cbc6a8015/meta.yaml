@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/376a10786bd44400ad880c0cbc6a8015/artifacts
+end_time: 1741803173331
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 376a10786bd44400ad880c0cbc6a8015
+run_name: bemused-fowl-845
+run_uuid: 376a10786bd44400ad880c0cbc6a8015
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803171529
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/38dd358379ee489cb4a227d1723c84fa/artifacts
+end_time: 1741803606473
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 38dd358379ee489cb4a227d1723c84fa
+run_name: overjoyed-mink-425
+run_uuid: 38dd358379ee489cb4a227d1723c84fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803604788
+status: 3
+tags: []
+user_id: tomas_barhon

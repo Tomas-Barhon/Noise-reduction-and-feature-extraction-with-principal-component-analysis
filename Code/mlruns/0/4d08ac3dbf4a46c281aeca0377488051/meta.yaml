@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/4d08ac3dbf4a46c281aeca0377488051/artifacts
+end_time: 1741803965443
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4d08ac3dbf4a46c281aeca0377488051
+run_name: efficient-calf-651
+run_uuid: 4d08ac3dbf4a46c281aeca0377488051
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803963379
+status: 3
+tags: []
+user_id: tomas_barhon

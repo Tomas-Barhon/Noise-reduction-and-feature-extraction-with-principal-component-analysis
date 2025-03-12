@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/d7909ac27722474b93e4edb092063341/artifacts
+end_time: 1741803962920
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d7909ac27722474b93e4edb092063341
+run_name: mysterious-pug-979
+run_uuid: d7909ac27722474b93e4edb092063341
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803960908
+status: 3
+tags: []
+user_id: tomas_barhon

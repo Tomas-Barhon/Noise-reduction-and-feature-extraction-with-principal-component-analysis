@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/4290af7446b946ed809dd20cc709c549/artifacts
+end_time: 1741803430296
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4290af7446b946ed809dd20cc709c549
+run_name: colorful-goat-303
+run_uuid: 4290af7446b946ed809dd20cc709c549
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803428280
+status: 3
+tags: []
+user_id: tomas_barhon

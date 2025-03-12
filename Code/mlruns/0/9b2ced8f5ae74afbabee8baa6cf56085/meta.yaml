@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9b2ced8f5ae74afbabee8baa6cf56085/artifacts
+end_time: 1741803180822
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9b2ced8f5ae74afbabee8baa6cf56085
+run_name: abrasive-gull-207
+run_uuid: 9b2ced8f5ae74afbabee8baa6cf56085
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803178914
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/404248a32e08444ca803bd94c33be0c7/artifacts
+end_time: 1741804143795
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 404248a32e08444ca803bd94c33be0c7
+run_name: carefree-flea-881
+run_uuid: 404248a32e08444ca803bd94c33be0c7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804142186
+status: 3
+tags: []
+user_id: tomas_barhon

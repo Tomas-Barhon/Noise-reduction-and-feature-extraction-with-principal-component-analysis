@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/7e87d44a5cae43b8a04c4e7ecf9d3666/artifacts
+end_time: 1741803524944
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7e87d44a5cae43b8a04c4e7ecf9d3666
+run_name: whimsical-wren-16
+run_uuid: 7e87d44a5cae43b8a04c4e7ecf9d3666
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803522888
+status: 3
+tags: []
+user_id: tomas_barhon

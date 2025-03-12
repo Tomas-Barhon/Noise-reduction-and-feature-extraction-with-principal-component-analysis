@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a14775d9d3364a28854053c250b0fe84/artifacts
+end_time: 1741803844846
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a14775d9d3364a28854053c250b0fe84
+run_name: lyrical-bass-616
+run_uuid: a14775d9d3364a28854053c250b0fe84
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803843090
+status: 3
+tags: []
+user_id: tomas_barhon

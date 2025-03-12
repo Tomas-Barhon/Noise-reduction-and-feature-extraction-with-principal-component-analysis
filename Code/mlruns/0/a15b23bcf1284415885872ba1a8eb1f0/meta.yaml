@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a15b23bcf1284415885872ba1a8eb1f0/artifacts
+end_time: 1741804229136
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a15b23bcf1284415885872ba1a8eb1f0
+run_name: honorable-sloth-666
+run_uuid: a15b23bcf1284415885872ba1a8eb1f0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804227213
+status: 3
+tags: []
+user_id: tomas_barhon

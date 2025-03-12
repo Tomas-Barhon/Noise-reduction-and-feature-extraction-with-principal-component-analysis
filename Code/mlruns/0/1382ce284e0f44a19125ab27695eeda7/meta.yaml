@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1382ce284e0f44a19125ab27695eeda7/artifacts
+end_time: 1741803392277
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1382ce284e0f44a19125ab27695eeda7
+run_name: thundering-seal-810
+run_uuid: 1382ce284e0f44a19125ab27695eeda7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803390642
+status: 3
+tags: []
+user_id: tomas_barhon

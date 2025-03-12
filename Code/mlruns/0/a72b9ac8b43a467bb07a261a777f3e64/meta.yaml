@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a72b9ac8b43a467bb07a261a777f3e64/artifacts
+end_time: 1741803771074
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a72b9ac8b43a467bb07a261a777f3e64
+run_name: delicate-trout-951
+run_uuid: a72b9ac8b43a467bb07a261a777f3e64
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803768095
+status: 3
+tags: []
+user_id: tomas_barhon

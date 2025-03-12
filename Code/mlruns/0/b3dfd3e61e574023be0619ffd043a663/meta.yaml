@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/b3dfd3e61e574023be0619ffd043a663/artifacts
+end_time: 1741803637832
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b3dfd3e61e574023be0619ffd043a663
+run_name: industrious-crow-845
+run_uuid: b3dfd3e61e574023be0619ffd043a663
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803636189
+status: 3
+tags: []
+user_id: tomas_barhon

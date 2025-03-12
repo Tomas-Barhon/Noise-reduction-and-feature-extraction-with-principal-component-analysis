@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f28128fb00664f43991684f2c0cba1ab/artifacts
+end_time: 1741803884739
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f28128fb00664f43991684f2c0cba1ab
+run_name: tasteful-lynx-735
+run_uuid: f28128fb00664f43991684f2c0cba1ab
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803883125
+status: 3
+tags: []
+user_id: tomas_barhon

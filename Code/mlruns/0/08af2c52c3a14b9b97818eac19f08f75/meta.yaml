@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/08af2c52c3a14b9b97818eac19f08f75/artifacts
+end_time: 1741803585212
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 08af2c52c3a14b9b97818eac19f08f75
+run_name: efficient-skunk-854
+run_uuid: 08af2c52c3a14b9b97818eac19f08f75
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803583569
+status: 3
+tags: []
+user_id: tomas_barhon

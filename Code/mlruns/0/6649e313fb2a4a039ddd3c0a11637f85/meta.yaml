@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/6649e313fb2a4a039ddd3c0a11637f85/artifacts
+end_time: 1741804067309
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6649e313fb2a4a039ddd3c0a11637f85
+run_name: bald-cow-953
+run_uuid: 6649e313fb2a4a039ddd3c0a11637f85
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804065356
+status: 3
+tags: []
+user_id: tomas_barhon

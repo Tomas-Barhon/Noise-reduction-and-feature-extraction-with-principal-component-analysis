@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f2759f8e74a94affae233141702ff46b/artifacts
+end_time: 1741803701762
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f2759f8e74a94affae233141702ff46b
+run_name: bald-grub-557
+run_uuid: f2759f8e74a94affae233141702ff46b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803699687
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9e56f6e17b9c421a90c73dbbc99ac53f/artifacts
+end_time: 1741804219890
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9e56f6e17b9c421a90c73dbbc99ac53f
+run_name: wise-steed-278
+run_uuid: 9e56f6e17b9c421a90c73dbbc99ac53f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741804217872
+status: 3
+tags: []
+user_id: tomas_barhon

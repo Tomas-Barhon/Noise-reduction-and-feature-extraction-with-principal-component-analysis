@@ -7,6 +7,9 @@ import tensorflow as tf
 from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
 from skopt import BayesSearchCV
+import mlflow
+import mlflow.sklearn
+
 
 class PCATransformer(BaseEstimator, TransformerMixin):
     """_summary_
@@ -254,8 +257,12 @@ class Pipeline:
             pipeline, search_spaces=parameter_grid,
             cv=3, scoring=scoring, refit="RMSE",
             verbose=1, n_jobs=n_jobs, error_score='raise', return_train_score=True).fit(train_data, train_target)
+        with mlflow.start_run():
+            mlflow.sklearn.log_model(model.best_estimator_, "best_model")
+            mlflow.log_params(model.best_params_)
+            mlflow.log_metric("best_score", model.best_score_)
         return model
-        return model
+
 
     @staticmethod
     def fit_full_train_grid_search(train_data, train_target, pipeline, parameter_grid):

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/08e2151af9ad4686ace032edd49222b4/artifacts
+end_time: 1741803196181
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 08e2151af9ad4686ace032edd49222b4
+run_name: delightful-swan-909
+run_uuid: 08e2151af9ad4686ace032edd49222b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803194039
+status: 3
+tags: []
+user_id: tomas_barhon

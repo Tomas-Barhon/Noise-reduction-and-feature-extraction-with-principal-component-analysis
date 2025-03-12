@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/771866383cfe456bb4c826e684361f6f/artifacts
+end_time: 1741803898466
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 771866383cfe456bb4c826e684361f6f
+run_name: casual-shark-38
+run_uuid: 771866383cfe456bb4c826e684361f6f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803896622
+status: 3
+tags: []
+user_id: tomas_barhon

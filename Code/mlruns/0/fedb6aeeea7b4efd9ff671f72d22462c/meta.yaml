@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/fedb6aeeea7b4efd9ff671f72d22462c/artifacts
+end_time: 1741803825455
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fedb6aeeea7b4efd9ff671f72d22462c
+run_name: worried-mouse-243
+run_uuid: fedb6aeeea7b4efd9ff671f72d22462c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803823111
+status: 3
+tags: []
+user_id: tomas_barhon
