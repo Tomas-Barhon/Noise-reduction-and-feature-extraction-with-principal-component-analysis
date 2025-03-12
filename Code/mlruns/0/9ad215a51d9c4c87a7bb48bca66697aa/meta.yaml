@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/9ad215a51d9c4c87a7bb48bca66697aa/artifacts
+end_time: 1741803095465
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9ad215a51d9c4c87a7bb48bca66697aa
+run_name: luxuriant-shrike-912
+run_uuid: 9ad215a51d9c4c87a7bb48bca66697aa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803093873
+status: 3
+tags: []
+user_id: tomas_barhon

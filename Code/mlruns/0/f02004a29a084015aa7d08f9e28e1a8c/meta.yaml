@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/f02004a29a084015aa7d08f9e28e1a8c/artifacts
+end_time: 1741803127852
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f02004a29a084015aa7d08f9e28e1a8c
+run_name: inquisitive-colt-863
+run_uuid: f02004a29a084015aa7d08f9e28e1a8c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803125928
+status: 3
+tags: []
+user_id: tomas_barhon

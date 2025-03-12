@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/0766095773a2428a954a1112313a6dc2/artifacts
+end_time: 1741803027542
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0766095773a2428a954a1112313a6dc2
+run_name: calm-penguin-820
+run_uuid: 0766095773a2428a954a1112313a6dc2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803025870
+status: 3
+tags: []
+user_id: tomas_barhon

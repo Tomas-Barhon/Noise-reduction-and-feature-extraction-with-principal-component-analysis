@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c0ce02541d874e08acf872f15eacfa06/artifacts
+end_time: 1741803113520
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c0ce02541d874e08acf872f15eacfa06
+run_name: big-crane-473
+run_uuid: c0ce02541d874e08acf872f15eacfa06
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803111831
+status: 3
+tags: []
+user_id: tomas_barhon

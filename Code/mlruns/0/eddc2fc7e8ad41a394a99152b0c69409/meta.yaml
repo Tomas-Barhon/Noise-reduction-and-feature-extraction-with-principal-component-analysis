@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/eddc2fc7e8ad41a394a99152b0c69409/artifacts
+end_time: 1741803014868
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: eddc2fc7e8ad41a394a99152b0c69409
+run_name: exultant-mole-393
+run_uuid: eddc2fc7e8ad41a394a99152b0c69409
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803013201
+status: 3
+tags: []
+user_id: tomas_barhon

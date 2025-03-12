@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/b1a5d07f5d6c4944ad1c297ea05631aa/artifacts
+end_time: 1741803123522
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b1a5d07f5d6c4944ad1c297ea05631aa
+run_name: exultant-foal-912
+run_uuid: b1a5d07f5d6c4944ad1c297ea05631aa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803121835
+status: 3
+tags: []
+user_id: tomas_barhon

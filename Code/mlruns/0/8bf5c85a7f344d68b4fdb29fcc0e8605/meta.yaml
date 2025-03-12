@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/8bf5c85a7f344d68b4fdb29fcc0e8605/artifacts
+end_time: 1741803061073
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8bf5c85a7f344d68b4fdb29fcc0e8605
+run_name: painted-rat-759
+run_uuid: 8bf5c85a7f344d68b4fdb29fcc0e8605
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803059485
+status: 3
+tags: []
+user_id: tomas_barhon

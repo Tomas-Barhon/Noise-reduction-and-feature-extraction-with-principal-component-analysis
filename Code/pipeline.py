@@ -6,7 +6,7 @@ import sklearn.pipeline
 import tensorflow as tf
 from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
-
+from skopt import BayesSearchCV
 
 class PCATransformer(BaseEstimator, TransformerMixin):
     """_summary_
@@ -250,11 +250,11 @@ class Pipeline:
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
-        model = sklearn.model_selection.GridSearchCV(
-            pipeline, param_grid=parameter_grid,
+        model = BayesSearchCV(
+            pipeline, search_spaces=parameter_grid,
             cv=3, scoring=scoring, refit="RMSE",
-            verbose=1, n_jobs=n_jobs, error_score='raise', return_train_score=
-            True).fit(train_data, train_target)
+            verbose=1, n_jobs=n_jobs, error_score='raise', return_train_score=True).fit(train_data, train_target)
+        return model
         return model
 
     @staticmethod

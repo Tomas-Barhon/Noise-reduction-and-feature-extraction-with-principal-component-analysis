@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/a05d509c3e074b658f14f7a8f581f653/artifacts
+end_time: 1741803087710
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a05d509c3e074b658f14f7a8f581f653
+run_name: luxuriant-fowl-143
+run_uuid: a05d509c3e074b658f14f7a8f581f653
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803086086
+status: 3
+tags: []
+user_id: tomas_barhon

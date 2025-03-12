@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/07e45d15c01046e1bf68c4f57411ca88/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 07e45d15c01046e1bf68c4f57411ca88
+run_name: sneaky-moth-771
+run_uuid: 07e45d15c01046e1bf68c4f57411ca88
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803168979
+status: 1
+tags: []
+user_id: tomas_barhon

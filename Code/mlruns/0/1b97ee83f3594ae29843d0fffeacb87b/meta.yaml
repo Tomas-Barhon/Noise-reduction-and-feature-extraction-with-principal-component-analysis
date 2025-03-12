@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1b97ee83f3594ae29843d0fffeacb87b/artifacts
+end_time: 1741803099262
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1b97ee83f3594ae29843d0fffeacb87b
+run_name: tasteful-grub-362
+run_uuid: 1b97ee83f3594ae29843d0fffeacb87b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803097602
+status: 3
+tags: []
+user_id: tomas_barhon

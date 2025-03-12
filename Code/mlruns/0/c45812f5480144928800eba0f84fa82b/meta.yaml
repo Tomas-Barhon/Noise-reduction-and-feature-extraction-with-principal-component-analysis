@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/c45812f5480144928800eba0f84fa82b/artifacts
+end_time: 1741803163666
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c45812f5480144928800eba0f84fa82b
+run_name: skittish-gnu-406
+run_uuid: c45812f5480144928800eba0f84fa82b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803161842
+status: 3
+tags: []
+user_id: tomas_barhon

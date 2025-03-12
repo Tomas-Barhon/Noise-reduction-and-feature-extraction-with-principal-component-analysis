@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/70637c8a17ca40989a477593d81f20e7/artifacts
+end_time: 1741803042334
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 70637c8a17ca40989a477593d81f20e7
+run_name: mercurial-turtle-23
+run_uuid: 70637c8a17ca40989a477593d81f20e7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803040676
+status: 3
+tags: []
+user_id: tomas_barhon

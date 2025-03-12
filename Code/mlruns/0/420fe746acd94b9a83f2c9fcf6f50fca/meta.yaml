@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/420fe746acd94b9a83f2c9fcf6f50fca/artifacts
+end_time: 1741803082024
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 420fe746acd94b9a83f2c9fcf6f50fca
+run_name: judicious-shad-605
+run_uuid: 420fe746acd94b9a83f2c9fcf6f50fca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803080430
+status: 3
+tags: []
+user_id: tomas_barhon

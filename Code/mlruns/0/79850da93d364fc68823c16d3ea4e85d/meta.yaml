@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/79850da93d364fc68823c16d3ea4e85d/artifacts
+end_time: 1741803018435
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 79850da93d364fc68823c16d3ea4e85d
+run_name: invincible-steed-883
+run_uuid: 79850da93d364fc68823c16d3ea4e85d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803016796
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/891e730b3a844d8ea7a9087512f10187/artifacts
+end_time: 1741803064875
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 891e730b3a844d8ea7a9087512f10187
+run_name: gregarious-mare-36
+run_uuid: 891e730b3a844d8ea7a9087512f10187
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803063217
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/e3b71a820bab4c7c84b51a6fdc1ebf6f/artifacts
+end_time: 1741803031239
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e3b71a820bab4c7c84b51a6fdc1ebf6f
+run_name: peaceful-turtle-829
+run_uuid: e3b71a820bab4c7c84b51a6fdc1ebf6f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803029580
+status: 3
+tags: []
+user_id: tomas_barhon

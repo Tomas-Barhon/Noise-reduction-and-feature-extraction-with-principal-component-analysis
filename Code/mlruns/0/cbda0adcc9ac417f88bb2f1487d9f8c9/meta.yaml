@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/cbda0adcc9ac417f88bb2f1487d9f8c9/artifacts
+end_time: 1741803072388
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cbda0adcc9ac417f88bb2f1487d9f8c9
+run_name: wistful-snipe-592
+run_uuid: cbda0adcc9ac417f88bb2f1487d9f8c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803070784
+status: 3
+tags: []
+user_id: tomas_barhon

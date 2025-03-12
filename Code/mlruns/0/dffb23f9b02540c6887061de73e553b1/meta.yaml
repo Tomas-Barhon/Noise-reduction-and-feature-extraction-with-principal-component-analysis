@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/dffb23f9b02540c6887061de73e553b1/artifacts
+end_time: 1741803009298
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dffb23f9b02540c6887061de73e553b1
+run_name: sassy-mink-309
+run_uuid: dffb23f9b02540c6887061de73e553b1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803007629
+status: 3
+tags: []
+user_id: tomas_barhon

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/179b75a11ae4475d838c03913161d4b2/artifacts
+end_time: 1741803093594
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 179b75a11ae4475d838c03913161d4b2
+run_name: adorable-roo-927
+run_uuid: 179b75a11ae4475d838c03913161d4b2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803091995
+status: 3
+tags: []
+user_id: tomas_barhon

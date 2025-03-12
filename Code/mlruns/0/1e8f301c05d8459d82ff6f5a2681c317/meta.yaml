@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/1e8f301c05d8459d82ff6f5a2681c317/artifacts
+end_time: 1741803051912
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1e8f301c05d8459d82ff6f5a2681c317
+run_name: rogue-bat-987
+run_uuid: 1e8f301c05d8459d82ff6f5a2681c317
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803050281
+status: 3
+tags: []
+user_id: tomas_barhon

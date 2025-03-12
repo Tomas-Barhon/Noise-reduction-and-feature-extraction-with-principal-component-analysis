@@ -1,0 +1,15 @@
+artifact_uri: file:///home/tomas_barhon/Code/Bachelor%20thesis/Code/mlruns/0/ac71029567b241e0b30effda71a2069e/artifacts
+end_time: 1741803025646
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ac71029567b241e0b30effda71a2069e
+run_name: nosy-crab-298
+run_uuid: ac71029567b241e0b30effda71a2069e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1741803024008
+status: 3
+tags: []
+user_id: tomas_barhon
