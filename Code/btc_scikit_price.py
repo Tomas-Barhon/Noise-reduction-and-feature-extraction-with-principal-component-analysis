@@ -21,6 +21,14 @@ from scipy.linalg import LinAlgWarning
 import sklearn.model_selection
 import warnings
 import mlflow
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--ticker", type=str, choices=['{args.ticker.upper()}', 'ltc', 'eth'], required=True,
+                                        help="Cryptocurrency ticker ({args.ticker.upper()}, ltc, or eth)")
+args = parser.parse_args()
+
+
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
 #controling whether tensorflow does recognize GPU
@@ -29,35 +37,41 @@ np.random.seed(42)
 tf.random.set_seed(42)
 
 mlflow.sklearn.autolog(disable=True)
-pipeline = Pipeline(crypto_tick = "btc")
+pipeline = Pipeline(crypto_tick = args.ticker.upper())
 pipeline.set_beginning(start_date = "2014-9-17")
 pipeline.preprocess_dataset()
-pipeline.data.drop(columns = ['BTC / NVT, adjusted, free float,  90d MA',
-                              'BTC / NVT, adjusted, free float',
-                              'BTC / Fees, transaction, median, USD', 'BTC / Fees, total, USD',
-                              'BTC / Capitalization, market, free float, USD',
-                              'BTC / Capitalization, market, current supply, USD',
-                              'BTC / Capitalization, market, estimated supply, USD',
-                              'BTC / Difficulty, mean',
-                              'BTC / Hash rate, mean, 30d',
-                              'BTC / Transactions, transfers, count',
-                            'BTC / Transactions, transfers, value, mean, USD'
+pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
+                              f'{args.ticker.upper()} / NVT, adjusted, free float',
+                              f'{args.ticker.upper()} / Fees, transaction, median, USD', '{args.ticker.upper()} / Fees, total, USD',
+                              f'{args.ticker.upper()} / Capitalization, market, free float, USD',
+                              f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
+                              f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
+                              f'{args.ticker.upper()} / Difficulty, mean',
+                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
+                              f'{args.ticker.upper()} / Transactions, transfers, count',
+                            f'{args.ticker.upper()} / Transactions, transfers, value, mean, USD'
                               ], inplace = True)
 pipeline.shift_target()
-columns = ["BTC-LR - 1 day", "BTC-LR - 5 days", 
-           "BTC-LR - 10 days", "BTC-SVR - 1 day", "BTC-SVR - 5 days", 
-           "BTC-SVR - 10 days", "BTC-LSTM - 1 day", "BTC-LSTM - 5 days","BTC-LSTM - 10 days", "Naive forceast - 1 day", "Naive forceast - 5 days",
-           "Naive forceast - 10 days"]
+columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
+                   f"{args.ticker.upper()}-LR - 10 days", f"{args.ticker.upper()}-SVR - 1 day", 
+                   f"{args.ticker.upper()}-SVR - 5 days", 
+                   f"{args.ticker.upper()}-SVR - 10 days", f"{args.ticker.upper()}-LSTM - 1 day", 
+                   f"{args.ticker.upper()}-LSTM - 5 days", f"{args.ticker.upper()}-LSTM - 10 days", 
+                   "Naive forceast - 1 day", "Naive forceast - 5 days",
+                   "Naive forceast - 10 days"]
 rows = ["Full dimensionality", "95% retained variance",
-        "98% retained variance", "99% retained variance"]
+                "98% retained variance", "99% retained variance"]
 #presented in RMSE which is the optimized metric
 results_train_averaged = pd.DataFrame(columns = columns, index = rows).fillna(0).astype(int)
-columns = ["BTC-LR - 1 day", "BTC-LR - 5 days", 
-           "BTC-LR - 10 days", "BTC-SVR - 1 day", "BTC-SVR - 5 days", "BTC-SVR - 10 days", 
-           "BTC-LSTM - 1 day", "BTC-LSTM - 5 days","BTC-LSTM - 10 days", "Naive forceast - 1 day", "Naive forceast - 5 days",
-           "Naive forceast - 10 days"]
+columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
+                   f"{args.ticker.upper()}-LR - 10 days", 
+                   f"{args.ticker.upper()}-SVR - 1 day", f"{args.ticker.upper()}-SVR - 5 days", 
+                   f"{args.ticker.upper()}-SVR - 10 days", 
+                   f"{args.ticker.upper()}-LSTM - 1 day", f"{args.ticker.upper()}-LSTM - 5 days", 
+                   f"{args.ticker.upper()}-LSTM - 10 days", "Naive forceast - 1 day", "Naive forceast - 5 days",
+                   "Naive forceast - 10 days"]
 rows = ["Full dimensionality", "95% retained variance",
-        "98% retained variance", "99% retained variance"]
+                "98% retained variance", "99% retained variance"]
 #presented in RMSE which is the optimized metric
 results_test = pd.DataFrame(columns = columns, index = rows).fillna(0).astype(int)
 
@@ -77,33 +91,32 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.ilo
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = None)
 
 LR_PARAMETERS = {"estimator__alpha": np.linspace(0,7,20),
-              "estimator__tol":[0.0001, 0.0005,0.001],
-              "estimator__max_iter":[200,500,1000,2000,5000,10000]}
+              "estimator__tol":[0.0001, 0.0005,0.001]}
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
@@ -112,27 +125,27 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_redu
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 
 pca = PCA(n_components = 0.98)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
@@ -141,27 +154,27 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_redu
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
@@ -169,27 +182,27 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_redu
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, LR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 
 
 SVR_PARAMETERS = {"estimator__C": np.logspace(1,10,20),
@@ -201,27 +214,27 @@ pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42,dual =
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
-prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
-                                                                prediction)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
+                                                                model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42), dim_reducer = pca)
@@ -230,26 +243,26 @@ pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42), dim_
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
                                                                 prediction)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 day"]] = rmse(test_target,
                                                                 prediction)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
                                                                 prediction)
 
 pca = PCA(n_components = 0.98)
@@ -259,26 +272,26 @@ pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42), dim_
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
                                                                 prediction)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
                                                                 prediction)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
                                                                 prediction)
 
 pca = PCA(n_components = 0.99)
@@ -287,26 +300,26 @@ pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42), dim_
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 1 day"]] = rmse(test_target,
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
                                                                 prediction)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 5 day"]] = rmse(test_target,
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
                                                                 prediction)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
 model = Pipeline.fit_grid_search(train_data, train_target, pipe, SVR_PARAMETERS)
-results_train_averaged.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(train_target,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
                                                                 model.predict(train_data))
 prediction = model.predict(test_data)
-results_test.loc[["Full dimensionality"],["BTC-LR - 10 day"]] = rmse(test_target,
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
                                                                 prediction)
 
 results_train_averaged.to_csv("results_train_averaged.csv")
