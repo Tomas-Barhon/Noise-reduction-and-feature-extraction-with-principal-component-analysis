@@ -262,7 +262,7 @@ class Pipeline:
         n_components = ""
         if model.best_estimator_.named_steps["denoiser"] is not None:
             n_components = model.best_estimator_.named_steps["denoiser"].pca.n_components_
-        with mlflow.start_run(run_name=estimator_name + "_" + n_components + "_" + str(horizon)):
+        with mlflow.start_run(run_name=estimator_name + "_" + str(n_components) + "_" + str(horizon)):
             mlflow.sklearn.log_model(
             model.best_estimator_,
             "best_model",
