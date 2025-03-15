@@ -235,7 +235,7 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=5):
+    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1):
         """Fits grid search using the time series split with all metrics using
         the best RMSE as the best model.
 
@@ -252,13 +252,15 @@ class Pipeline:
         scoring = {"RMSE": "neg_root_mean_squared_error",
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
+        #ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
             cv=3, scoring=scoring, refit="RMSE",
-            verbose=1, n_jobs=n_jobs, error_score='raise', return_train_score=True).fit(train_data, train_target)
+            verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
+
         with mlflow.start_run():
-            mlflow.sklearn.log_model(model.best_estimator_, "best_model")
+            mlflow.sklearn.log_model(model.best_estimator_, str(type(model.best_estimator_.named_steps["estimator"]).__name__)  
+                                     +"_"+ str(model.best_params_))
             mlflow.log_params(model.best_params_)
             mlflow.log_metric("best_score", model.best_score_)
         return model

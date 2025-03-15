@@ -22,9 +22,11 @@ import sklearn.model_selection
 import warnings
 import mlflow
 import argparse
+from skopt import space, plots
+
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--ticker", type=str, choices=['{args.ticker.upper()}', 'ltc', 'eth'], required=True,
+parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker ({args.ticker.upper()}, ltc, or eth)")
 args = parser.parse_args()
 
@@ -37,12 +39,13 @@ np.random.seed(42)
 tf.random.set_seed(42)
 
 mlflow.sklearn.autolog(disable=True)
-pipeline = Pipeline(crypto_tick = args.ticker.upper())
+pipeline = Pipeline(crypto_tick = args.ticker)
 pipeline.set_beginning(start_date = "2014-9-17")
 pipeline.preprocess_dataset()
 pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
                               f'{args.ticker.upper()} / NVT, adjusted, free float',
-                              f'{args.ticker.upper()} / Fees, transaction, median, USD', '{args.ticker.upper()} / Fees, total, USD',
+                              f'{args.ticker.upper()} / Fees, transaction, median, USD', 
+                              f'{args.ticker.upper()} / Fees, total, USD',
                               f'{args.ticker.upper()} / Capitalization, market, free float, USD',
                               f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
                               f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
@@ -90,8 +93,10 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.ilo
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": np.linspace(0,7,20),
-              "estimator__tol":[0.0001, 0.0005,0.001]}
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 1, prior = 'uniform'),
+              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform')}
+
+
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -205,9 +210,9 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 
-SVR_PARAMETERS = {"estimator__C": np.logspace(1,10,20),
-              "estimator__tol":[0.00005,0.0001, 0.0005,0.001],
-              "estimator__max_iter":[5000,10000,20000]}
+SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10, prior = 'log-uniform'),
+              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform')}
+
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42,dual = "auto"), dim_reducer = None)
 
@@ -322,5 +327,5 @@ prediction = model.predict(test_data)
 results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
                                                                 prediction)
 
-results_train_averaged.to_csv("results_train_averaged.csv")
-results_test.to_csv("results_test.csv")
+results_train_averaged.to_csv(f"results_train_averaged_{args.ticker.upper()}.csv")
+results_test.to_csv(f"results_test_{args.ticker.upper()}.csv")
