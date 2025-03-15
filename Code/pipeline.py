@@ -235,7 +235,7 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1):
+    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1, horizon = 1):
         """Fits grid search using the time series split with all metrics using
         the best RMSE as the best model.
 
@@ -259,7 +259,10 @@ class Pipeline:
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
-        with mlflow.start_run(run_name=estimator_name):
+        n_components = ""
+        if model.best_estimator_.named_steps["denoiser"] is not None:
+            n_components = model.best_estimator_.named_steps["denoiser"].pca.n_components_
+        with mlflow.start_run(run_name=estimator_name + "_" + n_components + "_" + str(horizon)):
             mlflow.sklearn.log_model(
             model.best_estimator_,
             "best_model",
