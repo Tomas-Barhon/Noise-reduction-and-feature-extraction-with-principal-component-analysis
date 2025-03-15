@@ -262,7 +262,7 @@ class Pipeline:
             mlflow.sklearn.log_model(model.best_estimator_, str(type(model.best_estimator_.named_steps["estimator"]).__name__)  
                                      +"_"+ str(model.best_params_)
                                      registered_model_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)  
-                                     +"_"+ str(model.best_params_)
+                                     +"_"+ str(model.best_params_))
             mlflow.log_params(model.best_params_)
             mlflow.log_metric("best_score", model.best_score_)
         return model
