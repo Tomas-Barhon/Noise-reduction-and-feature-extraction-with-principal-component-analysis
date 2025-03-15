@@ -27,9 +27,9 @@ from skopt import space, plots
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
-                                        help="Cryptocurrency ticker ({args.ticker.upper()}, ltc, or eth)")
+                                        help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-
+mlflow.set_experiment(args.ticker)
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -40,7 +40,11 @@ tf.random.set_seed(42)
 
 mlflow.sklearn.autolog(disable=True)
 pipeline = Pipeline(crypto_tick = args.ticker)
-pipeline.set_beginning(start_date = "2014-9-17")
+if args.ticker == "eth":
+    pipeline.set_beginning(start_date = "2015-08-08")
+else:
+    pipeline.set_beginning(start_date = "2014-9-17")
+    
 pipeline.preprocess_dataset()
 pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
                               f'{args.ticker.upper()} / NVT, adjusted, free float',
@@ -50,10 +54,16 @@ pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free floa
                               f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
                               f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
                               f'{args.ticker.upper()} / Difficulty, mean',
-                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
+#                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
                               f'{args.ticker.upper()} / Transactions, transfers, count',
                             f'{args.ticker.upper()} / Transactions, transfers, value, mean, USD'
                               ], inplace = True)
+
+if args.ticker == "btc":
+    pipeline.data.drop(columns = [f'{args.ticker.upper()} / Hash rate, mean, 30d'], inplace = True)
+
+
+
 pipeline.shift_target()
 columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
                    f"{args.ticker.upper()}-LR - 10 days", f"{args.ticker.upper()}-SVR - 1 day", 
@@ -210,8 +220,9 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 
-SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10, prior = 'log-uniform'),
-              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform')}
+SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10, prior = 'uniform'),
+              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform'),
+              "estimator__max_iter":space.Integer(100, 20000)}
 
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(random_state = 42,dual = "auto"), dim_reducer = None)
