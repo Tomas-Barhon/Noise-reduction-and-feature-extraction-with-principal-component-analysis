@@ -258,14 +258,24 @@ class Pipeline:
             cv=3, scoring=scoring, refit="RMSE",
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
-        with mlflow.start_run(run_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)):
+        estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
+        with mlflow.start_run(run_name=estimator_name):
             mlflow.sklearn.log_model(
-                model.best_estimator_, 
-                "best_model",
-                registered_model_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)
+            model.best_estimator_,
+            "best_model",
+            registered_model_name=estimator_name
             )
             mlflow.log_params(model.best_params_)
-            mlflow.log_metric("best_score", model.best_score_)
+            
+            # Log metrics from the refit model
+            y_pred = model.predict(train_data)
+            rmse = np.sqrt(sklearn.metrics.mean_squared_error(train_target, y_pred))
+            mae = sklearn.metrics.mean_absolute_error(train_target, y_pred)
+            mape = sklearn.metrics.mean_absolute_percentage_error(train_target, y_pred)
+            
+            mlflow.log_metric("RMSE", rmse)
+            mlflow.log_metric("MAE", mae)
+            mlflow.log_metric("MAPE", mape)
         return model
 
 
