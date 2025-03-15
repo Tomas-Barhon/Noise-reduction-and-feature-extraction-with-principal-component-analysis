@@ -54,7 +54,7 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         X_pca = self.pca.transform(X)
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
-        return X_restored
+        return X_pca
 
 
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
@@ -276,7 +276,7 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, model.predict(test_data)))
             mlflow.log_metric("RMSE_test", rmse_test)
-            
+
         return model
 
 
