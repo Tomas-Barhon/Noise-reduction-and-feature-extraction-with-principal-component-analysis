@@ -259,9 +259,11 @@ class Pipeline:
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
         with mlflow.start_run():
-            mlflow.sklearn.log_model(model.best_estimator_, str(type(model.best_estimator_.named_steps["estimator"]).__name__),
-                                     registered_model_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)  
-                                     +"_"+ str(model.best_params_))
+            mlflow.sklearn.log_model(
+                model.best_estimator_, 
+                "best_model",
+                registered_model_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)
+            )
             mlflow.log_params(model.best_params_)
             mlflow.log_metric("best_score", model.best_score_)
         return model
