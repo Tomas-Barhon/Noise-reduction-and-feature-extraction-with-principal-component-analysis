@@ -1,8 +1,7 @@
 import os
-os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
-import tensorflow as tf
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 import matplotlib.pyplot as plt
 import seaborn as sns
 from dataset import Dataset
@@ -23,6 +22,7 @@ import warnings
 import mlflow
 import argparse
 from skopt import space, plots
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
 
 
 parser = argparse.ArgumentParser()
