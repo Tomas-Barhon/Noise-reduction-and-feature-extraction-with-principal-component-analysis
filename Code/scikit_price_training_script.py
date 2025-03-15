@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-mlflow.set_experiment(args.ticker)
+mlflow.set_experiment(args.ticker + "_new")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -103,7 +103,7 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.ilo
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 1, prior = 'uniform'),
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 10, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform')}
 
 
