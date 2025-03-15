@@ -258,7 +258,7 @@ class Pipeline:
             cv=3, scoring=scoring, refit="RMSE",
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
-        with mlflow.start_run():
+        with mlflow.start_run(run_name=str(type(model.best_estimator_.named_steps["estimator"]).__name__)):
             mlflow.sklearn.log_model(
                 model.best_estimator_, 
                 "best_model",
