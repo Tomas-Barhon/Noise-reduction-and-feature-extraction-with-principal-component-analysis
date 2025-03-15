@@ -235,7 +235,7 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, pipeline, parameter_grid, n_jobs=-1, horizon = 1):
+    def fit_grid_search(train_data, train_target, test_data, test_target, pipeline, parameter_grid, n_jobs=-1, horizon = 1):
         """Fits grid search using the time series split with all metrics using
         the best RMSE as the best model.
 
@@ -273,12 +273,10 @@ class Pipeline:
             # Log metrics from the refit model
             y_pred = model.predict(train_data)
             rmse = np.sqrt(sklearn.metrics.mean_squared_error(train_target, y_pred))
-            mae = sklearn.metrics.mean_absolute_error(train_target, y_pred)
-            mape = sklearn.metrics.mean_absolute_percentage_error(train_target, y_pred)
+            mlflow.log_metric("RMSE_train", rmse)
+            rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, model.predict(test_data)))
+            mlflow.log_metric("RMSE_test", rmse_test)
             
-            mlflow.log_metric("RMSE", rmse)
-            mlflow.log_metric("MAE", mae)
-            mlflow.log_metric("MAPE", mape)
         return model
 
 
