@@ -222,7 +222,7 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform'),
+              "estimator__tol":space.Real(1e-5, 5, prior = 'log-uniform'),
               "estimator__max_iter":space.Integer(100, 20000),
               "estimator__kernel": space.Categorical(["linear", "poly", "rbf"])}
 
