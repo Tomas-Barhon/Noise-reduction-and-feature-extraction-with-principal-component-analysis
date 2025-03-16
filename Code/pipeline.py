@@ -1,6 +1,7 @@
 from typing import Literal
 from dataset import Dataset
 import sklearn.model_selection
+from sklearn.model_selection import KFold
 import sklearn.preprocessing
 import sklearn.pipeline
 import tensorflow as tf
@@ -38,8 +39,8 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         self : object
             Returns the instance itself.
         """
-    
-        self.pca.fit(X)
+        # Fit PCA on all columns except the last one
+        self.pca.fit(X[:, :-1])
         return self
 
     def transform(self, X):
@@ -50,12 +51,10 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         Returns:
         array-like: The transformed data, restored to the original dimensions.
         """
-        
-        # Downsample to n_components
-        X_pca = self.pca.transform(X)
-        # Upsample back to original dimensions
-        X_restored = self.pca.inverse_transform(X_pca)
-        return X_pca
+        # Apply PCA to all columns except the last one
+        X_pca = self.pca.transform(X[:, :-1])
+        # Keep the last column unchanged and concatenate with transformed data
+        return np.hstack((X_pca, X[:, -1:]))
 
 
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
@@ -254,9 +253,10 @@ class Pipeline:
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
+        cv = KFold(n_splits=3, shuffle=True, random_state=42)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
+            cv=cv, scoring=scoring, refit="RMSE", n_points=4,
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
