@@ -281,9 +281,9 @@ class Pipeline:
             train_pred = pd.Series(y_pred, index=train_data.index)
             visualizer = Visualizer()
             fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
-            mlflow.log_figure(fig, "prediction_plot_full.html")
+            mlflow.log_figure(fig, "prediction_plot_full.png")
             fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
-            mlflow.log_figure(fig, "prediction_plot_test.html")
+            mlflow.log_figure(fig, "prediction_plot_test.png")
         return model
 
 
