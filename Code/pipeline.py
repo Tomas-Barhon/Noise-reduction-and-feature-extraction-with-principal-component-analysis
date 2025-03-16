@@ -214,14 +214,14 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.StandardScaler()
+        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
         denoiser = None
         scaler_2 = None
         unpacker = None
         packer = None
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
-            scaler_2 = sklearn.preprocessing.StandardScaler()
+#            scaler_2 = sklearn.preprocessing.StandardScaler()
 
         if shape_change is not False:
             unpacker = ReshapeTransformer(shape_change[0])
@@ -229,7 +229,7 @@ class Pipeline:
         pipeline = sklearn.pipeline.Pipeline([("pack_down", unpacker),
                                               ("scaler", scaler),
                                               ("denoiser", denoiser),
-                                              ("scaler 2", scaler_2),
+ #                                             ("scaler 2", scaler_2),
                                               ("pack_up,", packer),
                                               ("estimator", estimator)])
 
@@ -264,6 +264,11 @@ class Pipeline:
         if model.best_estimator_.named_steps["denoiser"] is not None:
             n_components = "_pca_" + str(model.best_estimator_.named_steps["denoiser"].pca.n_components_)
         with mlflow.start_run(run_name=estimator_name + n_components + "_h-" + str(horizon)):
+            # Log cross validation results
+            for metric in scoring.keys():
+                cv_results_mean = model.cv_results_[f'mean_test_{metric}']
+                mlflow.log_metric(f"cv_mean_{metric}", -cv_results_mean[model.best_index_])
+                
             mlflow.sklearn.log_model(
             model.best_estimator_,
             "best_model",
