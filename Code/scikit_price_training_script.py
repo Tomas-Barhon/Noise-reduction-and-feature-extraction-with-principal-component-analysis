@@ -7,7 +7,7 @@ import seaborn as sns
 from dataset import Dataset
 from pipeline import Pipeline
 from visualizations import Visualizer
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import Ridge, HuberRegressor
 import sklearn.preprocessing
 from sklearn.svm import LinearSVR, SVR
 from sklearn.decomposition import PCA, KernelPCA
@@ -101,10 +101,10 @@ results_test["Naive forceast - 5 days"] = rmse(test_target_5, test_data_5.iloc[:
 results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.iloc[:,-1])
 
 #Linear Regression
-pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = None)
 
 LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform'),
+              "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
               "estimator__max_iter":space.Integer(100, 10000000)}
 
 
@@ -135,7 +135,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
 
 
 #1 day
@@ -164,7 +164,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
 
 
 #1 day
@@ -193,7 +193,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
