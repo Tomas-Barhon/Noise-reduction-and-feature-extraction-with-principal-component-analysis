@@ -9,7 +9,8 @@ import numpy as np
 from skopt import BayesSearchCV
 import mlflow
 import mlflow.sklearn
-
+from visualizations import Visualizer
+import pandas as pd 
 
 class PCATransformer(BaseEstimator, TransformerMixin):
     """_summary_
@@ -255,28 +256,34 @@ class Pipeline:
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="RMSE",
+            cv=3, scoring=scoring, refit="RMSE", n_points=4,
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
         if model.best_estimator_.named_steps["denoiser"] is not None:
-            n_components = model.best_estimator_.named_steps["denoiser"].pca.n_components_
-        with mlflow.start_run(run_name=estimator_name + "_" + str(n_components) + "_" + str(horizon)):
+            n_components = "_pca_" + model.best_estimator_.named_steps["denoiser"].pca.n_components_
+        with mlflow.start_run(run_name=estimator_name + str(n_components) + "_h-" + str(horizon)):
             mlflow.sklearn.log_model(
             model.best_estimator_,
             "best_model",
             registered_model_name=estimator_name
             )
             mlflow.log_params(model.best_params_)
-            
+            test_prediction = model.predict(test_data)
             # Log metrics from the refit model
             y_pred = model.predict(train_data)
             rmse = np.sqrt(sklearn.metrics.mean_squared_error(train_target, y_pred))
             mlflow.log_metric("RMSE_train", rmse)
-            rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, model.predict(test_data)))
+            rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
-
+            test_prediction = pd.Series(test_prediction, index=test_data.index)
+            train_pred = pd.Series(y_pred, index=train_data.index)
+            visualizer = Visualizer()
+            fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
+            mlflow.log_figure(fig)
+            fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
+            mlflow.log_figure(fig)
         return model
 
 
