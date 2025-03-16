@@ -105,7 +105,7 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(random_state = 42), dim_redu
 
 LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 1, prior = 'log-uniform'),
-              "estimator__max_iter":space.Integer(100, 20000)}
+              "estimator__max_iter":space.Integer(100, 100000)}
 
 
 
