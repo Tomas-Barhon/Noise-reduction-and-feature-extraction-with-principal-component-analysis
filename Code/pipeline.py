@@ -260,7 +260,7 @@ class Pipeline:
         scoring = {"RMSE": "neg_root_mean_squared_error",
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=5)
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
             cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
