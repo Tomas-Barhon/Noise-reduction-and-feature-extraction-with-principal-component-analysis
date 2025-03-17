@@ -105,7 +105,8 @@ pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = No
 
 LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-              "estimator__max_iter":space.Integer(100, 10000000)}
+              "estimator__max_iter":space.Integer(100, 10000000),
+              "estimator__epsilon": space.Real(1e-5, 1, prior = 'log-uniform')}
 
 
 

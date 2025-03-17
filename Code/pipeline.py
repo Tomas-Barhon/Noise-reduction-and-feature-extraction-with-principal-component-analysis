@@ -40,7 +40,7 @@ class PCATransformer(BaseEstimator, TransformerMixin):
             Returns the instance itself.
         """
         # Fit PCA on all columns except the last one
-        self.pca.fit(X[:, :-1])
+        self.pca.fit(X)
         return self
 
     def transform(self, X):
@@ -52,9 +52,9 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         array-like: The transformed data, restored to the original dimensions.
         """
         # Apply PCA to all columns except the last one
-        X_pca = self.pca.transform(X[:, :-1])
+        X_pca = self.pca.transform(X)
         # Keep the last column unchanged and concatenate with transformed data
-        return np.hstack((X_pca, X[:, -1:]))
+        return X_pca
 
 
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
@@ -227,7 +227,7 @@ class Pipeline:
         packer = None
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
-#            scaler_2 = sklearn.preprocessing.StandardScaler()
+            scaler_2 = sklearn.preprocessing.StandardScaler()
 
         if shape_change is not False:
             unpacker = ReshapeTransformer(shape_change[0])
@@ -235,7 +235,7 @@ class Pipeline:
         pipeline = sklearn.pipeline.Pipeline([("pack_down", unpacker),
                                               ("scaler", scaler),
                                               ("denoiser", denoiser),
- #                                             ("scaler 2", scaler_2),
+                                             ("scaler 2", scaler_2),
                                               ("pack_up,", packer),
                                               ("estimator", estimator)])
 
