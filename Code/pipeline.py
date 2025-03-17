@@ -221,14 +221,14 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
+        scaler = sklearn.preprocessing.StandardScaler()
         denoiser = None
         scaler_2 = None
         unpacker = None
         packer = None
         if dim_reducer is not None:
             denoiser = PCATransformer(dim_reducer)
-            scaler_2 = sklearn.preprocessing.StandardScaler()
+            #scaler_2 = sklearn.preprocessing.StandardScaler()
 
         if shape_change is not False:
             unpacker = ReshapeTransformer(shape_change[0])
@@ -236,7 +236,7 @@ class Pipeline:
         pipeline = sklearn.pipeline.Pipeline([("pack_down", unpacker),
                                               ("scaler", scaler),
                                               ("denoiser", denoiser),
-                                             ("scaler 2", scaler_2),
+            #                                 ("scaler 2", scaler_2),
                                               ("pack_up,", packer),
                                               ("estimator", estimator)])
 
@@ -263,7 +263,7 @@ class Pipeline:
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=5)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="MAE", n_points=4,
+            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
             verbose=1, n_jobs=n_jobs, error_score='raise', n_iter=100).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
