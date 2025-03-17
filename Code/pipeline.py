@@ -169,23 +169,26 @@ class Pipeline:
             self.data_10d_shift = self.data_10d_shift.dropna()
         else:
             self.data_1d_shift = self.data.copy()
-            # Add lagged values of the last column
-            self.data_1d_shift['lag_1'] = self.data.iloc[:, -1].shift(1)
-            self.data_1d_shift['lag_2'] = self.data.iloc[:, -1].shift(2)
+            # Create lagged values
+            lag_1 = self.data.iloc[:, -1].shift(1)
+            lag_2 = self.data.iloc[:, -1].shift(2)
+            # Insert lags before the last column
+            self.data_1d_shift.insert(len(self.data_1d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_1d_shift.insert(len(self.data_1d_shift.columns)-1, 'lag_2', lag_2)
             self.data_1d_shift["target"] = self.data.iloc[:, -1].shift(-1)
             self.data_1d_shift = self.data_1d_shift.dropna()
             
             # 5 day forecasting
             self.data_5d_shift = self.data.copy()
-            self.data_5d_shift['lag_1'] = self.data.iloc[:, -1].shift(1)
-            self.data_5d_shift['lag_2'] = self.data.iloc[:, -1].shift(2)
+            self.data_5d_shift.insert(len(self.data_5d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_5d_shift.insert(len(self.data_5d_shift.columns)-1, 'lag_2', lag_2)
             self.data_5d_shift["target"] = self.data.iloc[:, -1].shift(-5)
             self.data_5d_shift = self.data_5d_shift.dropna()
             
             # 10 day forecasting
             self.data_10d_shift = self.data.copy()
-            self.data_10d_shift['lag_1'] = self.data.iloc[:, -1].shift(1)
-            self.data_10d_shift['lag_2'] = self.data.iloc[:, -1].shift(2)
+            self.data_10d_shift.insert(len(self.data_10d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_10d_shift.insert(len(self.data_10d_shift.columns)-1, 'lag_2', lag_2)
             self.data_10d_shift["target"] = self.data.iloc[:, -1].shift(-10)
             self.data_10d_shift = self.data_10d_shift.dropna()
         return self
@@ -259,11 +262,10 @@ class Pipeline:
         scoring = {"RMSE": "neg_root_mean_squared_error",
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
-        cv = KFold(n_splits=3, shuffle=True, random_state=42)
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=5)
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=cv, scoring=scoring, refit="RMSE", n_points=4,
+            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
             verbose=1, n_jobs=n_jobs, error_score='raise').fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
