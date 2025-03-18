@@ -213,6 +213,7 @@ class Pipeline:
         else:
             train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
                 data[0], data[1], test_size=0.1, random_state=42, shuffle=False)
+            
         return train_data, test_data, train_target, test_target
 
     @staticmethod
@@ -221,7 +222,7 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.StandardScaler()
+        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -318,7 +319,7 @@ class Pipeline:
         
         # Second LSTM block with layer normalization
         model.add(tf.keras.layers.LayerNormalization())
-        model.add(tf.keras.layers.LSTM(units))
+        model.add(tf.keras.layers.LSTM(units//2))
         model.add(tf.keras.layers.Dropout(dropout))
         
         # Dense layers
@@ -326,7 +327,7 @@ class Pipeline:
         
         # Define learning rate schedule with exponential decay
         initial_learning_rate = lr_initial
-        decay_steps = 1500
+        decay_steps = 500
         decay_rate = 0.9
         learning_rate_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
             initial_learning_rate,
@@ -336,7 +337,7 @@ class Pipeline:
         )
 
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=learning_rate_schedule),
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=learning_rate_schedule, clipvalue=0.5, clipnorm=1, use_ema=True),
             loss=Pipeline.root_mean_squared_error
         )
         
