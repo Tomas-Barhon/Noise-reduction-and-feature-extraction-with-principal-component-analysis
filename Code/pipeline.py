@@ -12,7 +12,7 @@ import mlflow
 import mlflow.sklearn
 from visualizations import Visualizer
 import pandas as pd 
-
+import os
 class PCATransformer(BaseEstimator, TransformerMixin):
     """_summary_
 
@@ -152,17 +152,21 @@ class Pipeline:
         # 1 day forecasting
         if self.returns:
             self.data_1d_shift = self.data.copy()
-            #self.data_1d_shift.iloc[:, -1] =  np.log(self.data.iloc[:, -1].shift(1)).diff()
+            # Add current day returns
+            self.data_1d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(1)
+            # Add future returns as target
             self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
             self.data_1d_shift = self.data_1d_shift.dropna()
             
             # 5 day forecasting
             self.data_5d_shift = self.data.copy()
+            self.data_5d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(5)
             self.data_5d_shift["target"] = np.log(self.data.iloc[:, -1]).diff(5).shift(-5)
             self.data_5d_shift = self.data_5d_shift.dropna()
             
             # 10 day forecasting
             self.data_10d_shift = self.data.copy()
+            self.data_10d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(10)
             self.data_10d_shift["target"] = np.log(self.data.iloc[:, -1]).diff(10).shift(-10)
             self.data_10d_shift = self.data_10d_shift.dropna()
         else:
@@ -262,10 +266,11 @@ class Pipeline:
                    "MAE": "neg_mean_absolute_error",
                    "MAPE": "neg_mean_absolute_percentage_error"}
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
+
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=1, n_jobs=n_jobs, error_score='raise', n_iter=100).fit(train_data, train_target)
+            cv=3, scoring=scoring, refit="RMSE", n_points=1,
+            verbose=1, n_jobs=n_jobs, error_score='raise', n_iter=10).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
@@ -311,15 +316,14 @@ class Pipeline:
         Creates LSTM network with layer normalization for stable training
         """
         model = tf.keras.Sequential()
-        
-        # First LSTM block with layer normalization
-        model.add(tf.keras.layers.LayerNormalization(input_shape=input_shape))
-        model.add(tf.keras.layers.LSTM(units, return_sequences=True))
+        # First LSTM block
+        model.add(tf.keras.layers.LSTM(units, return_sequences=True, input_shape=input_shape))
+        model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.Dropout(dropout))
         
-        # Second LSTM block with layer normalization
-        model.add(tf.keras.layers.LayerNormalization())
+        # Second LSTM block
         model.add(tf.keras.layers.LSTM(units//2))
+        model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.Dropout(dropout))
         
         # Dense layers
@@ -337,19 +341,11 @@ class Pipeline:
         )
 
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=learning_rate_schedule, clipvalue=0.5, clipnorm=1, use_ema=True),
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=lr_initial),
             loss=Pipeline.root_mean_squared_error
         )
         
-        # Create TensorBoard callback
-        tensorboard_callback = tf.keras.callbacks.TensorBoard(
-            log_dir='./logs',
-            histogram_freq=1,
-            write_graph=True,
-            write_images=True
-        )
-        # Store callbacks as a model property to be used during fit
-        model.callbacks_list = [tensorboard_callback]
+    
         
         return model
 
