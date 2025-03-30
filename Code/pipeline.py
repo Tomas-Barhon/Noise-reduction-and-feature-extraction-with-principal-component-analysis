@@ -331,13 +331,13 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
-            # test_prediction = pd.Series(test_prediction, index=test_data.index)
-            # train_pred = pd.Series(y_pred, index=train_data.index)
-            # visualizer = Visualizer()
-            # fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
-            # mlflow.log_figure(fig, "prediction_plot_full.png")
-            # fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
-            # mlflow.log_figure(fig, "prediction_plot_test.png")
+            test_prediction = pd.Series(test_prediction, index=test_data.index)
+            train_pred = pd.Series(y_pred, index=train_data.index)
+            visualizer = Visualizer()
+            fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
+            mlflow.log_figure(fig, "prediction_plot_full.png")
+            fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
+            mlflow.log_figure(fig, "prediction_plot_test.png")
         return model
 
 
