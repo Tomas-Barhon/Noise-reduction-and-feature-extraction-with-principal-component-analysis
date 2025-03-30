@@ -149,25 +149,61 @@ class Pipeline:
         Returns:
             _type_: _description_
         """
-        # 1 day forecasting
+
         if self.returns:
+            def sma(data, window=14):
+                return data.rolling(window=window).mean()
+
+            # Calculate Exponential Moving Average (EMA)
+            def ema(data, window=14):
+                return data.ewm(span=window, adjust=False).mean()
+
+            # Calculate Relative Strength Index (RSI)
+            def rsi(data, window=14):
+                delta = data.diff()
+                gain = (delta.where(delta > 0, 0)).rolling(window=window).mean()
+                loss = (-delta.where(delta < 0, 0)).rolling(window=window).mean()
+                rs = gain / loss
+                return 100 - (100 / (1 + rs))
+
+            # Calculate Bollinger Bands
+            def bollinger_bands(data, window=14, num_std=2):
+                sma_value = sma(data, window)
+                rolling_std = data.rolling(window=window).std()
+                upper_band = sma_value + (rolling_std * num_std)
+                lower_band = sma_value - (rolling_std * num_std)
+                return upper_band, lower_band
+
+            # Add technical indicators to the data
+            def add_technical_indicators(df):
+                # Adding SMA, EMA, RSI, and Bollinger Bands
+                df['sma_14'] = sma(df['returns_today'], window=14)
+                df['ema_14'] = ema(df['returns_today'], window=14)
+                df['rsi_14'] = rsi(df['returns_today'], window=14)
+                df['bb_upper'], df['bb_lower'] = bollinger_bands(df['returns_today'], window=14)
+
+                return df
+
+# Data processing for 1-day, 5-day, and 10-day forecasts
             self.data_1d_shift = self.data.copy()
-            # Add current day returns
-            self.data_1d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(1)
-            # Add future returns as target
-            self.data_1d_shift["target"] = np.log(self.data.iloc[:, -1].shift(-1)).diff()
+            self.data_1d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(1))
             self.data_1d_shift = self.data_1d_shift.dropna()
-            
-            # 5 day forecasting
+            self.data_1d_shift = add_technical_indicators(self.data_1d_shift)
+            self.data_1d_shift["target"] = self.data_1d_shift["returns_today"].shift(-1)
+            self.data_1d_shift = self.data_1d_shift.dropna()
+            # 5-day forecasting
             self.data_5d_shift = self.data.copy()
-            self.data_5d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(5)
-            self.data_5d_shift["target"] = np.log(self.data.iloc[:, -1]).diff(5).shift(-5)
+            self.data_5d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(5))
             self.data_5d_shift = self.data_5d_shift.dropna()
-            
-            # 10 day forecasting
+            self.data_5d_shift = add_technical_indicators(self.data_5d_shift)
+            self.data_5d_shift["target"] = self.data_5d_shift["returns_today"].shift(-5)
+            self.data_5d_shift = self.data_5d_shift.dropna()
+            # 10-day forecasting
             self.data_10d_shift = self.data.copy()
-            self.data_10d_shift["returns_today"] = np.log(self.data.iloc[:, -1]).diff(10)
-            self.data_10d_shift["target"] = np.log(self.data.iloc[:, -1]).diff(10).shift(-10)
+            self.data_10d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(10))
+            self.data_10d_shift = self.data_10d_shift.dropna()
+            self.data_10d_shift = add_technical_indicators(self.data_10d_shift)
+            self.data_10d_shift["target"] = self.data_10d_shift["returns_today"].shift(-10)
             self.data_10d_shift = self.data_10d_shift.dropna()
         else:
             self.data_1d_shift = self.data.copy()
@@ -226,7 +262,7 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
+        scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -242,7 +278,7 @@ class Pipeline:
                                               ("scaler", scaler),
                                               ("denoiser", denoiser),
             #                                 ("scaler 2", scaler_2),
-                                              ("pack_up,", packer),
+                                              ("pack_up", packer),
                                               ("estimator", estimator)])
 
         return pipeline
@@ -270,7 +306,7 @@ class Pipeline:
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
             cv=3, scoring=scoring, refit="RMSE", n_points=1,
-            verbose=1, n_jobs=n_jobs, error_score='raise', n_iter=10).fit(train_data, train_target)
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=15).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
@@ -295,13 +331,13 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
-            test_prediction = pd.Series(test_prediction, index=test_data.index)
-            train_pred = pd.Series(y_pred, index=train_data.index)
-            visualizer = Visualizer()
-            fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
-            mlflow.log_figure(fig, "prediction_plot_full.png")
-            fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
-            mlflow.log_figure(fig, "prediction_plot_test.png")
+            # test_prediction = pd.Series(test_prediction, index=test_data.index)
+            # train_pred = pd.Series(y_pred, index=train_data.index)
+            # visualizer = Visualizer()
+            # fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
+            # mlflow.log_figure(fig, "prediction_plot_full.png")
+            # fig = visualizer.draw_prediction_test(test_target, test_prediction, horizon)
+            # mlflow.log_figure(fig, "prediction_plot_test.png")
         return model
 
 
@@ -311,22 +347,29 @@ class Pipeline:
         
 
     @staticmethod
-    def assembly_lstm(input_shape, units, dropout, lr_initial):
+    def assembly_lstm(input_shape, units, dropout, lr_initial, recurent_dropout, layers):
         """
         Creates LSTM network with layer normalization for stable training
         """
         model = tf.keras.Sequential()
+        model.add(tf.keras.layers.InputLayer(input_shape=input_shape))
         # First LSTM block
-        model.add(tf.keras.layers.LSTM(units, return_sequences=True, input_shape=input_shape))
+        if layers == 2:
+            model.add(tf.keras.layers.LSTM(units, return_sequences=True, recurrent_dropout=recurent_dropout))
+        else:
+            model.add(tf.keras.layers.LSTM(units, return_sequences=False, recurrent_dropout=recurent_dropout))
         model.add(tf.keras.layers.LayerNormalization())
-        model.add(tf.keras.layers.Dropout(dropout))
-        
+        model.add(tf.keras.layers.Dropout
+                    (dropout))
         # Second LSTM block
-        model.add(tf.keras.layers.LSTM(units//2))
-        model.add(tf.keras.layers.LayerNormalization())
-        model.add(tf.keras.layers.Dropout(dropout))
+        if layers == 2:
+            model.add(tf.keras.layers.LSTM(units//2, recurrent_dropout=recurent_dropout))
+            model.add(tf.keras.layers.LayerNormalization())
+            model.add(tf.keras.layers.Dropout
+                    (dropout))
         
         # Dense layers
+        model.add(tf.keras.layers.Dense(units//2, activation="relu"))
         model.add(tf.keras.layers.Dense(1))
         
         # Define learning rate schedule with exponential decay
@@ -341,12 +384,10 @@ class Pipeline:
         )
 
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=lr_initial),
-            loss=Pipeline.root_mean_squared_error
+            optimizer=tf.keras.optimizers.AdamW(learning_rate=lr_initial, clipnorm=1),
+            loss=Pipeline.root_mean_squared_error, metrics = [Pipeline.root_mean_squared_error]
         )
-        
-    
-        
+        print(model.summary())
         return model
 
     @staticmethod

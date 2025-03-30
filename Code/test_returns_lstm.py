@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+#print("GPUs:", tf.config.list_physical_devices('GPU'))
 import matplotlib.pyplot as plt
 import seaborn as sns
 from dataset import Dataset
@@ -9,6 +10,8 @@ from pipeline import Pipeline
 from visualizations import Visualizer
 from sklearn.linear_model import Ridge, HuberRegressor
 import sklearn.preprocessing
+from sklearn.preprocessing import MinMaxScaler
+import statsmodels.api as sm
 from sklearn.svm import LinearSVR, SVR
 from sklearn.decomposition import PCA, KernelPCA
 from scikeras.wrappers import KerasRegressor
@@ -22,13 +25,19 @@ import warnings
 import mlflow
 import argparse
 from skopt import space, plots
-os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
-print(tf.sysconfig.get_build_info())
+#os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
+
+print("GPUs:", tf.config.list_physical_devices('GPU'))
+physical_devices = tf.config.list_physical_devices('GPU')
+print(physical_devices)
+tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
+
+
 class Args():
     def __init__(self):
-        self.ticker = "btc"
+        self.ticker = "eth"
 args = Args()
-args.ticker = "btc"
+args.ticker = "eth"
 mlflow.set_experiment(args.ticker + "_17.3.2025-returns")
 
 # Filter out LinAlgWarning
@@ -44,7 +53,7 @@ if args.ticker == "eth":
     pipeline.set_beginning(start_date = "2015-08-08")
 else:
     pipeline.set_beginning(start_date = "2014-9-17")
-    
+     
 pipeline.preprocess_dataset()
 pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
                               f'{args.ticker.upper()} / NVT, adjusted, 90d MA',
@@ -82,10 +91,10 @@ if args.ticker == "btc":
        'Google_crypto_search', 'Wiki_crypto_search', 'RGDP_US', 'RGDP_PC_US',
        'CPI_US', 'M2_US', 'USD_EUR_rate', 'BTC-USD']
 """
-pipeline.data.drop(columns = ['BTC / Volatility, daily returns, 180d', 'BTC / Miner revenue, USD', 'BTC / Difficulty, last', 'BTC / Supply, Miner, held by all mining entities, USD',
-                              'BTC / Block, size, mean, bytes', 'BTC / Block, weight, mean', 'BTC / Issuance, continuous, percent, daily',
-       'BTC / Network distribution factor', 'Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
-       'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
+# pipeline.data.drop(columns = ['BTC / Volatility, daily returns, 180d', 'BTC / Miner revenue, USD', 'BTC / Difficulty, last', 'BTC / Supply, Miner, held by all mining entities, USD',
+#                               'BTC / Block, size, mean, bytes', 'BTC / Block, weight, mean', 'BTC / Issuance, continuous, percent, daily',
+#        'BTC / Network distribution factor', 'Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
+#        'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
 
 pipeline.shift_target()
 columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
@@ -122,6 +131,8 @@ def cap_outliers(data, lower_percentile=2, upper_percentile=98):
 
 x,y = Pipeline.create_lstm_input(pipeline.data_1d_shift.copy(), pipeline.data_1d_shift.copy().iloc[:,-1], 6)
 train_data_1, test_data_1, train_target_1, test_target_1 = Pipeline.split_train_test([x,y], pandas=False)
+print(train_data_1[-1])
+print(test_data_1[0])
 #train_target_1 = cap_outliers(train_target_1)
 x,y = Pipeline.create_lstm_input(pipeline.data_5d_shift.copy(), pipeline.data_5d_shift.copy().iloc[:,-1], 6)
 train_data_5, test_data_5, train_target_5, test_target_5 = Pipeline.split_train_test([x,y], pandas=False)
@@ -146,22 +157,62 @@ print(rmse(test_target_10, np.zeros_like(test_target_10)))
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm,
                     verbose=1, random_state = 42, shuffle = True,
-                    batch_size = 200,epochs=1000, input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
-                    units = 20, dropout = 0.1,lr_initial = 0.001), dim_reducer = None, shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), (-1,6,len(pipeline.data_1d_shift.columns) -1)))
+                    batch_size = 200,epochs=20, input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
+                    units = 32, dropout = 0.3,lr_initial = 0.001,
+                    recurent_dropout = 0.3, layers = 1), dim_reducer = None, 
+                    shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
+                                    (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-              "estimator__epsilon": space.Real(1, 10, prior = 'log-uniform')}
 
-LSTM_PARAMETERS = {"estimator__units": space.Integer(30, 600, prior = 'uniform'),
-    "estimator__epochs": space.Integer(200, 600, prior = 'uniform'),
-    "estimator__batch_size": space.Integer(10, 200, prior = 'uniform'),
+LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
+    "estimator__epochs": space.Integer(10, 500, prior = 'uniform'),
+    "estimator__batch_size": space.Integer(5, 30, prior = 'uniform'),
     "estimator__dropout": space.Real(0, 0.5, prior = 'uniform'),
-    "estimator__lr_initial": space.Real(1e-5, 1e-2, prior = 'log-uniform')}
+    "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
+    "estimator__recurent_dropout": space.Categorical([0, 0.1, 0.2, 0.3, 0.4, 0.5]),
+    "estimator__layers": space.Categorical([1])}
+
+print(test_data_10.shape)
+# minimax = sklearn.preprocessing.MinMaxScaler((0,1))
+# train_target_1 = np.squeeze(minimax.fit_transform(train_target_1.reshape(-1, 1)))
+# test_target_1 = np.squeeze(minimax.transform(test_target_1.reshape(-1, 1)))
+def plot_acf_comparison(train_series, test_series, lags=50):
+    """
+    Plots the autocorrelation function (ACF) for train and test datasets.
+    
+    Parameters:
+    - train_series: np.array or pd.Series, training returns series
+    - test_series: np.array or pd.Series, test returns series
+    - lags: int, number of lags to plot
+    """
+    
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+    # ACF for training data
+    sm.graphics.tsa.plot_acf(train_series, lags=lags, ax=axes[0])
+    axes[0].set_title("Train Data - ACF")
+    
+    # ACF for test data
+    sm.graphics.tsa.plot_acf(test_series, lags=lags, ax=axes[1])
+    axes[1].set_title("Test Data - ACF")
+    
+    plt.tight_layout()
+    plt.show()
+
+# Example Usage (replace with actual series)
+# Assuming train_data and test_data are 1D NumPy arrays or Pandas Series
+plot_acf_comparison(train_target_1, test_target_1, lags=50)
+#model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, pipe, LSTM_PARAMETERS, n_jobs =None)
+print(pipe.named_steps)
 
 
-model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_target_10, test_target_10, pipe, LSTM_PARAMETERS, n_jobs =None)
-print(model.best_params_)
-print(rmse(train_target_10, model.predict(train_data_10)))
-print(rmse(test_target_10, model.predict(test_data_10)))
+pipe.fit(train_data_10, train_target_10)
+
+
+
+plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
+plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
+plt.savefig("returns_lstm.png")
+print(rmse(train_target_10, pipe.predict(train_data_10)))
+print(rmse(test_target_10, pipe.predict(test_data_10)))
 
