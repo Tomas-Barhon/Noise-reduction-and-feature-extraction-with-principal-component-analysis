@@ -249,10 +249,10 @@ class Pipeline:
         """
         if pandas:
             train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
-                data.iloc[:, :-1], data.iloc[:, -1], test_size=0.1, random_state=42, shuffle=False)
+                data.iloc[:, :-1], data.iloc[:, -1], test_size=0.2, random_state=42, shuffle=False)
         else:
             train_data, test_data, train_target, test_target = sklearn.model_selection.train_test_split(
-                data[0], data[1], test_size=0.1, random_state=42, shuffle=False)
+                data[0], data[1], test_size=0.2, random_state=42, shuffle=False)
             
         return train_data, test_data, train_target, test_target
 
@@ -385,23 +385,15 @@ class Pipeline:
 
         model.compile(
             optimizer=tf.keras.optimizers.AdamW(learning_rate=lr_initial, clipnorm=1),
-            loss=Pipeline.root_mean_squared_error, metrics = [Pipeline.root_mean_squared_error]
+            loss="mse", metrics = [Pipeline.root_mean_squared_error]
         )
         print(model.summary())
         return model
 
     @staticmethod
     def root_mean_squared_error(y_true, y_pred):
-        """Custom loss function for tensorflow RMSE.
-
-        Args:
-            y_true: True values
-            y_pred: Predicted values
-
-        Returns:
-            RMSE loss value
-        """
-        return tf.sqrt(tf.reduce_mean(tf.square(y_pred - y_true)))
+        mse = tf.keras.losses.MeanSquaredError()(y_true, y_pred)  # Instantiate and call
+        return tf.keras.backend.sqrt(mse)
 
     @staticmethod
     def create_lstm_input(data, target, lag_order, forecast_time = 1):

@@ -101,7 +101,7 @@ results_test["Naive forceast - 5 days"] = rmse(test_target_5, test_data_5.iloc[:
 results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.iloc[:,-1])
 
 #Linear Regression
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 
 LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
@@ -136,7 +136,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 
 #1 day
@@ -165,7 +165,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 
 #1 day
@@ -194,7 +194,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -224,11 +224,10 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 5, prior = 'log-uniform'),
-              "estimator__max_iter":space.Integer(100, 20000),
-              "estimator__kernel": space.Categorical(["linear", "poly", "rbf"])}
+              "estimator__max_iter":space.Integer(100, 20000),}
 
 #Support Vector Regression
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = None)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -256,7 +255,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 
 #1 day
@@ -285,7 +284,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 
 #1 day
@@ -314,7 +313,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())

@@ -131,13 +131,12 @@ def cap_outliers(data, lower_percentile=2, upper_percentile=98):
 
 x,y = Pipeline.create_lstm_input(pipeline.data_1d_shift.copy(), pipeline.data_1d_shift.copy().iloc[:,-1], 6)
 train_data_1, test_data_1, train_target_1, test_target_1 = Pipeline.split_train_test([x,y], pandas=False)
-print(train_data_1[-1])
-print(test_data_1[0])
+
 #train_target_1 = cap_outliers(train_target_1)
 x,y = Pipeline.create_lstm_input(pipeline.data_5d_shift.copy(), pipeline.data_5d_shift.copy().iloc[:,-1], 6)
 train_data_5, test_data_5, train_target_5, test_target_5 = Pipeline.split_train_test([x,y], pandas=False)
 #train_target_5 = cap_outliers(train_target_5)
-x,y = Pipeline.create_lstm_input(pipeline.data_10d_shift.copy(), pipeline.data_10d_shift.copy().iloc[:,-1], 6)
+x,y = Pipeline.create_lstm_input(pipeline.data_10d_shift.copy(), pipeline.data_10d_shift.copy().iloc[:,-1], 15)
 train_data_10, test_data_10, train_target_10, test_target_10 = Pipeline.split_train_test([x,y], pandas=False)
 #train_target_10 = cap_outliers(train_target_10)
 results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, np.zeros_like(train_target_1))
@@ -155,13 +154,13 @@ print(rmse(test_target_5, np.zeros_like(test_target_5)))
 print(rmse(test_target_10, np.zeros_like(test_target_10)))
 #Linear Regression
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm,
+pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm, loss = "mean_squared_error",
                     verbose=1, random_state = 42, shuffle = True,
-                    batch_size = 200,epochs=20, input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
+                    batch_size = 200,epochs=5, input_shape=(15, len(pipeline.data_1d_shift.columns) -1),
                     units = 32, dropout = 0.3,lr_initial = 0.001,
                     recurent_dropout = 0.3, layers = 1), dim_reducer = None, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
-                                    (-1,6,len(pipeline.data_1d_shift.columns) -1)))
+                                    (-1,15,len(pipeline.data_1d_shift.columns) -1)))
 
 
 LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
