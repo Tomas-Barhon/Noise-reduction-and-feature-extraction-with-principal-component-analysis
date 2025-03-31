@@ -262,7 +262,10 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
+        if shape_change is False:
+            scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
+        else:
+            scaler = sklearn.preprocessing.StandardScaler()
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -298,9 +301,7 @@ class Pipeline:
         Returns:
             _type_: _description_
         """
-        scoring = {"RMSE": "neg_root_mean_squared_error",
-                   "MAE": "neg_mean_absolute_error",
-                   "MAPE": "neg_mean_absolute_percentage_error"}
+        scoring = {"RMSE": "neg_root_mean_squared_error"}
         ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
 
         model = BayesSearchCV(

@@ -93,13 +93,12 @@ results_test = pd.DataFrame(columns = columns, index = rows).fillna(0).astype(in
 train_data_1, test_data_1, train_target_1, test_target_1 = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 train_data_5, test_data_5, train_target_5, test_target_5 = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 train_data_10, test_data_10, train_target_10, test_target_10 = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, train_data_1.iloc[:,-1])
-results_train_averaged["Naive forceast - 5 days"] = rmse(train_target_5, train_data_5.iloc[:,-1])
-results_train_averaged["Naive forceast - 10 days"] = rmse(train_target_10, train_data_10.iloc[:,-1])
-results_test["Naive forceast - 1 day"] = rmse(test_target_1, test_data_1.iloc[:,-1])
-results_test["Naive forceast - 5 days"] = rmse(test_target_5, test_data_5.iloc[:,-1])
-results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.iloc[:,-1])
-
+results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, np.zeros_like(train_target_1))
+results_train_averaged["Naive forceast - 5 days"] = rmse(train_target_5, np.zeros_like(train_target_5))
+results_train_averaged["Naive forceast - 10 days"] = rmse(train_target_10, np.zeros_like(train_target_10))
+results_test["Naive forceast - 1 day"] = rmse(test_target_1, np.zeros_like(test_target_1))
+results_test["Naive forceast - 5 days"] = rmse(test_target_5, np.zeros_like(test_target_5))
+results_test["Naive forceast - 10 days"] = rmse(test_target_10, np.zeros_like(test_target_10))
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 

@@ -154,7 +154,7 @@ print(rmse(test_target_5, np.zeros_like(test_target_5)))
 print(rmse(test_target_10, np.zeros_like(test_target_10)))
 #Linear Regression
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm, loss = "mean_squared_error",
+pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm, loss = Pipeline.root_mean_squared_error,
                     verbose=1, random_state = 42, shuffle = True,
                     batch_size = 200,epochs=5, input_shape=(15, len(pipeline.data_1d_shift.columns) -1),
                     units = 32, dropout = 0.3,lr_initial = 0.001,
