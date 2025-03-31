@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-mlflow.set_experiment(args.ticker + "_30.3.2025-returns")
+mlflow.set_experiment(args.ticker + "_31.3.2025")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -39,7 +39,7 @@ np.random.seed(42)
 tf.random.set_seed(42)
 
 mlflow.sklearn.autolog(disable=True)
-pipeline = Pipeline(crypto_tick = args.ticker, returns=True)
+pipeline = Pipeline(crypto_tick = args.ticker, returns= True)
 if args.ticker == "eth":
     pipeline.set_beginning(start_date = "2015-08-08")
 else:
@@ -61,10 +61,7 @@ pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free floa
 
 if args.ticker == "btc":
     pipeline.data.drop(columns = [f'{args.ticker.upper()} / Hash rate, mean, 30d'], inplace = True)
-pipeline.data.drop(columns = ['BTC / Volatility, daily returns, 180d', 'BTC / Miner revenue, USD', 'BTC / Difficulty, last', 'BTC / Supply, Miner, held by all mining entities, USD',
-                              'BTC / Block, size, mean, bytes', 'BTC / Block, weight, mean', 'BTC / Issuance, continuous, percent, daily',
-       'BTC / Network distribution factor', 'Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
-       'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
+
 
 
 pipeline.shift_target()
@@ -96,24 +93,19 @@ results_test = pd.DataFrame(columns = columns, index = rows).fillna(0).astype(in
 train_data_1, test_data_1, train_target_1, test_target_1 = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
 train_data_5, test_data_5, train_target_5, test_target_5 = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
 train_data_10, test_data_10, train_target_10, test_target_10 = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, np.zeros_like(train_target_1))
-results_train_averaged["Naive forceast - 5 days"] = rmse(train_target_5, np.zeros_like(train_target_5))
-results_train_averaged["Naive forceast - 10 days"] = rmse(train_target_10, np.zeros_like(train_target_10))
-results_test["Naive forceast - 1 day"] = rmse(test_target_1, np.zeros_like(test_target_1))
-results_test["Naive forceast - 5 days"] = rmse(test_target_5, np.zeros_like(test_target_5))
-results_test["Naive forceast - 10 days"] = rmse(test_target_10, np.zeros_like(test_target_10))
+results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, train_data_1.iloc[:,-1])
+results_train_averaged["Naive forceast - 5 days"] = rmse(train_target_5, train_data_5.iloc[:,-1])
+results_train_averaged["Naive forceast - 10 days"] = rmse(train_target_10, train_data_10.iloc[:,-1])
+results_test["Naive forceast - 1 day"] = rmse(test_target_1, test_data_1.iloc[:,-1])
+results_test["Naive forceast - 5 days"] = rmse(test_target_5, test_data_5.iloc[:,-1])
+results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.iloc[:,-1])
 
-print(rmse(train_target_1, np.zeros_like(train_target_1)))
-print(rmse(train_target_5, np.zeros_like(train_target_5)))
-print(rmse(train_target_10, np.zeros_like(train_target_10)))
-print(rmse(test_target_1, np.zeros_like(test_target_1)))
-print(rmse(test_target_5, np.zeros_like(test_target_5)))
-print(rmse(test_target_10, np.zeros_like(test_target_10)))
 #Linear Regression
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5, prior = 'uniform'),
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
+              "estimator__max_iter":space.Integer(100, 10000000),
               "estimator__epsilon": space.Real(1, 10, prior = 'log-uniform')}
 
 
@@ -144,7 +136,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 
 #1 day
@@ -173,7 +165,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 
 #1 day
@@ -202,7 +194,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = HuberRegressor(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -232,10 +224,10 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
               "estimator__tol":space.Real(1e-5, 5, prior = 'log-uniform'),
-              "estimator__kernel": space.Categorical(["rbf"])}
+              "estimator__max_iter":space.Integer(100, 20000),}
 
 #Support Vector Regression
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = None)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -263,7 +255,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 
 #1 day
@@ -292,7 +284,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 
 #1 day
@@ -321,7 +313,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -348,5 +340,5 @@ prediction = model.predict(test_data)
 results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(test_target,
                                                                 prediction)
 
-results_train_averaged.to_csv(f"results_train_averaged_returns_{args.ticker.upper()}.csv")
-results_test.to_csv(f"results_test_returns_{args.ticker.upper()}.csv")
+results_train_averaged.to_csv(f"results_train_averaged_{args.ticker.upper()}.csv")
+results_test.to_csv(f"results_test_{args.ticker.upper()}.csv")
