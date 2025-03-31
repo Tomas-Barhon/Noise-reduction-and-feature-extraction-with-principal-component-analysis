@@ -103,9 +103,8 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, test_data_10.ilo
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5000, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-              "estimator__max_iter":space.Integer(100, 10000000)}
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 5, prior = 'uniform'),
+              "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform')}
 
 
 
