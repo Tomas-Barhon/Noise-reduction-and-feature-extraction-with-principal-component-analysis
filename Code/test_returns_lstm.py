@@ -145,7 +145,7 @@ pipe = Pipeline.assembly_pipeline(
 
 
 LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
-    "estimator__epochs": space.Integer(10, 500, prior = 'uniform'),
+    "estimator__epochs": space.Integer(10, 12, prior = 'uniform'),
     "estimator__batch_size": space.Integer(5, 30, prior = 'uniform'),
     "estimator__dropout": space.Real(0, 0.5, prior = 'uniform'),
     "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
