@@ -76,35 +76,15 @@ collected from Fred St. Louis
 
 ### **BTC** (30)
 * BTC / Addresses, active, count
-* BTC / NVT, adjusted, 90d MA
-* BTC / NVT, adjusted, free float,  90d MA
 * BTC / NVT, adjusted
-* BTC / NVT, adjusted, free float
 * BTC / Flow, in, to exchanges, USD
 * BTC / Flow, out, from exchanges, USD
 * BTC / Fees, transaction, mean, USD
-* BTC / Fees, transaction, median, USD
-* BTC / Fees, total, USD
-* BTC / Miner revenue, USD
-* BTC / Capitalization, market, free float, USD
 * BTC / Capitalization, realized, USD
-* BTC / Capitalization, market, current supply, USD
-* BTC / Capitalization, market, estimated supply, USD
 * BTC / Volatility, daily returns, 30d
-* BTC / Volatility, daily returns, 180d
-* BTC / Difficulty, last
-* BTC / Difficulty, mean
 * BTC / Hash rate, mean
-* BTC / Hash rate, mean, 30d
 * BTC / Revenue, per hash unit, USD
-* BTC / Supply, Miner, held by all mining entities, USD
-* BTC / Block, size, mean, bytes
-* BTC / Block, weight, mean
-* BTC / Issuance, continuous, percent, daily
-* BTC / Network distribution factor
 * BTC / Transactions, count
-* BTC / Transactions, transfers, count
-* BTC / Transactions, transfers, value, mean, USD
 
 ### **ETH** (27) - missing hashrate mean 30d; Supply, Miner, held by all mining entities, USD; Block, weight, mean
 * ETH / Addresses, active, count

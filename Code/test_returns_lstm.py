@@ -6,7 +6,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import seaborn as sns
 from dataset import Dataset
-from pipeline import Pipeline
+from pipeline import Pipeline, LSTMRegressor
 from visualizations import Visualizer
 from sklearn.linear_model import Ridge, HuberRegressor
 import sklearn.preprocessing
@@ -38,7 +38,7 @@ class Args():
         self.ticker = "eth"
 args = Args()
 args.ticker = "eth"
-mlflow.set_experiment(args.ticker + "_17.3.2025-returns")
+mlflow.set_experiment(args.ticker + "_5.4.2025-returns")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -55,46 +55,11 @@ else:
     pipeline.set_beginning(start_date = "2014-9-17")
      
 pipeline.preprocess_dataset()
-pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
-                              f'{args.ticker.upper()} / NVT, adjusted, 90d MA',
-                              f'{args.ticker.upper()} / NVT, adjusted, free float',
-                              f'{args.ticker.upper()} / Fees, transaction, median, USD', 
-                              f'{args.ticker.upper()} / Fees, total, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, free float, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
-                              f'{args.ticker.upper()} / Difficulty, mean',
-#                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
-                              f'{args.ticker.upper()} / Transactions, transfers, count',
-                            f'{args.ticker.upper()} / Transactions, transfers, value, mean, USD'
-                              ], inplace = True)
+print(pipeline.data.info())
 
-if args.ticker == "btc":
-    pipeline.data.drop(columns = [f'{args.ticker.upper()} / Hash rate, mean, 30d'], inplace = True)
 
-"""
-['BTC / Addresses, active, count', 'BTC / NVT, adjusted, 90d MA',
-       'BTC / NVT, adjusted', 'BTC / Flow, in, to exchanges, USD',
-       'BTC / Flow, out, from exchanges, USD',
-       'BTC / Fees, transaction, mean, USD', 'BTC / Miner revenue, USD',
-       'BTC / Capitalization, realized, USD',
-       'BTC / Volatility, daily returns, 30d',
-       'BTC / Volatility, daily returns, 180d', 'BTC / Difficulty, last',
-       'BTC / Hash rate, mean', 'BTC / Revenue, per hash unit, USD',
-       'BTC / Supply, Miner, held by all mining entities, USD',
-       'BTC / Block, size, mean, bytes', 'BTC / Block, weight, mean',
-       'BTC / Issuance, continuous, percent, daily',
-       'BTC / Network distribution factor', 'BTC / Transactions, count',
-       'Google_btc_search', 'Wiki_btc_search', 'Close_^DJI', 'Close_^GSPC',
-       'Close_GC=F', 'Close_^VIX', 'Close_^IXIC', 'Close_SMH', 'Close_VGT',
-       'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV', 'Close_QQQ',
-       'Google_crypto_search', 'Wiki_crypto_search', 'RGDP_US', 'RGDP_PC_US',
-       'CPI_US', 'M2_US', 'USD_EUR_rate', 'BTC-USD']
-"""
-# pipeline.data.drop(columns = ['BTC / Volatility, daily returns, 180d', 'BTC / Miner revenue, USD', 'BTC / Difficulty, last', 'BTC / Supply, Miner, held by all mining entities, USD',
-#                               'BTC / Block, size, mean, bytes', 'BTC / Block, weight, mean', 'BTC / Issuance, continuous, percent, daily',
-#        'BTC / Network distribution factor', 'Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
-#        'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
+pipeline.data.drop(columns = ['Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
+       'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
 
 pipeline.shift_target()
 columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
@@ -131,13 +96,24 @@ def cap_outliers(data, lower_percentile=2, upper_percentile=98):
 
 x,y = Pipeline.create_lstm_input(pipeline.data_1d_shift.copy(), pipeline.data_1d_shift.copy().iloc[:,-1], 6)
 train_data_1, test_data_1, train_target_1, test_target_1 = Pipeline.split_train_test([x,y], pandas=False)
-
+index_1 = pipeline.data_1d_shift.index[6:]
+split_point = int(len(index_1) * 0.8)
+index_1_train = index_1[:split_point]
+index_1_test = index_1[split_point:]
 #train_target_1 = cap_outliers(train_target_1)
 x,y = Pipeline.create_lstm_input(pipeline.data_5d_shift.copy(), pipeline.data_5d_shift.copy().iloc[:,-1], 6)
 train_data_5, test_data_5, train_target_5, test_target_5 = Pipeline.split_train_test([x,y], pandas=False)
+index_5 = pipeline.data_5d_shift.index[6:]
+split_point = int(len(index_5) * 0.8)
+index_5_train = index_5[:split_point]
+index_5_test = index_5[split_point:]
 #train_target_5 = cap_outliers(train_target_5)
-x,y = Pipeline.create_lstm_input(pipeline.data_10d_shift.copy(), pipeline.data_10d_shift.copy().iloc[:,-1], 15)
+x,y = Pipeline.create_lstm_input(pipeline.data_10d_shift.copy(), pipeline.data_10d_shift.copy().iloc[:,-1], 6)
 train_data_10, test_data_10, train_target_10, test_target_10 = Pipeline.split_train_test([x,y], pandas=False)
+index_10 = pipeline.data_10d_shift.index[6:]
+split_point = int(len(index_10) * 0.8)
+index_10_train = index_10[:split_point]
+index_10_test = index_10[split_point:]
 #train_target_10 = cap_outliers(train_target_10)
 results_train_averaged["Naive forceast - 1 day"] = rmse(train_target_1, np.zeros_like(train_target_1))
 results_train_averaged["Naive forceast - 5 days"] = rmse(train_target_5, np.zeros_like(train_target_5))
@@ -154,13 +130,18 @@ print(rmse(test_target_5, np.zeros_like(test_target_5)))
 print(rmse(test_target_10, np.zeros_like(test_target_10)))
 #Linear Regression
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = KerasRegressor(model = Pipeline.assembly_lstm, loss = Pipeline.root_mean_squared_error,
-                    verbose=1, random_state = 42, shuffle = True,
-                    batch_size = 200,epochs=5, input_shape=(15, len(pipeline.data_1d_shift.columns) -1),
-                    units = 32, dropout = 0.3,lr_initial = 0.001,
-                    recurent_dropout = 0.3, layers = 1), dim_reducer = None, 
+pipe = Pipeline.assembly_pipeline(
+    estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
+                    batch_size = 5,
+                    epochs=150, 
+                    input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
+                    units = 64,
+                    dropout = 0.5,
+                    lr_initial = 0.001,
+                    layers = 2),
+                    dim_reducer = None, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
-                                    (-1,15,len(pipeline.data_1d_shift.columns) -1)))
+                                    (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 
 LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
@@ -169,7 +150,7 @@ LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
     "estimator__dropout": space.Real(0, 0.5, prior = 'uniform'),
     "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
     "estimator__recurent_dropout": space.Categorical([0, 0.1, 0.2, 0.3, 0.4, 0.5]),
-    "estimator__layers": space.Categorical([1])}
+    "estimator__layers": space.Categorical([1,2])}
 
 print(test_data_10.shape)
 # minimax = sklearn.preprocessing.MinMaxScaler((0,1))
@@ -200,18 +181,20 @@ def plot_acf_comparison(train_series, test_series, lags=50):
 
 # Example Usage (replace with actual series)
 # Assuming train_data and test_data are 1D NumPy arrays or Pandas Series
-plot_acf_comparison(train_target_1, test_target_1, lags=50)
-#model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, pipe, LSTM_PARAMETERS, n_jobs =None)
+#plot_acf_comparison(train_target_1, test_target_1, lags=50)
+model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
 print(pipe.named_steps)
+#minimax = sklearn.preprocessing.MinMaxScaler((0,1))
+#train_target = np.squeeze(minimax.fit_transform(train_target_10.reshape(-1, 1)))
+#test_target = np.squeeze(minimax.transform(test_target_10.reshape(-1, 1)))
+
+# pipe.fit(train_data_10, train_target_10)
 
 
-pipe.fit(train_data_10, train_target_10)
 
-
-
-plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
-plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
-plt.savefig("returns_lstm.png")
-print(rmse(train_target_10, pipe.predict(train_data_10)))
-print(rmse(test_target_10, pipe.predict(test_data_10)))
+# plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
+# plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
+# plt.savefig("returns_lstm.png")
+# print(rmse(train_target_10, pipe.predict(train_data_10)))
+# print(rmse(test_target_10, pipe.predict(test_data_10)))
 

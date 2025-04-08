@@ -5,6 +5,7 @@ from fredapi import Fred
 import pandas as pd
 import yfinance as yf
 import gtab
+import pickle
 class Dataset():
     """
     Parent class for other datasets responsible for getting data
@@ -62,17 +63,24 @@ class Dataset():
     def __init__(self):
         self.data = pd.DataFrame(columns=["no_data"])
         self.date_min = datetime(2011,1,3)
-        self.date_max = datetime(2022,12,30)
+        self.date_max = datetime(2024,12,31)
         #normalized google trends
         self.google_trends = gtab.GTAB()
-        self.google_trends.set_options(pytrends_config={"timeframe": "2011-01-01 2023-01-01"})
-        self.google_trends.set_active_gtab("google_anchorbank_geo=_timeframe=2011-01-01 2023-01-01.tsv")
+        self.google_trends.set_options(
+    pytrends_config={"timeframe": "2011-01-03 2024-12-31"},
+    # gtab_config={"sleep": 3} ,
+    # conn_config={"retries": 5, "backoff_factor": 3}
+)
+        self.google_trends.set_active_gtab("google_anchorbank_geo=_timeframe=2011-01-03 2024-12-31.tsv")
         self.queries_crypto = [self.google_trends.new_query("Cryptocurrency"),
                                 self.google_trends.new_query("cryptocurrency"),
                                 self.google_trends.new_query("Cryptocurrencies"),
                                 self.google_trends.new_query("cryptocurrencies"),
                                 self.google_trends.new_query("crypto"),
                                 self.google_trends.new_query("Crypto")]
+        with open('crypto_searches.pkl', 'wb') as f:
+            pickle.dump(self.queries_crypto, f)
+            print("dumped")
         self.fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
 
     def get_yf_variable_history(self,tick_name):
@@ -88,14 +96,18 @@ class Dataset():
         """Method that takes coinmetrics dataset and creates new csv file for each cryptocurrency
         """
         #the seperator is tab and encoding UTF-16-LE just so I do not forget
-        data = pd.read_csv("./../Data/coinmetrics_data_4_12_2023.csv",
-                        encoding="utf-16-le", sep = "	")
-        data["Time"] = pd.to_datetime(data["Time"])
+        data = pd.read_csv("./../Data/coinmetrics_data_new.csv")
+        data["Unanamed: 0"] = pd.to_datetime(data["Unnamed: 0"])
+        data.rename(columns={"Unnamed: 0": "Time"}, inplace=True)
         data.set_index("Time", inplace=True)
         data.index.name = None
         #spliting data into 3 seperate datasets (manually chosen splits)
-        self.BTC_dataframe, self.ETH_dataframe, self.LTC_dataframe = (data.iloc[:,:30],
-                                            data.iloc[:,30:57], data.iloc[:,57:])
+        self.BTC_dataframe, self.ETH_dataframe, self.LTC_dataframe = (data.iloc[:,:10],
+                                            data.iloc[:,10:20], data.iloc[:,20:])
+        self.BTC_dataframe.index = pd.to_datetime(self.BTC_dataframe.index)
+        self.ETH_dataframe.index = pd.to_datetime(self.ETH_dataframe.index)
+        self.LTC_dataframe.index = pd.to_datetime(self.LTC_dataframe.index)
+
         return self
 
     def get_common_data(self):
@@ -200,6 +212,7 @@ class Dataset():
         Loads already created dataset for bitcoin.
         """
         dataset = pd.read_csv("./../Data/btc.csv", index_col=0)
+
         dataset.index = pd.to_datetime(dataset.index)
         return dataset
 
@@ -255,15 +268,19 @@ class BitcoinDataset(Dataset):
         wiki_crypto.set_index("Date", inplace=True)
         wiki_crypto.index.name = None
         wiki_crypto.rename(columns={"Bitcoin": "Wiki_btc_search"}, inplace=True)
+        
         google_wiki = pd.merge(google_btc, wiki_crypto,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
         merged_df = pd.merge(self.BTC_dataframe, google_wiki,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        print(merged_df)
+        
         merged_df = pd.merge(merged_df, self.data,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
+        print(merged_df)
         merged_df = pd.merge(merged_df, self.get_yf_variable_history("BTC-USD"),
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
@@ -271,19 +288,21 @@ class BitcoinDataset(Dataset):
         return merged_df
     def save_data_to_csv(self):
         data = self.merge_all_data()
+        print(data.tail(20))
         data = data.loc[self.date_min:self.date_max]
+        print(data.tail(20))
         data.to_csv("./../Data/btc.csv")
         return self
 
 class EthereumDataset(Dataset):
     def __init__(self):
         super().__init__()
-        time.sleep(20)
-        self.queries_ethereum = [self.google_trends.new_query("Ethereum"),
-                                self.google_trends.new_query("ethereum"),
-                                self.google_trends.new_query("ether"),
-                                self.google_trends.new_query("ETH")]
-
+        time.sleep(50)
+        self.queries_ethereum = []
+        for term in ["Ethereum", "ethereum", "ETH"]:
+            self.queries_ethereum.append(self.google_trends.new_query(term))
+            time.sleep(15)
+        
     def merge_all_data(self):
         self.execute_full_pipeline()
         #Currency specific google searches
@@ -308,7 +327,7 @@ class EthereumDataset(Dataset):
         eth = pd.read_csv("./../Data/ETH_USD_price_coinmetrics_2024_2_10.csv",
                         encoding="utf-16-le", sep = "	")
         eth["Time"] = pd.to_datetime(eth["Time"])
-        eth.set_index("Time", inplace=True)
+        eth.set_index("Time", inplace=True) 
         merged_df = pd.merge(merged_df, eth,
                                 left_index=True, right_index=True,
                         how="outer", suffixes = (None, None))
@@ -322,7 +341,7 @@ class EthereumDataset(Dataset):
 class LitecoinDataset(Dataset):
     def __init__(self):
         super().__init__()
-        time.sleep(20)
+        time.sleep(50)
         self.queries_litecoin = [self.google_trends.new_query("Litecoin"),
                         self.google_trends.new_query("litecoin"),
                         self.google_trends.new_query("LTC")]

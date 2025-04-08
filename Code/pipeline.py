@@ -1,3 +1,4 @@
+import sys
 from typing import Literal
 from dataset import Dataset
 import sklearn.model_selection
@@ -5,56 +6,78 @@ from sklearn.model_selection import KFold
 import sklearn.preprocessing
 import sklearn.pipeline
 import tensorflow as tf
-from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin
+from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 from skopt import BayesSearchCV
+from sklearn.utils.validation import check_X_y, check_array
 import mlflow
 import mlflow.sklearn
 from visualizations import Visualizer
 import pandas as pd 
-import os
-class PCATransformer(BaseEstimator, TransformerMixin):
-    """_summary_
 
-    Pushes original data into n dimensions based on retained percantage 
-    of variance specified in pca. And upsamples them back into the original 
-    number of dimensions.
 
-    Args:
-        BaseEstimator (_type_): _description_
-        TransformerMixin (_type_): _description_
-    """
-    def __init__(self, pca):
-        self.pca = pca
+class LSTMRegressor(BaseEstimator, RegressorMixin):
+    def __init__(self, build_fn, input_shape, units=32, dropout=0.3,
+                 lr_initial=0.001, layers=1, epochs=1, batch_size=32, verbose=10):
+        if build_fn is None:
+            raise ValueError("build_fn cannot be None. It must be a function that returns a compiled Keras model.")
 
-    def fit(self, X, y=None):
-        """
-        Fit the PCA model on the provided data.
-        Parameters:
-        X : array-like, shape (n_samples, n_features)
-            Training data.
-        y : Ignored
-            Not used, present here for API consistency by convention.
-        Returns:
-        self : object
-            Returns the instance itself.
-        """
-        # Fit PCA on all columns except the last one
-        self.pca.fit(X)
+        self.build_fn = build_fn
+        self.input_shape = input_shape
+        self.units = units
+        self.dropout = dropout
+        self.lr_initial = lr_initial
+        self.layers = layers
+        self.epochs = epochs
+        self.batch_size = batch_size
+        self.verbose = verbose
+        self.model_ = None
+
+    def fit(self, X, y):
+        #X, y = check_X_y(X, y, ensure_2d=False)  # Validate input
+        self.model_ = self.build_fn(
+            input_shape=self.input_shape, 
+            units=self.units, 
+            dropout=self.dropout, 
+            lr_initial=self.lr_initial, 
+            layers=self.layers,
+            epochs = self.epochs
+        )
+        tensorboard_cb = TensorBoard(log_dir="./logs", histogram_freq=1, write_graph=True)
+        self.model_.fit(X, y, epochs=self.epochs, batch_size=self.batch_size,
+                        callbacks=[tensorboard_cb])
+        sys.stdout.flush()
         return self
 
-    def transform(self, X):
-        """
-        Transforms the input data by applying PCA downsampling and then restoring it to the original dimensions.
-        Parameters:
-        X (array-like): The input data to be transformed.
-        Returns:
-        array-like: The transformed data, restored to the original dimensions.
-        """
-        # Apply PCA to all columns except the last one
-        X_pca = self.pca.transform(X)
-        # Keep the last column unchanged and concatenate with transformed data
-        return X_pca
+    def predict(self, X):
+        X = np.asarray(X)  # Ensure it's a NumPy array
+        if X.ndim != 3:
+            raise ValueError(f"Expected X to be 3D (samples, timesteps, features), but got shape {X.shape}.")
+        return self.model_.predict(X)
+
+    def score(self, X, y):
+        X, y = check_X_y(X, y, ensure_2d=False)
+        y_pred = self.predict(X)
+        return -np.sqrt(np.mean((y - y_pred) ** 2))  # Negative RMSE
+
+    def get_params(self, deep=True):
+        return {
+            "build_fn": self.build_fn, 
+            "input_shape": self.input_shape, 
+            "units": self.units, 
+            "dropout": self.dropout, 
+            "lr_initial": self.lr_initial, 
+            "layers": self.layers, 
+            "epochs": self.epochs, 
+            "batch_size": self.batch_size, 
+            "verbose": self.verbose
+        }
+
+    def set_params(self, **params):
+        for key, value in params.items():
+            setattr(self, key, value)
+        return self
 
 
 class ReshapeTransformer(BaseEstimator, TransformerMixin):
@@ -123,20 +146,24 @@ class Pipeline:
                 self.data['Wiki_btc_search'] = self.data['Wiki_btc_search'].fillna(
                     0)
                 # also filling with zeros as the metric was not present at that time
-                self.data["BTC / Capitalization, market, estimated supply, USD"] = self.data[
-                    "BTC / Capitalization, market, estimated supply, USD"].fillna(0)
+#                self.data["BTC / Capitalization, market, estimated supply, USD"] = self.data[
+#                    "BTC / Capitalization, market, estimated supply, USD"].fillna(0)
+                self.data = self.data.loc[:"2024-01-20"]
             case "ltc":
                 self.data['Wiki_ltc_search'] = self.data['Wiki_ltc_search'].fillna(
                     0)
-                self.data["LTC / Capitalization, market, estimated supply, USD"] = self.data[
-                    "LTC / Capitalization, market, estimated supply, USD"].fillna(0)
+#                self.data["LTC / Capitalization, market, estimated supply, USD"] = self.data[
+#                    "LTC / Capitalization, market, estimated supply, USD"].fillna(0)
             case "eth":
                 self.data['Wiki_eth_search'] = self.data['Wiki_eth_search'].fillna(
                     0)
-                self.data["ETH / Capitalization, market, estimated supply, USD"] = self.data[
-                    "ETH / Capitalization, market, estimated supply, USD"].fillna(0)
+                self.data["ETH / Mean Hash Rate"] = self.data["ETH / Mean Hash Rate"].ffill()
+                self.data["ETH / Miner Revenue per Hash (USD)"] = self.data[
+                    "ETH / Miner Revenue per Hash (USD)"].ffill()
+#                self.data["ETH / Capitalization, market, estimated supply, USD"] = self.data[
+#                    "ETH / Capitalization, market, estimated supply, USD"].fillna(0)
                 # cutting the end where the PoS consensus mechanism starts
-                self.data = self.data.loc[:"2022-09-15"]
+                self.data = self.data.loc[:"2023-12-21"]
                 # dropping the beginning where the moving averages are not present
                 self.data = self.data.dropna()
         return self
@@ -262,7 +289,7 @@ class Pipeline:
         Creates sklearn.pipeline with specified steps. 
         Takes care of shape transformations for LSTM.
         """
-        if shape_change is False:
+        if shape_change is not False:
             scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
         else:
             scaler = sklearn.preprocessing.StandardScaler()
@@ -287,7 +314,7 @@ class Pipeline:
         return pipeline
 
     @staticmethod
-    def fit_grid_search(train_data, train_target, test_data, test_target, pipeline, parameter_grid, n_jobs=-1, horizon = 1):
+    def fit_grid_search(train_data, train_target, test_data, test_target, train_index, test_index, pipeline, parameter_grid, n_jobs=-1, horizon = 1):
         """Fits grid search using the time series split with all metrics using
         the best RMSE as the best model.
 
@@ -307,7 +334,7 @@ class Pipeline:
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
             cv=3, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=50).fit(train_data, train_target)
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=1).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
@@ -332,8 +359,8 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
-            test_prediction = pd.Series(test_prediction, index=test_data.index)
-            train_pred = pd.Series(y_pred, index=train_data.index)
+            test_prediction = pd.Series(test_prediction, index=test_index)
+            train_pred = pd.Series(y_pred, index=train_index)
             visualizer = Visualizer()
             fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
             mlflow.log_figure(fig, "prediction_plot_full.png")
@@ -348,34 +375,37 @@ class Pipeline:
         
 
     @staticmethod
-    def assembly_lstm(input_shape, units, dropout, lr_initial, recurent_dropout, layers):
+    def assembly_lstm(input_shape, units, dropout, lr_initial, layers, epochs):
         """
         Creates LSTM network with layer normalization for stable training
         """
         model = tf.keras.Sequential()
         model.add(tf.keras.layers.InputLayer(input_shape=input_shape))
         # First LSTM block
+        #model.add(tf.keras.layers.BatchNormalization())
         if layers == 2:
-            model.add(tf.keras.layers.LSTM(units, return_sequences=True, recurrent_dropout=recurent_dropout))
+            model.add(tf.keras.layers.LSTM(units, return_sequences=True))
         else:
-            model.add(tf.keras.layers.LSTM(units, return_sequences=False, recurrent_dropout=recurent_dropout))
+            model.add(tf.keras.layers.LSTM(units, return_sequences=False))
         model.add(tf.keras.layers.LayerNormalization())
         model.add(tf.keras.layers.Dropout
                     (dropout))
         # Second LSTM block
         if layers == 2:
-            model.add(tf.keras.layers.LSTM(units//2, recurrent_dropout=recurent_dropout))
+            model.add(tf.keras.layers.LSTM(units//2))
             model.add(tf.keras.layers.LayerNormalization())
             model.add(tf.keras.layers.Dropout
                     (dropout))
         
         # Dense layers
         model.add(tf.keras.layers.Dense(units//2, activation="relu"))
+        model.add(tf.keras.layers.Dropout
+        (dropout))
         model.add(tf.keras.layers.Dense(1))
         
         # Define learning rate schedule with exponential decay
         initial_learning_rate = lr_initial
-        decay_steps = 500
+        decay_steps = epochs
         decay_rate = 0.9
         learning_rate_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
             initial_learning_rate,
@@ -385,8 +415,8 @@ class Pipeline:
         )
 
         model.compile(
-            optimizer=tf.keras.optimizers.AdamW(learning_rate=lr_initial, clipnorm=1),
-            loss="mse", metrics = [Pipeline.root_mean_squared_error]
+            optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate_schedule),
+            loss="mse", metrics = [Pipeline.root_mean_squared_error], steps_per_execution=10
         )
         print(model.summary())
         return model
