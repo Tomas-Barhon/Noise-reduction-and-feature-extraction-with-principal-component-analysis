@@ -16,6 +16,50 @@ import mlflow.sklearn
 from visualizations import Visualizer
 import pandas as pd 
 
+class PCATransformer(BaseEstimator, TransformerMixin):
+    """_summary_
+
+    Pushes original data into n dimensions based on retained percantage 
+    of variance specified in pca. And upsamples them back into the original 
+    number of dimensions.
+
+    Args:
+        BaseEstimator (_type_): _description_
+        TransformerMixin (_type_): _description_
+    """
+    def __init__(self, pca):
+        self.pca = pca
+
+    def fit(self, X, y=None):
+        """
+        Fit the PCA model on the provided data.
+        Parameters:
+        X : array-like, shape (n_samples, n_features)
+            Training data.
+        y : Ignored
+            Not used, present here for API consistency by convention.
+        Returns:
+        self : object
+            Returns the instance itself.
+        """
+    
+        self.pca.fit(X)
+        return self
+
+    def transform(self, X):
+        """
+        Transforms the input data by applying PCA downsampling and then restoring it to the original dimensions.
+        Parameters:
+        X (array-like): The input data to be transformed.
+        Returns:
+        array-like: The transformed data, restored to the original dimensions.
+        """
+        
+        # Downsample to n_components
+        X_pca = self.pca.transform(X)
+        # Upsample back to original dimensions
+        X_restored = self.pca.inverse_transform(X_pca)
+        return X_restored
 
 class LSTMRegressor(BaseEstimator, RegressorMixin):
     def __init__(self, build_fn, input_shape, units=32, dropout=0.3,
