@@ -359,6 +359,7 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
+            print(test_prediction.shape)
             test_prediction = pd.Series(test_prediction, index=test_index)
             train_pred = pd.Series(y_pred, index=train_index)
             visualizer = Visualizer()
