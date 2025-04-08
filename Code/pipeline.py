@@ -208,7 +208,6 @@ class Pipeline:
                 df['ema_14'] = ema(df['returns_today'], window=14)
                 df['rsi_14'] = rsi(df['returns_today'], window=14)
                 df['bb_upper'], df['bb_lower'] = bollinger_bands(df['returns_today'], window=14)
-
                 return df
 
 # Data processing for 1-day, 5-day, and 10-day forecasts
