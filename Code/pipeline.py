@@ -332,8 +332,8 @@ class Pipeline:
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=3, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=50).fit(train_data, train_target)
+            cv=5, scoring=scoring, refit="RMSE", n_points=4,
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=30).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
