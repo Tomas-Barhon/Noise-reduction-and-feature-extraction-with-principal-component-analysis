@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-mlflow.set_experiment(args.ticker + "_31.3.2025")
+mlflow.set_experiment(args.ticker + "_8.4.2025_returns")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -221,7 +221,7 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 5, prior = 'log-uniform'),}
+              "estimator__epsilon":space.Real(1e-5, 5, prior = 'log-uniform'),}
 
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = None)
