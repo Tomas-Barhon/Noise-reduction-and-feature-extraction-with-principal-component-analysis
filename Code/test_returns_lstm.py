@@ -144,12 +144,11 @@ pipe = Pipeline.assembly_pipeline(
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 
-LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 50, prior = 'uniform'),
-    "estimator__epochs": space.Integer(10, 12, prior = 'uniform'),
+LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 200, prior = 'uniform'),
+    "estimator__epochs": space.Integer(10, 800, prior = 'uniform'),
     "estimator__batch_size": space.Integer(5, 30, prior = 'uniform'),
     "estimator__dropout": space.Real(0, 0.5, prior = 'uniform'),
     "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
-    "estimator__recurent_dropout": space.Categorical([0, 0.1, 0.2, 0.3, 0.4, 0.5]),
     "estimator__layers": space.Categorical([1,2])}
 
 print(test_data_10.shape)
