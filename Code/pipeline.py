@@ -362,6 +362,8 @@ class Pipeline:
             print(test_prediction.shape)
             test_prediction = pd.Series(np.squeeze(test_prediction), index=test_index)
             train_pred = pd.Series(np.squeeze(y_pred), index=train_index)
+            train_target = pd.Series(np.squeeze(train_target), index=train_index)
+            test_target = pd.Series(np.squeeze(test_target), index=test_index)
             visualizer = Visualizer()
             fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
             mlflow.log_figure(fig, "prediction_plot_full.png")
