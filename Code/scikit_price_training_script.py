@@ -46,22 +46,6 @@ else:
     pipeline.set_beginning(start_date = "2014-9-17")
     
 pipeline.preprocess_dataset()
-pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
-                              f'{args.ticker.upper()} / NVT, adjusted, free float',
-                              f'{args.ticker.upper()} / Fees, transaction, median, USD', 
-                              f'{args.ticker.upper()} / Fees, total, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, free float, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
-                              f'{args.ticker.upper()} / Difficulty, mean',
-#                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
-                              f'{args.ticker.upper()} / Transactions, transfers, count',
-                            f'{args.ticker.upper()} / Transactions, transfers, value, mean, USD'
-                              ], inplace = True)
-
-if args.ticker == "btc":
-    pipeline.data.drop(columns = [f'{args.ticker.upper()} / Hash rate, mean, 30d'], inplace = True)
-
 
 
 pipeline.shift_target()

@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-mlflow.set_experiment(args.ticker + "_8.4.2025_returns")
+mlflow.set_experiment(args.ticker + "_9.4.2025_returns")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -206,11 +206,10 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data))
 
 
-SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
-              "estimator__epsilon":space.Real(1e-5, 5, prior = 'log-uniform'),}
+SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform')}
 
 #Support Vector Regression
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = None)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
@@ -238,7 +237,7 @@ results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"
                                                                 model.predict(test_data))
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 
 #1 day
@@ -267,7 +266,7 @@ results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 
 #1 day
@@ -296,7 +295,7 @@ results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 day
                                                                 prediction)
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
