@@ -51,7 +51,7 @@ pipeline.preprocess_dataset()
 
 
 pipeline.shift_target()
-pipeline.data_10d_shift.head(10)
+print(pipeline.data_10d_shift.head(10))
 columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
                    f"{args.ticker.upper()}-LR - 10 days", f"{args.ticker.upper()}-SVR - 1 day", 
                    f"{args.ticker.upper()}-SVR - 5 days", 
@@ -210,7 +210,7 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
                   "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-                  "estimator__max_iter": space.Integer(100, 1000, prior = 'uniform')}
+                  "estimator__max_iter": space.Integer(100, 5000, prior = 'uniform')}
 
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = None)
