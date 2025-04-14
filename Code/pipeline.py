@@ -157,6 +157,7 @@ class Pipeline:
                 self.data = Dataset.get_btc_data()
             case "ltc":
                 self.data = Dataset.get_ltc_data()
+                self.data.drop(columns=["Unanamed: 0"], inplace=True)
             case "eth":
                 self.data = Dataset.get_eth_data()
         self.data_1d_shift = None
