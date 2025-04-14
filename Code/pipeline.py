@@ -254,7 +254,6 @@ class Pipeline:
                 df['bb_upper'], df['bb_lower'] = bollinger_bands(df['returns_today'], window=14)
                 return df
 
-# Data processing for 1-day, 5-day, and 10-day forecasts
             self.data_1d_shift = self.data.copy()
             self.data_1d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(1))
             self.data_1d_shift = self.data_1d_shift.dropna()
@@ -335,7 +334,7 @@ class Pipeline:
         if shape_change is not False:
             scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
         else:
-            scaler = sklearn.preprocessing.StandardScaler()
+            scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -376,8 +375,8 @@ class Pipeline:
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=5, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=30).fit(train_data, train_target)
+            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=20).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
