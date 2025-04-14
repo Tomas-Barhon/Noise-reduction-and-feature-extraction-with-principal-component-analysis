@@ -43,7 +43,7 @@ pipeline = Pipeline(crypto_tick = args.ticker, returns= True)
 if args.ticker == "eth":
     pipeline.set_beginning(start_date = "2015-08-08")
 else:
-    pipeline.set_beginning(start_date = "2014-9-17")
+    pipeline.set_beginning(start_date = "2015-07-01")
     
 pipeline.preprocess_dataset()
 
