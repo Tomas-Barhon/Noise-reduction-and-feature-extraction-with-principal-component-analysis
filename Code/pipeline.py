@@ -59,7 +59,7 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         X_pca = self.pca.transform(X)
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
-        return X_pca
+        return X_restored
 
 class LSTMRegressor(BaseEstimator, RegressorMixin):
     def __init__(self, build_fn, input_shape, units=32, dropout=0.3,
