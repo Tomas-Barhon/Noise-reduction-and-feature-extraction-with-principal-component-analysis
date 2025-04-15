@@ -388,7 +388,7 @@ class Pipeline:
             _type_: _description_
         """
         scoring = {"RMSE": "neg_root_mean_squared_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
@@ -468,7 +468,7 @@ class Pipeline:
         # Define learning rate schedule with exponential decay
         initial_learning_rate = lr_initial
         decay_steps = epochs
-        decay_rate = 0.9
+        decay_rate = 0.96
         learning_rate_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
             initial_learning_rate,
             decay_steps=decay_steps,

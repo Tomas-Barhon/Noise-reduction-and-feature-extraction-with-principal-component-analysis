@@ -21,6 +21,7 @@ from sktime.performance_metrics.forecasting import MeanSquaredError
 rmse = MeanSquaredError(square_root = True)
 from scipy.linalg import LinAlgWarning
 import sklearn.model_selection
+from sklearn.metrics import r2_score
 import warnings
 import mlflow
 import argparse
@@ -133,11 +134,11 @@ pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
                     batch_size = 20,
-                    epochs=150, 
+                    epochs=30, 
                     input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
                     units = 128,
                     dropout = 0.7,
-                    lr_initial = 0.01,
+                    lr_initial = 0.1,
                     layers = 2),
                     dim_reducer = None, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
@@ -194,6 +195,7 @@ pipe.fit(train_data_10, train_target_10)
 plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
 plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
 plt.savefig("returns_lstm.png")
+print(r2_score(train_target_10, pipe.predict(train_data_10)))
 print(rmse(train_target_10, pipe.predict(train_data_10)))
 print(rmse(test_target_10, pipe.predict(test_data_10)))
 
