@@ -56,7 +56,7 @@ else:
      
 pipeline.preprocess_dataset()
 print(pipeline.data.info())
-
+pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
 
 pipeline.data.drop(columns = ['Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
        'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
@@ -181,19 +181,19 @@ def plot_acf_comparison(train_series, test_series, lags=50):
 # Example Usage (replace with actual series)
 # Assuming train_data and test_data are 1D NumPy arrays or Pandas Series
 #plot_acf_comparison(train_target_1, test_target_1, lags=50)
-model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-print(pipe.named_steps)
+# model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
+# print(pipe.named_steps)
 #minimax = sklearn.preprocessing.MinMaxScaler((0,1))
 #train_target = np.squeeze(minimax.fit_transform(train_target_10.reshape(-1, 1)))
 #test_target = np.squeeze(minimax.transform(test_target_10.reshape(-1, 1)))
 
-# pipe.fit(train_data_10, train_target_10)
+pipe.fit(train_data_10, train_target_10)
 
 
 
-# plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
-# plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
-# plt.savefig("returns_lstm.png")
-# print(rmse(train_target_10, pipe.predict(train_data_10)))
-# print(rmse(test_target_10, pipe.predict(test_data_10)))
+plt.plot(np.concatenate([pipe.predict(train_data_10), pipe.predict(test_data_10)]), linewidth=0.2)
+plt.plot(np.concatenate([train_target_10,test_target_10]), linewidth=0.2)
+plt.savefig("returns_lstm.png")
+print(rmse(train_target_10, pipe.predict(train_data_10)))
+print(rmse(test_target_10, pipe.predict(test_data_10)))
 
