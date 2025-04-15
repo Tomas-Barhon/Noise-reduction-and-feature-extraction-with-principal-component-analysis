@@ -209,9 +209,10 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data)), 5)
 
 
-SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
+SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 5, prior = 'uniform'),
                   "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-                  "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform')}
+                  "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform'),
+                  "estimator__epsilon": space.Real(0, 1, prior = 'uniform')}
 
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = None)
