@@ -259,6 +259,11 @@ class Pipeline:
             self.data_1d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(1))
             self.data_1d_shift = self.data_1d_shift.dropna()
             self.data_1d_shift = add_technical_indicators(self.data_1d_shift)
+            lag_1 = self.data_1d_shift["returns_today"].shift(1)
+            lag_2 = self.data_1d_shift["returns_today"].shift(2)
+            # Insert lags before the last column
+            self.data_1d_shift.insert(len(self.data_1d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_1d_shift.insert(len(self.data_1d_shift.columns)-1, 'lag_2', lag_2)
             self.data_1d_shift["target"] = self.data_1d_shift["returns_today"].shift(-1)
             self.data_1d_shift = self.data_1d_shift.dropna()
             # 5-day forecasting
@@ -266,6 +271,11 @@ class Pipeline:
             self.data_5d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(5))
             self.data_5d_shift = self.data_5d_shift.dropna()
             self.data_5d_shift = add_technical_indicators(self.data_5d_shift)
+            lag_1 = self.data_5d_shift["returns_today"].shift(1)
+            lag_2 = self.data_5d_shift["returns_today"].shift(2)
+            # Insert lags before the last column
+            self.data_5d_shift.insert(len(self.data_5d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_5d_shift.insert(len(self.data_5d_shift.columns)-1, 'lag_2', lag_2)
             self.data_5d_shift["target"] = self.data_5d_shift["returns_today"].shift(-5)
             self.data_5d_shift = self.data_5d_shift.dropna()
             # 10-day forecasting
@@ -273,6 +283,11 @@ class Pipeline:
             self.data_10d_shift["returns_today"] = np.log(self.data.iloc[:, -1] / self.data.iloc[:, -1].shift(10))
             self.data_10d_shift = self.data_10d_shift.dropna()
             self.data_10d_shift = add_technical_indicators(self.data_10d_shift)
+            lag_1 = self.data_10d_shift["returns_today"].shift(1)
+            lag_2 = self.data_10d_shift["returns_today"].shift(2)
+            # Insert lags before the last column
+            self.data_10d_shift.insert(len(self.data_10d_shift.columns)-1, 'lag_1', lag_1)
+            self.data_10d_shift.insert(len(self.data_10d_shift.columns)-1, 'lag_2', lag_2)
             self.data_10d_shift["target"] = self.data_10d_shift["returns_today"].shift(-10)
             self.data_10d_shift = self.data_10d_shift.dropna()
         else:
