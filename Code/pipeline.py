@@ -59,7 +59,7 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         X_pca = self.pca.transform(X)
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
-        return X_restored
+        return X_pca
 
 class LSTMRegressor(BaseEstimator, RegressorMixin):
     def __init__(self, build_fn, input_shape, units=32, dropout=0.3,
@@ -392,7 +392,7 @@ class Pipeline:
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
+            cv=6, scoring=scoring, refit="RMSE", n_points=4,
             verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=20).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
