@@ -25,7 +25,7 @@ import warnings
 import mlflow
 import argparse
 from skopt import space, plots
-#os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")  # Report only TF errors by default
 
 print("GPUs:", tf.config.list_physical_devices('GPU'))
 physical_devices = tf.config.list_physical_devices('GPU')
@@ -135,9 +135,9 @@ pipe = Pipeline.assembly_pipeline(
                     batch_size = 20,
                     epochs=150, 
                     input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
-                    units = 64,
-                    dropout = 0.5,
-                    lr_initial = 0.001,
+                    units = 128,
+                    dropout = 0.7,
+                    lr_initial = 0.01,
                     layers = 2),
                     dim_reducer = None, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
