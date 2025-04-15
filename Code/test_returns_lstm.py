@@ -132,7 +132,7 @@ print(rmse(test_target_10, np.zeros_like(test_target_10)))
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
-                    batch_size = 5,
+                    batch_size = 20,
                     epochs=150, 
                     input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
                     units = 64,

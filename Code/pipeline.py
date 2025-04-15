@@ -477,7 +477,7 @@ class Pipeline:
 
         model.compile(
             optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate_schedule),
-            loss="mse", metrics = [Pipeline.root_mean_squared_error], steps_per_execution=50
+            loss="mse", metrics = [Pipeline.root_mean_squared_error], steps_per_execution=10
         )
         print(model.summary())
         return model
