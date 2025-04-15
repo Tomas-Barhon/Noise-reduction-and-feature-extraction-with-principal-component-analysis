@@ -89,9 +89,9 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, np.zeros_like(te
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 200, prior = 'uniform'),
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 500, prior = 'uniform'),
               "estimator__tol":space.Real(1e-6, 10, prior = 'log-uniform'), 
-              "estimator__max_iter": space.Integer(100, 5000, prior = 'uniform'),}
+              "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform'),}
 
 
 
@@ -210,7 +210,7 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
                   "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
-                  "estimator__max_iter": space.Integer(100, 5000, prior = 'uniform')}
+                  "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform')}
 
 #Support Vector Regression
 pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = None)
