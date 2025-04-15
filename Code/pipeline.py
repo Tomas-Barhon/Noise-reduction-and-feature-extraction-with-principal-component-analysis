@@ -186,6 +186,7 @@ class Pipeline:
                    'Close_QQQ', 'USD_EUR_rate']] = self.data[['Close_^DJI', 'Close_^GSPC', 'Close_GC=F', 'Close_^VIX', 'Close_^IXIC',
                                                               'Close_SMH', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
                                                               'Close_QQQ', 'USD_EUR_rate']].ffill()
+        self.data = self.data.loc[:"2021-01-01"]
         match self.tick:
             case "btc":
                 self.data['Wiki_btc_search'] = self.data['Wiki_btc_search'].fillna(
@@ -193,7 +194,7 @@ class Pipeline:
                 # also filling with zeros as the metric was not present at that time
 #                self.data["BTC / Capitalization, market, estimated supply, USD"] = self.data[
 #                    "BTC / Capitalization, market, estimated supply, USD"].fillna(0)
-                self.data = self.data.loc[:"2024-01-20"]
+                #self.data = self.data.loc[:"2024-01-20"]
             case "ltc":
                 self.data['Wiki_ltc_search'] = self.data['Wiki_ltc_search'].fillna(
                     0)
@@ -208,7 +209,7 @@ class Pipeline:
 #                self.data["ETH / Capitalization, market, estimated supply, USD"] = self.data[
 #                    "ETH / Capitalization, market, estimated supply, USD"].fillna(0)
                 # cutting the end where the PoS consensus mechanism starts
-                self.data = self.data.loc[:"2023-12-21"]
+                #self.data = self.data.loc[:"2023-12-21"]
                 # dropping the beginning where the moving averages are not present
                 self.data = self.data.dropna()
         return self
