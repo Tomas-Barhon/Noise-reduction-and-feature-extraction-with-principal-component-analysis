@@ -47,7 +47,7 @@ else:
     pipeline.set_beginning(start_date = "2015-07-01")
     
 pipeline.preprocess_dataset()
-pipeline.data.iloc[:,:-1] = pipeline.data.iloc[:, :-1].diff()
+pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
 
 print(pipeline.data)
 
