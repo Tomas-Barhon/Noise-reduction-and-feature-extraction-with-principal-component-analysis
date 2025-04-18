@@ -57,7 +57,7 @@ else:
      
 pipeline.preprocess_dataset()
 print(pipeline.data.info())
-pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
+pipeline.data.iloc[:,:-1] = pipeline.data.iloc[:, :-1].diff()
 
 pipeline.data.drop(columns = ['Close_GC=F', 'Close_^IXIC', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
        'RGDP_US', 'RGDP_PC_US', 'M2_US'], inplace = True)
@@ -134,11 +134,11 @@ pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
                     batch_size = 20,
-                    epochs=30, 
+                    epochs=150, 
                     input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
                     units = 128,
-                    dropout = 0.7,
-                    lr_initial = 0.1,
+                    dropout = 0.3,
+                    lr_initial = 0.01,
                     layers = 2),
                     dim_reducer = None, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 

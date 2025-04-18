@@ -47,9 +47,9 @@ else:
     pipeline.set_beginning(start_date = "2015-07-01")
     
 pipeline.preprocess_dataset()
-pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
+pipeline.data.iloc[:,:-1] = pipeline.data.iloc[:, :-1].diff()
 
-
+print(pipeline.data)
 
 pipeline.shift_target()
 print(pipeline.data_10d_shift.head(10))
@@ -209,7 +209,7 @@ results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days
                                                                 model.predict(test_data)), 5)
 
 
-SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 5, prior = 'uniform'),
+SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 100, prior = 'uniform'),
                   "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
                   "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform'),
                   "estimator__epsilon": space.Real(0, 1, prior = 'uniform')}

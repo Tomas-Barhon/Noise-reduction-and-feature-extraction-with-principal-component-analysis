@@ -9,7 +9,7 @@ import tensorflow as tf
 from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin
 from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
-from skopt import BayesSearchCV
+from skopt import BayesSearchCV, plots
 from sklearn.utils.validation import check_X_y, check_array
 import mlflow
 import mlflow.sklearn
@@ -250,10 +250,10 @@ class Pipeline:
             # Add technical indicators to the data
             def add_technical_indicators(df):
                 # Adding SMA, EMA, RSI, and Bollinger Bands
-                df['sma_14'] = sma(df['returns_today'], window=14)
-                df['ema_14'] = ema(df['returns_today'], window=14)
-                df['rsi_14'] = rsi(df['returns_today'], window=14)
-                df['bb_upper'], df['bb_lower'] = bollinger_bands(df['returns_today'], window=14)
+                df['sma_14'] = sma(df[f'{self.tick.upper()}-USD'], window=14)
+                df['ema_14'] = ema(df[f'{self.tick.upper()}-USD'], window=14)
+                df['rsi_14'] = rsi(df[f'{self.tick.upper()}-USD'], window=14)
+                df['bb_upper'], df['bb_lower'] = bollinger_bands(df[f'{self.tick.upper()}-USD'], window=14)
                 return df
 
             self.data_1d_shift = self.data.copy()
@@ -351,7 +351,7 @@ class Pipeline:
         if shape_change is not False:
             scaler = sklearn.preprocessing.MinMaxScaler(feature_range=(-1,1))
         else:
-            scaler = sklearn.preprocessing.RobustScaler(unit_variance=True)
+            scaler = sklearn.preprocessing.StandardScaler()
         denoiser = None
         scaler_2 = None
         unpacker = None
@@ -388,12 +388,12 @@ class Pipeline:
             _type_: _description_
         """
         scoring = {"RMSE": "neg_root_mean_squared_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=2)
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=6)
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
-            cv=6, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=20).fit(train_data, train_target)
+            cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=50).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""
@@ -404,7 +404,9 @@ class Pipeline:
             for metric in scoring.keys():
                 cv_results_mean = model.cv_results_[f'mean_test_{metric}']
                 mlflow.log_metric(f"cv_mean_{metric}", -cv_results_mean[model.best_index_])
-                
+            ax = plots.plot_objective(model.optimizer_results_[0],
+                        size = 2.5, levels = 25)
+            mlflow.log_figure(ax.get_figure(), "bayes_search.png")
             mlflow.sklearn.log_model(
             model.best_estimator_,
             "best_model",
@@ -418,11 +420,12 @@ class Pipeline:
             mlflow.log_metric("RMSE_train", rmse)
             rmse_test = np.sqrt(sklearn.metrics.mean_squared_error(test_target, test_prediction))
             mlflow.log_metric("RMSE_test", rmse_test)
-            print(test_prediction.shape)
+            
             test_prediction = pd.Series(np.squeeze(test_prediction), index=test_index)
+            test_target = pd.Series(np.squeeze(test_target), index=test_index)
             train_pred = pd.Series(np.squeeze(y_pred), index=train_index)
             train_target = pd.Series(np.squeeze(train_target), index=train_index)
-            test_target = pd.Series(np.squeeze(test_target), index=test_index)
+            
             visualizer = Visualizer()
             fig = visualizer.draw_prediction_full(train_target,train_pred, test_target, test_prediction, horizon)
             mlflow.log_figure(fig, "prediction_plot_full.png")
@@ -489,7 +492,7 @@ class Pipeline:
         return tf.keras.backend.sqrt(mse)
 
     @staticmethod
-    def create_lstm_input(data, target, lag_order, forecast_time = 1):
+    def create_lstm_input(data, target, lag_order):
         """
         Creates the input for the LSTM network. Predicting target at time t 
         with variables from t-lag_order - t-1.
