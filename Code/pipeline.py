@@ -59,7 +59,7 @@ class PCATransformer(BaseEstimator, TransformerMixin):
         X_pca = self.pca.transform(X)
         # Upsample back to original dimensions
         X_restored = self.pca.inverse_transform(X_pca)
-        return X_pca
+        return X_restored
 
 class LSTMRegressor(BaseEstimator, RegressorMixin):
     def __init__(self, build_fn, input_shape, units=32, dropout=0.3,
@@ -186,7 +186,7 @@ class Pipeline:
                    'Close_QQQ', 'USD_EUR_rate']] = self.data[['Close_^DJI', 'Close_^GSPC', 'Close_GC=F', 'Close_^VIX', 'Close_^IXIC',
                                                               'Close_SMH', 'Close_VGT', 'Close_XSD', 'Close_IYW', 'Close_FTEC', 'Close_IGV',
                                                               'Close_QQQ', 'USD_EUR_rate']].ffill()
-        self.data = self.data.loc[:"2021-01-01"]
+        #self.data = self.data.loc[:"2021-01-01"]
         match self.tick:
             case "btc":
                 self.data['Wiki_btc_search'] = self.data['Wiki_btc_search'].fillna(
@@ -405,7 +405,7 @@ class Pipeline:
                 cv_results_mean = model.cv_results_[f'mean_test_{metric}']
                 mlflow.log_metric(f"cv_mean_{metric}", -cv_results_mean[model.best_index_])
             ax = plots.plot_objective(model.optimizer_results_[0],
-                        size = 2.5, levels = 25)
+                          size = 2.5, levels = 25)
             mlflow.log_figure(ax.get_figure(), "bayes_search.png")
             mlflow.sklearn.log_model(
             model.best_estimator_,

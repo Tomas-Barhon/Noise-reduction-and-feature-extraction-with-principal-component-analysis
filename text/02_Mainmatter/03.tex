@@ -22,8 +22,9 @@ of interest lagged back in time.
 
 \begin{figure}[!h]
     \centering
-    \caption{Dataset Variables Overview}
-        \includegraphics[width=1\textwidth]{Figures/dataset_description.drawio.pdf}
+    \caption{Dataset Variables Overview.}
+    \includegraphics[width=1\textwidth]{Figures/dataset_description.drawio.pdf}
+    \caption*{Source: Author}    
     \label{fig:dataset_description}
 \end{figure}
 
@@ -224,8 +225,10 @@ ETFs and indexes that are not traded on the weekends, see Figure~\ref{fig:datase
 
 \begin{figure}[!h]
     \centering
-    \caption{Dataset Feature Interpolation}
-        \includegraphics[width=1\textwidth]{Figures/data_interpolation.drawio.pdf}
+    \caption{Resampling data to daily frequency is implemented
+    using forward filling to avoid future distribution leakage.}
+    \includegraphics[width=1\textwidth]{Figures/data_interpolation.drawio.pdf}
+    \caption*{Source: Author}    
     \label{fig:dataset_interpolation}
 \end{figure}
 
@@ -279,8 +282,10 @@ only a vector where $y^\top = \mathbf{X}_{:,k}$, see Figure~\ref{fig:dataset_shi
 
 \begin{figure}[!h]
     \centering
-    \caption{Dataset Shifting for Supervised Learning}
-        \includegraphics[width=1\textwidth]{Figures/data_shift.drawio.pdf}
+    \caption{Transforming data into supervised learning problem
+    by shifting target variable by the forecast horizon back in time.}
+        \includegraphics[width=1\textwidth, height=0.9\textheight,keepaspectratio]{Figures/data_shift.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:dataset_shift}
 \end{figure}
 
@@ -329,7 +334,10 @@ up to $\mathbf{x}_{i-lag}$, see Figure~\ref{fig:dataset_lstm_reshape}
 
 \begin{figure}[!h]
     \centering
-    \caption{LSTM Reshaping}
-        \includegraphics[width=1\textwidth]{Figures/LSTM_reshaping.drawio.pdf}
+    \caption{Reshaping for LSTM network requires applying
+    sliding window over the whole dataset to introduce temporal information
+    to the model.}
+    \includegraphics[width=1\textwidth]{Figures/LSTM_reshaping.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:dataset_lstm_reshape}
 \end{figure}

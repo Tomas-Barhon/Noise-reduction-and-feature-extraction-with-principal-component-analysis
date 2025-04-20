@@ -1,6 +1,12 @@
 \chapter{Methodology}
 \label{chap:four}
 
+This section starts by providing general
+overview of the \ac{ML} field and elaborates 
+on the models used in the experiments. 
+We also comment on the role of stationarity in time series analysis
+and its implications for the choice of the forecasting framework.
+
 \section{\acl{ML}}
 
 It is generally agreed upon that the term 
@@ -115,8 +121,10 @@ To ilustrate the idea of \ac{SVM}s, let us consider a binary classification prob
 
 \begin{figure}[!h]
     \centering
-    \caption{Support Vector Machines}
-        \includegraphics[width=1\textwidth]{Figures/SVM_idea.drawio.pdf}
+    \caption{Support Vector Machines are minimizing
+    the error by maximizing the margin between the two classes.}
+    \includegraphics[width=1\textwidth]{Figures/SVM_idea.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:svm}
 \end{figure}
 
@@ -160,8 +168,10 @@ to the original \ac{RNN} cell.
 
 \begin{figure}[!h]
     \centering
-    \caption{\acl{RNN} Architecture}
-        \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
+    \caption{\acl{RNN} Architecture unwinded in time 
+    is feeding outputs back into itself.}
+    \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:rnn_architecture}
 \end{figure}
 
@@ -189,8 +199,10 @@ adds the forget gate to the original architecture.
 \newpage
 \begin{figure}[!h]
     \centering
-    \caption{\ac{LSTM} Cell}
-        \includegraphics[width=1\textwidth]{Figures/LSTM.drawio.pdf}
+    \caption{\ac{LSTM} cell enables 
+    consistent long term memory and stabilizes the training process.}
+    \includegraphics[width=1\textwidth]{Figures/LSTM.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:lstm_cell}
 \end{figure}
 
@@ -262,8 +274,11 @@ we want to preserve.
 
 \begin{figure}[!h]
     \centering
-    \caption{\ac{PCA} Hyperplanes}
-        \includegraphics[width=1\textwidth]{Figures/pca_plot.pdf}
+    \caption{\ac{PCA} projection where the red line
+    is representing the variance maximizing hyperplane. All of the 
+    principal components are orthogonal to each other.}
+    \includegraphics[width=1\textwidth]{Figures/pca_plot.pdf}
+    \caption*{Source: Author}
     \label{fig:pca}
 \end{figure}
 
@@ -390,8 +405,11 @@ can vary significantly and averaging over the results might be prone to noise.
 However, we believe that this is the methodologically correct approach.
 \begin{figure}[!h]
     \centering
-    \caption{Time Series Split with \textit{k=2}} 
-        \includegraphics[width=1\textwidth]{Figures/time_series_split.drawio.pdf}
+    \caption{Time Series Split with \textit{k=2} incrementally
+    increases the training set size and leads to different cross 
+    validation training split sizes.} 
+    \includegraphics[width=1\textwidth]{Figures/time_series_split.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:ts_split}
 \end{figure}
 We opted to use only two splits as the the data size
@@ -401,7 +419,9 @@ more splits.
 
 \begin{figure}[!h]
     \centering
-    \caption{Proposed Forecasting Framework}
-        \includegraphics[width=1\textwidth]{Figures/Forecasting_framework.drawio.pdf}
+    \caption{Proposed Forecasting Framework conists of 
+    four independent sequential layers.}
+    \includegraphics[width=1\textwidth]{Figures/Forecasting_framework.drawio.pdf}
+    \caption*{Source: Author}
     \label{fig:forecasting_framework}
 \end{figure}

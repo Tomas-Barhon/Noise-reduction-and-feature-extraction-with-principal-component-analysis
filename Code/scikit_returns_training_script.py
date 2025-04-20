@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from dataset import Dataset
 from pipeline import Pipeline
+import time
 from visualizations import Visualizer
 from sklearn.linear_model import Ridge, HuberRegressor
 import sklearn.preprocessing
@@ -47,7 +48,7 @@ else:
     
 pipeline.preprocess_dataset()
 pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
-
+print(pipeline.data.head(10))
 
 
 pipeline.shift_target()

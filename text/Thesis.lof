@@ -1,0 +1,38 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Merkel tree with pointers allows efficient state change.\relax }}{9}{figure.caption.34}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dataset Variables Overview.\relax }}{17}{figure.caption.38}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Ethereum missing variables\relax }}{18}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Litecoin missing variables\relax }}{18}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Resampling data to daily frequency is implemented using forward filling to avoid future distribution leakage.\relax }}{23}{figure.caption.41}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Transforming data into supervised learning problem by shifting target variable by the forecast horizon back in time.\relax }}{25}{figure.caption.42}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Reshaping for LSTM network requires applying sliding window over the whole dataset to introduce temporal information to the model.\relax }}{26}{figure.caption.43}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Support Vector Machines are minimizing the error by maximizing the margin between the two classes.\relax }}{30}{figure.caption.45}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces \acl {RNN} Architecture unwinded in time is feeding outputs back into itself.\relax }}{32}{figure.caption.46}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces \ac {LSTM} cell enables consistent long term memory and stabilizes the training process.\relax }}{33}{figure.caption.47}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \ac {PCA} projection where the red line is representing the variance maximizing hyperplane. All of the principal components are orthogonal to each other.\relax }}{35}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Time Series Split with \textit {k=2} incrementally increases the training set size and leads to different cross validation training split sizes.\relax }}{38}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Proposed Forecasting Framework conists of four independent sequential layers.\relax }}{39}{figure.caption.50}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Correlation matrix of the BTC dataset shows high level of multicollinearity.\relax }}{41}{figure.caption.51}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Correlation matrix of the BTC dataset after log differencing all of the variables.\relax }}{42}{figure.caption.52}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Learned coefficients of the Ridge regression model with incremental training on the BTC dataset. Five coefficients with highest variance are highlighted.\relax }}{43}{figure.caption.53}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Learned coefficients of the Ridge regression model with sliding window training on the BTC dataset. Five coefficients with highest variance are highlighted.\relax }}{44}{figure.caption.54}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces Missing Values BTC before subsetting\relax }}{II}{figure.caption.56}%
+\contentsline {figure}{\numberline {B.2}{\ignorespaces Missing Values ETH before subsetting\relax }}{III}{figure.caption.57}%
+\contentsline {figure}{\numberline {B.3}{\ignorespaces Missing Values LTC before subsetting\relax }}{III}{figure.caption.58}%
+\contentsline {figure}{\numberline {B.4}{\ignorespaces Correlation matrix of the ETH dataset shows high level of multicollinearity.\relax }}{IV}{figure.caption.59}%
+\contentsline {figure}{\numberline {B.5}{\ignorespaces Correlation matrix of the ETH dataset after log differencing all of the variables.\relax }}{V}{figure.caption.60}%
+\contentsline {figure}{\numberline {B.6}{\ignorespaces Correlation matrix of the LTC dataset shows high level of multicollinearity.\relax }}{VI}{figure.caption.61}%
+\contentsline {figure}{\numberline {B.7}{\ignorespaces Correlation matrix of the LTC dataset after log differencing all of the variables.\relax }}{VII}{figure.caption.62}%
+\contentsline {figure}{\numberline {B.8}{\ignorespaces Learned coefficients of the Ridge regression model with incremental training on the ETH dataset. Five coefficients with highest variance are highlighted.\relax }}{VIII}{figure.caption.63}%
+\contentsline {figure}{\numberline {B.9}{\ignorespaces Learned coefficients of the Ridge regression model with sliding window training on the ETH dataset. Five coefficients with highest variance are highlighted.\relax }}{IX}{figure.caption.64}%
+\contentsline {figure}{\numberline {B.10}{\ignorespaces Learned coefficients of the Ridge regression model with incremental training on the LTC dataset. Five coefficients with highest variance are highlighted.\relax }}{X}{figure.caption.65}%
+\contentsline {figure}{\numberline {B.11}{\ignorespaces Learned coefficients of the Ridge regression model with sliding window training on the LTC dataset. Five coefficients with highest variance are highlighted.\relax }}{XI}{figure.caption.66}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
