@@ -139,7 +139,10 @@ and are thus interpolated to daily frequency
 will be zero most of the time and thus
 may introduce a lot of variance on the edges where the values
 are changing. For the correlation matrix of this transformed 
-dataset see Figure \ref{fig:Corr_btc_logdiff}.
+dataset see Figure \ref{fig:Corr_btc_logdiff}. We can 
+observe that the correlation levels between the independent variables
+and the target variable are really low with highest 
+levels being with the technical indicators.
 
 \begin{figure}[!h]
     \centering
@@ -150,7 +153,46 @@ dataset see Figure \ref{fig:Corr_btc_logdiff}.
     \label{fig:Corr_btc_logdiff}
 \end{figure}
 
+After changing the model specification, we repeated the experiments
+using Bayesian cross validation which is 
+an advanced technique that 
+usually converges faster to better hyperparameters than the standard
+cross validation. 
+We studied the effect of hyperparamters on the model performance
+and found that the results are mostly insensitive to the choice of the
+hyperparameters. Similarly, cross validation tends to 
+select highly regularized models that 
+are not able to learn the training data well and only predict the mean value.
+This is a typical sign of overfitting to the training noise and
+not to the signal. 
 
+
+As cryptomarket is characterized by significant structural breaks
+that shift the distribution of the data, we wanted
+to test whether the model is able to generalize well
+until the highly volatile period of 2021. We decided to cut 
+the dataset at the beginning of 2021 and rerun the experiments.
+Howevery, the results were not significantly different and the 
+generalization performance was still very poor.
+
+
+We suspect that the signal to noise ratio is too low
+or the the pricing dynamics are changing too often 
+which leads to the inability of the model to generalize
+to out-of-sample time periods. We inspect the latter hypothesis
+on the example of the learned coefficients of the Ridge regression model
+with incremental training that represents
+the time series split and the sliding window approach that represents
+the true changes in the dynamics in time.
+The learned coefficients are shown 
+in Figures \ref{fig:coefs_incremental_btc} and \ref{fig:coefs_sliding_btc},
+where the coefficients with highest variance are highlighted.
+We can observe that the coefficients are changing over time relatively
+dramatically which explains the poor performance of the model. Obviously,
+some variance is expected due to the low size of these folds
+that causes noisiness in the learned coefficients especially in the sliding
+window approach. Similar results were obtained for the cryptocurrencies.
+To see the final results tables see Appendix \ref{app:A}.
 
 
 \begin{figure}[!h]
@@ -175,3 +217,31 @@ dataset see Figure \ref{fig:Corr_btc_logdiff}.
 
 \section{Limitations}
 \label{sec:limitations}
+Unfortunately, the poor model performance 
+prevents us from making any conclusions about the
+initial hypothesis of the thesis. The results 
+are not significantly different even with the \ac{PCA}
+layer added. However, there seems
+to be some limited evidence for less overfitting behaviour 
+in the case of the \ac{PCA} model
+but the results are still worse than the naive forecast leading to
+negative $R^2$ on the test dataset. We conclude
+that the model is not able to learn the pricing dynamics
+due to the low signal to noise ratio and the changing pricing dynamics.
+
+
+Our study is limited by the choice and 
+quality of the data. Despite having 
+a lot of variables representing the network activity and 
+other fundamental variables, the quality of the trend data is low.
+Only the wikipedia page views come in daily frequency
+but we did not expect this variable to be highly informative. 
+Whereas Google trends data was available in weekly frequency
+which leads to low information for daily forecasting.
+We believe that better data quality would improve
+the model performance significantly. 
+Secondly, there might exist a better combination of technical
+indicators that would help the model to learn the pricing dynamics.
+Finally, more advanced techniques to increase
+the dataset size such as generative adversarial networks 
+might help to improve the generalizability properties of the model.

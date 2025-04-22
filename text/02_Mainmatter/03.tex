@@ -80,25 +80,12 @@ For the full description of the variables for \ac{BTC} please refer to the Appen
 
 
 The datasets for Ethereum and Litecoin look similar with the exception of a few variables missing,
-please see (\ref{ethereum:missing}, \ref{litecoin:missing}):
-
-\begin{figure}[!htbp]
-    \begin{center}
-    \caption{Ethereum missing variables}\label{ethereum:missing}
-    \begin{boxeditemize}
-        \item \textit{Hash rate, mean, 30d}
-        \item \textit{Supply, Miner, held by all mining entities, USD}
-        \item \textit{Block, weight, mean}
-    \end{boxeditemize}
-    \end{center}
-    \end{figure}
+please see (\ref{litecoin:missing}):
 
     \begin{figure}[!htbp]
         \begin{center}
         \caption{Litecoin missing variables}\label{litecoin:missing}
         \begin{boxeditemize}
-            \item \textit{Hash rate, mean, 30d}
-            \item \textit{Supply, Miner, held by all mining entities, USD}
             \item \textit{Flow, in, to exchanges, USD}
             \item \textit{Flow, out, from exchanges, USD}
             \item \textit{Revenue, per hash unit, USD}
@@ -128,30 +115,40 @@ various closing prices and other measures of the stock market and other
 investment opportunities. 
 
 
-Following is the full description of the macroeconomical
-variables used:
+For the full description of 
+the variables please refer to Table~\ref{tab:variables_macro}.
 
-\begin{itemize}
-    \item \textit{Close\_DJI} - Dow Jones Industrial Average
-    \item \textit{Close\_GSPC} - S\&P 500
-    \item \textit{Close\_GC=F} - Gold Futures
-    \item \textit{Close\_VIX} - CBOE Volatility Index
-    \item \textit{Close\_IXIC} - NASDAQ Composite
-    \item \textit{Close\_SMH} - VanEck Semiconductor ETF
-    \item \textit{Close\_VGT} - Vanguard Information Technology Index Fund
-    \item \textit{Close\_XSD} - SPDR S\&P Semiconductor ETF
-    \item \textit{Close\_IYW} - iShares U.S. Technology ETF
-    \item \textit{Close\_FTEC} - Fidelity MSCI Information Technology Index ETF
-    \item \textit{Close\_IGV} - iShares Expanded Tech-Software Sector ETF
-    \item \textit{Close\_QQQ} - Invesco QQQ Trust
-    \item \textit{RGDP\_US} - Real Gross Domestic Product of the United States
-    \item \textit{RGDP\_PC\_US} - Real Gross Domestic Product per capita 
-    of the United States
-    \item \textit{CPI\_US} - Consumer Price Index: All Items: Total for United States
-    \item \textit{M2\_US} - M2 Base US
-    \item \textit{USD\_EUR\_rate} - U.S. Dollars to Euro Spot Exchange Rate
-\end{itemize}
-
+\begin{table}[htbp]
+    \centering
+    \begin{threeparttable}
+    \caption{Macro Variables Descriptions}
+    \label{tab:variables_macro}
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Variable} & \textbf{Description} \\
+    \midrule
+    \texttt{Close\_DJI} & Dow Jones Industrial Average \\
+    \texttt{Close\_GSPC} & S\&P 500 \\
+    \texttt{Close\_GC=F} & Gold Futures \\
+    \texttt{Close\_VIX} & CBOE Volatility Index \\
+    \texttt{Close\_IXIC} & NASDAQ Composite \\
+    \texttt{Close\_SMH} & VanEck Semiconductor ETF \\
+    \texttt{Close\_VGT} & Vanguard Information Technology Index Fund \\
+    \texttt{Close\_XSD} & SPDR S\&P Semiconductor ETF \\
+    \texttt{Close\_IYW} & iShares U.S. Technology ETF \\
+    \texttt{Close\_FTEC} & Fidelity MSCI Information Technology Index ETF \\
+    \texttt{Close\_IGV} & iShares Expanded Tech-Software Sector ETF \\
+    \texttt{Close\_QQQ} & Invesco QQQ Trust \\
+    \texttt{RGDP\_US} & Real Gross Domestic Product of the United States \\
+    \texttt{RGDP\_PC\_US} & Real Gross Domestic Product per capita 
+    of the United States \\
+    \texttt{CPI\_US} & Consumer Price Index: All Items: Total for United States \\
+    \texttt{M2\_US} & M2 Base US \\
+    \texttt{USD\_EUR\_rate} & U.S. Dollars to Euro Spot Exchange Rate \\
+    \bottomrule
+    \end{tabular}
+    \end{threeparttable}
+\end{table}
 
 \section{Web Search Data}
 
@@ -189,16 +186,27 @@ we covered all the significant ones.
 Following is the list of the variables from this section and their word forms
 for Google Trends:
 https://cs.wikipedia.org/wiki/Bitcoin
-\begin{itemize}
-    \item \textit{Wiki\_btc\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Bitcoin}{Bitcoin}}
-    \item \textit{Wiki\_eth\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Ethereum}{Ethereum}}
-    \item \textit{Wiki\_ltc\_search} - Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Litecoin}{Litecoin}}
-    \item \textit{Wiki\_crypto\_search} - Wiki pageviews for \textbf{\href{https://en.wikipedia.org/wiki/Cryptocurrency}{Cryptocurrency}}
-    \item \textit{Google\_btc\_search} - Google Trends summed across terms: \textit{Bitcoin, bitcoin, BTC}
-    \item \textit{Google\_eth\_search} - Google Trends summed across terms: \textit{Ethereum, ethereum, ether, ETH}
-    \item \textit{Google\_ltc\_search} - Google Trends summed across terms: \textit{Litecoin, litecoin, LTC}
-    \item \textit{Google\_crypto\_search} - Google Trends summed across terms: \textit{Cryptocurrency, cryptocurrency, Cryptocurrencies, cryptocurrencies, crypto, Crypto}
-\end{itemize}
+\begin{table}[htbp]
+    \centering
+    \begin{threeparttable}
+    \caption{Search Variables Descriptions}
+    \label{tab:variables_search}
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Variable} & \textbf{Description} \\
+    \midrule
+    \texttt{Wiki\_btc\_search} & Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Bitcoin}{Bitcoin}} \\
+    \texttt{Wiki\_eth\_search} & Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Ethereum}{Ethereum}} \\
+    \texttt{Wiki\_ltc\_search} & Wiki pageviews for \textbf{\href{https://cs.wikipedia.org/wiki/Litecoin}{Litecoin}} \\
+    \texttt{Wiki\_crypto\_search} & Wiki pageviews for \textbf{\href{https://en.wikipedia.org/wiki/Cryptocurrency}{Cryptocurrency}} \\
+    \texttt{Google\_btc\_search} & Google Trends summed across terms:  \\ & \textit{Bitcoin, bitcoin, BTC} \\
+    \texttt{Google\_eth\_search} & Google Trends summed across terms:  \\ & \textit{Ethereum, ethereum, ether, ETH} \\
+    \texttt{Google\_ltc\_search} & Google Trends summed across terms:  \\ & \textit{Litecoin, litecoin, LTC} \\
+    \texttt{Google\_crypto\_search} & Google Trends summed across terms: \\ & \textit{Cryptocurrency, cryptocurrency, Cryptocurrencies}, \\ & \textit{cryptocurrencies, crypto, Crypto} \\
+    \bottomrule
+    \end{tabular}
+    \end{threeparttable}
+\end{table}
 
 
 \section{Preprocessing}

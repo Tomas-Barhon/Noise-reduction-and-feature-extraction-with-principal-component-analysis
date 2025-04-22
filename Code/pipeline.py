@@ -388,12 +388,12 @@ class Pipeline:
             _type_: _description_
         """
         scoring = {"RMSE": "neg_root_mean_squared_error"}
-        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=6)
+        ts_split = sklearn.model_selection.TimeSeriesSplit(n_splits=3)
 
         model = BayesSearchCV(
             pipeline, search_spaces=parameter_grid,
             cv=ts_split, scoring=scoring, refit="RMSE", n_points=4,
-            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=50).fit(train_data, train_target)
+            verbose=3, n_jobs=n_jobs, error_score='raise', n_iter=30).fit(train_data, train_target)
 
         estimator_name = type(model.best_estimator_.named_steps["estimator"]).__name__
         n_components = ""

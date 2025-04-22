@@ -327,5 +327,7 @@ prediction = model.predict(test_data)
 results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(r2_score(test_target,
                                                                 model.predict(test_data)), 5)
 
+print(restults_train_averaged.to_latex())
+print(results_test.to_latex())
 results_train_averaged.to_csv(f"results_train_averaged_{args.ticker.upper()}.csv")
 results_test.to_csv(f"results_test_{args.ticker.upper()}.csv")
