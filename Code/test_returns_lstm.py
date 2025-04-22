@@ -108,7 +108,7 @@ train_target_10 = cap_outliers(train_target_10)
 
 
 LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 300, prior = 'uniform'),
-    "estimator__epochs": space.Integer(10, 200, prior = 'uniform'),
+    "estimator__epochs": space.Integer(10, 70, prior = 'uniform'),
     "estimator__batch_size": space.Integer(5, 200, prior = 'uniform'),
     "estimator__dropout": space.Real(0, 0.5, prior = 'uniform'),
     "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
@@ -119,7 +119,7 @@ LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 300, prior = 'uniform')
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
                     batch_size = 20,
-                    epochs=150, 
+                    epochs=70, 
                     input_shape=(6, len(pipeline.data_1d_shift.columns) -1),
                     units = 128,
                     dropout = 0.3,
@@ -211,11 +211,11 @@ pipe = Pipeline.assembly_pipeline(
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 model = Pipeline.fit_grid_search(train_data_5, train_target_5, test_data_5, test_target_5, index_5_train, index_5_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_5,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(train_target_5,
                                                                 model.predict(train_data_5)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_5,
-                                                                model.predict(test_data_1)), 5)
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(test_target_5,
+                                                                model.predict(test_data_5)), 5)
 
 pca = PCA(n_components = 0.95)
 pipe = Pipeline.assembly_pipeline(
@@ -232,11 +232,11 @@ pipe = Pipeline.assembly_pipeline(
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 model = Pipeline.fit_grid_search(train_data_5, train_target_5, test_data_5, test_target_5, index_5_train, index_5_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_5,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(train_target_5,
                                                                 model.predict(train_data_5)),5)
 
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_5,
-                                                                model.predict(test_data_1)), 5)
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(test_target_5,
+                                                                model.predict(test_data_5)), 5)
 
 
 pca = PCA(n_components = 0.98)
@@ -253,11 +253,11 @@ pipe = Pipeline.assembly_pipeline(
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 model = Pipeline.fit_grid_search(train_data_5, train_target_5, test_data_5, test_target_5, index_5_train, index_5_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_5,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(train_target_5,
                                                                 model.predict(train_data_5)),5)
 
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_5,
-                                                                model.predict(test_data_1)), 5)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(test_target_5,
+                                                                model.predict(test_data_5)), 5)
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
@@ -273,11 +273,11 @@ pipe = Pipeline.assembly_pipeline(
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 model = Pipeline.fit_grid_search(train_data_5, train_target_5, test_data_5, test_target_5, index_5_train, index_5_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_5,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(train_target_5,
                                                                 model.predict(train_data_5)),5)
 
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_5,
-                                                                model.predict(test_data_1)), 5)
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 5 days"]] = round(r2_score(test_target_5,
+                                                                model.predict(test_data_5)), 5)
 
 #10 days
 pipe = Pipeline.assembly_pipeline(
@@ -293,10 +293,10 @@ pipe = Pipeline.assembly_pipeline(
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_10,
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(train_target_10,
                                                                 model.predict(train_data_10)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_10,
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(test_target_10,
                                                                 model.predict(test_data_10)), 5)
 
 pca = PCA(n_components = 0.95)
@@ -314,10 +314,10 @@ pipe = Pipeline.assembly_pipeline(
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_10,
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(train_target_10,
                                                                 model.predict(train_data_10)),5)
 
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_10,
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(test_target_10,
                                                                 model.predict(test_data_10)), 5)
 
 
@@ -335,10 +335,10 @@ pipe = Pipeline.assembly_pipeline(
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_10,
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(train_target_10,
                                                                 model.predict(train_data_10)),5)
 
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_10,
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(test_target_10,
                                                                 model.predict(test_data_10)), 5)
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(
@@ -355,10 +355,10 @@ pipe = Pipeline.assembly_pipeline(
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
 
 model = Pipeline.fit_grid_search(train_data_10, train_target_10, test_data_10, test_target_10, index_10_train, index_10_test, pipe, LSTM_PARAMETERS, n_jobs =None)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_10,
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(train_target_10,
                                                                 model.predict(train_data_10)),5)
 
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(test_target_10,
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LSTM - 10 days"]] = round(r2_score(test_target_10,
                                                                 model.predict(test_data_10)), 5)
 results_train_averaged.to_csv(f"results_train_averaged_{args.ticker.upper()}.csv")
 results_test.to_csv(f"results_test_{args.ticker.upper()}.csv")
