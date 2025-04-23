@@ -114,7 +114,7 @@ LSTM_PARAMETERS = {"estimator__units": space.Integer(10, 300, prior = 'uniform')
     "estimator__lr_initial": space.Real(1e-6, 1e-2, prior = 'log-uniform'),
     "estimator__layers": space.Categorical([1,2])}
 
-
+print(rmse(test_target_1, np.zeros_like(test_target_1)))
 #1 day
 pipe = Pipeline.assembly_pipeline(
     estimator = LSTMRegressor(build_fn = Pipeline.assembly_lstm,
@@ -148,6 +148,8 @@ pipe = Pipeline.assembly_pipeline(
                     dim_reducer = pca, 
                     shape_change = ((-1, len(pipeline.data_1d_shift.columns) -1), 
                                     (-1,6,len(pipeline.data_1d_shift.columns) -1)))
+
+
 
 model = Pipeline.fit_grid_search(train_data_1, train_target_1, test_data_1, test_target_1, index_1_train, index_1_test, pipe, LSTM_PARAMETERS, n_jobs =None)
 results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LSTM - 1 day"]] = round(r2_score(train_target_1,

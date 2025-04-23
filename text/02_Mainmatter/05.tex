@@ -9,15 +9,19 @@ for small sample sizes and for low signal to noise problems.
 \section{Results Intepretation}
 \label{sec:results}
 Initially, we intend to focus mainly on the price forecasting problem.
-After running many experiments, we decided to add 
+After running many experiments with unsatisfactory results, we decided to add 
 a set of technical indicators calculated from the price variable.
 Concretely, we added the following indicators: simple moving average (SMA),
 exponential moving average (EMA), relative strength index (RSI) and 
-bollinger bands (BB). The reason for this decision is the fact
-that the price variable is strongly autocorrelated and 
-the fundamental pricing is relatively limited. 
-To see the correlation matrix for the initial
-dataset, see Figure \ref{fig:Corr_btc}.
+bollinger bands (BB). 
+The reason for this decision being the presence
+of strong autocorrelation in the target variable which
+might be a signal of limited impact of the fundamental pricing side. 
+In order to assess potential variable importance
+we have evaluated a correlation matrix for the initial
+dataset, please see Figure \ref{fig:Corr_btc}. High 
+levels of multicollinearity highlight the importance of
+regularization techniques to avoid overfitting.
 
 \begin{figure}[!h]
     \centering
@@ -28,6 +32,7 @@ dataset, see Figure \ref{fig:Corr_btc}.
     \label{fig:Corr_btc}
 \end{figure}
 
+\newpage
 \begin{equation}\label{eq:sma}
     \text{SMA}_t = \frac{1}{w} \sum_{i=0}^{w-1} P_{t-i}
 \end{equation}
@@ -51,14 +56,15 @@ dataset, see Figure \ref{fig:Corr_btc}.
     \text{Lower}_t = \text{SMA}_t - k \cdot \sigma_t
 \end{equation}
 
-After adding the technical indicators, the results
+After the addition of the technical indicators, the results
 did not improve significantly and the model 
 was always converging to the prediction of the current price
 which leads to a typical pattern in the 
-graph comparing the predicted and actual prices where the prediction
-is the target price shifted by the time horizon.
+graph when putting the predicted and actual prices into comparison 
+where the prediction is essentially
+the target price shifted by the prediction horizon.
 We test this hypothesis by comparing
-the model with the naive forecast which is the last
+the model with the naive forecast which predicts the last
 observed price and charaterizes
 the random walk model. The naive forecast outperforms 
 the model in most of the cases on the test dataset. 
@@ -71,16 +77,30 @@ of log returns. The log returns are calculated as follows:
 \end{equation}
 
 where $P_t$ is the price at time $t$ and $h$ is the time horizon.
-The idea behind this approach is that the log returns are stationary
-and the model can better capture
+The idea behind this approach is that the log returns are stationary in nature
+and the model can thus better capture
 the pricing dynamics without learning the long term trend.
-Due to the fact that the log returns are stationary, 
-$R^2$ is a good measure of the model performance that
+Due to log returns stationarity, 
+$R^2$ is a reasonable measure of the model performance that
 tells whether the model is better than the naive mean forecast.
-Positive $R^2$ indicates that the model is better than the naive forecast.
-Unfortunately, this did not help much and the model was still
+Positive $R^2$ indicates that the model is better than the mean forecast.
+Technically, $R^2$ is a relatively strict measure
+when the returns shift systematically in one direction on the test dataset.
+The reason is that the sum of squares total
+is calculated on the test data and thus knowing the test data mean.
+However, the models trained on the training dataset do not 
+capture this shift as they do not know the test data mean.
+Despite that we believe that $R^2$ is a reasonable measure
+as the models should be able to outperform this baseline.
+Unfortunately, this problem reformulation 
+did not help much and the model was still
 unable to generalize well to the test dataset despite
 decent performance on the training dataset.
+It is worth noting that most of our
+models have lower root mean square error on the test
+dataset than on the training dataset so they 
+are not truly overfitting the training data.
+
 
 
 We suggest multiple reasons for this behavior. 
