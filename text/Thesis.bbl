@@ -1,4 +1,4 @@
-\begin{thebibliography}{47}
+\begin{thebibliography}{49}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 
@@ -170,6 +170,12 @@
   big data analysis.}
 \newblock \emph{Science} \textbf{343(6176)}: pp. 1203--1205.
 
+\bibitem[{Liu \emph{et~al.}(2023)Liu, Li, Nekhili, \& Sultan}]{Liu2023}
+\textsc{Liu}, Y., Z.~\textsc{Li}, R.~\textsc{Nekhili}, \& J.~\textsc{Sultan}
+  (2023): \enquote{Forecasting cryptocurrency returns with machine learning.}
+\newblock \emph{Research in International Business and Finance} \textbf{64}: p.
+  101905.
+
 \bibitem[{Lucas(2021)}]{Lucas2021}
 \textsc{Lucas}, S. (2021): \enquote{The origins of the halting problem.}
 \newblock \emph{Journal of Logical and Algebraic Methods in Programming}
@@ -282,5 +288,12 @@
   high-frequency price dynamics into recurring and noisy components.}
 \newblock \emph{Chaos: An Interdisciplinary Journal of Nonlinear Science}
   \textbf{33(8)}.
+
+\bibitem[{Yae \& Tian(2022)}]{Yae2022}
+\textsc{Yae}, J. \& G.~Z. \textsc{Tian} (2022): \enquote{Out-of-sample
+  forecasting of cryptocurrency returns: A comprehensive comparison of
+  predictors and algorithms.}
+\newblock \emph{Physica A: Statistical Mechanics and its Applications}
+  \textbf{598}: p. 127379.
 
 \end{thebibliography}
