@@ -81,7 +81,7 @@ class Dataset():
         with open('crypto_searches.pkl', 'wb') as f:
             pickle.dump(self.queries_crypto, f)
             print("dumped")
-        self.fred = Fred(api_key="ee915eacae9f30debeafbd04ea173709")
+        self.fred = Fred(api_key="")
 
     def get_yf_variable_history(self,tick_name):
         """Retrieves data from Yahoo finance for specific tick

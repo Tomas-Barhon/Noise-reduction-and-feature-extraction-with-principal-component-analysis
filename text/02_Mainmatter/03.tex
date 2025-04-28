@@ -28,7 +28,7 @@ of interest lagged back in time.
 \begin{figure}[!h]
     \centering
     \caption{Dataset Variables Overview.}
-    \includegraphics[width=1\textwidth]{Figures/dataset_description.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/dataset_description.drawio.png}
     \caption*{Source: Author}    
     \label{fig:dataset_description}
 \end{figure}
@@ -39,8 +39,7 @@ based on
 the different sources but they are further shortened to utilize the most
 overlapping region between data sources for each unique cryptocurrency.
 This results in a time series from 17.9.2014 to 20.1.2024 for Bitcoin, 4.2.2016
-to 27.7.2022 for Ethereum ensuring that the end of the series is 
-before the change to proof-of-stake algorithm and series from 17.9.2014 to 21.12.2023
+to 27.7.2022 for Ethereum and series from 17.9.2014 to 21.12.2023
 for Litecoin. The shifted versions of the datasets are of variable length based
 on the forecasting horizon. 
 \section{Cryptocurrency Specific Technical Data}
@@ -174,7 +173,7 @@ most likely sacrifices a lot of interesting dynamics on the daily level which
 is significant regarding the volatility of cryptocurrencies. 
 These reasons, except the weekly sampling frequency, were solved in 
 the \textbf{\href{https://github.com/epfl-dlab/GoogleTrendsAnchorBank}{g-tab}}
-Python library, created by \cite{West2020a}, which uses a 
+Python library, created by \citep{West2020a}, which uses a 
 two step query sampling process that 
 estimates the searches on a universally common scale with floating precision and allows 
 us to use as many word formulation as needed. We would then sum the popularity
@@ -185,7 +184,7 @@ we covered all the significant ones.
 
 Following is the list of the variables from this section and their word forms
 for Google Trends:
-https://cs.wikipedia.org/wiki/Bitcoin
+
 \begin{table}[htbp]
     \centering
     \begin{threeparttable}
@@ -240,7 +239,7 @@ ETFs and indexes that are not traded on the weekends, see Figure~\ref{fig:datase
     \centering
     \caption{Resampling data to daily frequency is implemented
     using forward filling to avoid future distribution leakage.}
-    \includegraphics[width=1\textwidth]{Figures/data_interpolation.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/data_interpolation.drawio.png}
     \caption*{Source: Author}    
     \label{fig:dataset_interpolation}
 \end{figure}
@@ -297,7 +296,7 @@ only a vector where $y^\top = \mathbf{X}_{:,k}$, see Figure~\ref{fig:dataset_shi
     \centering
     \caption{Transforming data into supervised learning problem
     by shifting target variable by the forecast horizon back in time.}
-        \includegraphics[width=1\textwidth, height=0.9\textheight,keepaspectratio]{Figures/data_shift.drawio.pdf}
+        \includegraphics[width=1\textwidth, height=0.9\textheight,keepaspectratio]{Figures/data_shift.drawio.png}
     \caption*{Source: Author}
     \label{fig:dataset_shift}
 \end{figure}
@@ -350,7 +349,7 @@ up to $\mathbf{x}_{i-lag}$, see Figure~\ref{fig:dataset_lstm_reshape}
     \caption{Reshaping for LSTM network requires applying
     sliding window over the whole dataset to introduce temporal information
     to the model.}
-    \includegraphics[width=1\textwidth]{Figures/LSTM_reshaping.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/LSTM_reshaping.drawio.png}
     \caption*{Source: Author}
     \label{fig:dataset_lstm_reshape}
 \end{figure}

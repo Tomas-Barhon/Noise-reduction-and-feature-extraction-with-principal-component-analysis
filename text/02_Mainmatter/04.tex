@@ -12,11 +12,11 @@ and its implications for the choice of the forecasting framework.
 It is generally agreed upon that the term 
 \ac{ML} refers to the field of study that gives computers the ability to learn 
 without being explicitly programmed. This fact was first 
-introduced by Arthur Samuel in 1959 \cite{Samuel1959}. However, note that the reference to this paper is used
+introduced by Arthur Samuel in 1959 \citep{Samuel1959}. However, note that the reference to this paper is used
 loosely, as the definition of \ac{ML} was not directly used in the paper and it is rather 
 a retrospective interpretation of the paper. 
 
-The term \ac{ML} was more explicitly introduced by Tom M. Mitchell in 1997 \cite{Mitchell1997}:
+The term \ac{ML} was more explicitly introduced by Tom M. Mitchell in 1997 \citep{Mitchell1997}:
 
 \begin{defin}[Machine Learning]\label{de:ml}
     A computer program is said to learn from experience E with respect
@@ -75,7 +75,7 @@ The simplest model that we can use for forecasting is the \acl{LR} model.
 Generally, there exists a closed form solution for the \ac{LR} model.
 
 \begin{equation}
-    \hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n
+    \hat{y} = \hat{\theta}_0 + \hat{\theta}_1 x_1 + \hat{\theta}_2 x_2 + \cdots + \hat{\theta}_n x_n
 \end{equation}
 
 But in practice, we use gradient descent to find the optimal parameters.
@@ -123,7 +123,7 @@ To ilustrate the idea of \ac{SVM}s, let us consider a binary classification prob
     \centering
     \caption{Support Vector Machines are minimizing
     the error by maximizing the margin between the two classes.}
-    \includegraphics[width=1\textwidth]{Figures/SVM_idea.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/SVM_idea.drawio.png}
     \caption*{Source: Author}
     \label{fig:svm}
 \end{figure}
@@ -146,7 +146,7 @@ seperate all of the points in the training set.
 The optimization details of the \ac{SVM}s are quite complex and are beyond the scope of this text.
 They include the usage of the Lagrange multipliers and the dual optimization problem. The description
 of the kernel trick is not included as we opted for the linear kernel in our experiments.
-We thus refer the readers to some traditional \ac{ML} textbooks such as \cite{bishop2006pattern}.
+We thus refer the readers to some traditional \ac{ML} textbooks such as \citep{bishop2006pattern}.
 The \ac{SVM}s represent a middle ground between the traditional \ac{LR} model and the deep learning models.
 
 
@@ -162,7 +162,7 @@ due to the fact that the neurons in \ac{RNN}s are connected to themselves
 which makes them multiply the same weight matrix multiple
 times which can lead to the fact that the gradient becomes extremely small if the 
 weights are small. This is the reason why the \ac{LSTM} cell was
-introduced by Hochreiter and Schmidhuber in 1997 \cite{Hochreiter1997}.
+introduced by Hochreiter and Schmidhuber in 1997 \citep{Hochreiter1997}.
 The idea is to make the errors constant through time by introducing few improvements
 to the original \ac{RNN} cell.
 
@@ -170,7 +170,7 @@ to the original \ac{RNN} cell.
     \centering
     \caption{\acl{RNN} Architecture unwinded in time 
     is feeding outputs back into itself.}
-    \includegraphics[width=1\textwidth]{Figures/RNN.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/RNN.drawio.png}
     \caption*{Source: Author}
     \label{fig:rnn_architecture}
 \end{figure}
@@ -180,7 +180,7 @@ to feed backward into iself its internal state. Conceptually, this is a kind
 of memory or an internal representation of the data. Output in the next
 time step is the combination of the current input and the internal state
 of the cell usually weighted using the tanh activation function. 
-It is a common practice to to represent \ac{RNN}s as a chain of cells 
+It is a common practice to represent \ac{RNN}s as a chain of cells 
 unwined in time even though it is actually a single cell that is fed back into itself.
 It is possible to combine multiple such layers of these cells to create
 a deep \ac{RNN} which is able to capture more complex patterns in the data.
@@ -193,7 +193,7 @@ or the gated recurrent unit cell which are giving the model the ability to learn
 long term dependencies.
 
 Since the introduction of the \ac{LSTM} cell, many improvements have been made to the original
-architecture we will describe the improved architecture from \cite{Gers2000} which
+architecture we will describe the improved architecture from \citep{Gers2000} which
 adds the forget gate to the original architecture. 
 
 \newpage
@@ -201,7 +201,7 @@ adds the forget gate to the original architecture.
     \centering
     \caption{\ac{LSTM} cell enables 
     consistent long term memory and stabilizes the training process.}
-    \includegraphics[width=1\textwidth]{Figures/LSTM.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/LSTM.drawio.png}
     \caption*{Source: Author}
     \label{fig:lstm_cell}
 \end{figure}
@@ -234,8 +234,8 @@ The input gate decides which input information is useful for the cell state.
 The forget gate decides which information to forget from the long term memory.
 And finally the output gate decides which information should be passed to the next state.
 The exact formulas are given in equations 4.4-4.8 where $\mathbf{W}, \mathbf{V}$ 
-represent respective weights of the layers and \mathbf{b} is the bias term. 
-We can see that this architecture allow the cell to represent long term
+represent respective weights of the layers and $\mathbf{b}$ is the bias term. 
+We can see that this architecture allows the cell to represent long term
 memory as the vector $\textbf{c}$ and short term memory
 as the vector $\textbf{h}$ as normal \ac{RNN}s do. 
 
@@ -277,7 +277,7 @@ we want to preserve.
     \caption{\ac{PCA} projection where the red line
     is representing the variance maximizing hyperplane. All of the 
     principal components are orthogonal to each other.}
-    \includegraphics[width=1\textwidth]{Figures/pca_plot.pdf}
+    \includegraphics[width=1\textwidth]{Figures/pca_plot.png}
     \caption*{Source: Author}
     \label{fig:pca}
 \end{figure}
@@ -290,7 +290,7 @@ they are also uncorrleated which is a useful property for many \ac{ML} algorithm
 We acknowledge that \ac{PCA} is not in itself a noise reduction technique
 but it is a rather elegant and simple way that sometimes reduces noise in the data.
 The implementation details of \ac{PCA} are beyond the scope of this text but we refer the readers
-to the original paper \cite{Pearson1901}.
+to the original paper \citep{Pearson1901}.
 
 
 
@@ -408,7 +408,7 @@ However, we believe that this is the methodologically correct approach.
     \caption{Time Series Split with \textit{k=2} incrementally
     increases the training set size and leads to different cross 
     validation training split sizes.} 
-    \includegraphics[width=1\textwidth]{Figures/time_series_split.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/time_series_split.drawio.png}
     \caption*{Source: Author}
     \label{fig:ts_split}
 \end{figure}
@@ -421,7 +421,7 @@ more splits.
     \centering
     \caption{Proposed Forecasting Framework conists of 
     four independent sequential layers.}
-    \includegraphics[width=1\textwidth]{Figures/Forecasting_framework.drawio.pdf}
+    \includegraphics[width=1\textwidth]{Figures/Forecasting_framework.drawio.png}
     \caption*{Source: Author}
     \label{fig:forecasting_framework}
 \end{figure}

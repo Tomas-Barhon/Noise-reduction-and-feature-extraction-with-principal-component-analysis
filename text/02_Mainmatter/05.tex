@@ -1,6 +1,6 @@
 \chapter{Results and Discussion}
 \label{chap:five}
-In this section we will discuss the results obtained from 
+In this section we discuss the results obtained from 
 the performed experiments. We particularly discuss the 
 overfitting phenomenon, which is a common problem
 for small sample sizes and for low signal to noise problems. 
@@ -21,7 +21,7 @@ regularization techniques to avoid overfitting.
     \centering
     \caption{Correlation matrix of the BTC dataset shows high level of 
     multicollinearity.}
-    \includegraphics[width=1\textwidth]{Figures/Corr_btc.pdf}
+    \includegraphics[width=1\textwidth]{Figures/Corr_btc.png}
     \caption*{Source: Author}
     \label{fig:Corr_btc}
 \end{figure}
@@ -179,7 +179,7 @@ levels being with the technical indicators.
     \centering
     \caption{Correlation matrix of the BTC dataset after
     log differencing all of the variables.}
-    \includegraphics[width=1\textwidth]{Figures/Corr_btc_logdiff.pdf}
+    \includegraphics[width=1\textwidth]{Figures/Corr_btc_logdiff.png}
     \caption*{Source: Author}
     \label{fig:Corr_btc_logdiff}
 \end{figure}
@@ -231,7 +231,7 @@ To see the final results tables see Appendix \ref{app:A}.
     \caption{Learned coefficients of the Ridge regression model
     with incremental training on the BTC dataset. Five 
     coefficients with highest variance are highlighted.}
-    \includegraphics[width=1\textwidth]{Figures/coefficient_values_incremental_btc.pdf}
+    \includegraphics[width=1\textwidth]{Figures/coefficient_values_incremental_btc.png}
     \caption*{Source: Author}
     \label{fig:coefs_incremental_btc}
 \end{figure}
@@ -241,7 +241,7 @@ To see the final results tables see Appendix \ref{app:A}.
     \caption{Learned coefficients of the Ridge regression model
     with sliding window training on the BTC dataset. Five 
     coefficients with highest variance are highlighted.}
-    \includegraphics[width=1\textwidth]{Figures/coefficient_values_sliding_btc.pdf}
+    \includegraphics[width=1\textwidth]{Figures/coefficient_values_sliding_btc.png}
     \caption*{Source: Author}
     \label{fig:coefs_sliding_btc}
 \end{figure}
@@ -293,12 +293,14 @@ methodological side where we focus
 in detail on the data preprocessing steps and 
 on multiple phenomena regarding specifics
 of non-stationary time series that are often neglected in the literature.
-It is thus relatively difficult to compare our results with
+It is relatively difficult to compare our results with
 the existing literature as 
 some of the studies are using different data
 or do not publish the code used for the experiments.
 
-Similar study to ours by 
+
+
+Similar study by 
 \cite{Liu2023} suggests
 that they were able to obtain out-of-sample $R^2$  of 4.8\%
 which is significantly better than our results.
@@ -334,7 +336,7 @@ uses a better evaluation metric than traditional $R^2$
 which is $R^2$ against historical averages and $R^2$ against zeros
 which might be a more forgiving measure of the model performance.
 Despite that, 
-most of the \ac{ML} model they have studied score negative $R^2$ on 
+most of the \ac{ML} models they have studied score negative $R^2$ on 
 the test dataset.
 
 An older study by \cite{Akyildirim2020} 
@@ -348,15 +350,26 @@ respect to the time dimension. Furthermore,
 the choice of the baseline should be validated
 by some analysis of the proportion of positive and negative returns.
 Unfortunately, the literature on
-this topic is relatively scarce. This might mean
+this topic is relatively scarce and we did not find 
+much more relevant studies. This might mean
 that either the topic is not very popular or that the results are not worth
-publishing. It is however to draw any conclusion which is the case.
+publishing. It is however difficult to draw any conclusions which one is the case.
 
 We still believe that there is some potential in the \ac{ML} models
 but there is a need for better data quality and for models
 that directly model the economics aspects of the problem
 as the basic data science workflow does not seem 
-to be sufficient for this problem.
+to be sufficient for this problem. Better data quality can
+be achieved by better
+representation of the daily speculative component
+which is not captured by google trends in our analysis.
+Data from social media such as Twitter or Reddit might
+be a stronger proxy due to detailed granularity. It is
+also important to understand the connection between the 
+speculative proxies and the price dynamics as this problem
+is endogenous in nature. Potentially, a different approach
+studying investor behaviour on the individual level
+might uncover some interesting insights into this dynamics.
 
 
 
