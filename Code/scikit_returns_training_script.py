@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from dataset import Dataset
 from pipeline import Pipeline
+import time
 from visualizations import Visualizer
 from sklearn.linear_model import Ridge, HuberRegressor
 import sklearn.preprocessing
@@ -29,7 +30,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--ticker", type=str, choices=['btc', 'ltc', 'eth'], required=True,
                                         help="Cryptocurrency ticker (eth, ltc, or eth)")
 args = parser.parse_args()
-mlflow.set_experiment(args.ticker + "_31.3.2025")
+mlflow.set_experiment(args.ticker + "_15.4.2025_returns")
 
 # Filter out LinAlgWarning
 warnings.filterwarnings("ignore", category=LinAlgWarning)
@@ -43,28 +44,15 @@ pipeline = Pipeline(crypto_tick = args.ticker, returns= True)
 if args.ticker == "eth":
     pipeline.set_beginning(start_date = "2015-08-08")
 else:
-    pipeline.set_beginning(start_date = "2014-9-17")
+    pipeline.set_beginning(start_date = "2015-07-01")
     
 pipeline.preprocess_dataset()
-pipeline.data.drop(columns = [f'{args.ticker.upper()} / NVT, adjusted, free float,  90d MA',
-                              f'{args.ticker.upper()} / NVT, adjusted, free float',
-                              f'{args.ticker.upper()} / Fees, transaction, median, USD', 
-                              f'{args.ticker.upper()} / Fees, total, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, free float, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, current supply, USD',
-                              f'{args.ticker.upper()} / Capitalization, market, estimated supply, USD',
-                              f'{args.ticker.upper()} / Difficulty, mean',
-#                              f'{args.ticker.upper()} / Hash rate, mean, 30d',
-                              f'{args.ticker.upper()} / Transactions, transfers, count',
-                            f'{args.ticker.upper()} / Transactions, transfers, value, mean, USD'
-                              ], inplace = True)
-
-if args.ticker == "btc":
-    pipeline.data.drop(columns = [f'{args.ticker.upper()} / Hash rate, mean, 30d'], inplace = True)
-
+pipeline.data.iloc[:,:-1] = np.log(pipeline.data.iloc[:, :-1]).diff()
+print(pipeline.data.head(10))
 
 
 pipeline.shift_target()
+print(pipeline.data_10d_shift.head(10))
 columns = [f"{args.ticker.upper()}-LR - 1 day", f"{args.ticker.upper()}-LR - 5 days", 
                    f"{args.ticker.upper()}-LR - 10 days", f"{args.ticker.upper()}-SVR - 1 day", 
                    f"{args.ticker.upper()}-SVR - 5 days", 
@@ -102,35 +90,37 @@ results_test["Naive forceast - 10 days"] = rmse(test_target_10, np.zeros_like(te
 #Linear Regression
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = None)
 
-LR_PARAMETERS = {"estimator__alpha": space.Real(0, 200, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform')}
+LR_PARAMETERS = {"estimator__alpha": space.Real(0, 500, prior = 'uniform'),
+              "estimator__tol":space.Real(1e-6, 10, prior = 'log-uniform'), 
+              "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform'),}
 
 
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
-                                                                model.predict(test_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
+
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.95)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
@@ -138,28 +128,28 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target,train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.98)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
@@ -167,174 +157,174 @@ pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.99)
 pipe = Pipeline.assembly_pipeline(estimator = Ridge(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, LR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, LR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-LR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 
 SVR_PARAMETERS = {"estimator__C": space.Real(1e-5, 10000, prior = 'uniform'),
-              "estimator__tol":space.Real(1e-5, 5, prior = 'log-uniform'),}
+                  "estimator__tol":space.Real(1e-5, 10, prior = 'log-uniform'),
+                  "estimator__max_iter": space.Integer(5, 5000, prior = 'uniform')}
 
 #Support Vector Regression
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = None)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = None)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
-
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(test_target,
-                                                                model.predict(test_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 
-results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(test_target,
-                                                                model.predict(test_data))
+results_test.loc[["Full dimensionality"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.95)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["95% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.98)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index,pipe, SVR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["98% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 pca = PCA(n_components = 0.99)
-pipe = Pipeline.assembly_pipeline(estimator = SVR(kernel="rbf"), dim_reducer = pca)
+pipe = Pipeline.assembly_pipeline(estimator = LinearSVR(), dim_reducer = pca)
 
 #1 day
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_1d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 1)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, SVR_PARAMETERS, horizon = 1)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 1 day"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #5 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_5d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 5)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, SVR_PARAMETERS, horizon = 5)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 5 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 #10 days
 train_data, test_data, train_target, test_target = Pipeline.split_train_test(pipeline.data_10d_shift.copy())
-model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, pipe, SVR_PARAMETERS, horizon = 10)
-results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(train_target,
-                                                                model.predict(train_data))
+model = Pipeline.fit_grid_search(train_data, train_target, test_data, test_target, train_data.index, test_data.index, pipe, SVR_PARAMETERS, horizon = 10)
+results_train_averaged.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(train_target,
+                                                                model.predict(train_data)),5)
 prediction = model.predict(test_data)
-results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = rmse(test_target,
-                                                                prediction)
+results_test.loc[["99% retained variance"],[f"{args.ticker.upper()}-SVR - 10 days"]] = round(rmse(test_target,
+                                                                model.predict(test_data)), 5)
 
 results_train_averaged.to_csv(f"results_train_averaged_{args.ticker.upper()}.csv")
 results_test.to_csv(f"results_test_{args.ticker.upper()}.csv")

@@ -6,7 +6,8 @@ associated with the unknown author Satoshi \cite{Nakamoto2008} cryptocurrencies
 have become part of our everyday life. Their high volatility, futuristic name 
 and alternative nature are of interest to the media and the general public.
 According to \textbf{\href{https://coinmarketcap.com/charts/}{coinmarketcap.com}}
-the overall cryptocurrency market capitalization peaked at around 2.8 trillion \$USD in the year 2022
+the overall cryptocurrency 
+market capitalization peaked at around 3.71 trillion \$USD in the year 2024
 which makes them a substantial part of the financial sphere.
 The initial idea of \ac{BTC} was to establish an alternative to traditional fiat currencies. 
 The \ac{BTC} whitepaper
@@ -15,14 +16,14 @@ for verifying transactions.
 A different approach was suggested to validate transactions known as the proof-of-work which
 utilizes the computational power of miners in the network. The fact that the power is 
 distributed across the network ensures that it becomes exponentially harder with an increasing number of blocks
-to generate blocks faster than the rest of the miners \cite[pg.~6]{Nakamoto2008}. 
+to generate blocks faster than the rest of the miners \citep[pg.~6]{Nakamoto2008}. 
 The mining process is interconnected with the creation of new coins which is a crucial parameter
 in all monetary systems. This fact gives researchers such as \cite{Kukacka2023} 
 the possibility to use various attributes of the network to study the pricing dynamics of cryptocurrencies. 
 However, there are a couple of substantial drawbacks that make price modeling relatively challenging.
 Those are non-stationarity of the target prices, relatively short historical window, the limited power of
 proxies for speculative components and as pointed out by many researchers 
-such as \cite{Bouri2022}, \cite{Dimpfl2021}, \cite{Watorek2023} an idiosyncratic noise in volatility.
+such as \citet{Bouri2022}, \citet{Dimpfl2021} and \citet{Watorek2023} an idiosyncratic noise in volatility.
 Addressing these issues might potentially lead to better-performing models, especially
 with longer forecasting periods. Likewise in other fields, the recent rise of machine learning 
 has also affected the cryptocurrency area where various \ac{ML} and \ac{DL} models 
@@ -33,18 +34,18 @@ to model the price \cite{Khedr2021} or volatility \cite{Kristjanpoller2018}.
 The main objective of this thesis is to try to tackle the problem of idiosyncratic noise in
 the high dimensional data used for price and returns modeling across three ML models: Ridge \ac{LR}, \ac{SVM}
 and \ac{LSTM} \ac{RNN}.
-We will examine the effect of a method known as \ac{PCA} which was according to 
+We will examine the effect of a method known as \acl{PCA} which was according to 
 \cite{Farebrother2022} developed in 1933 by Harold Hotelling. However, others often refer
 to the fact 
 that the idea was already introduced before by Karl Pearson in the article 
-\textit{On lines and planes of closest fit to systems of points in space} \cite{Pearson1901}.
+\textit{On lines and planes of closest fit to systems of points in space} \citep{Pearson1901}.
 This technique aims to compress data from a higher dimensionality space into a lower space while 
 retaining a maximum amount of variance. It utilizes linear transformation of the covariance matrix
 to do that.
 Nevertheless, despite the initial focus on dimensionality reduction different types of 
 \ac{PCA} are often being used as noise reduction techniques in signal or image processing.
 Interestingly many studies in recent years have incorporated \ac{PCA} for time series data 
-as a part of their preprocessing pipeline \cite{Chowdhury2018}, \cite{Kristjanpoller2018}.
+as a part of their preprocessing pipeline (\citet{Chowdhury2018}, \citet{Kristjanpoller2018}).
 The idea stems from the fact that removing the most idiosyncratic components
 might help with capturing clear dynamics that enter the price-making process.
 We perceive that there is currently a lack of literature that would examine the effects of 
@@ -57,14 +58,14 @@ and the size of the dataset is relatively limited. We want to contribute with an
 in the preprocessing pipeline that can be used in future studies to decrease the volatility of predictions.
 We do not aim to provide a universally applicable approach, as different techniques 
 can produce varying outcomes on different datasets.
-This phenomenon partially corresponds to the \textit{No Free Lunch Theorem} \cite{Wolpert1995} which
+This phenomenon partially corresponds to the \textit{No Free Lunch Theorem} \citep{Wolpert1995} which
 has turned into a buzzword in the \ac{ML} community over the years.
 
 
 The remainder of the thesis is organized as follows: 
 The following chapter introduces the fundamentals of cryptocurrencies and their unique characteristics.
-It also covers the usage of \ac{ML} methods in this field and especially focuses on the literature about
-the usage of \ac{PCA} in various areas. The data chapter explains in detail which data were used 
+It also covers the use of \ac{ML} methods in this field and especially focuses on the literature about
+the use of \ac{PCA} in various areas. The data chapter explains in detail which data were used 
 and elaborates on the basic resampling methods that we used. In methodology, we focus on each specific
 \ac{ML} method and explain the core concepts that are crucial for understanding the training process. 
 Similarly, we propose our complete forecasting framework. Chapter results and discussion evaluates

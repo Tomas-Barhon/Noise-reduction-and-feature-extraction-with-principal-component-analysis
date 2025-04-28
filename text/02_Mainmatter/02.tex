@@ -1,7 +1,11 @@
 \chapter{Literature Review}
 \label{chap:two}
 
-
+The following chapter
+provides a detailed overview of the existing literature
+on cryptocurrencies and machine learning methods.
+We also cover the use of \ac{PCA} in time-series data
+and the use of web search data in financial applications.
 \section{Cryptocurrencies}
 \label{sec:crypto}
 
@@ -9,13 +13,13 @@
 In the year 2008, an unknown author with the pseudonym Satoshi Nakamoto introduced the idea of 
 a purely peer-to-peer electronic cash system. Interestingly the author mentions 
 small casual transactions as something that the current model relying on third-party
-financial institutions fails to deliver because of unavoidable transaction costs \cite{Nakamoto2008}. 
+financial institutions fails to deliver because of unavoidable transaction costs \citep{Nakamoto2008}. 
 In contrast, from today's perspective, Bitcoin is a relatively slow medium for micro-transactions because 
 technically the receiver has to always wait for a certain amount of blocks to be mined such that
 it becomes statistically unlikely that double-spending has been committed by the payer 
-\cite{Conti2018}. This phenomenon
+\citep{Conti2018}. This phenomenon
 can be demonstrated on the data from \textbf{\href{https://coinmetrics.io/}{coinmetrics.io}} which show
-that the mean size of a \ac{BTC} transaction ranges in thousands of USD\$. 
+that the mean size of a \ac{BTC} transaction ranges in thousands of USD. 
 Another important aspect is that 
 the miners prioritize transactions with higher fees in the block which introduces considerable costs
 to each payment. \cite{Moeser2015} have shown the relationship between the transaction fee 
@@ -28,7 +32,7 @@ well-defined in a medium time horizon.
 
 Despite the fact, that Bitcoin is generally regarded as the first cryptocurrency it relies on 
 many older ideas and technologies that are mostly referenced in the original whitepaper. First and foremost
-stands the conference paper \textit{How to Time-Stamp a Digital Document} \cite{Haber1991} which focuses
+stands the conference paper \textit{How to Time-Stamp a Digital Document} \citep{Haber1991} which focuses
 on the problem of third parties responsible for verification of digital documents. It makes use of 
 an already established family of functions known as hashes that surpass privacy concerns and generally
 surpass the need for a third party to be involved in the verification process when combined
@@ -53,7 +57,7 @@ so that the user can trust that something was not overwritten \cite[see Chapter 
 This is possible due to the properties of the hash functions.
 Meaning that we can concatenate arbitrarily long inputs and always produce a fixed-size output. 
 Another significant influence came from b-money which was an idea for an anonymous digital
-cash system presented in \cite{Dai1998}. B-money proposed the concept of \ac{PoW}
+cash system presented in \citep{Dai1998}. B-money proposed the concept of \ac{PoW}
 which is a validation protocol that many cryptocurrencies still use. The idea was to solve
 computationally challenging puzzles where it can be determined how much effort was used to do so
 \cite[see][pg.~1]{Dai1998}.
@@ -118,7 +122,7 @@ At the time of writing according to the data from
 \newline
 \ac{ETH} 
 is the second cryptocurrency 
-based on the market capitalization standing at 318 billion USD. Although, there are a lot of 
+based on the market capitalization standing at 214 billion USD. Although, there are a lot of 
 similarities with \ac{BTC} the idea behind \ac{ETH} is much more profound and builds an entire
 technological infrastructure on top of blockchain which provides easily
 scriptable smart contracts. \cite{Tikhomirov2018} defines smart contracts as follows:
@@ -164,7 +168,7 @@ describes cryptocurrencies as a state transition system:
 
 In this view, we can understand building smart contracts, see Definition~\ref{de:contract}, 
 as creating use case specific \textit{state transition functions} 
-(\cite[see Chapter Bitcoin As A State Transition System]{buterin2013ethereum},\cite[see Chapter 2]{Tikhomirov2018}). 
+(\citet[see Chapter Bitcoin As A State Transition System]{buterin2013ethereum},\citet[see Chapter 2]{Tikhomirov2018}). 
 
 We can observe the fundamental difference in 
 philosophy between the \ac{BTC} and \ac{ETH} from their respective 
@@ -203,8 +207,9 @@ leading to them.
 \begin{center}
     \begin{figure}[H]
         \centering
-            \includegraphics[width=1\textwidth]{Figures/merkle-tree.pdf}
-        \caption{Merkel tree with pointers allows efficient state change}
+            \includegraphics[width=1\textwidth]{Figures/merkle-tree.png}
+        \caption{Merkel tree with pointers allows efficient state change.}
+        \caption*{Source: Author}
         \label{fig:merkel}
     \end{figure}
 \end{center}
@@ -215,9 +220,7 @@ Contrasting the model of \ac{BTC} where the supply is limited \ac{ETH} introduce
 a model of an infinite linear supply of coins to provide incentives 
 for future users to join the network as they might still obtain 
 new coins and thus limit the wealth concentration common in \ac{BTC} (\cite{buterin2013ethereum}, \cite{Tikhomirov2018}).
-Note that \ac{ETH} already switched to the proof-of-stake model in September 2022
-but our dataset does not include this period and thus this fact 
-is not especially relevant to this thesis.
+Note that \ac{ETH} already switched to the proof-of-stake model in September 2022.
 
 
 On the outside \ac{ETH} acts similarly to \ac{BTC}. It is a ledger
@@ -237,14 +240,13 @@ however, the problem was reformulated in various forms by others. This implies
 that this undecidability also holds for any \ac{ETH} contract code.
 This is fixed by introducing a gas currency that acts as a cost of computation 
 and the maximum has to be predefined in each 
-message so that the recipient knows what is at stake \cite{buterin2013ethereum}. 
+message so that the recipient knows what is at stake \citep{buterin2013ethereum}. 
 We can think of this as a type of timeout based on a currency. If gas runs
 out all of the state changes are reverted. This also explains the usage 
 of the term 
 transactions in this setting. 
-Transaction typically refers to a set of instructions in SQL or 
-other databases that
-are bundled together and executed in an all-or-nothing fashion \cite{Kleppmann2017}.
+Transaction typically refers to a set of instructions in SQL database language that
+are bundled together and executed in an all-or-nothing fashion \citep{Kleppmann2017}.
 The last important fact, as the whitepaper describes, is that the contract code is run by
 all of the miners verifying the block which essentially means applying all of the
 transactions and reverting in case of an error.
@@ -256,7 +258,7 @@ beginning as building a better version of \ac{BTC} that shines where
 \ac{BTC} has failed. We might say that \ac{LTC} is a tweaked version of \ac{BTC} with 
 different parameters or a hard fork of the \ac{BTC} protocol. 
 To our best understanding, the only document that 
-is wildly considered the original whitepaper is a transcript of a forum
+is widely considered the original whitepaper is a transcript of a forum
 post by the founder Charlie Lee where he suggests reading 
 the \ac{BTC} whitepaper.
 Essentially, two main differences address the problems
@@ -343,7 +345,7 @@ hypothesis
 that was formulated for capital markets by \cite{Fama1970}.
 It is thus no oddity that \cite{Ren2022} have found out that across 395 scientific
 articles about the use of \ac{ML} in cryptocurrencies the most cited 
-article was \cite{Urquhart2016} that studied the efficiency of \ac{BTC} and 
+article was \citet{Urquhart2016} that studied the efficiency of \ac{BTC} and 
 concluded that the \ac{BTC} market is inefficient but may become efficient in the future.
 And that the keyword
 inefficiency was the one with the highest burst of emergence among the articles.
@@ -354,7 +356,7 @@ being modelled as a regression problem or the movement of the market is predicte
 as a binary classification. Modelling market movement
 is easier and it is also much more comparable across studies. If we can assume 
 that there are approximately the same amounts of ups and downs we can work
-against the 50\% baseline \cite{Akyildirim2020}.
+against the 50\% baseline \citep{Akyildirim2020}.
 \cite{Khedr2021} pointed out that cryptocurrencies lack seasonal trends
 which makes them challenging to predict for traditional statistical models. 
 They also distinguish four types of factors influencing cryptocurrency price.
@@ -363,7 +365,7 @@ Our work will cover the first three types of factors as the political factors
 are hard to quantify. Later \cite{Ren2022} suggested that future researchers should
 study measurement tools for political factors. 
 If you want to find out more about research in this
-field from 2010-2020 please view \cite{Khedr2021} which provides a comprehensive
+field from 2010-2020 please view \citep{Khedr2021} which provides a comprehensive
 review. However, as we suggested 
 earlier the aspect of comparison between studies is rather limited.
 
@@ -390,11 +392,9 @@ they have been evaluated only on a month of predictions which is in our view ins
 
 
 
-\section{Principal Component Analysis}
+\section{PCA in Time Series}
 \label{sec:pca}
 
-
-\subsection{PCA in Time Series}
 \ac{PCA} is a widely adopted signal processing technique that is typically
 used to lower dimensionality of input features and to mitigate noise in the
 signal by transforming the data into a different feature space while ensuring
@@ -434,7 +434,7 @@ Analysis as a preprocessing layer for stock prediction and
 found out that the proposed framework outperformed the approach 
 where only the final \ac{SVR} was used for prediction. Many
 other works use \ac{PCA} only as a dimensionality reduction technique
-such as \cite{Toledo2022}.
+such as \citep{Toledo2022}.
 
 
 An alternative novel approach used by some researchers  
@@ -457,7 +457,7 @@ maximal variance optimization may be associated with higher volatility.
 The phenomenon of Google Trends has drawn attention of many researchers.
 First and foremost stands the idea of Google Flu Trends. A project
 launched by Google which aimed at predicting flu epidemics using the symptom
-related searches by the users \cite{Ginsberg2009}. However, as \cite{Lazer2014}
+related searches by the users \citep{Ginsberg2009}. However, as \cite{Lazer2014}
 pointed out there have been many underlying issues both in the data construction
 and the dynamic nature of the search engine changing with years of development.
 We should highligh the importance of the correlation-causation fallacy in

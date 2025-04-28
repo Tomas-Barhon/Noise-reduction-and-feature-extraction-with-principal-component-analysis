@@ -1,1 +1,281 @@
 \chapter{Detailed Results Tables}
+\label{app:A}
+\begin{table}[htbp]
+\centering
+\caption{Results of the Ridge Regression Model Train Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-LR - 1 day &  BTC-LR - 5 days &  BTC-LR - 10 days \\
+    \midrule
+    Full dimensionality   &         0.01330 &          0.03727 &           0.05569 \\
+    95\% retained variance &         0.01097 &          0.03391 &           0.03929 \\
+    98\% retained variance &         0.01143 &          0.03533 &           0.05464 \\
+    99\% retained variance &         0.01189 &          0.03600 &           0.05466 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the SVR Model Train Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-SVR - 1 day &  BTC-SVR - 5 days &  BTC-SVR - 10 days \\
+    \midrule
+    Full dimensionality   &      -0.00226 &          -0.01158 &           -0.01658 \\
+    95\% retained variance &      -0.00226 &          -0.01136 &           -0.02180 \\
+    98\% retained variance &      -0.00226 &          -0.01154 &           -0.01780 \\
+    99\% retained variance &      -0.00226 &          -0.01153 &           -0.01837 \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the LSTM Model Train Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-LSTM - 1 day &  BTC-LSTM - 5 days &  BTC-LSTM - 10 days \\
+    \midrule
+    Full dimensionality   &    -0.05479   &    2e-05       &    0.09113       \\
+    95\% retained variance &    -0.02   &        -0.00043   &      -0.46234      \\
+    98\% retained variance &    -0.38582   &     -0.00224     &     0.07469       \\
+    99\% retained variance &  0.00122    & -4e-05      &      0.01605     \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the Ridge Model Test Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-LR - 1 day &  BTC-LR - 5 days &  BTC-LR - 10 days\\
+    \midrule
+    Full dimensionality   &        -0.00484 &         -0.01428 &          -0.04277 \\
+    95\% retained variance &         0.00050 &         -0.01568 &          -0.01613\\
+    98\% retained variance &        -0.00022 &         -0.01340 &          -0.04184\\
+    99\% retained variance &        -0.00170 &         -0.01352 &          -0.04186\\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the SVR Model Test Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-SVR - 1 day &  BTC-SVR - 5 days &  BTC-SVR - 10 days\\
+    \midrule
+    Full dimensionality     &  -0.00037 &          -0.00221 &           -0.00667 \\
+    95\% retained variance   &  -0.00037 &          -0.00202 &           -0.00368\\
+    98\% retained variance   &  -0.00037 &          -0.00243 &           -0.00535\\
+    99\% retained variance   &  -0.00037 &          -0.00199 &           -0.00517\\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the LSTM Model Test Dataset, $R^2$ metric, BTC}
+\begin{tabular}{lrrr}
+    \toprule
+    {} &  BTC-LSTM - 1 day &  BTC-LSTM - 5 days &  BTC-LSTM - 10 days \\
+    \midrule
+    Full dimensionality   &    -0.1228   &     -0.01189      &     -0.03256      \\
+    95\% retained variance &   -0.00583    &     -0.00716      &   -2.81868         \\
+    98\% retained variance &   -1.58044    &    0.00012      &   -0.27972         \\
+    99\% retained variance &  -0.00477    &     -0.01145  &    -0.02553      \\
+    \bottomrule
+\end{tabular}
+\end{table}
+
+%%ETH
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the Ridge Regression Model Train Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-LR - 1 day &  ETH-LR - 5 days &  ETH-LR - 10 days \\
+        \midrule
+        Full dimensionality   &      0.01709    &     0.03234     &        0.04851    \\
+        95\% retained variance &     0.01332    &   0.02988 &     0.04177     \\
+        98\% retained variance &    0.01373   &     0.0302   &    0.04185  \\
+        99\% retained variance &   0.01687    &     0.03137    &  0.04682   \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the SVR Model Train Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-SVR - 1 day &  ETH-SVR - 5 days &  ETH-SVR - 10 days \\
+        \midrule
+        Full dimensionality   &  -0.00398   &    -0.01759     &   -0.02885       \\
+        95\% retained variance &  -0.00398  &    -0.01778     &   -0.02787        \\
+        98\% retained variance &  -0.00398   &   -0.0177      &   -0.02888      \\
+        99\% retained variance &  -0.00398  &    -0.01748     &  -0.02891   \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the LSTM Model Train Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-LSTM - 1 day &  ETH-LSTM - 5 days &  ETH-LSTM - 10 days \\
+        \midrule
+        Full dimensionality   &    0.0001   &      0.00024     &      0.00266     \\
+        95\% retained variance &   0.0001    &    0.01698       &     -0.00544       \\
+        98\% retained variance &    -0.00672   &    0.00013      &    -0.03365        \\
+        99\% retained variance &  -0.28841    &   -0.02426    &        0.03163   \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the Ridge Model Test Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-LR - 1 day &  ETH-LR - 5 days &  ETH-LR - 10 days\\
+        \midrule
+        Full dimensionality   &   -0.0029   &    -0.02056   &    -0.02534    \\
+        95\% retained variance &   -0.00278  &    -0.01793    &     -0.0089   \\
+        98\% retained variance &    -0.00212    &     -0.01892    &    -0.00918  \\
+        99\% retained variance &     -0.00267  &    -0.02003   &    -0.02768   \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the SVR Model Test Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-SVR - 1 day &  ETH-SVR - 5 days &  ETH-SVR - 10 days\\
+        \midrule
+        Full dimensionality     & -0.0022 &    -0.00038    &    0.00065     \\
+        95\% retained variance   & -0.00219 &    -0.0006   &     0.00065   \\
+        98\% retained variance   & -0.0022  &      -0.00047   &     0.00058     \\
+        99\% retained variance   &  -0.0022 &      -0.00011   &    0.00059    \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the LSTM Model Test Dataset, $R^2$ metric, ETH}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  ETH-LSTM - 1 day &  ETH-LSTM - 5 days &  ETH-LSTM - 10 days \\
+        \midrule
+        Full dimensionality   &   -0.00363    &     -0.0535      &    -0.03034       \\
+        95\% retained variance &  0.00068     &     -0.06966      &     0.01329      \\
+        98\% retained variance &   -0.07611    &  -0.05646        &     -0.29143       \\
+        99\% retained variance &  -0.36521    &    0.00013   &      -0.02966     \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+
+%%LTC
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of the Ridge Regression Model Train Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-LR - 1 day &  LTC-LR - 5 days &  LTC-LR - 10 days \\
+        \midrule
+        Full dimensionality   &    0.00985      &   0.03449       &     0.05824       \\
+        95\% retained variance &    0.00921     & 0.03073   &       0.03773    \\
+        98\% retained variance &     0.0093  &       0.03362 &    0.0463  \\
+        99\% retained variance &    0.00956   &     0.03425    &   0.04657  \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the SVR Model Train Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-SVR - 1 day &  LTC-SVR - 5 days &  LTC-SVR - 10 days \\
+        \midrule
+        Full dimensionality   &   -0.00056  &    0.00795     &    -0.00501     \\
+        95\% retained variance &   -0.00056 &     -0.00291    &      -0.00502     \\
+        98\% retained variance &  -0.00056   &     -0.00283    &     0.00095    \\
+        99\% retained variance &  -0.00056  &    -0.00291     &   -0.00501  \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the LSTM Model Train Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-LSTM - 1 day &  LTC-LSTM - 5 days &  LTC-LSTM - 10 days \\
+        \midrule
+        Full dimensionality   &    -1e-05   &   0.0262        &    0.04409       \\
+        95\% retained variance &  -0.02324     &   0.02099        &  0.02187          \\
+        98\% retained variance &  0.00271     &    0.01406      &      -0.0459      \\
+        99\% retained variance &  -0.00159    &    -0.04197   &     0.03507      \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the Ridge Model Test Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-LR - 1 day &  LTC-LR - 5 days &  LTC-LR - 10 days\\
+        \midrule
+        Full dimensionality   &    0.00293  &   -0.00597    &     -0.06626    \\
+        95\% retained variance &   0.00398  &   -0.00194     &      -0.0241  \\
+        98\% retained variance &    0.00347    &   -0.00486      &  -0.01171    \\
+        99\% retained variance &   0.00297    &    -0.00495   &    -0.00956   \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the SVR Model Test Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-SVR - 1 day &  LTC-SVR - 5 days &  LTC-SVR - 10 days\\
+        \midrule
+        Full dimensionality     & -0.00035 &    0.00435    &    -0.00409     \\
+        95\% retained variance   & -0.00035 &   -0.00195    &      -0.0041  \\
+        98\% retained variance   & -0.00035  &      -0.00198   &    -0.00213      \\
+        99\% retained variance   &  -0.00035 &    -0.00194     &    -0.00409    \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Results of the LSTM Model Test Dataset, $R^2$ metric, LTC}
+    \begin{tabular}{lrrr}
+        \toprule
+        {} &  LTC-LSTM - 1 day &  LTC-LSTM - 5 days &  LTC-LSTM - 10 days \\
+        \midrule
+        Full dimensionality   &    -0.00246   &     -0.02475      &    -0.02862       \\
+        95\% retained variance &  -0.01891     &    -0.0238       &    -0.02381        \\
+        98\% retained variance &   -0.00205    &    -0.02936     &    -0.04612        \\
+        99\% retained variance &   0.00146   &   -0.1762    &    -0.03606       \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
+    
